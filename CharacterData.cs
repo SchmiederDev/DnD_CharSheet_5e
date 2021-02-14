@@ -120,7 +120,7 @@ namespace DnD_CharSheet_5e
             sleightOfHand = character.Get_SleightOfHand_Prof();
             stealth = character.Get_Stealth_Prof();
 
-            survival = character.Get_Survival_Prof();
+            survival = character.Get_Survival_Prof(); // a char class has many memebers
         }
     }
 }
