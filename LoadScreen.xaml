@@ -1,0 +1,20 @@
+﻿<Window x:Class="DnD_CharSheet_5e.LoadScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DnD_CharSheet_5e"
+        mc:Ignorable="d"
+        Title="Load Character" Height="450" Width="800">
+
+    <StackPanel>
+
+        <Button x:Name="saveGame_01_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 50 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_02_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_03_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_04_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_05_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+
+    </StackPanel>
+
+</Window>
