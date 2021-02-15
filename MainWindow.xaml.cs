@@ -229,7 +229,7 @@ namespace DnD_CharSheet_5e
             {
                 maxHPtext.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_maxHP_Text(maxHPtext.Text);
+                sheetManager.character.Set_maxHP_byText(maxHPtext.Text);
             }
 
             else { hasError = true; }
@@ -238,7 +238,7 @@ namespace DnD_CharSheet_5e
             {
                 strScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_strValue(strScoreText.Text);
+                sheetManager.character.Set_strValue_byText(strScoreText.Text);
                 sheetManager.character.Set_strModifier(sheetManager.character.Get_strValue());
                 strModifierText.Text = sheetManager.character.Get_strModifier().ToString();
             }
@@ -249,7 +249,7 @@ namespace DnD_CharSheet_5e
             {
                 dexScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_dexValue(dexScoreText.Text);
+                sheetManager.character.Set_dexValue_byText(dexScoreText.Text);
                 sheetManager.character.Set_dexModifier(sheetManager.character.Get_dexValue());
                 dexModifierText.Text = sheetManager.character.Get_dexModifier().ToString();
             }
@@ -260,7 +260,7 @@ namespace DnD_CharSheet_5e
             {
                 conScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_conValue(conScoreText.Text);
+                sheetManager.character.Set_conValue_byText(conScoreText.Text);
                 sheetManager.character.Set_conModifier(sheetManager.character.Get_conValue());
                 conModifierText.Text = sheetManager.character.Get_conModifier().ToString();
             }
@@ -271,7 +271,7 @@ namespace DnD_CharSheet_5e
             {
                 intScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_intValue(intScoreText.Text);
+                sheetManager.character.Set_intValue_byText(intScoreText.Text);
                 sheetManager.character.Set_intModifier(sheetManager.character.Get_intValue());
                 intModifierText.Text = sheetManager.character.Get_intModifier().ToString();
             }
@@ -283,7 +283,7 @@ namespace DnD_CharSheet_5e
             {
                 wisScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_wisValue(wisScoreText.Text);
+                sheetManager.character.Set_wisValue_byText(wisScoreText.Text);
                 sheetManager.character.Set_wisModifier(sheetManager.character.Get_wisValue());
                 wisModifierText.Text = sheetManager.character.Get_wisModifier().ToString();
             }
@@ -294,7 +294,7 @@ namespace DnD_CharSheet_5e
             {
                 chaScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_chaValue(chaScoreText.Text);
+                sheetManager.character.Set_chaValue_byText(chaScoreText.Text);
                 sheetManager.character.Set_chaModifier(sheetManager.character.Get_chaValue());
                 chaModifierText.Text = sheetManager.character.Get_chaModifier().ToString();
             }
