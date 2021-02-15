@@ -29,6 +29,26 @@ namespace DnD_CharSheet_5e
             character.Set_maxHP(charData.maxHP);
             character.Set_currHP(charData.currHP);
 
+            character.Set_tempHP(charData.tempHP);
+
+            character.Set_hitDice(charData.HD);
+            character.Set_currHD(charData.currHD);
+
+            character.Set_strValue(charData.strength);
+            character.Set_dexValue(charData.dexerity);
+            character.Set_conValue(charData.constitution);
+            character.Set_intValue(charData.intelligence);
+            character.Set_wisValue(charData.wisdom);
+            character.Set_chaValue(charData.charisma);
+
+            character.Set_SaveProficiencies(charData.str_ST, charData.dex_ST, charData.con_ST, charData.int_ST, charData.wis_ST, charData.cha_ST);
+
+            character.Set_Proficiencies_strSkills(charData.athletics);
+            character.Set_Proficiencies_dexSkills(charData.acrobatics, charData.sleightOfHand, charData.stealth);
+            character.Set_Proficiencies_intSkills(charData.arcana, charData.history, charData.investigation, charData.nature, charData.religion);
+            character.Set_Proficiencies_wisSkills(charData.animalHandling, charData.insight, charData.medicine, charData.perception, charData.survival);
+            character.Set_Proficiencies_chaSkills(charData.deception, charData.intimidation, charData.performance, charData.persuasion);
+
         }
 
         public Character Get_Character()
