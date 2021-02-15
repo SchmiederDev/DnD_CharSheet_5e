@@ -179,7 +179,7 @@ namespace DnD_CharSheet_5e
             return proficiencyBonus;
         }
 
-        public void Set_maxHP_Text(string boxText)
+        public void Set_maxHP_byText(string boxText)
         {
             maxHP = int.Parse(boxText);
         }
@@ -194,7 +194,7 @@ namespace DnD_CharSheet_5e
             return maxHP;
         }
 
-        public void Set_currHP_Text(string boxText)
+        public void Set_currHP_byText(string boxText)
         {
             currHP = int.Parse(boxText);
         }
@@ -209,7 +209,7 @@ namespace DnD_CharSheet_5e
             return currHP;
         }
 
-        public void Set_tempHP_Text(string boxText)
+        public void Set_tempHP_byText(string boxText)
         {
             tempHP = int.Parse(boxText);
         }
@@ -280,9 +280,14 @@ namespace DnD_CharSheet_5e
             return iniBonus;
         }
 
-        public void Set_strValue(string boxText)
+        public void Set_strValue_byText(string boxText)
         {
             strValue = int.Parse(boxText);
+        }
+
+        public void Set_strValue(int strength)
+        {
+            strValue = strength;
         }
 
         public int Get_strValue()
@@ -300,9 +305,14 @@ namespace DnD_CharSheet_5e
             return strModifier;
         }
 
-        public void Set_dexValue(string boxText)
+        public void Set_dexValue_byText(string boxText)
         {
             dexValue = int.Parse(boxText);
+        }
+
+        public void Set_dexValue(int dexterity)
+        {
+            dexValue = dexterity;
         }
 
         public int Get_dexValue()
@@ -320,9 +330,14 @@ namespace DnD_CharSheet_5e
             return dexModifier;
         }
 
-        public void Set_conValue(string boxText)
+        public void Set_conValue_byText(string boxText)
         {
             conValue = int.Parse(boxText);
+        }
+
+        public void Set_conValue(int constitution)
+        {
+            conValue = constitution;
         }
 
         public int Get_conValue()
@@ -340,9 +355,14 @@ namespace DnD_CharSheet_5e
             return conModifier;
         }
 
-        public void Set_intValue(string boxText)
+        public void Set_intValue_byText(string boxText)
         {
             intValue = int.Parse(boxText);
+        }
+
+        public void Set_intValue(int intelligence)
+        {
+            intValue = intelligence;
         }
 
         public int Get_intValue()
@@ -360,9 +380,14 @@ namespace DnD_CharSheet_5e
             return intModifier;
         }
 
-        public void Set_wisValue(string boxText)
+        public void Set_wisValue_byText(string boxText)
         {
             wisValue = int.Parse(boxText);
+        }
+
+        public void Set_wisValue(int wisdom)
+        {
+            wisValue = wisdom;
         }
 
         public int Get_wisValue()
@@ -380,9 +405,14 @@ namespace DnD_CharSheet_5e
             return wisModifier;
         }
 
-        public void Set_chaValue(string boxText)
+        public void Set_chaValue_byText(string boxText)
         {
             chaValue = int.Parse(boxText);
+        }
+
+        public void Set_chaValue(int charisma)
+        {
+            chaValue = charisma;
         }
 
         public int Get_chaValue()
