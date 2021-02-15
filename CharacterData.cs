@@ -20,6 +20,8 @@ namespace DnD_CharSheet_5e
         public int maxHP { set; get; }
         public int currHP { set; get; }
 
+        public int tempHP { set; get; }
+
         public int HD { set; get; }
         public int currHD { set; get; }
 
