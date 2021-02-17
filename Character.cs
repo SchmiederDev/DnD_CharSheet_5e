@@ -6,18 +6,16 @@ namespace DnD_CharSheet_5e
 {
     public class Character
     {
-        public static Character charInst;
 
+        string playerName;
+        string charName;
 
-        string playerName { set; get; }
-        string charName { set; get; }
+        string charRace;
+        string charSubrace;
 
-        string charRace { set; get; }
-        string charSubrace { set; get; }
-
-        string charClass { set; get; }
-        string charAlignment { set; get; }
-        string charBackground { set; get; }
+        string charClass;
+        string charAlignment;
+        string charBackground;
 
         int charLevel;
 
