@@ -31,10 +31,10 @@
 
                     <Button x:Name="BackgroundPage_bt" Content="Background" Click="BackgroundPageButton_Click" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
 
-                </StackPanel>
+                </StackPanel>                
 
-                <StackPanel Grid.Column="1">
-                    
+                <StackPanel x:Name="MainPanel" Grid.Column="1">                    
+
                     <Grid>
                         <!-- Spieler, SC, Gesinnung Text-->
                         <Grid.ColumnDefinitions>
@@ -696,7 +696,9 @@
                     </Grid>
 
                 </StackPanel>
-                
+
+                <Frame x:Name="MainFrame" Grid.Column="1"/>
+
             </Grid>
 
 
