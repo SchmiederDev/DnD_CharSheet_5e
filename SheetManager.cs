@@ -5,8 +5,7 @@ using System.Windows;
 namespace DnD_CharSheet_5e
 {
     public class SheetManager
-    {
-        public static SheetManager managerInst;
+    {        
 
         public Character character = new Character();
         public D20_System dSys = new D20_System();
