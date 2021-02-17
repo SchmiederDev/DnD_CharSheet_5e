@@ -867,10 +867,15 @@ namespace DnD_CharSheet_5e
 
         public void SaveScreen_bt_Click(object sender, RoutedEventArgs e)
         {
-            SaveScreen saveScreenWindow = new SaveScreen();
-            saveScreenWindow.Show_FilePath();
-            saveScreenWindow.Fetch_Character(sheetManager.Get_Character());
-            saveScreenWindow.Show();                        
+            //SaveScreen saveScreenWindow = new SaveScreen();
+            //saveScreenWindow.Show_FilePath();
+            //saveScreenWindow.Fetch_Character(sheetManager.Get_Character());
+            //saveScreenWindow.Show();
+
+            MainPanel.Visibility = Visibility.Collapsed;
+            MainFrame.Content = new SavePage();
+
+            
         }
     }
 }
