@@ -25,7 +25,7 @@
                     <Button x:Name="createCharButton" Click="createCharButton_Click" Content="New Character" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
                     <Button x:Name="applyButton" Click="applyCharButton_Click" Content="Apply Character" Margin ="15 10 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
                     <Button Content="Save Character" Click="SaveScreen_bt_Click" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button Content="Load Character" Margin ="15 10 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button Content="Load Character" Click="LoadPage_bt_Click" Margin ="15 10 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
 
                     <Button x:Name="CombatWindow_bt" Content="Combat" Click="CombatWindow_bt_Click" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
 
@@ -626,7 +626,7 @@
                             <CheckBox x:Name="MedicineProf" IsEnabled="False" Margin="15 12 10 5"/>
                             <CheckBox x:Name="NatureProf" IsEnabled="False" Margin="15 17 10 8"/>
                             <CheckBox x:Name="PerceptionProf" IsEnabled="False" Margin="15 12 10 8"/>
-                            <CheckBox x:Name="PerfomanceProf" IsEnabled="False" Margin="15 10 10 8"/>
+                            <CheckBox x:Name="PerformanceProf" IsEnabled="False" Margin="15 10 10 8"/>
                             <CheckBox x:Name="PersuasionProf" IsEnabled="False" Margin="15 10 10 8"/>
                             <CheckBox x:Name="ReligionProf" IsEnabled="False" Margin="15 10 10 8"/>
                             <CheckBox x:Name="SleightOfHandProf" IsEnabled="False" Margin="15 10 10 8"/>
