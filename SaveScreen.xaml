@@ -10,10 +10,10 @@
     <StackPanel>
 
         <Button x:Name="saveGame_01_bt" Content="Empty Slot" Click="SaveGame01_BT_Click" Height="30" Width="500" Margin="10 50 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_02_bt" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_03_bt" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_04_bt" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_05_bt" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_02_bt" Content="Empty Slot" Click="SaveGame02_BT_Click" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_03_bt" Content="Empty Slot" Click="SaveGame03_BT_Click" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_04_bt" Content="Empty Slot" Click="SaveGame04_BT_Click" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_05_bt" Content="Empty Slot" Click="SaveGame05_BT_Click" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
         <TextBox x:Name="pathVisualizer" IsEnabled="False" Height="30" Margin="100 30 100 10"/>
 
     </StackPanel>
