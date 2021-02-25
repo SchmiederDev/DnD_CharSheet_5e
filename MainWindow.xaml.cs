@@ -62,8 +62,7 @@ namespace DnD_CharSheet_5e
         }
 
         public void Load_Character()
-        {
-            MessageBox.Show($"Called from MainWindow. Name of Character is: " + sheetManager.character.Get_charName());
+        {            
             Reset_Form();
             
             Deactivate_Menus();
@@ -1080,27 +1079,14 @@ namespace DnD_CharSheet_5e
 
         public void SaveScreen_bt_Click(object sender, RoutedEventArgs e)
         {
-            //SavePage savePage = new SavePage();
-            //MainPanel.Visibility = Visibility.Collapsed;
-            //savePage.Show_FilePath();
-            //savePage.Fetch_Character(sheetManager.Get_Character());
-            //MainFrame.Content = savePage;
-
             SaveScreen saveScreenWindow = new SaveScreen();            
             saveScreenWindow.Fetch_Character(sheetManager.Get_Character());
-            saveScreenWindow.Show();
-                        
+            saveScreenWindow.Show();                        
         }
 
         public void LoadPage_bt_Click(object sender, RoutedEventArgs e)
-        {
-            //LoadPage loadPage = new LoadPage();
-            //MainPanel.Visibility = Visibility.Collapsed;
-            //loadPage.Check_for_Files();
-            //MainFrame.Content = loadPage;
-
-            LoadScreen loadScreenWindow = new LoadScreen();
-            loadScreenWindow.Check_for_Files();
+        {           
+            LoadScreen loadScreenWindow = new LoadScreen();            
             loadScreenWindow.Show();       
         }
     }
