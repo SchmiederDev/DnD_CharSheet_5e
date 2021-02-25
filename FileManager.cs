@@ -19,11 +19,14 @@ namespace DnD_CharSheet_5e
         string saveSlot_04 = @"\character_04.charDat";
         string saveSlot_05 = @"\character_05.charDat";
 
+        string nameSaveSlot = @"\chars.txt";
+
         public string saveGame_01 { set;  get; }
-        string saveGame_02;
-        string saveGame_03;
-        string saveGame_04;
-        string saveGame_05;
+        public string saveGame_02 { set; get; }
+        public string saveGame_03 { set; get; }
+        public string saveGame_04 { set; get; }
+        public string saveGame_05 { set; get; }
+        public string namesDataBase { set; get; }       
 
         public string Find_RootPath()
         {
@@ -49,6 +52,8 @@ namespace DnD_CharSheet_5e
             saveGame_03 = saveGameFolder + saveSlot_03;
             saveGame_04 = saveGameFolder + saveSlot_04;
             saveGame_05 = saveGameFolder + saveSlot_05;
+
+            namesDataBase = saveGameFolder + nameSaveSlot;
         }
 
     }
