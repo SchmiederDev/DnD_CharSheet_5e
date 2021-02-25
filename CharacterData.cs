@@ -67,11 +67,13 @@ namespace DnD_CharSheet_5e
 
         public void Transfer_CharData(Character character)
         {
-            pName = character.Get_playName();
+            pName = character.Get_playerName();
             cName = character.Get_charName();
 
             race = character.Get_Race();
             subrace = character.Get_Subrace();
+
+            charClass = character.Get_charClass();
 
             alignment = character.Get_Alignment();
             background = character.Get_Background();
