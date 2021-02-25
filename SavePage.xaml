@@ -10,7 +10,9 @@
 
     <StackPanel>
 
-        <Button x:Name="saveGame_01_bt" Content="Empty Slot" Height="30" Width="500" Margin="10 50 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="Cancel_BT" Content="X" Height="40" Width="50" Margin ="600 30 10 10" FontSize="24"/>
+
+        <Button x:Name="saveGame_01_bt" Click="SaveGame01_BT_Click" Content="Empty Slot" Height="30" Width="500" Margin="10 50 10 10" FontWeight="Bold" FontSize="18"/>
         <Button x:Name="saveGame_02_bt" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
         <Button x:Name="saveGame_03_bt" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
         <Button x:Name="saveGame_04_bt" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>

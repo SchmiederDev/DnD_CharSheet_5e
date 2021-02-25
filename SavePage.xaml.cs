@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DnD_CharSheet_5e
 {
@@ -20,9 +10,29 @@ namespace DnD_CharSheet_5e
     /// </summary>
     public partial class SavePage : Page
     {
+        FileManager fileManager = new FileManager();
+        Character currenCharacter = new Character();
         public SavePage()
         {
             InitializeComponent();
+        }
+
+        public void Show_FilePath()
+        {
+            pathVisualizer.Text = fileManager.Find_RootPath();
+            fileManager.Check_for_SaveGameFolder();
+            fileManager.Set_SaveGames();
+        }
+
+        public void Fetch_Character(Character character)
+        {
+            currenCharacter = character;
+        }
+
+        public void SaveGame01_BT_Click(object sender, RoutedEventArgs e)
+        {
+            saveGame_01_bt.Content = currenCharacter.Get_charName();
+            SaveSystem.SaveCharacter(currenCharacter, fileManager.saveGame_01);
         }
     }
 }
