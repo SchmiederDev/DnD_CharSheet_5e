@@ -8,13 +8,19 @@ namespace DnD_CharSheet_5e
     public partial class MainWindow : Window
     {
 
-        SheetManager sheetManager = new SheetManager();
+        public static MainWindow mainWindow_Inst;
 
-        bool hasError = false;
+        SheetManager sheetManager = new SheetManager();        
+
+        bool hasError = false;           
 
         public MainWindow()
         {
             InitializeComponent();
+            if(mainWindow_Inst == null)
+            {
+                mainWindow_Inst = this;
+            }           
             sheetManager.dSys.InitializeRandom();
         }
                 
@@ -33,8 +39,8 @@ namespace DnD_CharSheet_5e
         private void applyCharacter()
         {
             Deactivate_Menus();
-            submitCharacter();
-            Deactivate_Scores_and_Calculate_Modifiers();
+            SubmitCharacter_byUserInput();
+            Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput();
             Activate_IniRolls();
             Activate_AbilityChecks();
             Activate_SavingThrows();
@@ -45,7 +51,7 @@ namespace DnD_CharSheet_5e
         {
             if(!hasError)
             {
-                applyCharacter();
+                applyCharacter();                
             }
 
             else if(hasError)
@@ -53,6 +59,33 @@ namespace DnD_CharSheet_5e
                 return;
             }
             
+        }
+
+        public void Load_Character()
+        {
+            MessageBox.Show($"Called from MainWindow. Name of Character is: " + sheetManager.character.Get_charName());
+            Reset_Form();
+            
+            Deactivate_Menus();
+            SubmitCharacter();
+            
+            Set_Level_and_HP_Panel();
+            
+            Deactivate_Scores_and_Show_AbilityModifiers();
+            Show_AbilityScores();
+
+            Deactivate_SaveProf_Buttons();
+            Show_SaveModifiers();
+            Set_SaveProficiency_Buttons();
+
+            Deactivate_SkillProficiency_Buttons();
+            Show_SkillModifiers();
+            Set_SkillProficiency_Buttons();
+
+            Activate_AbilityChecks();
+            Activate_IniRolls();
+            Activate_SaveCheck_Buttons();
+            Activate_SkillCheck_Buttons();
         }
 
         private void Reset_Form()
@@ -73,13 +106,28 @@ namespace DnD_CharSheet_5e
             Clear_Skills();            
         }
 
-        public void FirstLevel()
+        private void FirstLevel()
         {
             sheetManager.character.Set_charLvl(1);
             LevelText.Text = sheetManager.character.Get_charLvl().ToString();
             Level_Up_bt.IsEnabled = true;
             sheetManager.character.Update_hitDice();
             HDtext.Text = sheetManager.character.Get_hitDice().ToString();
+            ProfBonus_Box.Text = sheetManager.character.Get_ProfBonus().ToString();
+        }
+
+        private void Set_Level_and_HP_Panel()
+        {
+            LevelText.Text = sheetManager.character.Get_charLvl().ToString();
+            Level_Up_bt.IsEnabled = true;
+
+            maxHPtext.Text = sheetManager.character.Get_maxHP().ToString();
+            HPtext.Text = sheetManager.character.Get_currHP().ToString();
+            tempHPtext.Text = sheetManager.character.Get_tempHP().ToString();
+
+            HDtext.Text = sheetManager.character.Get_hitDice().ToString();
+            currHDtext.Text = sheetManager.character.Get_currHitDice().ToString();
+            
             ProfBonus_Box.Text = sheetManager.character.Get_ProfBonus().ToString();
         }
 
@@ -133,7 +181,7 @@ namespace DnD_CharSheet_5e
             ClassMenu.IsEnabled = false;
         }
 
-        private void submitCharacter()
+        private void SubmitCharacter_byUserInput()
         {
             sheetManager.character.Set_playerName(PlayerNameText.Text);
             sheetManager.character.Set_charName(CharNameText.Text);
@@ -142,7 +190,18 @@ namespace DnD_CharSheet_5e
             sheetManager.character.Set_charClass(ClassMenu.Text);
             sheetManager.character.Set_Alignment(AlignmentBox.Text);
             sheetManager.character.Set_Background(BackgroundBox.Text);
-        }        
+        }
+        
+        private void SubmitCharacter()
+        {
+            PlayerNameText.Text = sheetManager.character.Get_playerName();
+            CharNameText.Text = sheetManager.character.Get_charName();
+            RaceMenu.Text = sheetManager.character.Get_Race();
+            SubRaceMenu.Text = sheetManager.character.Get_Subrace();
+            ClassMenu.Text = sheetManager.character.Get_charClass();
+            AlignmentBox.Text = sheetManager.character.Get_Alignment();
+            BackgroundBox.Text = sheetManager.character.Get_Background();
+        }
 
         private void Activate_HP_Panel()
         {
@@ -223,7 +282,17 @@ namespace DnD_CharSheet_5e
             chaResult.Clear();
         }
 
-        private void Deactivate_Scores_and_Calculate_Modifiers()
+        private void Show_AbilityScores()
+        {
+            strScoreText.Text = sheetManager.character.Get_strValue().ToString();
+            dexScoreText.Text = sheetManager.character.Get_dexValue().ToString();
+            conScoreText.Text = sheetManager.character.Get_conValue().ToString();
+            intScoreText.Text = sheetManager.character.Get_intValue().ToString();
+            wisScoreText.Text = sheetManager.character.Get_wisValue().ToString();
+            chaScoreText.Text = sheetManager.character.Get_chaValue().ToString();
+        }
+
+        private void Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput()
         {
             if (checkValue(maxHPtext.Text))
             {
@@ -318,6 +387,29 @@ namespace DnD_CharSheet_5e
                 MessageBox.Show($"A Value you have entered in one of the number-fields is invalid. Please make sure all values are integers (numbers without decimals).");
                 return false;
             }
+        }
+
+        private void Deactivate_Scores_and_Show_AbilityModifiers()
+        {
+            maxHPtext.IsEnabled = false;
+
+            strScoreText.IsEnabled = false;            
+            strModifierText.Text = sheetManager.character.Get_strModifier().ToString();
+
+            dexScoreText.IsEnabled = false;            
+            dexModifierText.Text = sheetManager.character.Get_dexModifier().ToString();
+
+            conScoreText.IsEnabled = false;            
+            conModifierText.Text = sheetManager.character.Get_conModifier().ToString();
+
+            intScoreText.IsEnabled = false;            
+            intModifierText.Text = sheetManager.character.Get_intModifier().ToString();
+
+            wisScoreText.IsEnabled = false;            
+            wisModifierText.Text = sheetManager.character.Get_wisModifier().ToString();
+
+            chaScoreText.IsEnabled = false;            
+            chaModifierText.Text = sheetManager.character.Get_chaModifier().ToString();
         }
 
         private void Activate_IniRolls()
@@ -430,6 +522,39 @@ namespace DnD_CharSheet_5e
             sheetManager.character.Calculate_SaveModifiers();
         }
 
+        private void Set_SaveProficiency_Buttons()
+        {
+            if(sheetManager.character.Get_STR_Prof())
+            {
+                saveProf_STR.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_DEX_Prof())
+            {
+                saveProf_DEX.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_CON_Prof())
+            {
+                saveProf_CON.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_INT_Prof())
+            {
+                saveProf_INT.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_WIS_Prof())
+            {
+                saveProf_WIS.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_CHA_Prof())
+            {
+                saveProf_CHA.IsChecked = true;
+            }
+        }
+
         private void Show_SaveModifiers()
         {
             STRsave_Val.Text = sheetManager.character.Get_STR_Save().ToString();
@@ -470,12 +595,100 @@ namespace DnD_CharSheet_5e
             sheetManager.character.Set_Proficiencies_dexSkills(AcrobaticsProf.IsChecked.Value, SleightOfHandProf.IsChecked.Value, StealthProf.IsChecked.Value);
             sheetManager.character.Set_Proficiencies_intSkills(ArcanaProf.IsChecked.Value, HistoryProf.IsChecked.Value, InvestigationProf.IsChecked.Value, NatureProf.IsChecked.Value, ReligionProf.IsChecked.Value);
             sheetManager.character.Set_Proficiencies_wisSkills(AnimalHandlingProf.IsChecked.Value, InsightProf.IsChecked.Value, MedicineProf.IsChecked.Value, PerceptionProf.IsChecked.Value, SurvivalProf.IsChecked.Value);
-            sheetManager.character.Set_Proficiencies_chaSkills(DeceptionProf.IsChecked.Value, IntimidationProf.IsChecked.Value, PerfomanceProf.IsChecked.Value, PersuasionProf.IsChecked.Value);
+            sheetManager.character.Set_Proficiencies_chaSkills(DeceptionProf.IsChecked.Value, IntimidationProf.IsChecked.Value, PerformanceProf.IsChecked.Value, PersuasionProf.IsChecked.Value);
         }
 
         private void Calculate_SkillModifiers()
         {
             sheetManager.character.Calculate_SkillModifiers();
+        }
+
+        private void Set_SkillProficiency_Buttons()
+        {
+            if(sheetManager.character.Get_Acrobatics_Prof())
+            {
+                AcrobaticsProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_AnimalHandling_Prof())
+            {
+                AnimalHandlingProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Arcana_Prof())
+            {
+                ArcanaProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Athletics_Prof())
+            {
+                AthleticsProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Deception_Prof())
+            {
+                DeceptionProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_History_Prof())
+            {
+                HistoryProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Insight_Prof())
+            {
+                InsightProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Intimidation_Prof())
+            {
+                IntimidationProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Investigation_Prof())
+            {
+                InvestigationProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Medicine_Prof())
+            {
+                MedicineProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Nature_Prof())
+            {
+                NatureProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Perception_Prof())
+            {
+                PerceptionProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Performance_Prof())
+            {
+                PerformanceProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Religion_Prof())
+            {
+                ReligionProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_SleightOfHand_Prof())
+            {
+                SleightOfHandProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Stealth_Prof())
+            {
+                StealthProf.IsChecked = true;
+            }
+
+            if (sheetManager.character.Get_Survival_Prof())
+            {
+                SurvivalProf.IsChecked = true;
+            }
         }
 
         private void Activate_SkillProficiency_Buttons()
@@ -492,7 +705,7 @@ namespace DnD_CharSheet_5e
             MedicineProf.IsEnabled = true;
             NatureProf.IsEnabled = true;
             PerceptionProf.IsEnabled = true;
-            PerfomanceProf.IsEnabled = true;
+            PerformanceProf.IsEnabled = true;
             PersuasionProf.IsEnabled = true;
             ReligionProf.IsEnabled = true;
             SleightOfHandProf.IsEnabled = true;
@@ -514,7 +727,7 @@ namespace DnD_CharSheet_5e
             MedicineProf.IsEnabled = false;
             NatureProf.IsEnabled = false;
             PerceptionProf.IsEnabled = false;
-            PerfomanceProf.IsEnabled = false;
+            PerformanceProf.IsEnabled = false;
             PersuasionProf.IsEnabled = false;
             ReligionProf.IsEnabled = false;
             SleightOfHandProf.IsEnabled = false;
@@ -661,7 +874,7 @@ namespace DnD_CharSheet_5e
             PerceptionTxt.Clear();
             Perception_Result.Clear();
 
-            PerfomanceProf.IsChecked = false;
+            PerformanceProf.IsChecked = false;
             PerformanceTxt.Clear();
             Performance_Result.Clear();
 
@@ -697,8 +910,8 @@ namespace DnD_CharSheet_5e
 
         private void BackgroundPageButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(sheetManager.character.Get_charName() + $" is " + sheetManager.character.Get_playName() + $"'s character." +
-                sheetManager.character.Get_playName() + $" chose a(n) " + sheetManager.character.Get_Race() + $" for Race, " + sheetManager.character.Get_Subrace()
+            MessageBox.Show(sheetManager.character.Get_charName() + $" is " + sheetManager.character.Get_playerName() + $"'s character." +
+                sheetManager.character.Get_playerName() + $" chose a(n) " + sheetManager.character.Get_Race() + $" for Race, " + sheetManager.character.Get_Subrace()
                 + $" as subrace.\n" + sheetManager.character.Get_charName() + $" is of the " + sheetManager.character.Get_charClass() + $"-Class and has the " + sheetManager.character.Get_Background()
                 + $"-Background.\n" + sheetManager.character.Get_charName() + $" is of " + sheetManager.character.Get_Alignment() + $" alignment.");
         }
@@ -867,15 +1080,28 @@ namespace DnD_CharSheet_5e
 
         public void SaveScreen_bt_Click(object sender, RoutedEventArgs e)
         {
-            //SaveScreen saveScreenWindow = new SaveScreen();
-            //saveScreenWindow.Show_FilePath();
-            //saveScreenWindow.Fetch_Character(sheetManager.Get_Character());
-            //saveScreenWindow.Show();
+            //SavePage savePage = new SavePage();
+            //MainPanel.Visibility = Visibility.Collapsed;
+            //savePage.Show_FilePath();
+            //savePage.Fetch_Character(sheetManager.Get_Character());
+            //MainFrame.Content = savePage;
 
-            MainPanel.Visibility = Visibility.Collapsed;
-            MainFrame.Content = new SavePage();
+            SaveScreen saveScreenWindow = new SaveScreen();            
+            saveScreenWindow.Fetch_Character(sheetManager.Get_Character());
+            saveScreenWindow.Show();
+                        
+        }
 
-            
+        public void LoadPage_bt_Click(object sender, RoutedEventArgs e)
+        {
+            //LoadPage loadPage = new LoadPage();
+            //MainPanel.Visibility = Visibility.Collapsed;
+            //loadPage.Check_for_Files();
+            //MainFrame.Content = loadPage;
+
+            LoadScreen loadScreenWindow = new LoadScreen();
+            loadScreenWindow.Check_for_Files();
+            loadScreenWindow.Show();       
         }
     }
 }
