@@ -9,11 +9,11 @@
 
     <StackPanel>
 
-        <Button x:Name="saveGame_01_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 50 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_02_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_03_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_04_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_05_bt" IsEnabled="False" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_01_bt" Click="LoadCharacter_Slot01bt_Click" Content="Empty Slot" Height="30" Width="500" Margin="10 50 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_02_bt" Click="LoadCharacter_Slot02bt_Click" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_03_bt" Click="LoadCharacter_Slot03bt_Click" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_04_bt" Click="LoadCharacter_Slot04bt_Click" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="saveGame_05_bt" Click="LoadCharacter_Slot05bt_Click" Content="Empty Slot" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
 
     </StackPanel>
 
