@@ -84,7 +84,7 @@ namespace DnD_CharSheet_5e
             playerName = name;
         }
 
-        public string Get_playName()
+        public string Get_playerName()
         {
             return playerName;
         }
@@ -444,6 +444,16 @@ namespace DnD_CharSheet_5e
             tempMod = tempVal_01;
 
             return tempMod;
+        }
+
+        public void calculateAbilityModifiers()
+        {
+            strModifier = calculateModifier(strValue);
+            dexModifier = calculateModifier(dexValue);
+            conModifier = calculateModifier(conValue);
+            intModifier = calculateModifier(intValue);
+            wisModifier = calculateModifier(wisValue);
+            chaModifier = calculateModifier(chaValue);
         }
 
         public void Set_SaveBaseValues()
@@ -814,6 +824,55 @@ namespace DnD_CharSheet_5e
             Increase_charLvl();
             Update_hitDice();
             Update_ProfBonus();
+        }
+
+        public void Load_Character(CharacterData charData)
+        {
+            Set_playerName(charData.pName);
+            Set_charName(charData.cName);
+
+            Set_Race(charData.race);
+            Set_Subrace(charData.subrace);
+
+            Set_charClass(charData.charClass);
+
+            Set_Alignment(charData.alignment);
+            Set_Background(charData.background);
+
+            Set_charLvl(charData.level);
+            Update_ProfBonus();
+
+            Set_maxHP(charData.maxHP);
+            Set_currHP(charData.currHP);
+
+            Set_tempHP(charData.tempHP);
+
+            Set_hitDice(charData.HD);
+            Set_currHD(charData.currHD);
+
+            Set_strValue(charData.strength);
+            Set_dexValue(charData.dexerity);
+            Set_conValue(charData.constitution);
+            Set_intValue(charData.intelligence);
+            Set_wisValue(charData.wisdom);
+            Set_chaValue(charData.charisma);
+
+            calculateAbilityModifiers();
+            Set_SaveBaseValues();
+            Set_SkillBaseValues();
+
+            Set_SaveProficiencies(charData.str_ST, charData.dex_ST, charData.con_ST, charData.int_ST, charData.wis_ST, charData.cha_ST);
+            
+            Calculate_SaveModifiers();
+
+            Set_Proficiencies_strSkills(charData.athletics);
+            Set_Proficiencies_dexSkills(charData.acrobatics, charData.sleightOfHand, charData.stealth);
+            Set_Proficiencies_intSkills(charData.arcana, charData.history, charData.investigation, charData.nature, charData.religion);
+            Set_Proficiencies_wisSkills(charData.animalHandling, charData.insight, charData.medicine, charData.perception, charData.survival);
+            Set_Proficiencies_chaSkills(charData.deception, charData.intimidation, charData.performance, charData.persuasion);
+
+            Calculate_SkillModifiers();
+
         }
     }
 }
