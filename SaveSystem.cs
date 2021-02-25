@@ -73,7 +73,23 @@ namespace DnD_CharSheet_5e
             {
                 return null;
             }
-        }            
+        }      
+        
+        public static List<string> Load_CharNames(string path)
+        {
+            if(File.Exists(path))
+            {
+                List<string> charNames = File.ReadAllLines(path).ToList();
+
+                return charNames;
+            }
+
+            else
+            {
+                return null;
+            }
+
+        }
 
     }
 }
