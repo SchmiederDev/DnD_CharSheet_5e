@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Collections.Generic;
 
 
 namespace DnD_CharSheet_5e
@@ -11,10 +12,13 @@ namespace DnD_CharSheet_5e
         FileManager fileManager = new FileManager();
         CharacterData L_charData = new CharacterData();
         Character L_character = new Character();
+        List<string> characterNames = new List<string>();
 
         public LoadScreen()
         {
             InitializeComponent();
+            Check_for_Files();
+            Load_Names_for_SlotButtons();
         }
 
         public void Check_for_Files()
@@ -141,6 +145,20 @@ namespace DnD_CharSheet_5e
             }
 
             this.Close();
+        }
+
+        public void Load_Names_for_SlotButtons()
+        {
+            characterNames = SaveSystem.Load_CharNames(fileManager.namesDataBase);
+
+            if (characterNames != null)
+            {
+                saveGame_01_bt.Content = characterNames[0];
+                saveGame_02_bt.Content = characterNames[1];
+                saveGame_03_bt.Content = characterNames[2];
+                saveGame_04_bt.Content = characterNames[3];
+                saveGame_05_bt.Content = characterNames[4];
+            }
         }
     }
 }
