@@ -100,6 +100,7 @@ namespace DnD_CharSheet_5e
 
             Deactivate_SaveCheck_Buttons();
             Clear_SavingThrows();
+            Deactivate_SaveProf_Buttons();
 
             Deactivate_SkillCheck_Buttons();
             Clear_Skills();            
@@ -394,7 +395,7 @@ namespace DnD_CharSheet_5e
 
             strScoreText.IsEnabled = false;            
             strModifierText.Text = sheetManager.character.Get_strModifier().ToString();
-
+            
             dexScoreText.IsEnabled = false;            
             dexModifierText.Text = sheetManager.character.Get_dexModifier().ToString();
 
@@ -408,7 +409,7 @@ namespace DnD_CharSheet_5e
             wisModifierText.Text = sheetManager.character.Get_wisModifier().ToString();
 
             chaScoreText.IsEnabled = false;            
-            chaModifierText.Text = sheetManager.character.Get_chaModifier().ToString();
+            chaModifierText.Text = sheetManager.character.Get_chaModifier().ToString();            
         }
 
         private void Activate_IniRolls()
@@ -921,7 +922,7 @@ namespace DnD_CharSheet_5e
         }
 
         public void strButton_Click(object sender, RoutedEventArgs e)
-        {
+        {           
             strengthResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_strModifier()).ToString();
         }
 
@@ -1088,6 +1089,12 @@ namespace DnD_CharSheet_5e
         {           
             LoadScreen loadScreenWindow = new LoadScreen();            
             loadScreenWindow.Show();       
+        }
+
+        public void MerchantWindow_bt_Click(object sender, RoutedEventArgs e)
+        {
+            MerchantWindow merchantWindow = new MerchantWindow();
+            merchantWindow.Show();
         }
     }
 }
