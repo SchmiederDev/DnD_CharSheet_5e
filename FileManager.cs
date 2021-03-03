@@ -26,7 +26,10 @@ namespace DnD_CharSheet_5e
         public string saveGame_03 { set; get; }
         public string saveGame_04 { set; get; }
         public string saveGame_05 { set; get; }
-        public string namesDataBase { set; get; }       
+        public string namesDataBase { set; get; }
+
+        string IDB_File = @"\ItemDataBase.json";
+        string IDB_Path;
 
         public string Find_RootPath()
         {
@@ -54,6 +57,18 @@ namespace DnD_CharSheet_5e
             saveGame_05 = saveGameFolder + saveSlot_05;
 
             namesDataBase = saveGameFolder + nameSaveSlot;
+        }
+
+        public void Set_IDBPath()
+        {
+            IDB_Path = Find_RootPath() + IDB_File;
+        }
+
+        public string Read_ItemDataBase()
+        {
+            string jsonIDB = File.ReadAllText(IDB_Path);            
+
+            return jsonIDB;
         }
 
     }
