@@ -6,6 +6,7 @@ namespace DnD_CharSheet_5e
 {
     public class Character
     {
+        Inventory cInventory = new Inventory();                                         //cInventory = 'character Inventory'
 
         string playerName;
         string charName;
