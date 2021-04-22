@@ -14,6 +14,8 @@ namespace DnD_CharSheet_5e
         public FileManager fManager = new FileManager();
         
         public List<Item> merchItems = new List<Item>();
+        public List<Weapon> merchWeapons = new List<Weapon>();
+        public List<Armor> merchArmor = new List<Armor>();
 
         public void Load_ItemDataBase(string jsonIDB)
         {            
@@ -34,5 +36,26 @@ namespace DnD_CharSheet_5e
 
             return tempItem;
         }
+
+        public void Load_WeaponDataBase(string jsonWDB)
+        {
+            merchWeapons = JsonConvert.DeserializeObject<List<Weapon>>(jsonWDB);
+        }
+
+        public Weapon Find_Weapon_byID(string id)
+        {
+            Weapon tempWeapon = new Weapon();
+
+            foreach (Weapon mWeapon in merchWeapons)
+            {
+                if (mWeapon.Item_ID == id)
+                {
+                    tempWeapon = mWeapon;
+                }
+            }
+
+            return tempWeapon;
+        }
+
     }
 }
