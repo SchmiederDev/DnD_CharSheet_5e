@@ -87,6 +87,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Armor.cs" />
+    <Compile Include="BackgroundWindow.xaml.cs">
+      <DependentUpon>BackgroundWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CharacterData.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Coin.cs" />
@@ -94,6 +97,10 @@
       <DependentUpon>CombatWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="FileManager.cs" />
+    <Compile Include="InventoryWindow.xaml.cs">
+      <DependentUpon>InventoryWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Item.cs" />
     <Compile Include="LoadScreen.xaml.cs">
       <DependentUpon>LoadScreen.xaml</DependentUpon>
@@ -108,8 +115,20 @@
     <Compile Include="SaveSystem.cs" />
     <Compile Include="SavingThrow.cs" />
     <Compile Include="Skill.cs" />
+    <Compile Include="Spell.cs" />
+    <Compile Include="SpellsWindow.xaml.cs">
+      <DependentUpon>SpellsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Weapon.cs" />
+    <Page Include="BackgroundWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CombatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InventoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,6 +159,10 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="SpellsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -165,6 +188,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="WeaponDataBase.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
