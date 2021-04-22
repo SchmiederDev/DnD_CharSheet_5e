@@ -6,9 +6,9 @@ namespace DnD_CharSheet_5e
 {
     public class Inventory
     {
-        List<Item> cItems;                                                 // c = 'character'
-        List<Weapon> cWeapons;
-        List<Armor> cArmor;
+        public List<Item> cItems { get; } = new List<Item>();                                                 // c = 'character'
+        public List<Weapon> cWeapons { get; } = new List<Weapon>();
+        public List<Armor> cArmor { get; } = new List<Armor>();
 
         public void Add_Item(Item newItem)
         {
