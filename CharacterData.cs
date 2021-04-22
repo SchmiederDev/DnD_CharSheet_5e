@@ -65,6 +65,12 @@ namespace DnD_CharSheet_5e
 
         public bool survival { set; get; }
 
+        public string CD_charAppearance { get; set; } 
+
+        public string CD_backgroundStory { get; set; }
+
+        public string CD_AlliesAndOrgas { get; set; }
+
         public void Transfer_CharData(Character character)
         {
             pName = character.Get_playerName();
@@ -125,6 +131,10 @@ namespace DnD_CharSheet_5e
             stealth = character.Get_Stealth_Prof();
 
             survival = character.Get_Survival_Prof();
+
+            CD_charAppearance = character.CharApperance;
+            CD_backgroundStory = character.BackgroundStory;
+            CD_AlliesAndOrgas = character.AlliesAndOrgas;
         }
     }
 }
