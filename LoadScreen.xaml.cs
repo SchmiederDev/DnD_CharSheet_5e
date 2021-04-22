@@ -48,6 +48,7 @@ namespace DnD_CharSheet_5e
                 MessageBox.Show($"Sorry, there exists no character under this Slot.");
             }
 
+            MainWindow.mainWindow_Inst.Activate_SideBarMenu_Buttons();
             this.Close();
         }
 
@@ -72,6 +73,7 @@ namespace DnD_CharSheet_5e
                 MessageBox.Show($"Sorry, there exists no character under this Slot.");
             }
 
+            MainWindow.mainWindow_Inst.Activate_SideBarMenu_Buttons();
             this.Close();
         }
 
@@ -96,6 +98,7 @@ namespace DnD_CharSheet_5e
                 MessageBox.Show($"Sorry, there exists no character under this Slot.");
             }
 
+            MainWindow.mainWindow_Inst.Activate_SideBarMenu_Buttons();
             this.Close();
         }
 
@@ -120,6 +123,7 @@ namespace DnD_CharSheet_5e
                 MessageBox.Show($"Sorry, there exists no character under this Slot.");
             }
 
+            MainWindow.mainWindow_Inst.Activate_SideBarMenu_Buttons();
             this.Close();
         }
 
@@ -144,6 +148,7 @@ namespace DnD_CharSheet_5e
                 MessageBox.Show($"Sorry, there exists no character under this Slot.");
             }
 
+            MainWindow.mainWindow_Inst.Activate_SideBarMenu_Buttons();
             this.Close();
         }
 
