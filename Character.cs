@@ -6,7 +6,7 @@ namespace DnD_CharSheet_5e
 {
     public class Character
     {
-        Inventory cInventory = new Inventory();                                         //cInventory = 'character Inventory'
+        public Inventory cInventory { get; set; } = new Inventory();                                         //cInventory = 'character Inventory'
 
         string playerName;
         string charName;
@@ -79,6 +79,12 @@ namespace DnD_CharSheet_5e
         Skill Stealth = new Skill();
 
         Skill Survival = new Skill();
+
+        public string CharApperance { get; set; }
+
+        public string BackgroundStory { get; set; }
+
+        public string AlliesAndOrgas { get; set; }
 
         public void Set_playerName(string name)
         {
@@ -874,6 +880,9 @@ namespace DnD_CharSheet_5e
 
             Calculate_SkillModifiers();
 
+            CharApperance = charData.CD_charAppearance;
+            BackgroundStory = charData.CD_backgroundStory;
+            AlliesAndOrgas = charData.CD_AlliesAndOrgas;
         }
     }
 }
