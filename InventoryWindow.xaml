@@ -1,0 +1,111 @@
+﻿<Window x:Class="DnD_CharSheet_5e.InventoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DnD_CharSheet_5e"
+        mc:Ignorable="d"
+        Title="InventoryWindow" Height="650" Width="800">
+
+    <StackPanel>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+
+                <TextBlock x:Name="CharName_Txt" Text="Character:" Margin="10 20 10 5" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
+                <TextBox x:Name="CharName_Box" IsEnabled="False" Margin="10 5 10 10" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+
+                <TextBlock x:Name="PlayerName_Txt" Text="Player:" Margin="10 20 10 5" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
+                <TextBox x:Name="PlayerName_Box" IsEnabled="False" Margin="10 5 10 10" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
+
+            </StackPanel>
+
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="Gold_Txt" Text="Gold:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
+            <TextBlock x:Name="Silver_Txt" Text="Silver:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="1"/>
+            <TextBlock x:Name="Copper_Txt" Text="Copper:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
+            <TextBlock x:Name="Platinum_Txt" Text="Platinum:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
+            <TextBlock x:Name="Electrum_Txt" Text="Electrum:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="4"/>
+            
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="Gold_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
+            <TextBox x:Name="Silver_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="1"/>
+            <TextBox x:Name="Copper_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
+            <TextBox x:Name="Platinum_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
+            <TextBox x:Name="Electrum_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="4"/>
+
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "*" />
+                <ColumnDefinition Width = "*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="25 10" Grid.Column="0">
+
+                <TextBlock Text="Adventuring Gear" Margin="90 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+
+                <ScrollViewer x:Name="ItemPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
+                    <StackPanel x:Name="ItemsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                </ScrollViewer>
+
+                <TextBlock Text="Tools" Margin="140 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+
+                <ScrollViewer x:Name="ToolPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
+                    <StackPanel x:Name="ToolsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                </ScrollViewer>
+
+            </StackPanel>
+
+            <StackPanel Margin="15 10" Grid.Column="1">
+
+                <TextBlock Text="Weapons" Margin="140 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+
+                <ScrollViewer x:Name="WeaponsPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
+                    <StackPanel x:Name="WeaponsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                </ScrollViewer>
+
+                <TextBlock Text="Armor" Margin="140 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+
+                <ScrollViewer x:Name="ArmorPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
+                    <StackPanel x:Name="ArmorPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                </ScrollViewer>
+
+            </StackPanel>
+
+        </Grid>
+
+    </StackPanel>
+
+</Window>
