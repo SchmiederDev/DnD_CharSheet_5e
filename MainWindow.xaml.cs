@@ -12,7 +12,8 @@ namespace DnD_CharSheet_5e
 
         SheetManager sheetManager = new SheetManager();        
 
-        bool hasError = false;           
+        bool hasError = false;
+        bool IsSidebar_Active = false;
 
         public MainWindow()
         {
@@ -24,20 +25,31 @@ namespace DnD_CharSheet_5e
             sheetManager.dSys.InitializeRandom();
         }
                 
-        private void createCharacter()
+        private void CreateCharacter()
         {
-            Reset_Form();            
+            Reset_Form();
+            
+            if(IsSidebar_Active == true)
+            {
+                Deactivate_SideBarMenu_Buttons();
+            }
+
             FirstLevel();
             Activate_Interaction();
         }
 
-        private void createCharButton_Click(object sender, RoutedEventArgs e)
+        private void CreateCharButton_Click(object sender, RoutedEventArgs e)
         {
-            createCharacter();
+            CreateCharacter();
+            if(applyButton.IsEnabled == false)
+            {
+                applyButton.IsEnabled = true;
+            }            
         }
 
-        private void applyCharacter()
+        private void ApplyCharacter()
         {
+            Activate_SideBarMenu_Buttons();
             Deactivate_Menus();
             SubmitCharacter_byUserInput();
             Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput();
@@ -47,11 +59,11 @@ namespace DnD_CharSheet_5e
             Activate_SkillChecks();            
         }
 
-        private void applyCharButton_Click(object sender, RoutedEventArgs e)
+        private void ApplyCharButton_Click(object sender, RoutedEventArgs e)
         {
             if(!hasError)
             {
-                applyCharacter();                
+                ApplyCharacter();                
             }
 
             else if(hasError)
@@ -104,6 +116,30 @@ namespace DnD_CharSheet_5e
 
             Deactivate_SkillCheck_Buttons();
             Clear_Skills();            
+        }
+
+        public void Activate_SideBarMenu_Buttons()
+        {
+            saveCharButton.IsEnabled = true;
+            SpellWindow_bt.IsEnabled = true;
+            CombatWindow_bt.IsEnabled = true;
+            BackgroundPage_bt.IsEnabled = true;
+            Inventory_bt.IsEnabled = true;
+            Merchant_bt.IsEnabled = true;
+
+            IsSidebar_Active = true;
+        }
+
+        public void Deactivate_SideBarMenu_Buttons()
+        {
+            saveCharButton.IsEnabled = false;
+            SpellWindow_bt.IsEnabled = false;
+            CombatWindow_bt.IsEnabled = false;
+            BackgroundPage_bt.IsEnabled = false;
+            Inventory_bt.IsEnabled = false;
+            Merchant_bt.IsEnabled = false;
+
+            IsSidebar_Active = false;
         }
 
         private void FirstLevel()
@@ -294,7 +330,7 @@ namespace DnD_CharSheet_5e
 
         private void Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput()
         {
-            if (checkValue(maxHPtext.Text))
+            if (CheckValue(maxHPtext.Text))
             {
                 maxHPtext.IsEnabled = false;
                 hasError = false;
@@ -303,7 +339,7 @@ namespace DnD_CharSheet_5e
 
             else { hasError = true; }
 
-            if (checkValue(strScoreText.Text))
+            if (CheckValue(strScoreText.Text))
             {
                 strScoreText.IsEnabled = false;
                 hasError = false;
@@ -314,7 +350,7 @@ namespace DnD_CharSheet_5e
 
             else { hasError = true; }
 
-            if (checkValue(dexScoreText.Text))
+            if (CheckValue(dexScoreText.Text))
             {
                 dexScoreText.IsEnabled = false;
                 hasError = false;
@@ -325,7 +361,7 @@ namespace DnD_CharSheet_5e
 
             else { hasError = true; }
 
-            if (checkValue(conScoreText.Text))
+            if (CheckValue(conScoreText.Text))
             {
                 conScoreText.IsEnabled = false;
                 hasError = false;
@@ -336,7 +372,7 @@ namespace DnD_CharSheet_5e
 
             else { hasError = true; }
 
-            if (checkValue(intScoreText.Text))
+            if (CheckValue(intScoreText.Text))
             {
                 intScoreText.IsEnabled = false;
                 hasError = false;
@@ -348,7 +384,7 @@ namespace DnD_CharSheet_5e
 
             else { hasError = true; }
 
-            if (checkValue(wisScoreText.Text))
+            if (CheckValue(wisScoreText.Text))
             {
                 wisScoreText.IsEnabled = false;
                 hasError = false;
@@ -359,7 +395,7 @@ namespace DnD_CharSheet_5e
 
             else { hasError = true; }
 
-            if (checkValue(chaScoreText.Text))
+            if (CheckValue(chaScoreText.Text))
             {
                 chaScoreText.IsEnabled = false;
                 hasError = false;
@@ -372,11 +408,10 @@ namespace DnD_CharSheet_5e
             
         }        
 
-        private bool checkValue(string information)
-        {
-            int number;
+        private bool CheckValue(string information)
+        {            
 
-            if(int.TryParse(information, out number))
+            if(int.TryParse(information, out int number))
             {
                 return true;
             }
@@ -906,47 +941,39 @@ namespace DnD_CharSheet_5e
             LevelText.Text = sheetManager.character.Get_charLvl().ToString();            
             HDtext.Text = sheetManager.character.Get_hitDice().ToString();
             ProfBonus_Box.Text = sheetManager.character.Get_ProfBonus().ToString();
-        }
-
-        private void BackgroundPageButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(sheetManager.character.Get_charName() + $" is " + sheetManager.character.Get_playerName() + $"'s character." +
-                sheetManager.character.Get_playerName() + $" chose a(n) " + sheetManager.character.Get_Race() + $" for Race, " + sheetManager.character.Get_Subrace()
-                + $" as subrace.\n" + sheetManager.character.Get_charName() + $" is of the " + sheetManager.character.Get_charClass() + $"-Class and has the " + sheetManager.character.Get_Background()
-                + $"-Background.\n" + sheetManager.character.Get_charName() + $" is of " + sheetManager.character.Get_Alignment() + $" alignment.");
-        }
+        }        
 
         private void IniButton_Click(object sender, RoutedEventArgs e)
         {
             iniResult.Text = sheetManager.Roll_for_Initiative().ToString();
         }
 
-        public void strButton_Click(object sender, RoutedEventArgs e)
+        public void StrButton_Click(object sender, RoutedEventArgs e)
         {           
             strengthResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_strModifier()).ToString();
         }
 
-        public void dexButton_Click(object sender, RoutedEventArgs e)
+        public void DexButton_Click(object sender, RoutedEventArgs e)
         {
             dexResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_dexModifier()).ToString();
         }
 
-        public void conButton_Click(object sender, RoutedEventArgs e)
+        public void ConButton_Click(object sender, RoutedEventArgs e)
         {
             conResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_conModifier()).ToString();
         }
 
-        public void intButton_Click(object sender, RoutedEventArgs e)
+        public void IntButton_Click(object sender, RoutedEventArgs e)
         {
             intResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_intModifier()).ToString();
         }
 
-        public void wisButton_Click(object sender, RoutedEventArgs e)
+        public void WisButton_Click(object sender, RoutedEventArgs e)
         {
             wisResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_wisModifier()).ToString();
         }
 
-        public void chaButton_Click(object sender, RoutedEventArgs e)
+        public void ChaButton_Click(object sender, RoutedEventArgs e)
         {
             chaResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_chaModifier()).ToString();
         }
@@ -981,120 +1008,138 @@ namespace DnD_CharSheet_5e
             CHAsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_CHA_Save()).ToString();
         }
 
-        public void acrobaticsBT_Click(object sender, RoutedEventArgs e)
+        public void AcrobaticsBT_Click(object sender, RoutedEventArgs e)
         {
             Acrobatics_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Acrobatics()).ToString();
         }
 
-        public void animalHandlingBT_Click(object sender, RoutedEventArgs e)
+        public void AnimalHandlingBT_Click(object sender, RoutedEventArgs e)
         {
             AnimalHandling_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_AnimalHandling()).ToString();
         }
 
-        public void arcanaBT_Click(object sender, RoutedEventArgs e)
+        public void ArcanaBT_Click(object sender, RoutedEventArgs e)
         {
             Arcana_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Arcana()).ToString();
         }
 
-        public void athleticsBT_Click(object sender, RoutedEventArgs e)
+        public void AthleticsBT_Click(object sender, RoutedEventArgs e)
         {
             Athletics_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Athletics()).ToString();
         }
 
-        public void deceptionBT_Click(object sender, RoutedEventArgs e)
+        public void DeceptionBT_Click(object sender, RoutedEventArgs e)
         {
             Deception_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Deception()).ToString();
         }
 
-        public void historyBT_Click(object sender, RoutedEventArgs e)
+        public void HistoryBT_Click(object sender, RoutedEventArgs e)
         {
             History_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_History()).ToString();
         }
 
-        public void insightBT_Click(object sender, RoutedEventArgs e)
+        public void InsightBT_Click(object sender, RoutedEventArgs e)
         {
             Insight_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Insight()).ToString();
         }
 
-        public void intimidationBT_Click(object sender, RoutedEventArgs e)
+        public void IntimidationBT_Click(object sender, RoutedEventArgs e)
         {
             Intimidation_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Intimidation()).ToString();
         }
 
-        public void investigationBT_Click(object sender, RoutedEventArgs e)
+        public void InvestigationBT_Click(object sender, RoutedEventArgs e)
         {
             Investigation_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Investigation()).ToString();
         }
 
-        public void medicineBT_Click(object sender, RoutedEventArgs e)
+        public void MedicineBT_Click(object sender, RoutedEventArgs e)
         {
             Medicine_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Medicine()).ToString();
         }
 
-        public void natureBT_Click(object sender, RoutedEventArgs e)
+        public void NatureBT_Click(object sender, RoutedEventArgs e)
         {
             Nature_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Nature()).ToString();
         }
 
-        public void perceptionBT_Click(object sender, RoutedEventArgs e)
+        public void PerceptionBT_Click(object sender, RoutedEventArgs e)
         {
             Perception_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Perception()).ToString();
         }
 
-        public void performanceBT_Click(object sender, RoutedEventArgs e)
+        public void PerformanceBT_Click(object sender, RoutedEventArgs e)
         {
             Performance_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Performance()).ToString();
         }
 
-        public void persuasionBT_Click(object sender, RoutedEventArgs e)
+        public void PersuasionBT_Click(object sender, RoutedEventArgs e)
         {
             Persuasion_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Persuasion()).ToString();
         }
 
-        public void religionBT_Click(object sender, RoutedEventArgs e)
+        public void ReligionBT_Click(object sender, RoutedEventArgs e)
         {
             Religion_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Religion()).ToString();
         }
 
-        public void sleightOfHandBT_Click(object sender, RoutedEventArgs e)
+        public void SleightOfHandBT_Click(object sender, RoutedEventArgs e)
         {
             SleightOfHand_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_SleightOfHand()).ToString();
         }
 
-        public void stealthBT_Click(object sender, RoutedEventArgs e)
+        public void StealthBT_Click(object sender, RoutedEventArgs e)
         {
             Stealth_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Stealth()).ToString();
         }
 
-        public void survivalBT_Click(object sender, RoutedEventArgs e)
+        public void SurvivalBT_Click(object sender, RoutedEventArgs e)
         {
             Survival_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Survival()).ToString();
-        }
+        }        
 
-        public void CombatWindow_bt_Click(object sender, RoutedEventArgs e)
-        {
-            CombatWindow combatWindow = new CombatWindow();
-            combatWindow.Set_SheetManager(sheetManager);
-            combatWindow.Show();
-        }
-
-        public void SaveScreen_bt_Click(object sender, RoutedEventArgs e)
+        private void SaveScreen_bt_Click(object sender, RoutedEventArgs e)
         {
             SaveScreen saveScreenWindow = new SaveScreen();            
             saveScreenWindow.Fetch_Character(sheetManager.Get_Character());
             saveScreenWindow.Show();                        
         }
 
-        public void LoadPage_bt_Click(object sender, RoutedEventArgs e)
+        private void LoadPage_bt_Click(object sender, RoutedEventArgs e)
         {           
             LoadScreen loadScreenWindow = new LoadScreen();            
             loadScreenWindow.Show();       
         }
 
-        public void MerchantWindow_bt_Click(object sender, RoutedEventArgs e)
+        private void SpellWindow_bt_Click(object sender, RoutedEventArgs e)
+        {
+            SpellsWindow spellsWindow = new SpellsWindow();
+            spellsWindow.Show();
+        }
+
+        private void CombatWindow_bt_Click(object sender, RoutedEventArgs e)
+        {
+            CombatWindow combatWindow = new CombatWindow();
+            combatWindow.Set_SheetManager(sheetManager);
+            combatWindow.Show();
+        }
+
+        private void BackgroundPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            BackgroundWindow backgroundWindow = new BackgroundWindow();
+            backgroundWindow.Show();
+        }
+
+        private void InventoryWindow_bt_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryWindow inventoryWindow = new InventoryWindow();
+            inventoryWindow.Show();
+        }
+
+        private void MerchantWindow_bt_Click(object sender, RoutedEventArgs e)
         {
             MerchantWindow merchantWindow = new MerchantWindow();
-            merchantWindow.Show();
+            merchantWindow.Show();            
         }
     }
 }
