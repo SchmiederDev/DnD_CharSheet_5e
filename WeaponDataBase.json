@@ -1,0 +1,262 @@
+[
+  {
+    "ItemName": "Club",
+    "Item_ID": "w_01",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d4 bludgeoning, Properties: Light",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight":  false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Dagger",
+    "Item_ID": "w_02",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d4 piercing, Properties: Finesse, light, thrown (range 20/60)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": true,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Greatclub",
+    "Item_ID": "w_03",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d8 bludgeoning, Properties: Two-handed",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Handaxe",
+    "Item_ID": "w_04",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 slashing, Properties: Light, thrown (range 20/60)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": false,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Javelin",
+    "Item_ID": "w_05",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Thrown (range 30/120)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 30,
+    "MaxRange": 120,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Light hammer",
+    "Item_ID": "w_06",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d4 bludgeoning, Properties: Light, thrown (range 20/60)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": false,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Mace",
+    "Item_ID": "w_07",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 bludgeoning, Properties: -",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Quarterstaff",
+    "Item_ID": "w_08",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d6 bludgeoning, Properties: Versatile (1d8)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Sickle",
+    "Item_ID": "w_09",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d4 slashing, Properties: Light",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Spear",
+    "Item_ID": "w_10",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Thrown (range 20/60), versatile (1d8)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  }
+
+]
