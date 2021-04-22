@@ -22,16 +22,18 @@
 
                 <StackPanel Grid.Column="0">
 
-                    <Button x:Name="createCharButton" Click="createCharButton_Click" Content="New Character" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button x:Name="applyButton" Click="applyCharButton_Click" Content="Apply Character" Margin ="15 10 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button Content="Save Character" Click="SaveScreen_bt_Click" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button Content="Load Character" Click="LoadPage_bt_Click" Margin ="15 10 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="createCharButton" Click="CreateCharButton_Click" Content="New Character" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="applyButton" IsEnabled="False" Click="ApplyCharButton_Click" Content="Apply Character" Margin ="15 10 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="saveCharButton" Content="Save Character" IsEnabled="False" Click="SaveScreen_bt_Click" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="loadCharButton" Content="Load Character" Click="LoadPage_bt_Click" Margin ="15 10 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
 
-                    <Button x:Name="CombatWindow_bt" Content="Combat" Click="CombatWindow_bt_Click" Margin ="15 40 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="SpellWindow_bt" Content="Spells" IsEnabled="False" Click="SpellWindow_bt_Click" Margin ="15 40 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
 
-                    <Button x:Name="BackgroundPage_bt" Content="Background" Click="BackgroundPageButton_Click" Margin ="15 25 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button x:Name="Inventory_bt" Content="Inventory" Margin ="15 25 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button x:Name="Merchant_bt" Click="MerchantWindow_bt_Click" Content="Merchant" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="CombatWindow_bt" IsEnabled="False" Content="Combat" Click="CombatWindow_bt_Click" Margin ="15 20 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+
+                    <Button x:Name="BackgroundPage_bt" IsEnabled="False" Content="Background" Click="BackgroundPageButton_Click" Margin ="15 25 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="Inventory_bt" IsEnabled="False" Click="InventoryWindow_bt_Click" Content="Inventory" Margin ="15 25 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="Merchant_bt" IsEnabled="False" Click="MerchantWindow_bt_Click" Content="Merchant" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
 
                 </StackPanel>                
 
@@ -295,7 +297,7 @@
                                 <TextBlock Text="STRENGTH" Margin="10 30 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="18" Grid.Column="0"/>
                                 <TextBox x:Name="strScoreText" Margin ="0 20 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
                                 <TextBox x:Name="strModifierText" Margin ="0 25 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                <Button x:Name="strRoll_bt" Content="Roll" Click="strButton_Click" Margin = "0 25 20 10" Height ="35" Width="60" IsEnabled="False" Grid.Column="3"/>
+                                <Button x:Name="strRoll_bt" Content="Roll" Click="StrButton_Click" Margin = "0 25 20 10" Height ="35" Width="60" IsEnabled="False" Grid.Column="3"/>
                                 <TextBox x:Name="strengthResult" Margin ="0 30 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
 
                             </Grid>
@@ -315,7 +317,7 @@
                                 <TextBlock Text="DEXTERITY" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="18" Grid.Column="0"/>
                                 <TextBox x:Name="dexScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
                                 <TextBox x:Name="dexModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                <Button x:Name="dexRoll_bt" Content="Roll" Click="dexButton_Click" Margin = "0 0 20 10" Height ="35" Width="60" IsEnabled="False" Grid.Column="3"/>
+                                <Button x:Name="dexRoll_bt" Content="Roll" Click="DexButton_Click" Margin = "0 0 20 10" Height ="35" Width="60" IsEnabled="False" Grid.Column="3"/>
                                 <TextBox x:Name="dexResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
 
                             </Grid>
@@ -335,7 +337,7 @@
                                 <TextBlock Text="CONSTITUTION" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16" Grid.Column="0"/>
                                 <TextBox x:Name="conScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
                                 <TextBox x:Name="conModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                <Button x:Name="conRoll_bt" Content="Roll" Click="conButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
+                                <Button x:Name="conRoll_bt" Content="Roll" Click="ConButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
                                 <TextBox x:Name="conResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
 
                             </Grid>
@@ -355,7 +357,7 @@
                                 <TextBlock Text="INTELLIGENCE" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16" Grid.Column="0"/>
                                 <TextBox x:Name="intScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
                                 <TextBox x:Name="intModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                <Button x:Name="intRoll_bt" Content="Roll" Click="intButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
+                                <Button x:Name="intRoll_bt" Content="Roll" Click="IntButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
                                 <TextBox x:Name="intResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
 
                             </Grid>
@@ -375,7 +377,7 @@
                                 <TextBlock Text="WISDOM" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="18" Grid.Column="0"/>
                                 <TextBox x:Name="wisScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
                                 <TextBox x:Name="wisModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                <Button x:Name="wisRoll_bt" Content="Roll" Click="wisButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
+                                <Button x:Name="wisRoll_bt" Content="Roll" Click="WisButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
                                 <TextBox x:Name="wisResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
 
                             </Grid>
@@ -395,7 +397,7 @@
                                 <TextBlock Text="CHARISMA" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="18" Grid.Column="0"/>
                                 <TextBox x:Name="chaScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
                                 <TextBox x:Name="chaModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                <Button x:Name="chaRoll_bt" Content="Roll" Click="chaButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
+                                <Button x:Name="chaRoll_bt" Content="Roll" Click="ChaButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
                                 <TextBox x:Name="chaResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
 
                             </Grid>
@@ -597,15 +599,15 @@
 
                         <StackPanel Grid.Column="3">
 
-                            <Button x:Name="AcrobaticsCheck_bt" Click="acrobaticsBT_Click" Content="Roll" IsEnabled="False" Margin="15 10"/>
-                            <Button x:Name="AnimalHandlingCheck_bt" Click="animalHandlingBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                            <Button x:Name="ArcanaCheck_bt" Click="arcanaBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                            <Button x:Name="AthleticsCheck_bt" Click="athleticsBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                            <Button x:Name="DeceptionCheck_bt" Click="deceptionBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                            <Button x:Name="HistoryCheck_bt" Click="historyBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                            <Button x:Name="InsightCheck_bt" Click="insightBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                            <Button x:Name="IntimidationCheck_bt" Click="intimidationBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                            <Button x:Name="InvestigationCheck_bt" Click="investigationBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                            <Button x:Name="AcrobaticsCheck_bt" Click="AcrobaticsBT_Click" Content="Roll" IsEnabled="False" Margin="15 10"/>
+                            <Button x:Name="AnimalHandlingCheck_bt" Click="AnimalHandlingBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
+                            <Button x:Name="ArcanaCheck_bt" Click="ArcanaBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                            <Button x:Name="AthleticsCheck_bt" Click="AthleticsBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
+                            <Button x:Name="DeceptionCheck_bt" Click="DeceptionBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                            <Button x:Name="HistoryCheck_bt" Click="HistoryBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
+                            <Button x:Name="InsightCheck_bt" Click="InsightBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                            <Button x:Name="IntimidationCheck_bt" Click="IntimidationBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                            <Button x:Name="InvestigationCheck_bt" Click="InvestigationBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
 
                         </StackPanel>
 
@@ -667,15 +669,15 @@
 
                         <StackPanel Grid.Column="8">
 
-                            <Button x:Name="MedicineCheck_bt" Click="medicineBT_Click" Content="Roll" IsEnabled="False" Margin="15 10"/>
-                            <Button x:Name="NatureCheck_bt" Click="natureBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                            <Button x:Name="PerceptionCheck_bt" Click="perceptionBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                            <Button x:Name="PerfomanceCheck_bt" Click="performanceBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                            <Button x:Name="PersuasionCheck_bt" Click="persuasionBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                            <Button x:Name="ReligionCheck_bt" Click="religionBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                            <Button x:Name="SleightOfHandCheck_bt" Click="sleightOfHandBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                            <Button x:Name="StealthCheck_bt" Click="stealthBT_Click" Content="Roll" IsEnabled="False" Margin="15 10"/>
-                            <Button x:Name="SurvivalCheck_bt" Click="survivalBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                            <Button x:Name="MedicineCheck_bt" Click="MedicineBT_Click" Content="Roll" IsEnabled="False" Margin="15 10"/>
+                            <Button x:Name="NatureCheck_bt" Click="NatureBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
+                            <Button x:Name="PerceptionCheck_bt" Click="PerceptionBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                            <Button x:Name="PerfomanceCheck_bt" Click="PerformanceBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
+                            <Button x:Name="PersuasionCheck_bt" Click="PersuasionBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                            <Button x:Name="ReligionCheck_bt" Click="ReligionBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
+                            <Button x:Name="SleightOfHandCheck_bt" Click="SleightOfHandBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                            <Button x:Name="StealthCheck_bt" Click="StealthBT_Click" Content="Roll" IsEnabled="False" Margin="15 10"/>
+                            <Button x:Name="SurvivalCheck_bt" Click="SurvivalBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
 
                         </StackPanel>
 
