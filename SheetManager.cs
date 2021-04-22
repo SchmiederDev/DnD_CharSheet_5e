@@ -9,7 +9,7 @@ namespace DnD_CharSheet_5e
         public static SheetManager CS_Manager_Inst;
 
         public Character character = new Character();
-        public D20_System dSys = new D20_System();
+        public D20_System dSys = new D20_System();        
 
         public SheetManager()
         {
