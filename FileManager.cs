@@ -31,6 +31,9 @@ namespace DnD_CharSheet_5e
         string IDB_File = @"\ItemDataBase.json";
         string IDB_Path;
 
+        string WDB_File = @"\WeaponDataBase.json";
+        string WDB_Path;
+
         public string Find_RootPath()
         {
             rootPath = Path.GetFullPath(folderPath);                       
@@ -64,11 +67,23 @@ namespace DnD_CharSheet_5e
             IDB_Path = Find_RootPath() + IDB_File;
         }
 
+        public void Set_WDBPath()
+        {
+            WDB_Path = Find_RootPath() + WDB_File;
+        }
+
         public string Read_ItemDataBase()
         {
             string jsonIDB = File.ReadAllText(IDB_Path);            
 
             return jsonIDB;
+        }
+
+        public string Read_WeaponDataBase()
+        {
+            string jsonWDB = File.ReadAllText(WDB_Path);
+
+            return jsonWDB;
         }
 
     }
