@@ -1,0 +1,637 @@
+﻿<Window x:Class="DnD_CharSheet_5e.SpellsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DnD_CharSheet_5e"
+        mc:Ignorable="d"
+        Title="SpellsWindow" Height="1000" Width="1200">
+
+    <StackPanel>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Spellcasting Class" Margin="15 15 10 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+            <TextBlock Text="Spellcasting Ability" Margin="5 15 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="1"/>
+            <TextBlock Text="Spell Save DC" Margin="30 15 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+            <TextBlock Text="Spell Attack Bonus" Margin="5 15 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="3"/>
+
+        </Grid>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="CasterClassTxt" Margin="15 5 25 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="0"/>
+            <TextBlock x:Name="SpAbilityTxt" Margin="5 5 5 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="1"/>
+            <TextBlock x:Name="SaveDCTxt" Margin="30 5 25 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+            <TextBlock x:Name="SpAtkBonus" Margin="5 5 15 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="3"/>
+
+        </Grid>
+
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+
+                
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="2*"/>                        
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="0" Margin="12 5 10 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock Text="Cantrips" Margin="50 5 35 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>                    
+                    
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                                                
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>                        
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="1" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock x:Name="SlotsTotal01Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
+                    <TextBlock x:Name="SlotsExp01Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="2" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock x:Name="SlotsTotal02Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
+                    <TextBlock x:Name="SlotsExp02Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="3" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock x:Name="SlotsTotal03Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
+                    <TextBlock x:Name="SlotsExp03Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="4" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock x:Name="SlotsTotal04Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
+                    <TextBlock x:Name="SlotsExp04Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="5" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock x:Name="SlotsTotal05Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
+                    <TextBlock x:Name="SlotsExp05Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>                        
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>                        
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="6" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock x:Name="SlotsTotal06Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
+                    <TextBlock x:Name="SlotsExp06Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="3">
+                
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="7" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock x:Name="SlotsTotal07Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
+                    <TextBlock x:Name="SlotsExp07Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="8" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock x:Name="SlotsTotal08Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
+                    <TextBlock x:Name="SlotsExp08Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="9" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                    <TextBlock x:Name="SlotsTotal09Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
+                    <TextBlock x:Name="SlotsExp09Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+                        <ComboBox Margin="5" Height="20"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+
+        
+
+    </StackPanel>
+    
+</Window>
