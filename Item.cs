@@ -9,7 +9,7 @@ namespace DnD_CharSheet_5e
 
         public string Item_ID { get; set; }
 
-        public int ItemWeight { get; set; }
+        public float ItemWeight { get; set; }
 
         public Coin Coin;
 
