@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="MerchantWindow" Height="450" Width="800">
+        Title="Merchant" Height="650" Width="800">
 
     <StackPanel>
         
-        <TextBox x:Name="ContentBox" IsEnabled="True" Margin="10 10 10 10" Height="50" Width="750" VerticalScrollBarVisibility="Visible"/>
+        
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -17,13 +17,42 @@
                 <ColumnDefinition Width = "*" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel x:Name="ItemsPanel" Grid.Column="0">
-                
+            <StackPanel Margin="25 10" Grid.Column="0">
+
+                <TextBlock Text="Adventuring Gear" Margin="90 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+
+                <ScrollViewer x:Name="ItemPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
+                    <StackPanel x:Name="ItemsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                </ScrollViewer>
+
+                <TextBlock Text="Tools" Margin="140 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+
+                <ScrollViewer x:Name="ToolPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
+                    <StackPanel x:Name="ToolsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                </ScrollViewer>
 
             </StackPanel>
-            
+
+            <StackPanel Margin="15 10" Grid.Column="1">
+
+                <TextBlock Text="Weapons" Margin="140 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+
+                <ScrollViewer x:Name="WeaponsPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
+                    <StackPanel x:Name="WeaponsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                </ScrollViewer>
+
+                <TextBlock Text="Armor" Margin="140 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+
+                <ScrollViewer x:Name="ArmorPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
+                    <StackPanel x:Name="ArmorPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                </ScrollViewer>
+
+            </StackPanel>
+
         </Grid>
-        
+
+        <TextBox x:Name="ContentBox" IsEnabled="True" Margin="10 10 10 10" Height="25" Width="750" VerticalScrollBarVisibility="Visible"/>
+
     </StackPanel>
     
 </Window>
