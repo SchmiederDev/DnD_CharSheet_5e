@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="DnD 5e Character Sheet" Height="1050" Width="1200">
+        Title="DnD 5e Character Sheet" Height="1050" Width="1200"
+        WindowStartupLocation="Manual" Left="0" Top="0">
 
     <Border Padding="10">
         
