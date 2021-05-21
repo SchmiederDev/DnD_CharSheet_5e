@@ -9,9 +9,7 @@ namespace DnD_CharSheet_5e
 
         public bool DexAdd { get; set; } = true;
         public bool HasMax { get; set; } = false;
-        
-        public uint DexMax { get; } = 2;
-
         public bool HasDisadvantage { get; set; }
+        public uint StrMax { get; set; }
     }
 }
