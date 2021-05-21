@@ -6,10 +6,7 @@ namespace DnD_CharSheet_5e
 {
     public class SheetManager
     {
-        public static SheetManager CS_Manager_Inst;
-
-        public Character character = new Character();
-        public D20_System dSys = new D20_System();        
+        public static SheetManager CS_Manager_Inst;                    
 
         public SheetManager()
         {
@@ -19,7 +16,9 @@ namespace DnD_CharSheet_5e
             }
         }
 
-        
+        public Character character = new Character();
+        public D20_System dSys = new D20_System();
+
         public void Set_Character(Character playerChar)
         {
             character = playerChar;         
@@ -94,6 +93,30 @@ namespace DnD_CharSheet_5e
             result = dSys.Roll_D20() + character.Get_dexModifier() + character.Get_ProfBonus();
 
             return result;
+        }
+
+        public int Damage_Roll()
+        {
+            int result;
+
+            if(character.CharEquipment.RightHand_Weapon != null && character.CharEquipment.RightHand_Weapon.IsRanged == false)
+            {
+                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Get_strModifier();
+                return result;
+            }
+
+            else if(character.CharEquipment.RightHand_Weapon != null && character.CharEquipment.RightHand_Weapon.IsRanged == true)
+            {
+                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Get_dexModifier();
+                return result;
+            }
+
+            else
+            {
+                MessageBox.Show($"You have no weapon equiped. Damage roll will be counted as 'Unarmed Strike'");
+                result = 1 + character.Get_strModifier();
+                return result;
+            }
         }
 
     }
