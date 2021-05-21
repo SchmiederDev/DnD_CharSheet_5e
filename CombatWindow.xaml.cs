@@ -81,6 +81,11 @@ namespace DnD_CharSheet_5e
             Ranged_Result.Text = CW_sheetManager.Ranged_Attack().ToString();
         }
 
+        public void Damage_Roll_Click(object sender, RoutedEventArgs e)
+        {
+            Damage_Result.Text = CW_sheetManager.Damage_Roll().ToString();
+        }
+
         public void INT_Spell_Atk_Click(object sender, RoutedEventArgs e)
         {
             int result;
