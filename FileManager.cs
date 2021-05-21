@@ -1,17 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Media;
 
 namespace DnD_CharSheet_5e
 {
     public class FileManager
     {
+        public static FileManager FM_Inst = new FileManager();
+
+        FileManager()
+        {          
+            if(FM_Inst == null)
+            {
+                FM_Inst = this;
+            }
+        }
+
         string rootPath;
 
         string folderPath = @"DnD_CharSheet_5e";
-        string folderName = @"\SaveGames";
+        string saveGameFolderPath = @"\SaveGames";
+        string SoundEffects_FolderPath = @"\SoundEffects";
 
         string saveGameFolder;
+        string SoundEffectsFolder;
 
         string saveSlot_01 = @"\character_01.charDat";
         string saveSlot_02 = @"\character_02.charDat";
@@ -46,11 +59,21 @@ namespace DnD_CharSheet_5e
 
         public void Check_for_SaveGameFolder()
         {
-            saveGameFolder = rootPath + folderName;
+            saveGameFolder = rootPath + saveGameFolderPath;
 
             if (!Directory.Exists(saveGameFolder))
             {
                 Directory.CreateDirectory(saveGameFolder);
+            }
+        }
+
+        public void Check_for_SoundEffects_Folder()
+        {
+            SoundEffectsFolder = rootPath + SoundEffects_FolderPath;
+
+            if(!Directory.Exists(SoundEffectsFolder))
+            {
+                Directory.CreateDirectory(SoundEffectsFolder);
             }
         }
 
