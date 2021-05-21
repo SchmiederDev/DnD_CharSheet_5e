@@ -27,6 +27,7 @@ namespace DnD_CharSheet_5e
                 
         private void CreateCharacter()
         {
+            SheetManager.CS_Manager_Inst.character = new Character();                       // Memory Issue here? (Apparently not, Destructor/ Finalizer is called)
             Reset_Form();
             
             if(IsSidebar_Active == true)
@@ -49,14 +50,16 @@ namespace DnD_CharSheet_5e
 
         private void ApplyCharacter()
         {
+            applyButton.IsEnabled = false;
             Activate_SideBarMenu_Buttons();
             Deactivate_Menus();
             SubmitCharacter_byUserInput();
             Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput();
-            Activate_IniRolls();
+            Activate_IniRolls();            
             Activate_AbilityChecks();
             Activate_SavingThrows();
-            Activate_SkillChecks();            
+            Activate_SkillChecks();
+            Update_AC();
         }
 
         private void ApplyCharButton_Click(object sender, RoutedEventArgs e)
@@ -76,7 +79,8 @@ namespace DnD_CharSheet_5e
         public void Load_Character()
         {            
             Reset_Form();
-            
+            applyButton.IsEnabled = false;
+
             Deactivate_Menus();
             SubmitCharacter();
             
@@ -97,6 +101,7 @@ namespace DnD_CharSheet_5e
             Activate_IniRolls();
             Activate_SaveCheck_Buttons();
             Activate_SkillCheck_Buttons();
+            Update_AC();            
         }
 
         private void Reset_Form()
@@ -171,7 +176,6 @@ namespace DnD_CharSheet_5e
         {
             Activate_CharacterMenus();
             Activate_HP_Panel();
-            Activate_ACandSpeed_Boxes();
             Activate_Scores();
             Activate_SaveProf_Buttons();
             Activate_SkillProficiency_Buttons();            
@@ -934,6 +938,12 @@ namespace DnD_CharSheet_5e
             Survival_Result.Clear();
 
         }        
+
+        public void Update_AC()
+        {
+            SheetManager.CS_Manager_Inst.character.Calculate_AC();
+            AC.Text = SheetManager.CS_Manager_Inst.character.Get_AC().ToString();
+        }
 
         private void LevelUpButton_Click(object sender, RoutedEventArgs e)
         {
