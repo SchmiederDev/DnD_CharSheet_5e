@@ -38,30 +38,30 @@ namespace DnD_CharSheet_5e
         public void Init_Databases()
         {
 
-            merchant.fManager.Set_IDBPath();
+            FileManager.FM_Inst.Set_IDBPath();
             try
             {
-                merchant.Load_ItemDataBase(merchant.fManager.Read_ItemDataBase());
+                merchant.Load_ItemDataBase(FileManager.FM_Inst.Read_ItemDataBase());
             }
             catch (Exception ex)
             {
                 ContentBox.Text = ex.Message.ToString();
             }
 
-            merchant.fManager.Set_WDBPath();
+            FileManager.FM_Inst.Set_WDBPath();
             try
             {
-                merchant.Load_WeaponDataBase(merchant.fManager.Read_WeaponDataBase());
+                merchant.Load_WeaponDataBase(FileManager.FM_Inst.Read_WeaponDataBase());
             }
             catch(Exception ex01)
             {
                 ContentBox.Text = ex01.Message.ToString();
             }
 
-            merchant.fManager.Set_ADBPath();
+            FileManager.FM_Inst.Set_ADBPath();
             try
             {
-                merchant.Load_ArmorDataBase(merchant.fManager.Read_ArmorDataBase());
+                merchant.Load_ArmorDataBase(FileManager.FM_Inst.Read_ArmorDataBase());
             }
             catch(Exception ex02)
             {
