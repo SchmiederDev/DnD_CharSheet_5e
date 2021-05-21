@@ -18,11 +18,23 @@ namespace DnD_CharSheet_5e
         public MainWindow()
         {
             InitializeComponent();
+
             if(mainWindow_Inst == null)
             {
                 mainWindow_Inst = this;
-            }           
+            }
+            
             sheetManager.dSys.InitializeRandom();
+
+            Init_FileSystem();
+        }
+
+        private void Init_FileSystem()
+        {
+            FileManager.FM_Inst.Find_RootPath();
+            FileManager.FM_Inst.Check_for_SaveGameFolder();
+            FileManager.FM_Inst.Set_SaveGames();
+            FileManager.FM_Inst.Check_for_SoundEffects_Folder();
         }
                 
         private void CreateCharacter()
