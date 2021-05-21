@@ -14,14 +14,23 @@ namespace DnD_CharSheet_5e
     /// </summary>
     public partial class MerchantWindow : Window
     {
+        public static MerchantWindow merchantWindow_Inst;
+
         Merchant merchant = new Merchant();
 
         List<Button> IDB_Buttons = new List<Button>();
         List<Button> WDB_Buttons = new List<Button>();
+        List<Button> ADB_Buttons = new List<Button>();
 
         public MerchantWindow()
-        {
+        {            
             InitializeComponent();
+
+            if (merchantWindow_Inst == null)
+            {
+                merchantWindow_Inst = this;
+            }
+
             Init_Databases();
             Init_UI();
         }
@@ -48,8 +57,18 @@ namespace DnD_CharSheet_5e
             {
                 ContentBox.Text = ex01.Message.ToString();
             }
+
+            merchant.fManager.Set_ADBPath();
+            try
+            {
+                merchant.Load_ArmorDataBase(merchant.fManager.Read_ArmorDataBase());
+            }
+            catch(Exception ex02)
+            {
+                ContentBox.Text = ex02.Message.ToString();
+            }
             
-        }
+        }               
         
         public void Create_Item_Buttons(Item item)
         {
@@ -115,8 +134,45 @@ namespace DnD_CharSheet_5e
             WeaponsPanel.Children.Add(weaponButton);
         }
 
+        public void Create_Armor_Buttons(Armor armor)
+        {
+            Button armorButton = new Button();
+            armorButton.Height = 20;
+            armorButton.Width = 300;
+
+            Thickness thickB = armorButton.Margin;
+            thickB.Bottom = 5;
+            armorButton.Margin = thickB;
+
+            Thickness thickU = armorButton.Margin;
+            thickU.Top = 10;
+            armorButton.Margin = thickU;
+
+            armorButton.FontWeight = FontWeights.Bold;
+
+            armorButton.Foreground = Brushes.SlateGray;
+
+            armorButton.Background = Brushes.WhiteSmoke;
+
+            armorButton.Name = armor.Item_ID;
+
+            armorButton.Content = armor.ItemName + " | Price: " + armor.Coin.Price + " " + armor.Coin.CoinKey + " | Weight: " + armor.ItemWeight;
+
+            armorButton.Click += new RoutedEventHandler(Armor_Button_Click);
+            armorButton.MouseEnter += new MouseEventHandler(Armor_Hover_Over);
+
+            ADB_Buttons.Add(armorButton);
+
+            ArmorPanel.Children.Add(armorButton);
+        }
+
         public void Init_UI()
         {
+            pGold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Gold().ToString();
+            pSilver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Silver().ToString();
+            pCopper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Copper().ToString();
+            pPlatinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Platinum().ToString();
+
             foreach (Item item in merchant.merchItems)
             {
                 Create_Item_Buttons(item);
@@ -126,6 +182,19 @@ namespace DnD_CharSheet_5e
             {
                 Create_Weapon_Buttons(weapon);
             }
+
+            foreach(Armor armor in merchant.merchArmor)
+            {
+                Create_Armor_Buttons(armor);
+            }
+        }
+
+        private void Update_PlayerFortune()
+        {
+            pGold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Gold().ToString();
+            pSilver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Silver().ToString();
+            pCopper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Copper().ToString();
+            pPlatinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Platinum().ToString();
         }
 
         private void Item_Button_Click(object sender, RoutedEventArgs e)
@@ -135,8 +204,13 @@ namespace DnD_CharSheet_5e
             
             if(tempItem != null)
             {
-                SheetManager.CS_Manager_Inst.character.cInventory.Add_Item(tempItem);
+                if(SheetManager.CS_Manager_Inst.character.cInventory.Pay_Item(tempItem.Coin) == true)
+                {
+                    SheetManager.CS_Manager_Inst.character.cInventory.Add_Item(tempItem);
+                }
             }
+
+            Update_PlayerFortune();
         }
 
         private void Weapon_Button_Click(object sender, RoutedEventArgs e)
@@ -146,8 +220,31 @@ namespace DnD_CharSheet_5e
 
             if(tempWeapon != null)
             {
-                SheetManager.CS_Manager_Inst.character.cInventory.Add_Weapon(tempWeapon);
+               if(SheetManager.CS_Manager_Inst.character.cInventory.Pay_Item(tempWeapon.Coin))
+                {
+                    SheetManager.CS_Manager_Inst.character.cInventory.Add_Weapon(tempWeapon);
+                    InventoryWindow.inventoryWindow_Inst.Refresh_UI();
+                }
             }
+
+            Update_PlayerFortune();
+        }
+
+        private void Armor_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button armorButton = (Button)e.Source;
+            Armor tempArmor = merchant.Find_Armor_byID(armorButton.Name);
+
+            if(tempArmor != null)
+            {
+                if(SheetManager.CS_Manager_Inst.character.cInventory.Pay_Item(tempArmor.Coin))
+                {
+                    SheetManager.CS_Manager_Inst.character.cInventory.Add_Armor(tempArmor);
+                    InventoryWindow.inventoryWindow_Inst.Refresh_UI();
+                }
+            }
+
+            Update_PlayerFortune();
         }
 
         private void Item_Hover_Over(object sender, MouseEventArgs e)
@@ -166,6 +263,15 @@ namespace DnD_CharSheet_5e
             ToolTip tt = new ToolTip();
             tt.Content = tempWeapon.ItemInfo;
             weaponButton.ToolTip = tt;
+        }
+
+        private void Armor_Hover_Over(object sender, RoutedEventArgs e)
+        {
+            Button armorButton = (Button)e.Source;
+            Armor tempArmor = merchant.Find_Armor_byID(armorButton.Name);
+            ToolTip tt = new ToolTip();
+            tt.Content = tempArmor.ItemInfo;
+            armorButton.ToolTip = tt;
         }
        
     }
