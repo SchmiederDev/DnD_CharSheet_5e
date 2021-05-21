@@ -257,6 +257,708 @@
 
     "IsTwoHanded": false,
     "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Crossbow, light",
+    "Item_ID": "w_11",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: Ammunition (range 80/320), loading, two-handed",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": true,
+    "NormRange": 80,
+    "MaxRange": 320,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Dart",
+    "Item_ID": "w_12",
+    "ItemWeight": 0.25,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "Damage: 1d4 piercing, Properties: Finesse, thrown (range 20/60)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": true,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": true,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Shortbow",
+    "Item_ID": "w_13",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Ammunition (range 80/320), two-handed",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": true,
+    "NormRange": 80,
+    "MaxRange": 320,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Sling",
+    "Item_ID": "w_14",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d4 bludgeoning, Properties: Ammunition (range 30/120)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": true,
+    "NormRange": 30,
+    "MaxRange": 120,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Battleaxe",
+    "Item_ID": "w_15",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 slashing, Properties: Versatile (1d10)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Flail",
+    "Item_ID": "w_16",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 bludgeoning, Properties: -",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Glaive",
+    "Item_ID": "w_17",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 20,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d10 slashing, Properties: Heavy, reach, two-handed",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 10,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Greataxe",
+    "Item_ID": "w_18",
+    "ItemWeight": 7,
+    "Coin": {
+      "Price": 30,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d12 slashing, Properties: Heavy, two-handed",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 12,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Greatsword",
+    "Item_ID": "w_19",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 2d6 slashing, Properties: Heavy, two-handed",
+
+    "DamageNominator": 2,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Halberd",
+    "Item_ID": "w_20",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 20,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d10 slashing, Properties: Heavy, reach, two-handed",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 10,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Lance",
+    "Item_ID": "w_21",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d12 piercing, Properties: Reach, special",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 12,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Longsword",
+    "Item_ID": "w_22",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 15,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 slashing, Properties: Versatile (1d10)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Maul",
+    "Item_ID": "w_23",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 2d6 bludgeoning, Properties: Heavy, two-handed",
+
+    "DamageNominator": 2,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Morningstar",
+    "Item_ID": "w_24",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 15,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: -",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Pike",
+    "Item_ID": "w_25",
+    "ItemWeight": 18,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d10 piercing, Properties: Heavy, reach, two-handed",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 10,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Rapier",
+    "Item_ID": "w_26",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: Finesse",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": true,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Scimitar",
+    "Item_ID": "w_27",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 slashing, Properties: Finesse, light",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": true,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Shortsword",
+    "Item_ID": "w_28",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Finesse, light",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": true,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Trident",
+    "Item_ID": "w_29",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Thrown (range 20/60), Versatile (1d8)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "War pick",
+    "Item_ID": "w_30",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: -",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Warhammer",
+    "Item_ID": "w_31",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 bludgeoning, Properties: Versatile (1d10)",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Whip",
+    "Item_ID": "w_32",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d4 slashing, Properties: Finesse, reach",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": true,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Blowgun",
+    "Item_ID": "w_33",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1 piercing, Properties: Ammunition (range 25/100), loading",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 1,
+
+    "IsRanged": true,
+    "NormRange": 25,
+    "MaxRange": 100,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Crossbow, hand",
+    "Item_ID": "w_34",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 75,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Ammunition (range 30/120), light, loading",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": true,
+    "NormRange": 30,
+    "MaxRange": 120,
+
+    "IsFinesse": false,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Crossbow, heavy",
+    "Item_ID": "w_35",
+    "ItemWeight": 18,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d10 piercing, Properties: Ammunition (range 100/140), heavy, loading, two-handed",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 10,
+
+    "IsRanged": true,
+    "NormRange": 100,
+    "MaxRange": 140,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Longbow",
+    "Item_ID": "w_36",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: Ammunition (range 150/600), heavy, two-handed",
+
+    "DamageNominator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": true,
+    "NormRange": 150,
+    "MaxRange": 600,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Net",
+    "Item_ID": "w_37",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: -, Properties: Special, thrown (range 5/15)",
+
+    "DamageNominator": 0,
+    "DamageDenominator": 0,
+
+    "IsRanged": true,
+    "NormRange": 5,
+    "MaxRange": 15,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
   }
 
 ]
