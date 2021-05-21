@@ -5,11 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="Merchant" Height="650" Width="800">
+        Title="Merchant" Height="950" Width="800">
 
     <StackPanel>
-        
-        
+
+        <TextBlock Text="Player Fortune: "  Margin="285 25 10 10" FontSize="24" FontWeight="Bold" FontFamily="Times New Roman"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="pGold_Txt" Text="Gold:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
+            <TextBlock x:Name="pSilver_Txt" Text="Silver:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="1"/>
+            <TextBlock x:Name="pCopper_Txt" Text="Copper:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
+            <TextBlock x:Name="pPlatinum_Txt" Text="Platinum:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
+
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="pGold_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" IsEnabled="False" Grid.Column="0"/>
+            <TextBox x:Name="pSilver_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" IsEnabled="False" Grid.Column="1"/>
+            <TextBox x:Name="pCopper_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" IsEnabled="False" Grid.Column="2"/>
+            <TextBox x:Name="pPlatinum_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" IsEnabled="False" Grid.Column="3"/>
+
+        </Grid>
 
         <Grid>
             <Grid.ColumnDefinitions>
