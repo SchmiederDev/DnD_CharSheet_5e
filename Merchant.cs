@@ -10,9 +10,7 @@ using Newtonsoft.Json;
 namespace DnD_CharSheet_5e
 {
     public class Merchant
-    {
-        public FileManager fManager = new FileManager();
-        
+    {        
         public List<Item> merchItems = new List<Item>();
         public List<Weapon> merchWeapons = new List<Weapon>();
         public List<Armor> merchArmor = new List<Armor>();
