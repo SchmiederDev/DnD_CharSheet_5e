@@ -57,5 +57,25 @@ namespace DnD_CharSheet_5e
             return tempWeapon;
         }
 
+        public void Load_ArmorDataBase(string jsonADB)
+        {
+            merchArmor = JsonConvert.DeserializeObject<List<Armor>>(jsonADB);
+        }
+
+        public Armor Find_Armor_byID(string id)
+        {
+            Armor tempArmor = new Armor();
+
+            foreach (Armor mArmor in merchArmor)
+            {
+                if(mArmor.Item_ID == id)
+                {
+                    tempArmor = mArmor;
+                }
+            }
+
+            return tempArmor;
+        }
+
     }
 }
