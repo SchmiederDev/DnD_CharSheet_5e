@@ -8,6 +8,8 @@ namespace DnD_CharSheet_5e
     {
         public Inventory cInventory { get; set; } = new Inventory();                                         //cInventory = 'character Inventory'
 
+        public Equipment CharEquipment = new Equipment();
+
         string playerName;
         string charName;
 
@@ -32,6 +34,10 @@ namespace DnD_CharSheet_5e
         int currHitDice;
 
         int iniBonus;
+
+        uint AC = 10;
+        uint armorBonus = 0;
+        uint shieldBonus = 0;
 
         int strValue;
         int dexValue;
@@ -283,6 +289,95 @@ namespace DnD_CharSheet_5e
         public int Get_iniBonus()
         {
             return iniBonus;
+        }
+
+        public bool Check_STR_Requirement(Armor armor)
+        {
+            if(armor.StrMax <= strValue)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Calculate_AC()
+        {                       
+            if(CharEquipment.CharacterArmor != null && CharEquipment.LeftHand_Armor != null)
+            {
+                armorBonus = CharEquipment.CharacterArmor.ArmorBonus;
+                shieldBonus = CharEquipment.LeftHand_Armor.ArmorBonus;
+
+                if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == false)
+                {
+                    AC = 10 + armorBonus + shieldBonus + (uint)dexModifier;
+                }
+
+                else if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == true)
+                {
+                    if (dexModifier <= 2)
+                    {
+                        AC = 10 + armorBonus + shieldBonus + (uint)dexModifier;
+                    }
+
+                    else
+                    {
+                        AC = 12 + armorBonus + shieldBonus;
+                    }
+                }
+
+                else if (CharEquipment.CharacterArmor.DexAdd == false)
+                {
+                    AC = 10 + armorBonus + shieldBonus;
+                }
+            }
+
+            else if(CharEquipment.CharacterArmor == null && CharEquipment.LeftHand_Armor != null)
+            {
+                shieldBonus = CharEquipment.LeftHand_Armor.ArmorBonus;
+                AC = 10 + shieldBonus + (uint)dexModifier;
+            }
+
+            else if(CharEquipment.CharacterArmor != null && CharEquipment.LeftHand_Armor == null)
+            {
+                armorBonus = CharEquipment.CharacterArmor.ArmorBonus;
+
+                if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == false)
+                {
+                    AC = 10 + armorBonus + (uint)dexModifier;
+                }
+
+                else if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == true)
+                {
+                    if (dexModifier <= 2)
+                    {
+                        AC = 10 + armorBonus + (uint)dexModifier;
+                    }
+
+                    else
+                    {
+                        AC = 12 + armorBonus;
+                    }
+                }
+
+                else if (CharEquipment.CharacterArmor.DexAdd == false)
+                {
+                    AC = 10 + armorBonus;
+                }
+            }
+
+            else if(CharEquipment.CharacterArmor == null && CharEquipment.LeftHand_Armor == null)
+            {                
+                AC = 10 + (uint)dexModifier;
+            }
+        }
+
+        public uint Get_AC()
+        {
+            return AC;
         }
 
         public void Set_strValue_byText(string boxText)
