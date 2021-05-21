@@ -63,5 +63,11 @@ namespace DnD_CharSheet_5e
             int result = dieSeed.Next(dieBase, d100 + 1);
             return result;
         }
+
+        public int Roll_Custom(int nominator, int denominator)
+        {
+            int result = nominator * dieSeed.Next(dieBase, denominator + 1);
+            return result;
+        }
     }
 }
