@@ -1,0 +1,249 @@
+[
+  {
+    "ItemName": "Padded Armor",
+    "Item_ID": "a_01",
+    "ItemWeight": 8,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 11 + Dex-Modifier - Padded armor consists of quilted layers of cloth and batting. ",
+
+    "ArmorBonus": 1,
+
+    "DexAdd": true,
+    "HasMax": false,
+    "HasDisadvantage": true,
+    "StrMax": 0
+  },
+
+  {
+    "ItemName": "Leather Armor",
+    "Item_ID": "a_02",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 11 + Dex-Modifier - The breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil. The rest of the armor is made of softer and more flexible materials.",
+
+    "ArmorBonus": 1,
+
+    "DexAdd": true,
+    "HasMax": false,
+    "HasDisadvantage": false,
+    "StrMax": 0
+  },
+
+  {
+    "ItemName": "Studded Leather Armor",
+    "Item_ID": "a_03",
+    "ItemWeight": 13,
+    "Coin": {
+      "Price": 45,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 12 + Dex-Modifier - The breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil. The rest of the armor is made of softer and more flexible materials.",
+
+    "ArmorBonus": 2,
+
+    "DexAdd": true,
+    "HasMax": false,
+    "HasDisadvantage": false,
+    "StrMax": 0
+  },
+
+  {
+    "ItemName": "Hide Armor",
+    "Item_ID": "a_04",
+    "ItemWeight": 12,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 12 + Dex-Modifier - This crude armor consists of thick furs and pelts. It is commonly worn by barbarian tribes, evil humanoids, and other folk who lack access to the tools and materials needed to create better armor.",
+
+    "ArmorBonus": 2,
+
+    "DexAdd": true,
+    "HasMax": true,
+    "HasDisadvantage": false,
+    "StrMax": 0
+  },
+
+  {
+    "ItemName": "Chain Shirt",
+    "Item_ID": "a_05",
+    "ItemWeight": 20,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 13 + Dex-Modifier (max 2) -Made of interlocking metal rings, a chain shirt is worn between layers of clothing or leather. This armor offers modest protection to the wearer's upper body and allows the sound of the rings rubbing against one another to be muffled by outer layers.",
+
+    "ArmorBonus": 3,
+
+    "DexAdd": true,
+    "HasMax": true,
+    "HasDisadvantage": false,
+    "StrMax": 0
+  },
+
+  {
+    "ItemName": "Scale mail",
+    "Item_ID": "a_06",
+    "ItemWeight": 45,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 14 + Dex-Modifier (max 2) - This armor consists of a coat and leggings (and perhaps a separate skirt) of leather covered with overlapping pieces of metal, much like the scales of a fish. The suit includes gauntlets.",
+
+    "ArmorBonus": 4,
+
+    "DexAdd": true,
+    "HasMax": true,
+    "HasDisadvantage": true,
+    "StrMax": 0
+  },
+
+  {
+    "ItemName": "Breastplate",
+    "Item_ID": "a_07",
+    "ItemWeight": 20,
+    "Coin": {
+      "Price": 400,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 14 + Dex-Modifier (max 2) - This armor consists of a fitted metal chest piece worn with supple leather. Although it leaves the legs and arms relatively unprotected, this armor provides good protection for the wearer's vital organs while leaving the wearer relatively unencumbered.",
+
+    "ArmorBonus": 4,
+
+    "DexAdd": true,
+    "HasMax": true,
+    "HasDisadvantage": false,
+    "StrMax": 0
+  },
+
+  {
+    "ItemName": "Half plate",
+    "Item_ID": "a_08",
+    "ItemWeight": 40,
+    "Coin": {
+      "Price": 750,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 15 + Dex-Modifier (max 2) - Half plate consists of shaped metal plates that cover most of the wearer's body. It does not include leg protection beyond simple greaves that are attached with leather straps.",
+
+    "ArmorBonus": 5,
+
+    "DexAdd": true,
+    "HasMax": true,
+    "HasDisadvantage": true,
+    "StrMax": 0
+  },
+
+  {
+    "ItemName": "Ring mail",
+    "Item_ID": "a_09",
+    "ItemWeight": 40,
+    "Coin": {
+      "Price": 30,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 14 - This armor is leather armor with heavy rings sewn into it. The rings help reinforce the armor against blows from swords and axes. Ring mail is inferior to chain mail, and it's usually worn only by those who can't afford better armor.",
+
+    "ArmorBonus": 4,
+
+    "DexAdd": false,
+    "HasMax": true,
+    "HasDisadvantage": true,
+    "StrMax": 0
+  },
+
+  {
+    "ItemName": "Chain mail",
+    "Item_ID": "a_10",
+    "ItemWeight": 55,
+    "Coin": {
+      "Price": 75,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 16 - Made of interlocking metal rings, chain mail includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets.",
+
+    "ArmorBonus": 6,
+
+    "DexAdd": false,
+    "HasMax": true,
+    "HasDisadvantage": true,
+    "StrMax": 13
+  },
+
+  {
+    "ItemName": "Splint Armor",
+    "Item_ID": "a_11",
+    "ItemWeight": 60,
+    "Coin": {
+      "Price": 200,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 17 - This armor is made of narrow vertical strips of metal riveted to a backing of leather that is worn over cloth padding. Flexible chain mail protects the joints.",
+
+    "ArmorBonus": 7,
+
+    "DexAdd": false,
+    "HasMax": true,
+    "HasDisadvantage": true,
+    "StrMax": 15
+  },
+
+  {
+    "ItemName": "Plate Armor",
+    "Item_ID": "a_12",
+    "ItemWeight": 65,
+    "Coin": {
+      "Price": 1500,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: 18 - Plate consists of shaped, interlocking metal plates to cover the entire body. A suit of plate includes gauntlets, heavy leather boots, a visored helmet, and thick layers of padding underneath the armor. Buckles and straps distribute the weight over the body.",
+
+    "ArmorBonus": 8,
+
+    "DexAdd": false,
+    "HasMax": true,
+    "HasDisadvantage": true,
+    "StrMax": 15
+  },
+
+  {
+    "ItemName": "Shield",
+    "Item_ID": "a_13",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "AC: +2 - A shield is made from wood or metal and is carried in one hand. Wielding a shield increases your Armor Class by 2. You can benefit from only one shield at a time.",
+
+    "ArmorBonus": 2,
+
+    "DexAdd": false,
+    "HasMax": false,
+    "HasDisadvantage": false,
+    "StrMax": 0
+  }
+
+]
