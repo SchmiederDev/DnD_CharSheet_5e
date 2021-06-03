@@ -71,6 +71,20 @@ namespace DnD_CharSheet_5e
 
         public string CD_AlliesAndOrgas { get; set; }
 
+
+        public int CD_Age { get; set; }
+        public float CD_Height { get; set; }
+        public float CD_Weight { get; set; }
+
+        public string CD_Eyes { get; set; }
+        public string CD_Skin { get; set; }
+        public string CD_Hair { get; set; }
+
+
+        public Inventory CD_Inventory { get; set; }
+        public Equipment CD_Equipment { get; set; }
+        
+
         public void Transfer_CharData(Character character)
         {
             pName = character.Get_playerName();
@@ -132,9 +146,20 @@ namespace DnD_CharSheet_5e
 
             survival = character.Get_Survival_Prof();
 
+            CD_Age = character.Age;
+            CD_Height = character.Height;
+            CD_Weight = character.Weight;
+
+            CD_Eyes = character.Eyes;
+            CD_Skin = character.Skin;
+            CD_Hair = character.Hair;
+
             CD_charAppearance = character.CharApperance;
             CD_backgroundStory = character.BackgroundStory;
-            CD_AlliesAndOrgas = character.AlliesAndOrgas;
+            CD_AlliesAndOrgas = character.AlliesAndOrgas;            
+
+            CD_Inventory = character.cInventory;
+            CD_Equipment = character.CharEquipment;
         }
     }
 }
