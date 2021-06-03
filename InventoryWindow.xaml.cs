@@ -4,7 +4,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
+using System.IO;
 
 namespace DnD_CharSheet_5e
 {
@@ -21,6 +23,8 @@ namespace DnD_CharSheet_5e
       
         Inventory characterInventory;
 
+        ImageHandler imageHandler;
+
         public InventoryWindow()
         {
             InitializeComponent();
@@ -34,14 +38,46 @@ namespace DnD_CharSheet_5e
             WeaponButtons = new List<Button>();
             ArmorButtons = new List<Button>();
 
-            characterInventory = new Inventory();
+            characterInventory = new Inventory();           
 
             if(SheetManager.CS_Manager_Inst.character.cInventory != null)
             {
                 characterInventory = SheetManager.CS_Manager_Inst.character.cInventory;
             }
 
+            Init_ImageHandler();
             Init_UI();
+            Load_Icons();
+        }
+
+        public void Init_ImageHandler()
+        {
+            imageHandler = new ImageHandler();
+            imageHandler.ImageFileNames = FileManager.FM_Inst.Get_ImagesFileNames();
+            imageHandler.Set_Uris();
+        }
+
+        public void Load_Icons()
+        {
+            if(SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon != null)
+            {
+                RightHand_Img.Source = imageHandler.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon.ItemName);
+            }
+
+            if(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor != null)
+            {
+                LeftHand_Img.Source = imageHandler.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor.ItemName);
+            }
+
+            if(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon != null)
+            {
+                LeftHand_Img.Source = imageHandler.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon.ItemName);
+            }
+
+            if(SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor != null)
+            {
+                Armor_Img.Source = imageHandler.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor.ItemName);
+            }
         }
 
         public void Init_UI()
@@ -100,7 +136,7 @@ namespace DnD_CharSheet_5e
         {
             Button itemButton = new Button();
             itemButton.Height = 20;
-            itemButton.Width = 300;
+            itemButton.Width = 250;
 
             Thickness thickB = itemButton.Margin;
             thickB.Bottom = 5;
@@ -112,9 +148,9 @@ namespace DnD_CharSheet_5e
 
             itemButton.FontWeight = FontWeights.Bold;
 
-            itemButton.Foreground = Brushes.SlateGray;
+            itemButton.Foreground = System.Windows.Media.Brushes.SlateGray; 
 
-            itemButton.Background = Brushes.WhiteSmoke;
+            itemButton.Background = System.Windows.Media.Brushes.WhiteSmoke;
 
             itemButton.Name = item.Item_ID;
 
@@ -133,7 +169,7 @@ namespace DnD_CharSheet_5e
         {
             Button weaponButton = new Button();
             weaponButton.Height = 20;
-            weaponButton.Width = 300;
+            weaponButton.Width = 250;
 
             Thickness thickB = weaponButton.Margin;
             thickB.Bottom = 5;
@@ -145,9 +181,9 @@ namespace DnD_CharSheet_5e
 
             weaponButton.FontWeight = FontWeights.Bold;
 
-            weaponButton.Foreground = Brushes.SlateGray;
+            weaponButton.Foreground = System.Windows.Media.Brushes.SlateGray;
 
-            weaponButton.Background = Brushes.WhiteSmoke;
+            weaponButton.Background = System.Windows.Media.Brushes.WhiteSmoke;
 
             weaponButton.Name = weapon.Item_ID;
 
@@ -166,7 +202,7 @@ namespace DnD_CharSheet_5e
         {
             Button armorButton = new Button();
             armorButton.Height = 20;
-            armorButton.Width = 300;
+            armorButton.Width = 250;
 
             Thickness thickB = armorButton.Margin;
             thickB.Bottom = 5;
@@ -178,9 +214,9 @@ namespace DnD_CharSheet_5e
 
             armorButton.FontWeight = FontWeights.Bold;
 
-            armorButton.Foreground = Brushes.SlateGray;
+            armorButton.Foreground = System.Windows.Media.Brushes.SlateGray;
 
-            armorButton.Background = Brushes.WhiteSmoke;
+            armorButton.Background = System.Windows.Media.Brushes.WhiteSmoke;
 
             armorButton.Name = armor.Item_ID;
 
@@ -241,9 +277,16 @@ namespace DnD_CharSheet_5e
             if(TempWeapon != null && equipResult == MessageBoxResult.Yes)
             {
                 if(!TempWeapon.IsTwoHanded)
-                {
+                {                    
                     SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
                     MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.Get_charName() + " is wielding a " + TempWeapon.ItemName);
+                    RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
+
+                    if(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon != null)
+                    {
+                        SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon = null;
+                        LeftHand_Img.Source = null;
+                    }
                 }
 
                 else
@@ -253,6 +296,8 @@ namespace DnD_CharSheet_5e
                         SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
                         SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon = TempWeapon;
                         MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.Get_charName() + " is wielding a " + TempWeapon.ItemName);
+                        RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
+                        LeftHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
                     }
 
                     else
@@ -269,6 +314,8 @@ namespace DnD_CharSheet_5e
                             SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
                             MainWindow.mainWindow_Inst.Update_AC();
                             MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.Get_charName() + " is wielding a " + TempWeapon.ItemName);
+                            RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
+                            LeftHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
                         }
                     }
                 }
@@ -328,6 +375,7 @@ namespace DnD_CharSheet_5e
                     {
                         SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor = tempArmor;
                         MainWindow.mainWindow_Inst.Update_AC();
+                        LeftHand_Img.Source = imageHandler.Get_SourceUri(tempArmor.ItemName);                        
                     }
 
                     else
@@ -342,6 +390,8 @@ namespace DnD_CharSheet_5e
                             SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = null;
                             SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor = tempArmor;
                             MainWindow.mainWindow_Inst.Update_AC();
+                            LeftHand_Img.Source = imageHandler.Get_SourceUri(tempArmor.ItemName);
+                            RightHand_Img.Source = null;
                         }
                     }
                     
@@ -353,6 +403,7 @@ namespace DnD_CharSheet_5e
                     {
                         SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor = tempArmor;
                         MainWindow.mainWindow_Inst.Update_AC();
+                        Armor_Img.Source = imageHandler.Get_SourceUri(tempArmor.ItemName);
                     }
 
                     else
@@ -409,10 +460,11 @@ namespace DnD_CharSheet_5e
 
         private void Apply_Money_Bt_Click(object sender, RoutedEventArgs e)
         {            
-            SheetManager.CS_Manager_Inst.character.cInventory.Set_Platinum(Platinum_Box.Text);            
-            SheetManager.CS_Manager_Inst.character.cInventory.Set_Gold(Gold_Box.Text);
-            SheetManager.CS_Manager_Inst.character.cInventory.Set_Silver(Silver_Box.Text);
-            SheetManager.CS_Manager_Inst.character.cInventory.Set_Copper(Copper_Box.Text);
+            SheetManager.CS_Manager_Inst.character.cInventory.Set_Platinum_byTxt(Platinum_Box.Text);            
+            SheetManager.CS_Manager_Inst.character.cInventory.Set_Gold_byTxt(Gold_Box.Text);
+            SheetManager.CS_Manager_Inst.character.cInventory.Set_Silver_byTxt(Silver_Box.Text);
+            SheetManager.CS_Manager_Inst.character.cInventory.Set_Copper_byTxt(Copper_Box.Text);
+            FileManager.FM_Inst.Play_ClickSound();
         }
 
     }
