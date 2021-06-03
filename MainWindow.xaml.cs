@@ -35,6 +35,8 @@ namespace DnD_CharSheet_5e
             FileManager.FM_Inst.Check_for_SaveGameFolder();
             FileManager.FM_Inst.Set_SaveGames();
             FileManager.FM_Inst.Check_for_SoundEffects_Folder();
+            FileManager.FM_Inst.Init_SoundEffects();
+            FileManager.FM_Inst.Check_for_Images_Folder();
         }
                 
         private void CreateCharacter()
@@ -52,12 +54,13 @@ namespace DnD_CharSheet_5e
         }
 
         private void CreateCharButton_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             CreateCharacter();
             if(applyButton.IsEnabled == false)
             {
                 applyButton.IsEnabled = true;
-            }            
+            }
+            FileManager.FM_Inst.Play_ClickSound();
         }
 
         private void ApplyCharacter()
@@ -78,7 +81,8 @@ namespace DnD_CharSheet_5e
         {
             if(!hasError)
             {
-                ApplyCharacter();                
+                ApplyCharacter();
+                FileManager.FM_Inst.Play_ClickSound();
             }
 
             else if(hasError)
@@ -958,210 +962,248 @@ namespace DnD_CharSheet_5e
         }
 
         private void LevelUpButton_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             sheetManager.character.Level_Up();
             LevelText.Text = sheetManager.character.Get_charLvl().ToString();            
             HDtext.Text = sheetManager.character.Get_hitDice().ToString();
             ProfBonus_Box.Text = sheetManager.character.Get_ProfBonus().ToString();
+            FileManager.FM_Inst.Play_ClickSound();
         }        
 
         private void IniButton_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             iniResult.Text = sheetManager.Roll_for_Initiative().ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void StrButton_Click(object sender, RoutedEventArgs e)
         {           
             strengthResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_strModifier()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void DexButton_Click(object sender, RoutedEventArgs e)
         {
             dexResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_dexModifier()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void ConButton_Click(object sender, RoutedEventArgs e)
         {
             conResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_conModifier()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void IntButton_Click(object sender, RoutedEventArgs e)
         {
             intResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_intModifier()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void WisButton_Click(object sender, RoutedEventArgs e)
         {
             wisResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_wisModifier()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void ChaButton_Click(object sender, RoutedEventArgs e)
         {
             chaResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_chaModifier()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void STR_Save_bt_Click(object sender, RoutedEventArgs e)
         {
             STRsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_STR_Save()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void DEX_Save_bt_Click(object sender, RoutedEventArgs e)
         {
             DEXsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_DEX_Save()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void CON_Save_bt_Click(object sender, RoutedEventArgs e)
         {
             CONsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_CON_Save()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void INT_Save_bt_Click(object sender, RoutedEventArgs e)
         {
             INTsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_INT_Save()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void WIS_Save_bt_Click(object sender, RoutedEventArgs e)
         {
             WISsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_WIS_Save()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void CHA_Save_bt_Click(object sender, RoutedEventArgs e)
         {
             CHAsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_CHA_Save()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void AcrobaticsBT_Click(object sender, RoutedEventArgs e)
         {
             Acrobatics_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Acrobatics()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void AnimalHandlingBT_Click(object sender, RoutedEventArgs e)
         {
             AnimalHandling_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_AnimalHandling()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void ArcanaBT_Click(object sender, RoutedEventArgs e)
         {
             Arcana_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Arcana()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void AthleticsBT_Click(object sender, RoutedEventArgs e)
         {
             Athletics_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Athletics()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void DeceptionBT_Click(object sender, RoutedEventArgs e)
         {
             Deception_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Deception()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void HistoryBT_Click(object sender, RoutedEventArgs e)
         {
             History_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_History()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void InsightBT_Click(object sender, RoutedEventArgs e)
         {
             Insight_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Insight()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void IntimidationBT_Click(object sender, RoutedEventArgs e)
         {
             Intimidation_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Intimidation()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void InvestigationBT_Click(object sender, RoutedEventArgs e)
         {
             Investigation_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Investigation()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void MedicineBT_Click(object sender, RoutedEventArgs e)
         {
             Medicine_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Medicine()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void NatureBT_Click(object sender, RoutedEventArgs e)
         {
             Nature_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Nature()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void PerceptionBT_Click(object sender, RoutedEventArgs e)
         {
             Perception_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Perception()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void PerformanceBT_Click(object sender, RoutedEventArgs e)
         {
             Performance_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Performance()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void PersuasionBT_Click(object sender, RoutedEventArgs e)
         {
             Persuasion_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Persuasion()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void ReligionBT_Click(object sender, RoutedEventArgs e)
         {
             Religion_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Religion()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void SleightOfHandBT_Click(object sender, RoutedEventArgs e)
         {
             SleightOfHand_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_SleightOfHand()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void StealthBT_Click(object sender, RoutedEventArgs e)
         {
             Stealth_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Stealth()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void SurvivalBT_Click(object sender, RoutedEventArgs e)
         {
             Survival_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Survival()).ToString();
+            FileManager.FM_Inst.Play_DiceSound();
         }        
 
         private void SaveScreen_bt_Click(object sender, RoutedEventArgs e)
         {
-            SaveScreen saveScreenWindow = new SaveScreen();            
-            saveScreenWindow.Fetch_Character(sheetManager.Get_Character());
+            FileManager.FM_Inst.Play_ClickSound();
+            SaveScreen saveScreenWindow = new SaveScreen();
             saveScreenWindow.Show();                        
         }
 
         private void LoadPage_bt_Click(object sender, RoutedEventArgs e)
-        {           
+        {            
             LoadScreen loadScreenWindow = new LoadScreen();            
-            loadScreenWindow.Show();       
+            loadScreenWindow.Show();
+            FileManager.FM_Inst.Play_ClickSound();
         }
 
         private void SpellWindow_bt_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             SpellsWindow spellsWindow = new SpellsWindow();
             spellsWindow.Show();
+            FileManager.FM_Inst.Play_ClickSound();
         }
 
         private void CombatWindow_bt_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             CombatWindow combatWindow = new CombatWindow();
             combatWindow.Set_SheetManager(sheetManager);
             combatWindow.Show();
+            FileManager.FM_Inst.Play_ClickSound();
         }
 
         private void BackgroundPageButton_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             BackgroundWindow backgroundWindow = new BackgroundWindow();
             backgroundWindow.Show();
+            FileManager.FM_Inst.Play_ClickSound();
         }
 
         private void InventoryWindow_bt_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             InventoryWindow inventoryWindow = new InventoryWindow();
             inventoryWindow.Show();
+            FileManager.FM_Inst.Play_ClickSound();
         }
 
         private void MerchantWindow_bt_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             MerchantWindow merchantWindow = new MerchantWindow();
-            merchantWindow.Show();            
-        }
+            merchantWindow.Show();
+            FileManager.FM_Inst.Play_ClickSound();
+        }        
     }
 }
