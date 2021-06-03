@@ -86,10 +86,16 @@ namespace DnD_CharSheet_5e
 
         Skill Survival = new Skill();
 
+        public int Age { get; set; }
+        public float Height { get; set; }
+        public float Weight { get; set; }        
+
+        public string Eyes { get; set; }
+        public string Hair { get; set; }
+        public string Skin { get; set; }
+
         public string CharApperance { get; set; }
-
         public string BackgroundStory { get; set; }
-
         public string AlliesAndOrgas { get; set; }
 
         public void Set_playerName(string name)
@@ -919,7 +925,7 @@ namespace DnD_CharSheet_5e
         public bool Get_Survival_Prof()
         {
             return Survival.Get_Proficiency();
-        }
+        }        
 
         public void Level_Up()
         {
@@ -973,11 +979,22 @@ namespace DnD_CharSheet_5e
             Set_Proficiencies_wisSkills(charData.animalHandling, charData.insight, charData.medicine, charData.perception, charData.survival);
             Set_Proficiencies_chaSkills(charData.deception, charData.intimidation, charData.performance, charData.persuasion);
 
-            Calculate_SkillModifiers();
+            Calculate_SkillModifiers();                       
+
+            Age = charData.CD_Age;
+            Height = charData.CD_Height;
+            Weight = charData.CD_Weight;
+
+            Eyes = charData.CD_Eyes;
+            Skin = charData.CD_Skin;
+            Hair = charData.CD_Hair;
 
             CharApperance = charData.CD_charAppearance;
             BackgroundStory = charData.CD_backgroundStory;
             AlliesAndOrgas = charData.CD_AlliesAndOrgas;
+
+            cInventory = charData.CD_Inventory;
+            CharEquipment = charData.CD_Equipment;
         }
     }
 }
