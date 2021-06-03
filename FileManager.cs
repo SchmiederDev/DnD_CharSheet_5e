@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Media;
+using System.Windows;
 
 namespace DnD_CharSheet_5e
 {
@@ -22,9 +24,12 @@ namespace DnD_CharSheet_5e
         string folderPath = @"DnD_CharSheet_5e";
         string saveGameFolderPath = @"\SaveGames";
         string SoundEffects_FolderPath = @"\SoundEffects";
+        string Images_FolderPath = @"\Images";
 
         string saveGameFolder;
         string SoundEffectsFolder;
+        string ImagesFolder;
+        string[] ImageFileNames;
 
         string saveSlot_01 = @"\character_01.charDat";
         string saveSlot_02 = @"\character_02.charDat";
@@ -41,13 +46,22 @@ namespace DnD_CharSheet_5e
         public string saveGame_05 { set; get; }
         public string namesDataBase { set; get; }
 
-        string IDB_File = @"\ItemDataBase.json";
+        string ClickSound_FileName = @"\TypeWriter_Click.wav";
+        string DiceSound_FileName = @"\DiceRoll.wav";
+
+        string ClickSound_Path;
+        string DiceSound_Path;
+
+        SoundPlayer ClickSound;
+        SoundPlayer DiceSound;
+
+        string IDB_FileName = @"\ItemDataBase.json";
         string IDB_Path;
 
-        string WDB_File = @"\WeaponDataBase.json";
+        string WDB_FileName = @"\WeaponDataBase.json";
         string WDB_Path;
 
-        string ADB_File = @"\ArmorDataBase.json";
+        string ADB_FileName = @"\ArmorDataBase.json";
         string ADB_Path;
 
         public string Find_RootPath()
@@ -77,6 +91,21 @@ namespace DnD_CharSheet_5e
             }
         }
 
+        public void Check_for_Images_Folder()
+        {
+            ImagesFolder = rootPath + Images_FolderPath;
+
+            if(!Directory.Exists(ImagesFolder))
+            {
+                Directory.CreateDirectory(ImagesFolder);                
+            }
+
+            else
+            {
+                ImageFileNames = Directory.GetFiles(ImagesFolder);             
+            }
+        }
+
         public void Set_SaveGames()
         {
             saveGame_01 = saveGameFolder + saveSlot_01;
@@ -86,21 +115,70 @@ namespace DnD_CharSheet_5e
             saveGame_05 = saveGameFolder + saveSlot_05;
 
             namesDataBase = saveGameFolder + nameSaveSlot;
+
+        }        
+
+        private void Set_SoundPaths()
+        {
+            ClickSound_Path = SoundEffectsFolder + ClickSound_FileName;
+            DiceSound_Path = SoundEffectsFolder + DiceSound_FileName;
+        }
+
+        public void Init_SoundEffects()
+        {
+            Set_SoundPaths();
+            ClickSound = new SoundPlayer(ClickSound_Path);            
+            DiceSound = new SoundPlayer(DiceSound_Path);
+        }
+
+        public string Get_ImagesFolder()
+        {
+            return ImagesFolder;
+        }
+
+        public string[] Get_ImagesFileNames()
+        {
+            return ImageFileNames;
+        }
+
+        public void Play_ClickSound()
+        {
+            try
+            {
+                ClickSound.Play();
+            }
+            catch
+            {
+                MessageBox.Show("Sound file not found.");
+            }
+                
+        }
+
+        public void Play_DiceSound()
+        {
+            try
+            {
+                DiceSound.Play();
+            }
+            catch
+            {
+                MessageBox.Show("Sound file not found.");
+            }
         }
 
         public void Set_IDBPath()
         {
-            IDB_Path = Find_RootPath() + IDB_File;
+            IDB_Path = Find_RootPath() + IDB_FileName;
         }
 
         public void Set_WDBPath()
         {
-            WDB_Path = Find_RootPath() + WDB_File;
+            WDB_Path = Find_RootPath() + WDB_FileName;
         }
 
         public void Set_ADBPath()
         {
-            ADB_Path = Find_RootPath() + ADB_File;
+            ADB_Path = Find_RootPath() + ADB_FileName;
         }
 
         public string Read_ItemDataBase()
