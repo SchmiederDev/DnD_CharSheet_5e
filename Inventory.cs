@@ -4,6 +4,7 @@ using System.Windows;
 
 namespace DnD_CharSheet_5e
 {
+    [Serializable]
     public class Inventory
     {
         public List<Item> cItems { get; } = new List<Item>();                                                 // c = 'character'
@@ -15,7 +16,7 @@ namespace DnD_CharSheet_5e
         int silver;
         int copper;
 
-        public void Set_Platinum(string platinumTxt)
+        public void Set_Platinum_byTxt(string platinumTxt)
         {
             if(int.TryParse(platinumTxt, out int number))
             {
@@ -28,12 +29,17 @@ namespace DnD_CharSheet_5e
             }
         }
 
+        public void Set_Platinum(int amount)
+        {
+            platinum = amount;
+        }
+
         public int Get_Platinum()
         {
             return platinum;
         }
 
-        public void Set_Gold(string goldTxt)
+        public void Set_Gold_byTxt(string goldTxt)
         {
             if (int.TryParse(goldTxt, out int number))
             {
@@ -46,12 +52,17 @@ namespace DnD_CharSheet_5e
             }
         }
 
+        public void Set_Gold(int amount)
+        {
+            gold = amount;
+        }
+
         public int Get_Gold()
         {
             return gold;
         }
 
-        public void Set_Silver(string silverTxt)
+        public void Set_Silver_byTxt(string silverTxt)
         {
             if (int.TryParse(silverTxt, out int number))
             {
@@ -64,12 +75,17 @@ namespace DnD_CharSheet_5e
             }
         }
 
+        public void Set_Silver(int amount)
+        {
+            silver = amount;
+        }
+
         public int Get_Silver()
         {
             return silver;
         }
 
-        public void Set_Copper(string copperTxt)
+        public void Set_Copper_byTxt(string copperTxt)
         {
             if (int.TryParse(copperTxt, out int number))
             {
@@ -80,6 +96,11 @@ namespace DnD_CharSheet_5e
             {
                 MessageBox.Show($"Invalid input. Please enter an integer number.");
             }
+        }
+
+        public void Set_Copper(int amount)
+        {
+            copper = amount;
         }
 
         public int Get_Copper()
