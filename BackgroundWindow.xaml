@@ -34,27 +34,29 @@
                 <StackPanel Grid.Column="0">
 
                     <TextBlock x:Name="Age_Txt" Text="Age" Margin="45 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Age_Box" Margin="10 0 10 0" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <TextBox x:Name="Age_Box" IsEnabled="False" Margin="10 0 10 0" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
                     <TextBlock x:Name="Eyes_Txt" Text="Eyes" Margin="45 5 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Eyes_Box" Margin="10 0 10 10" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <TextBox x:Name="Eyes_Box" IsEnabled="False" Margin="10 0 10 10" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="Edit_btn" Content="EDIT" Click="Edit_btn_Click" Margin="10 5 10 10" Height="25" Width="80" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
 
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
 
                     <TextBlock x:Name="Height_Txt" Text="Height" Margin="45 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Height_Box" Margin="10 0 10 0" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <TextBox x:Name="Height_Box" IsEnabled="False" Margin="10 0 10 0" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
                     <TextBlock x:Name="Skin_Txt" Text="Skin" Margin="45 5 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Skin_Box" Margin="10 0 10 10" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <TextBox x:Name="Skin_Box" IsEnabled="False" Margin="10 0 10 10" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
 
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
 
                     <TextBlock x:Name="Weight_Txt" Text="Weight" Margin="45 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Weight_Box" Margin="10 0 10 0" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <TextBox x:Name="Weight_Box" IsEnabled="False" Margin="10 0 10 0" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
                     <TextBlock x:Name="Hair_Txt" Text="Hair" Margin="45 5 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Hair_Box" Margin="10 0 10 10" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <TextBox x:Name="Hair_Box" IsEnabled="False" Margin="10 0 10 10" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
+                    <Button x:Name="OK_btn" Content="OK" Click="OK_btn_Click" Margin="10 5 10 10" Height="25" Width="80" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Visibility="Hidden" IsEnabled="False"/>
 
                 </StackPanel>
 
