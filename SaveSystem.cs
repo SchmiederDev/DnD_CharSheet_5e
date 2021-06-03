@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace DnD_CharSheet_5e
 {
@@ -18,8 +19,9 @@ namespace DnD_CharSheet_5e
             charData.Transfer_CharData(character);
 
             binaryFormatter.Serialize(fStream, charData);
+
             fStream.Close();
-        }
+        }        
 
         public static void Save_CharName(string name, string path, int index)
         {
@@ -89,7 +91,7 @@ namespace DnD_CharSheet_5e
                 return null;
             }
 
-        }
+        }       
 
     }
 }
