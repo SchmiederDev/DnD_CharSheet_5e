@@ -312,7 +312,7 @@ namespace DnD_CharSheet_5e
                             SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor = null;
                             SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon = TempWeapon;
                             SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
-                            MainWindow.mainWindow_Inst.Update_AC();
+                            SheetManager.CS_Manager_Inst.character.Calculate_AC();
                             MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.Get_charName() + " is wielding a " + TempWeapon.ItemName);
                             RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
                             LeftHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
@@ -374,7 +374,7 @@ namespace DnD_CharSheet_5e
                     if(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon == null)
                     {
                         SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor = tempArmor;
-                        MainWindow.mainWindow_Inst.Update_AC();
+                        SheetManager.CS_Manager_Inst.character.Calculate_AC();
                         LeftHand_Img.Source = imageHandler.Get_SourceUri(tempArmor.ItemName);                        
                     }
 
@@ -389,7 +389,7 @@ namespace DnD_CharSheet_5e
                             SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon = null;
                             SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = null;
                             SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor = tempArmor;
-                            MainWindow.mainWindow_Inst.Update_AC();
+                            SheetManager.CS_Manager_Inst.character.Calculate_AC();
                             LeftHand_Img.Source = imageHandler.Get_SourceUri(tempArmor.ItemName);
                             RightHand_Img.Source = null;
                         }
@@ -402,7 +402,7 @@ namespace DnD_CharSheet_5e
                     if (SheetManager.CS_Manager_Inst.character.Check_STR_Requirement(tempArmor))
                     {
                         SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor = tempArmor;
-                        MainWindow.mainWindow_Inst.Update_AC();
+                        SheetManager.CS_Manager_Inst.character.Calculate_AC();
                         Armor_Img.Source = imageHandler.Get_SourceUri(tempArmor.ItemName);
                     }
 
@@ -450,7 +450,7 @@ namespace DnD_CharSheet_5e
                         SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor = null;
                     }
                     
-                    MainWindow.mainWindow_Inst.Update_AC();
+                    SheetManager.CS_Manager_Inst.character.Calculate_AC();
                 }
 
                 ArmorPanel.Children.Remove(armorButton);
@@ -458,13 +458,47 @@ namespace DnD_CharSheet_5e
 
         }
 
+        private void Edit_Money_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Apply_Money_Btn.IsEnabled = true;
+            Apply_Money_Btn.Visibility = Visibility.Visible;
+
+            Edit_Money_Btn.IsEnabled = false;
+            Edit_Money_Btn.Visibility = Visibility.Hidden;
+
+            Platinum_Box.IsEnabled = true;
+            Gold_Box.IsEnabled = true;
+            Silver_Box.IsEnabled = true;
+            Copper_Box.IsEnabled = true;
+        }
+
         private void Apply_Money_Bt_Click(object sender, RoutedEventArgs e)
-        {            
-            SheetManager.CS_Manager_Inst.character.cInventory.Set_Platinum_byTxt(Platinum_Box.Text);            
+        {
+            FileManager.FM_Inst.Play_ClickSound();
+            Set_Riches();
+            Reset_Edit();
+        }
+
+        private void Set_Riches()
+        {
+            SheetManager.CS_Manager_Inst.character.cInventory.Set_Platinum_byTxt(Platinum_Box.Text);
             SheetManager.CS_Manager_Inst.character.cInventory.Set_Gold_byTxt(Gold_Box.Text);
             SheetManager.CS_Manager_Inst.character.cInventory.Set_Silver_byTxt(Silver_Box.Text);
             SheetManager.CS_Manager_Inst.character.cInventory.Set_Copper_byTxt(Copper_Box.Text);
-            FileManager.FM_Inst.Play_ClickSound();
+        }
+
+        private void Reset_Edit()
+        {
+            Apply_Money_Btn.IsEnabled = false;
+            Apply_Money_Btn.Visibility = Visibility.Hidden;
+
+            Edit_Money_Btn.IsEnabled = true;
+            Edit_Money_Btn.Visibility = Visibility.Visible;
+
+            Platinum_Box.IsEnabled = false;
+            Gold_Box.IsEnabled = false;
+            Silver_Box.IsEnabled = false;
+            Copper_Box.IsEnabled = false;
         }
 
     }
