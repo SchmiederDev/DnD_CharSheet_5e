@@ -1,0 +1,119 @@
+﻿<Page x:Class="DnD_CharSheet_5e.AbilityStatsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DnD_CharSheet_5e"
+      mc:Ignorable="d" 
+      d:DesignHeight="850" d:DesignWidth="1200"
+      Title="AbilityStatsPage">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="AbilityScore_Panel" Width="500" Margin="25 20 25 25" Grid.Column="0">
+
+            <TextBlock Text="ABILITY SCORES" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Margin="10"/>
+            <Expander Header="Info" Margin="10 25 10 25">
+                <TextBlock Text="Ability Scores determine your basic physical and mental capabilities. To determine them you can either let the dice decide (roll Button below) or use the standard scores instead. You can switch a respective score with another one by dragging it from the corresponding bullet point to another." HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" TextWrapping="Wrap" Width="400"  MaxWidth="400"/>
+            </Expander>
+
+
+            <Grid Margin="0 15 0 0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+
+                    <TextBlock Text="Stength (STR)" Margin="10 11.5 10 10" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Text="Dexterity (DEX)" Margin="10 11.5 10 10" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Text="Constitution (CON)" Margin="10 11.5 10 10" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Text="Intelligence (INT)" Margin="10 11.5 10 10" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Text="Wisdom (WIS)" Margin="10 11.5 10 10" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Text="Charisma (CHA)" Margin="10 11.5 10 10" FontSize="18" FontWeight="Bold"/>
+
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+
+                    <TextBox x:Name="STR_ScoreTB" IsEnabled="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Height="30" Width="50" Margin="10 10 10 5"/>
+                    <TextBox x:Name="DEX_ScoreTB" IsEnabled="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Height="30" Width="50" Margin="10 10 10 5"/>
+                    <TextBox x:Name="CON_ScoreTB" IsEnabled="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Height="30" Width="50" Margin="10 10 10 5"/>
+                    <TextBox x:Name="INT_ScoreTB" IsEnabled="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Height="30" Width="50" Margin="10 10 10 5"/>
+                    <TextBox x:Name="WIS_ScoreTB" IsEnabled="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Height="30" Width="50" Margin="10 10 10 5"/>
+                    <TextBox x:Name="CHA_ScoreTB" IsEnabled="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Height="30" Width="50" Margin="10 10 10 5"/>
+
+                </StackPanel>
+
+                <StackPanel x:Name="BulletPoints_Panel" Grid.Column="2">
+
+                    <Ellipse x:Name="STR_Selection" AllowDrop="True" Drop="Selection_Drop" DragEnter="BulletPoint_DragEnter" DragLeave="BulletPoint_DragLeave" MouseEnter="Selection_MouseEnter" MouseLeave="Selection_MouseLeave" PreviewMouseLeftButtonDown="BulletPoint_PreviewMouseLeftButtonDown" PreviewMouseMove="BulletPoint_PreviewMouseMove" Height="20" Width="20" Margin="15" Stroke="Black" StrokeThickness="3" Fill="White"/>
+                    <Ellipse x:Name="DEX_Selection" AllowDrop="True" Drop="Selection_Drop" DragEnter="BulletPoint_DragEnter" DragLeave="BulletPoint_DragLeave" MouseEnter="Selection_MouseEnter" MouseLeave="Selection_MouseLeave" PreviewMouseLeftButtonDown="BulletPoint_PreviewMouseLeftButtonDown" PreviewMouseMove="BulletPoint_PreviewMouseMove" Height="20" Width="20" Margin="10" Stroke="Black" StrokeThickness="3" Fill="White"/>
+                    <Ellipse x:Name="CON_Selection" AllowDrop="True" Drop="Selection_Drop" DragEnter="BulletPoint_DragEnter" DragLeave="BulletPoint_DragLeave" MouseEnter="Selection_MouseEnter" MouseLeave="Selection_MouseLeave" PreviewMouseLeftButtonDown="BulletPoint_PreviewMouseLeftButtonDown" PreviewMouseMove="BulletPoint_PreviewMouseMove" Height="20" Width="20" Margin="15" Stroke="Black" StrokeThickness="3" Fill="White"/>
+                    <Ellipse x:Name="INT_Selection" AllowDrop="True" Drop="Selection_Drop" DragEnter="BulletPoint_DragEnter" DragLeave="BulletPoint_DragLeave" MouseEnter="Selection_MouseEnter" MouseLeave="Selection_MouseLeave" PreviewMouseLeftButtonDown="BulletPoint_PreviewMouseLeftButtonDown" PreviewMouseMove="BulletPoint_PreviewMouseMove" Height="20" Width="20" Margin="10" Stroke="Black" StrokeThickness="3" Fill="White"/>
+                    <Ellipse x:Name="WIS_Selection" AllowDrop="True" Drop="Selection_Drop" DragEnter="BulletPoint_DragEnter" DragLeave="BulletPoint_DragLeave" MouseEnter="Selection_MouseEnter" MouseLeave="Selection_MouseLeave" PreviewMouseLeftButtonDown="BulletPoint_PreviewMouseLeftButtonDown" PreviewMouseMove="BulletPoint_PreviewMouseMove" Height="20" Width="20" Margin="15" Stroke="Black" StrokeThickness="3" Fill="White"/>
+                    <Ellipse x:Name="CHA_Selection" AllowDrop="True" Drop="Selection_Drop" DragEnter="BulletPoint_DragEnter" DragLeave="BulletPoint_DragLeave" MouseEnter="Selection_MouseEnter" MouseLeave="Selection_MouseLeave" PreviewMouseLeftButtonDown="BulletPoint_PreviewMouseLeftButtonDown" PreviewMouseMove="BulletPoint_PreviewMouseMove" Height="20" Width="20" Margin="10" Stroke="Black" StrokeThickness="3" Fill="White"/>
+
+                </StackPanel>
+
+
+            </Grid>
+
+            <Button x:Name="AbilityScores_Btn" Content="Roll for Ability Scores" Click="AbilityScores_Btn_Click" Height="30" Width="200" Margin="10 70 10 10" FontWeight="Bold" FontStyle="Italic" FontSize="16"/>
+            <Button x:Name="StandardScores_Btn" Click="StandardScores_Btn_Click" Content="Use Standard Scores" Height="30" Width="200" Margin="10 5 10 10" FontWeight="Bold" FontStyle="Italic" FontSize="16"/>
+            <Button x:Name="Apply_AbilityScores_Btn" IsEnabled="False" Click="Apply_AbilityScores_Btn_Click" Content="Apply Ability Scores" Height="30" Width="200" Margin="10 5 10 10" FontWeight="Bold" FontStyle="Italic" FontSize="16"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+
+            <TextBlock Text="RACE BONUSES" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="10 25 10 5"/>
+            <TextBlock Text="Select a Race in this drop-down-menu and hit 'apply' to see a preview of the racial bonuses applied." Margin="10" HorizontalAlignment="Center" TextWrapping="Wrap" MaxWidth="400"/>
+
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel  Grid.Column="0">
+
+                    <ComboBox x:Name="RaceSelectionCB" IsEnabled="False" DropDownClosed="RaceSelectionCB_DropDownClosed" Width="150" Height="20"/>
+                    <ComboBox x:Name="SubraceSelectionCB" IsEnabled="False" DropDownClosed="SubraceSelectionCB_DropDownClosed" Visibility="Collapsed" Width="150" Height="20" Margin="5 5 5 5"/>
+
+                </StackPanel>
+                
+                <Button x:Name="ApplyRace_Btn" IsEnabled="False" Click="ApplyRace_Btn_Click" Content="Apply" Width="100" Height="25" FontSize="12" FontWeight="Bold" FontStyle="Italic" Grid.Column="1"/>
+            
+            </Grid>
+
+            <ScrollViewer CanContentScroll="True" MaxHeight="500">
+
+                <Grid Margin="70 30 10 10">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel x:Name="Races_InfoPanel" Grid.Column="0"/>
+                    <StackPanel x:Name="AbilityBonus_InfoPanel" Grid.Column="1"/>
+
+                </Grid>
+
+            </ScrollViewer>
+            
+        </StackPanel>
+
+    </Grid>
+</Page>
