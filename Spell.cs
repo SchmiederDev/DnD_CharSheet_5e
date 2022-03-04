@@ -7,7 +7,7 @@ namespace DnD_CharSheet_5e
     {
         public string SpellName { set; get; }
 
-        public uint SpellLvl { set; get; }
+        public int SpellLevel { set; get; }
 
         public string School { set; get; }
 
