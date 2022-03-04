@@ -7,7 +7,7 @@ namespace DnD_CharSheet_5e
     {
         Random dieSeed;
 
-        int dieBase = 1;
+        const int dieBase = 1;
 
         public int d4 { get; } = 4;
         public int d6 { get; } = 6;
