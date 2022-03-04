@@ -3,6 +3,9 @@
     "ItemName": "Abacus",
     "Item_ID": "i_01",
     "ItemWeight": 2,
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "Coin": {
       "Price": 2,
       "CoinKey": "GP"
@@ -14,19 +17,25 @@
   {
     "ItemName": "Acid",
     "Item_ID": "i_02",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
     "ItemWeight": 1,
     "Coin": {
       "Price": 25,
       "CoinKey": "GP"
     },
 
-    "ItemInfo": "As an action, you can splash the contents of this vial onto a creature within 5 feet of you or throw the vial up to 20 feet, shattering it on impact. In either case, make a ranged attack against a creature or object, treating the acid as an improvised weapon. On a hit, the target takes 2d6 acid damage."
+    "ItemInfo": "As an action, you can splash the contents of this vial onto a creature within 5 feet of you\nor throw the vial up to 20 feet, shattering it on impact.\n In either case, make a ranged attack against a creature or object,\n treating the acid as an improvised weapon.\nOn a hit, the target takes 2d6 acid damage."
   },
 
   {
     "ItemName": "Alchemist's Fire",
     "Item_ID": "i_03",
     "ItemWeight": 1,
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
     "Coin": {
       "Price": 50,
       "CoinKey": "GP"
@@ -38,6 +47,9 @@
   {
     "ItemName": "Antitoxin (vial)",
     "Item_ID": "i_04",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus_Slot",
     "ItemWeight": 0,
     "Coin": {
       "Price": 50,
@@ -50,6 +62,9 @@
   {
     "ItemName": "Arcane Focus, Crystal",
     "Item_ID": "i_05",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 10,
@@ -62,6 +77,9 @@
   {
     "ItemName": "Arcane Focus, Orb",
     "Item_ID": "i_06",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 3,
     "Coin": {
       "Price": 20,
@@ -74,6 +92,9 @@
   {
     "ItemName": "Arcane Focus, Rod",
     "Item_ID": "i_07",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 10,
@@ -86,6 +107,9 @@
   {
     "ItemName": "Arcane Focus, Staff",
     "Item_ID": "i_08",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 4,
     "Coin": {
       "Price": 5,
@@ -98,6 +122,9 @@
   {
     "ItemName": "Arcane Focus, Wand",
     "Item_ID": "i_09",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 10,
@@ -110,6 +137,9 @@
   {
     "ItemName": "Backpack",
     "Item_ID": "i_10",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 5,
     "Coin": {
       "Price": 2,
@@ -122,6 +152,9 @@
   {
     "ItemName": "Ball Bearings",
     "Item_ID": "i_11",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 1,
@@ -134,6 +167,9 @@
   {
     "ItemName": "Barrel",
     "Item_ID": "i_12",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 70,
     "Coin": {
       "Price": 2,
@@ -146,6 +182,9 @@
   {
     "ItemName": "Basket",
     "Item_ID": "i_13",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 4,
@@ -158,6 +197,9 @@
   {
     "ItemName": "Bedroll",
     "Item_ID": "i_14",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 7,
     "Coin": {
       "Price": 1,
@@ -170,6 +212,9 @@
   {
     "ItemName": "Bell",
     "Item_ID": "i_15",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 1,
@@ -182,6 +227,9 @@
   {
     "ItemName": "Blanket",
     "Item_ID": "i_16",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 3,
     "Coin": {
       "Price": 5,
@@ -194,6 +242,9 @@
   {
     "ItemName": "Block and tackle",
     "Item_ID": "i_17",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 5,
     "Coin": {
       "Price": 1,
@@ -206,6 +257,9 @@
   {
     "ItemName": "Book",
     "Item_ID": "i_18",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 5,
     "Coin": {
       "Price": 25,
@@ -218,6 +272,9 @@
   {
     "ItemName": "Bottle, glass",
     "Item_ID": "i_19",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 2,
@@ -230,6 +287,9 @@
   {
     "ItemName": "Bucket",
     "Item_ID": "i_20",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 5,
@@ -242,6 +302,9 @@
   {
     "ItemName": "Caltrops (bag of 20)",
     "Item_ID": "i_21",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 1,
@@ -254,6 +317,9 @@
   {
     "ItemName": "Candle",
     "Item_ID": "i_22",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 1,
@@ -266,6 +332,9 @@
   {
     "ItemName": "Case, crossbow bolt",
     "Item_ID": "i_23",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 1,
@@ -278,6 +347,9 @@
   {
     "ItemName": "Case, map or scroll",
     "Item_ID": "i_24",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 1,
@@ -290,6 +362,9 @@
   {
     "ItemName": "Chain (10 feet)",
     "Item_ID": "i_25",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 10,
     "Coin": {
       "Price": 5,
@@ -302,6 +377,9 @@
   {
     "ItemName": "Chalk (1 piece)",
     "Item_ID": "i_26",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 1,
@@ -314,6 +392,9 @@
   {
     "ItemName": "Chest",
     "Item_ID": "i_27",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 25,
     "Coin": {
       "Price": 5,
@@ -326,6 +407,9 @@
   {
     "ItemName": "Climber's kit",
     "Item_ID": "i_28",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 12,
     "Coin": {
       "Price": 25,
@@ -338,6 +422,9 @@
   {
     "ItemName": "Clothes, common",
     "Item_ID": "i_29",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 3,
     "Coin": {
       "Price": 5,
@@ -350,6 +437,9 @@
   {
     "ItemName": "Clothes, costume",
     "Item_ID": "i_30",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 4,
     "Coin": {
       "Price": 5,
@@ -360,8 +450,11 @@
   },
 
   {
-    "ItemName": "Chest",
+    "ItemName": "Clothes, fine",
     "Item_ID": "i_31",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 6,
     "Coin": {
       "Price": 15,
@@ -374,6 +467,9 @@
   {
     "ItemName": "Clothes, traveler's",
     "Item_ID": "i_32",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 4,
     "Coin": {
       "Price": 2,
@@ -386,6 +482,9 @@
   {
     "ItemName": "Component Pouch",
     "Item_ID": "i_33",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 25,
@@ -398,6 +497,9 @@
   {
     "ItemName": "Crowbar",
     "Item_ID": "i_34",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 5,
     "Coin": {
       "Price": 2,
@@ -410,6 +512,9 @@
   {
     "ItemName": "Druidic focus: Sprig of mistletoe",
     "Item_ID": "i_35",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 1,
@@ -422,6 +527,9 @@
   {
     "ItemName": "Druidic focus: Totem",
     "Item_ID": "i_36",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 1,
@@ -434,6 +542,9 @@
   {
     "ItemName": "Druidic focus: Wooden staff",
     "Item_ID": "i_37",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 4,
     "Coin": {
       "Price": 5,
@@ -446,6 +557,9 @@
   {
     "ItemName": "Druidic focus: Yew wand",
     "Item_ID": "i_38",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 10,
@@ -458,6 +572,9 @@
   {
     "ItemName": "Fishing tackle",
     "Item_ID": "i_39",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 4,
     "Coin": {
       "Price": 1,
@@ -470,6 +587,9 @@
   {
     "ItemName": "Flask", // Don't forget about tankard
     "Item_ID": "i_40",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 2,
@@ -480,8 +600,11 @@
   },
 
   {
-    "ItemName": "Grappling hook", 
+    "ItemName": "Grappling hook",
     "Item_ID": "i_41",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 4,
     "Coin": {
       "Price": 2,
@@ -494,6 +617,9 @@
   {
     "ItemName": "Hammer",
     "Item_ID": "i_42",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 3,
     "Coin": {
       "Price": 1,
@@ -506,6 +632,9 @@
   {
     "ItemName": "Hammer, sledge",
     "Item_ID": "i_43",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 10,
     "Coin": {
       "Price": 2,
@@ -518,6 +647,9 @@
   {
     "ItemName": "Healer's kit",
     "Item_ID": "i_44",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 3,
     "Coin": {
       "Price": 5,
@@ -530,6 +662,9 @@
   {
     "ItemName": "Holy symbol: Amulet",
     "Item_ID": "i_45",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Neck",
     "ItemWeight": 1,
     "Coin": {
       "Price": 5,
@@ -542,6 +677,9 @@
   {
     "ItemName": "Holy symbol: Emblem",
     "Item_ID": "i_46",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 5,
@@ -554,6 +692,9 @@
   {
     "ItemName": "Holy symbol: Reliquary",
     "Item_ID": "i_47",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 5,
@@ -566,6 +707,9 @@
   {
     "ItemName": "Holy water (flask)",
     "Item_ID": "i_48",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
     "ItemWeight": 1,
     "Coin": {
       "Price": 25,
@@ -578,6 +722,9 @@
   {
     "ItemName": "Hourglass",
     "Item_ID": "i_49",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 25,
@@ -590,6 +737,9 @@
   {
     "ItemName": "Hunting trap",
     "Item_ID": "i_50",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 25,
     "Coin": {
       "Price": 5,
@@ -602,6 +752,9 @@
   {
     "ItemName": "Ink (one ounce bottle)",
     "Item_ID": "i_51",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 10,
@@ -614,6 +767,9 @@
   {
     "ItemName": "Ink pen",
     "Item_ID": "i_52",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 2,
@@ -626,6 +782,9 @@
   {
     "ItemName": "Jug", // Don't forget Pitcher
     "Item_ID": "i_53",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 4,
     "Coin": {
       "Price": 2,
@@ -638,6 +797,9 @@
   {
     "ItemName": "Ladder (10-foot)",
     "Item_ID": "i_54",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 25,
     "Coin": {
       "Price": 1,
@@ -650,6 +812,9 @@
   {
     "ItemName": "Lamp",
     "Item_ID": "i_55",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 5,
@@ -662,6 +827,9 @@
   {
     "ItemName": "Lantern, bullseye",
     "Item_ID": "i_56",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 10,
@@ -674,6 +842,9 @@
   {
     "ItemName": "Lantern, hooded",
     "Item_ID": "i_57",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 5,
@@ -686,6 +857,9 @@
   {
     "ItemName": "Lock",
     "Item_ID": "i_58",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 10,
@@ -698,6 +872,9 @@
   {
     "ItemName": "Magnifying glass",
     "Item_ID": "i_59",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 100,
@@ -709,7 +886,10 @@
 
   {
     "ItemName": "Manacles",
-    "Item_ID": "i_50",
+    "Item_ID": "i_60",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 6,
     "Coin": {
       "Price": 2,
@@ -722,6 +902,9 @@
   {
     "ItemName": "Mess kit",
     "Item_ID": "i_61",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 1,
@@ -734,6 +917,9 @@
   {
     "ItemName": "Mirror, steel",
     "Item_ID": "i_62",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0.5,
     "Coin": {
       "Price": 5,
@@ -746,6 +932,9 @@
   {
     "ItemName": "Oil (flask)",
     "Item_ID": "i_63",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
     "ItemWeight": 1,
     "Coin": {
       "Price": 1,
@@ -758,6 +947,9 @@
   {
     "ItemName": "Paper (one sheet)",
     "Item_ID": "i_64",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 2,
@@ -770,6 +962,9 @@
   {
     "ItemName": "Parchment (one sheet)",
     "Item_ID": "i_65",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 1,
@@ -782,6 +977,9 @@
   {
     "ItemName": "Perfume (vial)",
     "Item_ID": "i_66",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 5,
@@ -794,6 +992,9 @@
   {
     "ItemName": "Pick, Miner's)",
     "Item_ID": "i_67",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 10,
     "Coin": {
       "Price": 2,
@@ -804,8 +1005,26 @@
   },
 
   {
-    "ItemName": "Piton",
+    "ItemName": "Pitcher", // Don't forget Pitcher
     "Item_ID": "i_68",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "A container for liquid. Capacity: 1 gallon liquid."
+  },
+
+  {
+    "ItemName": "Piton",
+    "Item_ID": "i_69",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0.25,
     "Coin": {
       "Price": 5,
@@ -817,7 +1036,10 @@
 
   {
     "ItemName": "Poison, Basic (vial)",
-    "Item_ID": "i_69",
+    "Item_ID": "i_70",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
     "ItemWeight": 0,
     "Coin": {
       "Price": 100,
@@ -829,7 +1051,10 @@
 
   {
     "ItemName": "Pole (10-foot)",
-    "Item_ID": "i_70",
+    "Item_ID": "i_71",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 7,
     "Coin": {
       "Price": 5,
@@ -841,7 +1066,10 @@
 
   {
     "ItemName": "Pot, iron",
-    "Item_ID": "i_71",
+    "Item_ID": "i_72",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 10,
     "Coin": {
       "Price": 2,
@@ -853,7 +1081,10 @@
 
   {
     "ItemName": "Potion of Healing",
-    "Item_ID": "i_72",
+    "Item_ID": "i_73",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
     "ItemWeight": 0.5,
     "Coin": {
       "Price": 50,
@@ -865,7 +1096,10 @@
 
   {
     "ItemName": "Pouch",
-    "Item_ID": "i_73",
+    "Item_ID": "i_74",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 5,
@@ -877,7 +1111,10 @@
 
   {
     "ItemName": "Quiver",
-    "Item_ID": "i_74",
+    "Item_ID": "i_75",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 1,
@@ -889,7 +1126,10 @@
 
   {
     "ItemName": "Ram, portable",
-    "Item_ID": "i_75",
+    "Item_ID": "i_76",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 35,
     "Coin": {
       "Price": 4,
@@ -901,7 +1141,10 @@
 
   {
     "ItemName": "Rations (1 day)",
-    "Item_ID": "i_76",
+    "Item_ID": "i_77",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 2,
     "Coin": {
       "Price": 5,
@@ -913,7 +1156,10 @@
 
   {
     "ItemName": "Robes",
-    "Item_ID": "i_77",
+    "Item_ID": "i_78",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Cape",
     "ItemWeight": 4,
     "Coin": {
       "Price": 1,
@@ -925,7 +1171,10 @@
 
   {
     "ItemName": "Rope, hempen (50 feet)",
-    "Item_ID": "i_78",
+    "Item_ID": "i_79",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 10,
     "Coin": {
       "Price": 1,
@@ -937,7 +1186,10 @@
 
   {
     "ItemName": "Rope, silk (50 feet)",
-    "Item_ID": "i_79",
+    "Item_ID": "i_80",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 5,
     "Coin": {
       "Price": 10,
@@ -949,7 +1201,10 @@
 
   {
     "ItemName": "Sack",
-    "Item_ID": "i_80",
+    "Item_ID": "i_81",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0.5,
     "Coin": {
       "Price": 1,
@@ -961,7 +1216,10 @@
 
   {
     "ItemName": "Scale merchant's",
-    "Item_ID": "i_81",
+    "Item_ID": "i_82",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 3,
     "Coin": {
       "Price": 5,
@@ -973,7 +1231,10 @@
 
   {
     "ItemName": "Sealing wax",
-    "Item_ID": "i_82",
+    "Item_ID": "i_83",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 5,
@@ -985,7 +1246,10 @@
 
   {
     "ItemName": "Shovel",
-    "Item_ID": "i_83",
+    "Item_ID": "i_84",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 5,
     "Coin": {
       "Price": 2,
@@ -997,7 +1261,10 @@
 
   {
     "ItemName": "Signal whistle",
-    "Item_ID": "i_84",
+    "Item_ID": "i_85",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 5,
@@ -1009,7 +1276,10 @@
 
   {
     "ItemName": "Signet ring",
-    "Item_ID": "i_85",
+    "Item_ID": "i_86",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Ring",
     "ItemWeight": 0,
     "Coin": {
       "Price": 5,
@@ -1021,7 +1291,10 @@
 
   {
     "ItemName": "Soap",
-    "Item_ID": "i_86",
+    "Item_ID": "i_87",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 2,
@@ -1033,7 +1306,10 @@
 
   {
     "ItemName": "Spellbook",
-    "Item_ID": "i_87",
+    "Item_ID": "i_88",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 3,
     "Coin": {
       "Price": 50,
@@ -1045,7 +1321,10 @@
 
   {
     "ItemName": "Spikes, iron (10)",
-    "Item_ID": "i_88",
+    "Item_ID": "i_89",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
     "ItemWeight": 5,
     "Coin": {
       "Price": 1,
@@ -1057,7 +1336,10 @@
 
   {
     "ItemName": "Spyglass",
-    "Item_ID": "i_89",
+    "Item_ID": "i_90",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 1000,
@@ -1068,8 +1350,26 @@
   },
 
   {
+    "ItemName": "Tankard",
+    "Item_ID": "i_91",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "Capacity: 1 pint liquid."
+  },
+
+  {
     "ItemName": "Tent, two person",
-    "Item_ID": "i_90",
+    "Item_ID": "i_92",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 20,
     "Coin": {
       "Price": 2,
@@ -1081,7 +1381,10 @@
 
   {
     "ItemName": "Tinderbox",
-    "Item_ID": "i_91",
+    "Item_ID": "i_93",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 5,
@@ -1093,7 +1396,10 @@
 
   {
     "ItemName": "Torch",
-    "Item_ID": "i_92",
+    "Item_ID": "i_94",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Hand",
     "ItemWeight": 1,
     "Coin": {
       "Price": 1,
@@ -1105,7 +1411,10 @@
 
   {
     "ItemName": "Vial",
-    "Item_ID": "i_93",
+    "Item_ID": "i_95",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 0,
     "Coin": {
       "Price": 1,
@@ -1117,7 +1426,10 @@
 
   {
     "ItemName": "Waterskin",
-    "Item_ID": "i_94",
+    "Item_ID": "i_96",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 5,
     "Coin": {
       "Price": 2,
@@ -1129,7 +1441,10 @@
 
   {
     "ItemName": "Whetstone",
-    "Item_ID": "i_95",
+    "Item_ID": "i_97",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
     "ItemWeight": 1,
     "Coin": {
       "Price": 1,
