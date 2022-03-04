@@ -1,0 +1,92 @@
+[
+  {
+    "Language": "Abyssal",
+    "TypicalSpeakers": "Demons",
+    "Script": "Infernal"
+  },
+
+  {
+    "Language": "Celestial",
+    "TypicalSpeakers": "Celestials",
+    "Script": "Celestial"
+  },
+
+  {
+    "Language": "Common",
+    "TypicalSpeakers": "Common",
+    "Script": "Common"
+  },
+
+  {
+    "Language": "Deep Speech",
+    "TypicalSpeakers": "Aboleth, Cloakers",
+    "Script": "-"
+  },
+
+  {
+    "Language": "Draconic",
+    "TypicalSpeakers": "Dragons, Dragonborn",
+    "Script": "Draconic"
+  },
+
+  {
+    "Language": "Dwarvish",
+    "TypicalSpeakers": "Dwarves",
+    "Script": "Dwarvish"
+  },
+
+  {
+    "Language": "Elvish",
+    "TypicalSpeakers": "Elves",
+    "Script": "Elvish"
+  },
+
+  {
+    "Language": "Giant",
+    "TypicalSpeakers": "Ogres, Giants",
+    "Script": "Dwarvish"
+  },
+
+  {
+    "Language": "Gnomish",
+    "TypicalSpeakers": "Gnomes",
+    "Script": "Dwarvish"
+  },
+
+  {
+    "Language": "Halfling",
+    "TypicalSpeakers": "Halflings",
+    "Script": "Common"
+  },
+
+  {
+    "Language": "Infernal",
+    "TypicalSpeakers": "Devils",
+    "Script": "Infernal"
+  },
+
+  {
+    "Language": "Orc",
+    "TypicalSpeakers": "Orcs",
+    "Script": "Dwarvish"
+  },
+
+  {
+    "Language": "Primordial",
+    "TypicalSpeakers": "Elementals",
+    "Script": "Dwarvish"
+  },
+
+  {
+    "Language": "Sylvan",
+    "TypicalSpeakers": "Fey creatures",
+    "Script": "Elvish"
+  },
+
+  {
+    "Language": "Undercommon",
+    "TypicalSpeakers": "Underworld traders",
+    "Script": "Elvish"
+  }
+
+]
