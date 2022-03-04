@@ -2,6 +2,9 @@
   {
     "ItemName": "Club",
     "Item_ID": "w_01",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 1,
@@ -18,7 +21,7 @@
     "MaxRange": 0,
 
     "IsFinesse": false,
-    "IsLight":  false,
+    "IsLight": false,
     "IsHeavy": false,
 
     "IsTwoHanded": false,
@@ -28,6 +31,9 @@
   {
     "ItemName": "Dagger",
     "Item_ID": "w_02",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 1,
     "Coin": {
       "Price": 2,
@@ -54,6 +60,9 @@
   {
     "ItemName": "Greatclub",
     "Item_ID": "w_03",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 10,
     "Coin": {
       "Price": 2,
@@ -80,6 +89,9 @@
   {
     "ItemName": "Handaxe",
     "Item_ID": "w_04",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 5,
@@ -106,6 +118,9 @@
   {
     "ItemName": "Javelin",
     "Item_ID": "w_05",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 5,
@@ -132,6 +147,9 @@
   {
     "ItemName": "Light hammer",
     "Item_ID": "w_06",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 2,
@@ -158,6 +176,9 @@
   {
     "ItemName": "Mace",
     "Item_ID": "w_07",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 4,
     "Coin": {
       "Price": 5,
@@ -184,6 +205,9 @@
   {
     "ItemName": "Quarterstaff",
     "Item_ID": "w_08",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 4,
     "Coin": {
       "Price": 2,
@@ -210,6 +234,9 @@
   {
     "ItemName": "Sickle",
     "Item_ID": "w_09",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 1,
@@ -236,6 +263,9 @@
   {
     "ItemName": "Spear",
     "Item_ID": "w_10",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 3,
     "Coin": {
       "Price": 1,
@@ -262,6 +292,9 @@
   {
     "ItemName": "Crossbow, light",
     "Item_ID": "w_11",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 5,
     "Coin": {
       "Price": 25,
@@ -288,6 +321,9 @@
   {
     "ItemName": "Dart",
     "Item_ID": "w_12",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 0.25,
     "Coin": {
       "Price": 5,
@@ -314,6 +350,9 @@
   {
     "ItemName": "Shortbow",
     "Item_ID": "w_13",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 25,
@@ -340,6 +379,9 @@
   {
     "ItemName": "Sling",
     "Item_ID": "w_14",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 0,
     "Coin": {
       "Price": 1,
@@ -366,6 +408,9 @@
   {
     "ItemName": "Battleaxe",
     "Item_ID": "w_15",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 4,
     "Coin": {
       "Price": 10,
@@ -392,6 +437,9 @@
   {
     "ItemName": "Flail",
     "Item_ID": "w_16",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 10,
@@ -418,6 +466,9 @@
   {
     "ItemName": "Glaive",
     "Item_ID": "w_17",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 6,
     "Coin": {
       "Price": 20,
@@ -444,6 +495,9 @@
   {
     "ItemName": "Greataxe",
     "Item_ID": "w_18",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 7,
     "Coin": {
       "Price": 30,
@@ -470,6 +524,9 @@
   {
     "ItemName": "Greatsword",
     "Item_ID": "w_19",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 6,
     "Coin": {
       "Price": 50,
@@ -496,6 +553,9 @@
   {
     "ItemName": "Halberd",
     "Item_ID": "w_20",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 6,
     "Coin": {
       "Price": 20,
@@ -522,6 +582,9 @@
   {
     "ItemName": "Lance",
     "Item_ID": "w_21",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 6,
     "Coin": {
       "Price": 10,
@@ -548,6 +611,9 @@
   {
     "ItemName": "Longsword",
     "Item_ID": "w_22",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 3,
     "Coin": {
       "Price": 15,
@@ -574,6 +640,9 @@
   {
     "ItemName": "Maul",
     "Item_ID": "w_23",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 10,
     "Coin": {
       "Price": 10,
@@ -600,6 +669,9 @@
   {
     "ItemName": "Morningstar",
     "Item_ID": "w_24",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 4,
     "Coin": {
       "Price": 15,
@@ -626,6 +698,9 @@
   {
     "ItemName": "Pike",
     "Item_ID": "w_25",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 18,
     "Coin": {
       "Price": 5,
@@ -652,6 +727,9 @@
   {
     "ItemName": "Rapier",
     "Item_ID": "w_26",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 25,
@@ -678,6 +756,9 @@
   {
     "ItemName": "Scimitar",
     "Item_ID": "w_27",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 3,
     "Coin": {
       "Price": 25,
@@ -704,6 +785,9 @@
   {
     "ItemName": "Shortsword",
     "Item_ID": "w_28",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 10,
@@ -730,6 +814,9 @@
   {
     "ItemName": "Trident",
     "Item_ID": "w_29",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 4,
     "Coin": {
       "Price": 5,
@@ -756,6 +843,9 @@
   {
     "ItemName": "War pick",
     "Item_ID": "w_30",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 5,
@@ -782,6 +872,9 @@
   {
     "ItemName": "Warhammer",
     "Item_ID": "w_31",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 25,
@@ -808,6 +901,9 @@
   {
     "ItemName": "Whip",
     "Item_ID": "w_32",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 3,
     "Coin": {
       "Price": 2,
@@ -834,6 +930,9 @@
   {
     "ItemName": "Blowgun",
     "Item_ID": "w_33",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 1,
     "Coin": {
       "Price": 10,
@@ -860,6 +959,9 @@
   {
     "ItemName": "Crossbow, hand",
     "Item_ID": "w_34",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 3,
     "Coin": {
       "Price": 75,
@@ -886,6 +988,9 @@
   {
     "ItemName": "Crossbow, heavy",
     "Item_ID": "w_35",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 18,
     "Coin": {
       "Price": 50,
@@ -912,6 +1017,9 @@
   {
     "ItemName": "Longbow",
     "Item_ID": "w_36",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 2,
     "Coin": {
       "Price": 50,
@@ -938,6 +1046,9 @@
   {
     "ItemName": "Net",
     "Item_ID": "w_37",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
     "ItemWeight": 3,
     "Coin": {
       "Price": 1,
