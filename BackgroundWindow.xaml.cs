@@ -57,10 +57,25 @@ namespace DnD_CharSheet_5e
 
         private void Edit_btn_Click(object sender, RoutedEventArgs e)
         {
-            Activate_DescriptionElements();
+            Activate_BackgroundElements();
         }
 
-        private void Activate_DescriptionElements()
+        private void OK_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (Check_Description_Values())
+            {
+                Set_Description_Properties();
+                Deactivate_BackgroundElements();
+            }
+
+            else
+            {
+                MessageBox.Show($"You have entered one or several incorrect values - either for 'Age', 'Height' or 'Weight'." +
+                    $"Please enter an integer number for 'Age' and integer or decimals for 'Height' and 'Weight'");
+            }
+        }
+
+        private void Activate_BackgroundElements()
         {
             Age_Box.IsEnabled = true;
             Height_Box.IsEnabled = true;
@@ -70,24 +85,31 @@ namespace DnD_CharSheet_5e
             Skin_Box.IsEnabled = true;
             Hair_Box.IsEnabled = true;
 
+            Appearance_Box.IsEnabled = true;
+            Backstory_Box.IsEnabled = true;
+            Allies_n_Orgas_Box.IsEnabled = true;
+
             OK_btn.Visibility = Visibility.Visible;
             OK_btn.IsEnabled = true;
         }
 
-        private void OK_btn_Click(object sender, RoutedEventArgs e)
+        private void Deactivate_BackgroundElements()
         {
-            if(Check_Description_Values())
-            {
-                Set_Description_Properties();
-                Deactivate_DescriptionElements();
-            }
+            Age_Box.IsEnabled = false;
+            Height_Box.IsEnabled = false;
+            Weight_Box.IsEnabled = false;
 
-            else
-            {
-                MessageBox.Show($"You have entered one or several incorrect values - either for 'Age', 'Height' or 'Weight'." +
-                    $"Please enter an integer number for 'Age' and integer or decimals for 'Height' and 'Weight'");
-            }
-        }
+            Eyes_Box.IsEnabled = false;
+            Skin_Box.IsEnabled = false;
+            Hair_Box.IsEnabled = false;
+
+            Appearance_Box.IsEnabled = false;
+            Backstory_Box.IsEnabled = false;
+            Allies_n_Orgas_Box.IsEnabled = false;
+
+            OK_btn.Visibility = Visibility.Hidden;
+            OK_btn.IsEnabled = false;
+        }        
 
         private bool Check_Description_Values()
         {            
@@ -133,19 +155,6 @@ namespace DnD_CharSheet_5e
             SheetManager.CS_Manager_Inst.character.Skin = Skin_Box.Text;
             SheetManager.CS_Manager_Inst.character.Hair = Hair_Box.Text;
         }
-
-        private void Deactivate_DescriptionElements()
-        {
-            Age_Box.IsEnabled = false;
-            Height_Box.IsEnabled = false;
-            Weight_Box.IsEnabled = false;
-
-            Eyes_Box.IsEnabled = false;
-            Skin_Box.IsEnabled = false;
-            Hair_Box.IsEnabled = false;
-
-            OK_btn.Visibility = Visibility.Hidden;
-            OK_btn.IsEnabled = false;
-        }
+        
     }
 }
