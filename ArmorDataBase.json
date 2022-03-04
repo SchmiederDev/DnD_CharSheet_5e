@@ -2,6 +2,9 @@
   {
     "ItemName": "Padded Armor",
     "Item_ID": "a_01",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 8,
     "Coin": {
       "Price": 5,
@@ -21,6 +24,9 @@
   {
     "ItemName": "Leather Armor",
     "Item_ID": "a_02",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 10,
     "Coin": {
       "Price": 10,
@@ -40,6 +46,9 @@
   {
     "ItemName": "Studded Leather Armor",
     "Item_ID": "a_03",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 13,
     "Coin": {
       "Price": 45,
@@ -59,6 +68,9 @@
   {
     "ItemName": "Hide Armor",
     "Item_ID": "a_04",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 12,
     "Coin": {
       "Price": 10,
@@ -78,6 +90,9 @@
   {
     "ItemName": "Chain Shirt",
     "Item_ID": "a_05",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 20,
     "Coin": {
       "Price": 50,
@@ -97,6 +112,9 @@
   {
     "ItemName": "Scale mail",
     "Item_ID": "a_06",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 45,
     "Coin": {
       "Price": 50,
@@ -116,6 +134,9 @@
   {
     "ItemName": "Breastplate",
     "Item_ID": "a_07",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 20,
     "Coin": {
       "Price": 400,
@@ -135,6 +156,9 @@
   {
     "ItemName": "Half plate",
     "Item_ID": "a_08",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 40,
     "Coin": {
       "Price": 750,
@@ -154,6 +178,9 @@
   {
     "ItemName": "Ring mail",
     "Item_ID": "a_09",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 40,
     "Coin": {
       "Price": 30,
@@ -173,6 +200,9 @@
   {
     "ItemName": "Chain mail",
     "Item_ID": "a_10",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 55,
     "Coin": {
       "Price": 75,
@@ -192,6 +222,9 @@
   {
     "ItemName": "Splint Armor",
     "Item_ID": "a_11",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 60,
     "Coin": {
       "Price": 200,
@@ -211,6 +244,9 @@
   {
     "ItemName": "Plate Armor",
     "Item_ID": "a_12",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 65,
     "Coin": {
       "Price": 1500,
@@ -230,6 +266,9 @@
   {
     "ItemName": "Shield",
     "Item_ID": "a_13",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Armor",
     "ItemWeight": 6,
     "Coin": {
       "Price": 10,
