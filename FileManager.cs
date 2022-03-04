@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.Windows;
 
@@ -12,8 +11,8 @@ namespace DnD_CharSheet_5e
         public static FileManager FM_Inst = new FileManager();
 
         FileManager()
-        {          
-            if(FM_Inst == null)
+        {
+            if (FM_Inst == null)
             {
                 FM_Inst = this;
             }
@@ -39,7 +38,7 @@ namespace DnD_CharSheet_5e
 
         string nameSaveSlot = @"\chars.txt";
 
-        public string saveGame_01 { set;  get; }
+        public string saveGame_01 { set; get; }
         public string saveGame_02 { set; get; }
         public string saveGame_03 { set; get; }
         public string saveGame_04 { set; get; }
@@ -55,6 +54,14 @@ namespace DnD_CharSheet_5e
         SoundPlayer ClickSound;
         SoundPlayer DiceSound;
 
+        // 'DB' = DataBase, e. g. 'IDB' = Item Data Base
+
+        string RDB_FileName = @"\RaceDataBase.json";
+        string RDB_Path;
+
+        string LDB_FileName = @"\Languages.json";
+        string LDB_Path;
+
         string IDB_FileName = @"\ItemDataBase.json";
         string IDB_Path;
 
@@ -64,9 +71,26 @@ namespace DnD_CharSheet_5e
         string ADB_FileName = @"\ArmorDataBase.json";
         string ADB_Path;
 
+        string DragonbornDB_FileName = @"\DragonbornDB.json";
+        string Dragonborn_Path;
+
+        string SDB_FileName = @"\SpellDataBase.json";
+        string SDB_Path;
+        public string jsonSDB { get; set; }
+
+        string Bard_SpellList_FileName = @"\Bard_SpellList.json";
+        string Bard_SpellList_Path;
+
+        string Wizard_SpellList_FileName = @"\Wizard_SpellList.json";
+        string Wizard_SpellList_Path;
+        
+        // SL = 'Spell List', e. g. BSL = 'Bard Spell List' 
+        public string jsonBSL { get; set; } 
+        public string jsonWSL { get; set; }
+
         public string Find_RootPath()
         {
-            rootPath = Path.GetFullPath(folderPath);                       
+            rootPath = Path.GetFullPath(folderPath);
 
             return rootPath;
         }
@@ -85,7 +109,7 @@ namespace DnD_CharSheet_5e
         {
             SoundEffectsFolder = rootPath + SoundEffects_FolderPath;
 
-            if(!Directory.Exists(SoundEffectsFolder))
+            if (!Directory.Exists(SoundEffectsFolder))
             {
                 Directory.CreateDirectory(SoundEffectsFolder);
             }
@@ -95,14 +119,14 @@ namespace DnD_CharSheet_5e
         {
             ImagesFolder = rootPath + Images_FolderPath;
 
-            if(!Directory.Exists(ImagesFolder))
+            if (!Directory.Exists(ImagesFolder))
             {
-                Directory.CreateDirectory(ImagesFolder);                
+                Directory.CreateDirectory(ImagesFolder);
             }
 
             else
             {
-                ImageFileNames = Directory.GetFiles(ImagesFolder);             
+                ImageFileNames = Directory.GetFiles(ImagesFolder);
             }
         }
 
@@ -116,7 +140,7 @@ namespace DnD_CharSheet_5e
 
             namesDataBase = saveGameFolder + nameSaveSlot;
 
-        }        
+        }
 
         private void Set_SoundPaths()
         {
@@ -127,7 +151,7 @@ namespace DnD_CharSheet_5e
         public void Init_SoundEffects()
         {
             Set_SoundPaths();
-            ClickSound = new SoundPlayer(ClickSound_Path);            
+            ClickSound = new SoundPlayer(ClickSound_Path);
             DiceSound = new SoundPlayer(DiceSound_Path);
         }
 
@@ -151,7 +175,7 @@ namespace DnD_CharSheet_5e
             {
                 MessageBox.Show("Sound file not found.");
             }
-                
+
         }
 
         public void Play_DiceSound()
@@ -164,6 +188,16 @@ namespace DnD_CharSheet_5e
             {
                 MessageBox.Show("Sound file not found.");
             }
+        }
+
+        public void Set_RDBPath()
+        {
+            RDB_Path = Find_RootPath() + RDB_FileName;
+        }
+
+        public void Set_LanguageDBPath()
+        {
+            LDB_Path = Find_RootPath() + LDB_FileName;
         }
 
         public void Set_IDBPath()
@@ -181,9 +215,37 @@ namespace DnD_CharSheet_5e
             ADB_Path = Find_RootPath() + ADB_FileName;
         }
 
+        public void Set_DragonbornDBPath()
+        {
+            Dragonborn_Path = Find_RootPath() + DragonbornDB_FileName;
+        }
+
+        public void Set_Path_Spells_and_SpellLists()
+        {
+            string roothpath;
+            roothpath = Find_RootPath();
+            SDB_Path = roothpath + SDB_FileName;
+            Bard_SpellList_Path = roothpath + Bard_SpellList_FileName;
+            Wizard_SpellList_Path = roothpath + Wizard_SpellList_FileName;
+        }
+
+        public string Read_RaceDataBase()
+        {
+            string jsonRDB = File.ReadAllText(RDB_Path);
+
+            return jsonRDB;
+        }
+
+        public string Read_LanguageDataBase()
+        {
+            string jsonLDB = File.ReadAllText(LDB_Path);
+
+            return jsonLDB;
+        }
+
         public string Read_ItemDataBase()
         {
-            string jsonIDB = File.ReadAllText(IDB_Path);            
+            string jsonIDB = File.ReadAllText(IDB_Path);
 
             return jsonIDB;
         }
@@ -200,6 +262,20 @@ namespace DnD_CharSheet_5e
             string jsonADB = File.ReadAllText(ADB_Path);
 
             return jsonADB;
+        }      
+
+        public string Read_DragonbornDB()
+        {
+            string jsonDragonbornDB = File.ReadAllText(Dragonborn_Path);
+
+            return jsonDragonbornDB;
+        }
+        
+        public void Read_Spells_and_SpellLists()
+        {
+            jsonSDB = File.ReadAllText(SDB_Path);
+            jsonBSL = File.ReadAllText(Bard_SpellList_Path);
+            jsonWSL = File.ReadAllText(Wizard_SpellList_Path);
         }
 
     }
