@@ -55,14 +55,23 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="Gold_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
-            <TextBox x:Name="Silver_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="1"/>
-            <TextBox x:Name="Copper_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
-            <TextBox x:Name="Platinum_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
+            <TextBox x:Name="Gold_Box" IsEnabled="False" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
+            <TextBox x:Name="Silver_Box" IsEnabled="False" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="1"/>
+            <TextBox x:Name="Copper_Box" IsEnabled="False" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
+            <TextBox x:Name="Platinum_Box" IsEnabled="False" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
 
         </Grid>
 
-        <Button x:Name="MoneyEdit" Content="Apply" Click="Apply_Money_Bt_Click" Margin="10 10 10 10" Height="20" Width="250" FontWeight="Bold"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Edit_Money_Btn" Content="Edit Riches" Click="Edit_Money_Btn_Click" Margin="10 10 10 10" Height="30" Width="200" FontSize="16" FontWeight="Bold" FontStyle="Italic" Grid.Column="0"/>
+            <Button x:Name="Apply_Money_Btn" Content="Apply" Click="Apply_Money_Bt_Click" IsEnabled="False" Visibility="Hidden" Margin="10 10 10 10" Height="30" Width="200" FontSize="16" FontWeight="Bold" FontStyle="Italic" Grid.Column="1"/>
+
+        </Grid>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -75,38 +84,59 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width = "*" />
-                    <ColumnDefinition Width = "3*" />
+                    <ColumnDefinition Width = "*" />
                     <ColumnDefinition Width = "*" />
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
 
-                    <Image Height="75" Width="75" Margin="10 10"/>
-                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 10">
+                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 150 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="Amulett_Img" Height="15" Width="70" Margin="5 5"/>
+                    </Border>
+
+                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 20 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image x:Name="RightHand_Img" Height="60" Width="50" Margin="10 10"/>
                     </Border>
 
-                    <Image Height="75" Width="75" Margin="10 10"/>
+                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 10 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="RightHandRing_Img" Height="20" Width="20" Margin="10 10 10 10"/>
+                    </Border>
 
                 </StackPanel>
 
-                <StackPanel Grid.Column="1">                    
+                <StackPanel Grid.Column="1">
 
-                    <Border BorderThickness="1" Margin="10 105 10 10" BorderBrush="SlateGray" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="Armor_Img" Height="75" Width="75" Panel.ZIndex="0"/>
+                    <Border BorderThickness="1" Margin="10 75 10 10" BorderBrush="SlateGray" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="Head_Img" Height="70" Width="60" Panel.ZIndex="0"/>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="10 20 10 10" BorderBrush="SlateGray" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="Armor_Img" Height="95" Width="75" Panel.ZIndex="0"/>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="10 20 10 10" BorderBrush="SlateGray" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="Belt_Img" Height="40" Width="95" Panel.ZIndex="0"/>
+                    </Border>
+
+                    <Border BorderThickness="1" Margin="10 20 10 10" BorderBrush="SlateGray" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="Boots_Img" Height="70" Width="65" Panel.ZIndex="0"/>
                     </Border>
 
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
 
-                    <Image Height="75" Width="75" Margin="10 10"/>
-
-                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 10">
-                        <Image x:Name="LeftHand_Img" Height="60" Width="60" Margin="10 10"/>
+                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 130 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="Cape_Img" Height="80" Width="50" Margin="10 10 10 10"/>
                     </Border>
 
-                    <Image Height="75" Width="75" Margin="10 10"/>
+                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 10 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="LeftHand_Img" Height="60" Width="50" Margin="10 10 10 10"/>
+                    </Border>
+
+                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 10 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="LeftHandRing_Img" Height="20" Width="20" Margin="10 10 10 10"/>
+                    </Border>
 
                 </StackPanel>
 
