@@ -10,7 +10,7 @@ namespace DnD_CharSheet_5e
 
         public static MainWindow mainWindow_Inst;
 
-        SheetManager sheetManager = new SheetManager();        
+        SheetManager sheetManager = new SheetManager();
 
         bool hasError = false;
         bool IsSidebar_Active = false;
@@ -27,6 +27,8 @@ namespace DnD_CharSheet_5e
             sheetManager.dSys.InitializeRandom();
 
             Init_FileSystem();
+            SheetManager.CS_Manager_Inst.Init_DataBases();
+            Init_theWeave();
         }
 
         private void Init_FileSystem()
@@ -38,10 +40,21 @@ namespace DnD_CharSheet_5e
             FileManager.FM_Inst.Init_SoundEffects();
             FileManager.FM_Inst.Check_for_Images_Folder();
         }
+
+        // consider to load ALL relevant databases in SheetManager instead of partially here
+
+        private void Init_theWeave()
+        {
+            FileManager.FM_Inst.Set_Path_Spells_and_SpellLists();
+            FileManager.FM_Inst.Read_Spells_and_SpellLists();
+            SheetManager.CS_Manager_Inst.theWeave.Read_SpellDataBase(FileManager.FM_Inst.jsonSDB);
+            SheetManager.CS_Manager_Inst.theWeave.Read_BardSpellList(FileManager.FM_Inst.jsonBSL);
+            SheetManager.CS_Manager_Inst.theWeave.Read_WizardSpellList(FileManager.FM_Inst.jsonWSL);
+        }
                 
         private void CreateCharacter()
         {
-            SheetManager.CS_Manager_Inst.character = new Character();                       // Memory Issue here? (Apparently not, Destructor/ Finalizer is called)
+            //SheetManager.CS_Manager_Inst.character = new Character();                       // Memory Issue here? (Apparently not, Destructor/ Finalizer is called)
             Reset_Form();
             
             if(IsSidebar_Active == true)
@@ -53,28 +66,36 @@ namespace DnD_CharSheet_5e
             Activate_Interaction();
         }
 
-        private void CreateCharButton_Click(object sender, RoutedEventArgs e)
-        {            
+        private void NewCharButton_Click(object sender, RoutedEventArgs e)
+        {
             CreateCharacter();
-            if(applyButton.IsEnabled == false)
+            if (ApplyButton.IsEnabled == false)
             {
-                applyButton.IsEnabled = true;
+                ApplyButton.IsEnabled = true;
             }
             FileManager.FM_Inst.Play_ClickSound();
         }
 
-        private void ApplyCharacter()
+        private void CreateCharButton_Click(object sender, RoutedEventArgs e)
         {
-            applyButton.IsEnabled = false;
+            CharacterCreationWindow CharGenWdw = new CharacterCreationWindow();
+            CharGenWdw.Show();
+            FileManager.FM_Inst.Play_ClickSound();
+        }
+
+        private void ApplyCharacter()
+        {            
+            ApplyButton.IsEnabled = false;
             Activate_SideBarMenu_Buttons();
             Deactivate_Menus();
             SubmitCharacter_byUserInput();
+            Init_HPHD_Panel();
             Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput();
             Activate_IniRolls();            
             Activate_AbilityChecks();
             Activate_SavingThrows();
             Activate_SkillChecks();
-            Update_AC();
+            Init_AC_Update();
         }
 
         private void ApplyCharButton_Click(object sender, RoutedEventArgs e)
@@ -95,7 +116,7 @@ namespace DnD_CharSheet_5e
         public void Load_Character()
         {            
             Reset_Form();
-            applyButton.IsEnabled = false;
+            ApplyButton.IsEnabled = false;
 
             Deactivate_Menus();
             SubmitCharacter();
@@ -117,7 +138,7 @@ namespace DnD_CharSheet_5e
             Activate_IniRolls();
             Activate_SaveCheck_Buttons();
             Activate_SkillCheck_Buttons();
-            Update_AC();            
+            Init_AC_Update();          
         }
 
         private void Reset_Form()
@@ -144,6 +165,7 @@ namespace DnD_CharSheet_5e
             saveCharButton.IsEnabled = true;
             SpellWindow_bt.IsEnabled = true;
             CombatWindow_bt.IsEnabled = true;
+            DiceMachineWindow_bt.IsEnabled = true;
             BackgroundPage_bt.IsEnabled = true;
             Inventory_bt.IsEnabled = true;
             Merchant_bt.IsEnabled = true;
@@ -156,6 +178,7 @@ namespace DnD_CharSheet_5e
             saveCharButton.IsEnabled = false;
             SpellWindow_bt.IsEnabled = false;
             CombatWindow_bt.IsEnabled = false;
+            DiceMachineWindow_bt.IsEnabled = false;
             BackgroundPage_bt.IsEnabled = false;
             Inventory_bt.IsEnabled = false;
             Merchant_bt.IsEnabled = false;
@@ -167,10 +190,30 @@ namespace DnD_CharSheet_5e
         {
             sheetManager.character.Set_charLvl(1);
             LevelText.Text = sheetManager.character.Get_charLvl().ToString();
-            Level_Up_bt.IsEnabled = true;
+            Level_Up_bt.IsEnabled = true;            
             sheetManager.character.Update_hitDice();
             HDtext.Text = sheetManager.character.Get_hitDice().ToString();
             ProfBonus_Box.Text = sheetManager.character.Get_ProfBonus().ToString();
+        }
+
+        private void Init_HPHD_Panel()
+        {
+            if (CheckValue(maxHPtext.Text))
+            {
+                maxHPtext.IsEnabled = false;
+                hasError = false;
+                sheetManager.character.Set_maxHP_byText(maxHPtext.Text);
+            }
+
+            else { hasError = true; }
+
+            sheetManager.character.Init_HP_HD();
+            SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP;
+            SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
+            SheetManager.CS_Manager_Inst.Init_TempHPCallback();
+
+            currHPtext.Text = sheetManager.character.Get_currHP().ToString();
+            currHDtext.Text = sheetManager.character.Get_currHitDice().ToString();
         }
 
         private void Set_Level_and_HP_Panel()
@@ -178,8 +221,12 @@ namespace DnD_CharSheet_5e
             LevelText.Text = sheetManager.character.Get_charLvl().ToString();
             Level_Up_bt.IsEnabled = true;
 
+            SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP;
+            SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
+            SheetManager.CS_Manager_Inst.Init_TempHPCallback();
+
             maxHPtext.Text = sheetManager.character.Get_maxHP().ToString();
-            HPtext.Text = sheetManager.character.Get_currHP().ToString();
+            currHPtext.Text = sheetManager.character.Get_currHP().ToString();
             tempHPtext.Text = sheetManager.character.Get_tempHP().ToString();
 
             HDtext.Text = sheetManager.character.Get_hitDice().ToString();
@@ -262,15 +309,9 @@ namespace DnD_CharSheet_5e
         private void Activate_HP_Panel()
         {
             maxHPtext.IsEnabled = true;
-            HPtext.IsEnabled = true;
+            currHPtext.IsEnabled = true;
             tempHPtext.IsEnabled = true;
             currHDtext.IsEnabled = true;            
-        }
-
-        private void Activate_ACandSpeed_Boxes()
-        {
-            AC.IsEnabled = true;
-            baseSpeed.IsEnabled = true;
         }
 
         private void Activate_Scores()
@@ -286,7 +327,7 @@ namespace DnD_CharSheet_5e
         private void Reset_HP_Panel()
         {
             maxHPtext.Clear();
-            HPtext.Clear();
+            currHPtext.Clear();
             tempHPtext.Clear();
             HDtext.Clear();
             currHDtext.Clear();
@@ -349,15 +390,7 @@ namespace DnD_CharSheet_5e
         }
 
         private void Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput()
-        {
-            if (CheckValue(maxHPtext.Text))
-            {
-                maxHPtext.IsEnabled = false;
-                hasError = false;
-                sheetManager.character.Set_maxHP_byText(maxHPtext.Text);
-            }
-
-            else { hasError = true; }
+        {            
 
             if (CheckValue(strScoreText.Text))
             {
@@ -477,6 +510,12 @@ namespace DnD_CharSheet_5e
         private void Deactivate_IniRolls()
         {
             iniButton.IsEnabled = false;
+        }
+
+        private void Init_AC_Update()
+        {
+            SheetManager.CS_Manager_Inst.character.acChanged += Update_AC;
+            sheetManager.character.Calculate_AC();            
         }
 
         private void Activate_AbilityChecks()
@@ -955,10 +994,28 @@ namespace DnD_CharSheet_5e
 
         }        
 
-        public void Update_AC()
+        private void Update_AC()
         {
-            SheetManager.CS_Manager_Inst.character.Calculate_AC();
+            //SheetManager.CS_Manager_Inst.character.Calculate_AC();
             AC.Text = SheetManager.CS_Manager_Inst.character.Get_AC().ToString();
+        }
+
+        private void Update_HP()
+        {
+            currHPtext.Text = SheetManager.CS_Manager_Inst.character.Get_currHP().ToString();
+        }
+
+        private void Update_TempHP()
+        {
+            if(SheetManager.CS_Manager_Inst.character.Get_tempHP() > 0)
+            {
+                tempHPtext.Text = SheetManager.CS_Manager_Inst.character.Get_tempHP().ToString();
+            }
+
+            else
+            {
+                tempHPtext.Text = null;
+            }
         }
 
         private void LevelUpButton_Click(object sender, RoutedEventArgs e)
@@ -1173,15 +1230,23 @@ namespace DnD_CharSheet_5e
         private void SpellWindow_bt_Click(object sender, RoutedEventArgs e)
         {            
             SpellsWindow spellsWindow = new SpellsWindow();
-            spellsWindow.Show();
-            FileManager.FM_Inst.Play_ClickSound();
+            spellsWindow.Show();            
+            FileManager.FM_Inst.Play_ClickSound();            
         }
 
         private void CombatWindow_bt_Click(object sender, RoutedEventArgs e)
         {            
             CombatWindow combatWindow = new CombatWindow();
-            combatWindow.Set_SheetManager(sheetManager);
+            combatWindow.Init_CombatUI();
             combatWindow.Show();
+            FileManager.FM_Inst.Play_ClickSound();
+        }
+
+        private void DiceMachineWindow_bt_Click(object sender, RoutedEventArgs e)
+        {
+            DiceMachine dmWindow = new DiceMachine();
+            dmWindow.Set_SheetManager(sheetManager);
+            dmWindow.Show();
             FileManager.FM_Inst.Play_ClickSound();
         }
 
@@ -1204,6 +1269,7 @@ namespace DnD_CharSheet_5e
             MerchantWindow merchantWindow = new MerchantWindow();
             merchantWindow.Show();
             FileManager.FM_Inst.Play_ClickSound();
-        }        
+        }
+        
     }
 }
