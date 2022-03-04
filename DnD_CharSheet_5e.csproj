@@ -87,12 +87,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AbilityStatsPage.xaml.cs">
+      <DependentUpon>AbilityStatsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Armor.cs" />
     <Compile Include="BackgroundWindow.xaml.cs">
       <DependentUpon>BackgroundWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CharacterCreationWindow.xaml.cs">
+      <DependentUpon>CharacterCreationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CharacterData.cs" />
+    <Compile Include="CharacterRace.cs" />
+    <Compile Include="DiceMachine.xaml.cs">
+      <DependentUpon>DiceMachine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dragonborn.cs" />
+    <Compile Include="DwarfSelectionPage.xaml.cs">
+      <DependentUpon>DwarfSelectionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment.cs" />
+    <Compile Include="Feat.cs" />
+    <Compile Include="HighElfSelectionPage.xaml.cs">
+      <DependentUpon>HighElfSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HighElfSelectionPage2.xaml.cs">
+      <DependentUpon>HighElfSelectionPage2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HumanSelectionPage.xaml.cs">
+      <DependentUpon>HumanSelectionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImageHandler.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Coin.cs" />
@@ -108,9 +132,24 @@
     <Compile Include="LoadScreen.xaml.cs">
       <DependentUpon>LoadScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MagicArmor.cs" />
+    <Compile Include="MagicItem.cs" />
+    <Compile Include="MagicWeapon.cs" />
     <Compile Include="Merchant.cs" />
     <Compile Include="MerchantWindow.xaml.cs">
       <DependentUpon>MerchantWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mystra.cs" />
+    <Compile Include="Proficiency.cs" />
+    <Compile Include="Race.cs" />
+    <Compile Include="DragonbornSelectionPage.xaml.cs">
+      <DependentUpon>DragonbornSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RaceOptionsWindow.xaml.cs">
+      <DependentUpon>RaceOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RaceSelectionPage.xaml.cs">
+      <DependentUpon>RaceSelectionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SaveScreen.xaml.cs">
       <DependentUpon>SaveScreen.xaml</DependentUpon>
@@ -119,15 +158,44 @@
     <Compile Include="SavingThrow.cs" />
     <Compile Include="Skill.cs" />
     <Compile Include="Spell.cs" />
+    <Compile Include="SpellList_Item.cs" />
     <Compile Include="SpellsWindow.xaml.cs">
       <DependentUpon>SpellsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Weapon.cs" />
+    <Page Include="AbilityStatsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BackgroundWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CharacterCreationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CombatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiceMachine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DwarfSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HighElfSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HighElfSelectionPage2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HumanSelectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +226,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DragonbornSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RaceOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RaceSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SaveScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -185,14 +265,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="DragonbornDB.json" />
     <None Include="ItemDataBase.json" />
     <None Include="ArmorDataBase.json" />
+    <None Include="Bard_SpellList.json" />
+    <None Include="Languages.json" />
+    <None Include="RaceDataBase.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SpellDataBase.json" />
     <None Include="WeaponDataBase.json" />
+    <None Include="Wizard_SpellList.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
