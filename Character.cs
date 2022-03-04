@@ -20,6 +20,8 @@ namespace DnD_CharSheet_5e
         string charAlignment;
         string charBackground;
 
+        public List<string> CharLanguages = new List<string>();
+
         int charLevel;
 
         int proficiencyBonus = 2;
@@ -29,6 +31,9 @@ namespace DnD_CharSheet_5e
         int maxHP;
         int currHP;
         int tempHP;
+
+        bool characterIsAlive = true;
+        bool characterIsConscious = true;
 
         int hitDice;
         int currHitDice;
@@ -97,6 +102,15 @@ namespace DnD_CharSheet_5e
         public string CharApperance { get; set; }
         public string BackgroundStory { get; set; }
         public string AlliesAndOrgas { get; set; }
+
+        public delegate void OnHPChanged();
+        public OnHPChanged hpChanged;
+
+        public delegate void OnTempHPChanged();
+        public OnTempHPChanged tempHPChanged;
+
+        public delegate void OnACChanged();
+        public OnACChanged acChanged;
 
         public void Set_playerName(string name)
         {
@@ -211,6 +225,32 @@ namespace DnD_CharSheet_5e
             return maxHP;
         }
 
+        public void Set_AliveStatus(bool isAlive)
+        {
+            characterIsAlive = isAlive;
+        }
+
+        public bool Get_AliveStatus()
+        {
+            return characterIsAlive;
+        }
+
+        public void Set_ConsciousnessStatus(bool isConscious)
+        {
+            characterIsConscious = isConscious;
+        }
+
+        public bool Get_ConsciousnessStatus()
+        {
+            return characterIsConscious;
+        }
+
+        public void Init_HP_HD()
+        {
+            currHP = maxHP;
+            currHitDice = hitDice;
+        }
+
         public void Set_currHP_byText(string boxText)
         {
             currHP = int.Parse(boxText);
@@ -219,6 +259,11 @@ namespace DnD_CharSheet_5e
         public void Set_currHP(int hpCurrent)
         {
             currHP = hpCurrent;
+
+            if(hpChanged != null)
+            {
+                hpChanged.Invoke();
+            }
         }
 
         public int Get_currHP()
@@ -234,6 +279,11 @@ namespace DnD_CharSheet_5e
         public void Set_tempHP(int hpTemp)
         {
             tempHP = hpTemp;
+
+            if(tempHPChanged != null)
+            {
+                tempHPChanged.Invoke();
+            }
         }
 
         public int Get_tempHP()
@@ -379,6 +429,12 @@ namespace DnD_CharSheet_5e
             {                
                 AC = 10 + (uint)dexModifier;
             }
+
+            if(acChanged != null)
+            {
+                acChanged.Invoke();
+            }
+
         }
 
         public uint Get_AC()
@@ -534,6 +590,21 @@ namespace DnD_CharSheet_5e
         public int Get_chaModifier()
         {
             return chaModifier;
+        }
+
+        public void SetAllAbilityScores(int[] abilityScores)
+        {
+            if(abilityScores.Length <= 6)
+            {
+                strValue = abilityScores[0];
+                dexValue = abilityScores[1];
+                conValue = abilityScores[2];
+                intValue = abilityScores[3];
+                wisValue = abilityScores[4];
+                chaValue = abilityScores[5];
+            }
+
+            MessageBox.Show("STR: " + strValue + " DEX: " + dexValue + " CON: " + conValue + " INT: " + intValue + " WIS " + wisValue + " CHA: " + chaValue);
         }
 
         public int calculateModifier(int score)
@@ -954,6 +1025,9 @@ namespace DnD_CharSheet_5e
             Set_currHP(charData.currHP);
 
             Set_tempHP(charData.tempHP);
+
+            Set_AliveStatus(charData.charIsAlive);
+            Set_ConsciousnessStatus(charData.charIsConscious);
 
             Set_hitDice(charData.HD);
             Set_currHD(charData.currHD);
