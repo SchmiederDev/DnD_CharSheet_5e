@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="SpellsWindow" Height="1000" Width="1200">
+        Title="SpellsWindow" Height="1050" Width="1200" 
+        WindowStartupLocation="Manual" Left="0" Top="0">
 
     <StackPanel>
 
@@ -50,9 +51,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0">
-
-                
+            <StackPanel Grid.Column="0" Margin="0 20 0 0">                
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -65,28 +64,19 @@
                     
                 </Grid>
 
+                <ScrollViewer x:Name="CantripScroller" VerticalScrollBarVisibility="Hidden" Grid.Column="1">
+                    <StackPanel x:Name="CantripsPanel" MaxHeight="150" />
+                </ScrollViewer>
+
                 <Grid>
+
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0">
-                                                
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1">
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>                        
-
-                    </StackPanel>
+                    <Button x:Name="Add_Cantrip_Btn" Content="Add" Click="Add_Cantrip_Btn_Click" Margin="10 15" Width="100" FontWeight="Bold" Grid.Column="0"/>
+                    <Button x:Name="Cantrip_OK_Btn" Content="OK" Click="Cantrip_OK_Btn_Click" IsEnabled="False" Visibility="Hidden" Margin="10 15" Height="20" Width="100" FontWeight="Bold" Grid.Column="1"/>
 
                 </Grid>
 
@@ -123,39 +113,18 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                    <!-- Checkboxes 1st Level Spells -->
+                    <StackPanel x:Name="Checkboxes_1stLvl_Panel" Grid.Column="0">
 
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
+                    <!-- Comboboxes 1st Level -->
+                    
+                    <StackPanel x:Name="Comboboxes_1stLevel_Panel" Grid.Column="1">                        
 
                     </StackPanel>
 
                 </Grid>
-
-            </StackPanel>
-
-            <StackPanel Grid.Column="1">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -190,35 +159,21 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
+                    <!-- CheckBoxes 2nd Level Spells -->
+                    <StackPanel x:Name="CheckBoxes_2ndLvl_Panel" Grid.Column="0">                        
 
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
+                    <!-- ComboBoxes 2nd Level Spells -->
+                    <StackPanel Grid.Column="1">                        
 
                     </StackPanel>
 
                 </Grid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="0 20 0 0">                
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -283,10 +238,6 @@
 
                 </Grid>
 
-            </StackPanel>
-
-            <StackPanel Grid.Column="2">
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.25*"/>
@@ -345,6 +296,10 @@
                     </StackPanel>
 
                 </Grid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Margin="0 20 0 0">                
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -614,23 +569,17 @@
 
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
+                    <StackPanel Grid.Column="1">                                               
 
                     </StackPanel>
 
-                </Grid>
+                </Grid>                
 
             </StackPanel>
 
         </Grid>
 
-        
+        <TextBox x:Name="SpellViewer" Margin="20 20 20 20" Height="150" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" IsReadOnly="True"/>
 
     </StackPanel>
     
