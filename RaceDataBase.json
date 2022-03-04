@@ -1,0 +1,1017 @@
+[
+  {
+    "RaceName": "Dragonborn",
+
+    "AbilityScoreIncreases": [
+      {
+        "AbilityKey": "STR",
+        "AbilityBonus": 2
+      },
+      {
+        "AbilityKey": "CHA",
+        "AbilityBonus": 1
+      }
+    ],
+
+    "AgeMax": 100,
+    "AgeBackground": "Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.",
+    "AlignmentBackground": "Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil. Most dragonborn are good, but those who side with evil can be terrible villains.",
+    "Size": "Medium",
+    "SizeBackground": "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds.",
+    "Speed": 30,
+
+    "RaceFeats": [
+      {
+        "FeatName": "Draconic Ancestry",
+        "FeatDescription": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table."
+      },
+      {
+        "FeatName": "Breath Weapon",
+        "FeatDescription": "When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest."
+      },
+      {
+        "FeatName": "Damage Resistance",
+        "FeatDescription": "You have resistance to the damage type associated with your draconic ancestry."
+      }
+    ],
+
+    "RaceProficiencies": [],
+
+    "Race_SpellAbilities": [],
+
+    "Languages": [ "Common", "Draconic" ],
+
+    "SubracesOfRace": [
+      {
+        "SubraceName": "Dragonborn Variety",
+
+        "SubraceIncrease": {},
+
+        "HeightMax ": {
+          "feet": 6,
+          "inches": 10
+        },
+        "HeightMin": {
+          "feet": 5,
+          "inches": 6
+        },
+
+        "WeightMax": 367,
+        "WeightMin": 175,
+
+        "SubraceFeats": [
+          {
+            "FeatName": "Black Dragon",
+            "FeatDescription": "Damage Type: Acid - Breath Weapon: 5 by 30 ft. line - Saving Throw: DEX Save"
+          },
+          {
+            "FeatName": "Blue Dragon",
+            "FeatDescription": "Damage Type: Lightning - Breath Weapon: 5 by 30 ft. line - Saving Throw: DEX Save"
+          },
+          {
+            "FeatName": "Brass Dragon",
+            "FeatDescription": "Damage Type: Fire - Breath Weapon: 5 by 30 ft. line - Saving Throw: DEX Save"
+          },
+          {
+            "FeatName": "Bronze Dragon",
+            "FeatDescription": "Damage Type: Lightning - Breath Weapon: 5 by 30 ft. line - Saving Throw: DEX Save"
+          },
+          {
+            "FeatName": "Copper Dragon",
+            "FeatDescription": "Damage Type: Acid - Breath Weapon: 5 by 30 ft. line - Saving Throw: DEX Save"
+          },
+          {
+            "FeatName": "Gold Dragon",
+            "FeatDescription": "Damage Type: Fire - Breath Weapon: 15 ft. cone - Saving Throw: DEX Save"
+          },
+          {
+            "FeatName": "Green Dragon",
+            "FeatDescription": "Damage Type: Poison - Breath Weapon: 15 ft. cone - Saving Throw: CON Save"
+          },
+          {
+            "FeatName": "Red Dragon",
+            "FeatDescription": "Damage Type: Fire - Breath Weapon: 15 ft. cone - Saving Throw: DEX Save"
+          },
+          {
+            "FeatName": "Silver Dragon",
+            "FeatDescription": "Damage Type: Cold - Breath Weapon: 15 ft. cone - Saving Throw: CON Save"
+          },
+          {
+            "FeatName": "White Dragon",
+            "FeatDescription": "Damage Type: Cold - Breath Weapon: 15 ft. cone - Saving Throw: CON Save"
+          }
+        ],
+
+        "SubraceProficiencies": [],
+        "Subrace_SpellAbilities": []
+      }
+
+    ]
+
+  },
+
+  {
+    "RaceName": "Dwarf",
+
+    "AbilityScoreIncreases": [
+      {
+        "AbilityKey": "CON",
+        "AbilityBonus": 2
+      }
+    ],
+
+    "AgeMax": 400,
+    "AgeBackground": "Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years.",
+    "AlignmentBackground": "Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.",
+    "Size": "Medium",
+    "SizeBackground": "Dwarves stand between 4 and 5 feet tall and average about 150 pounds.",
+    "Speed": 25,
+
+    "RaceFeats": [
+      {
+        "FeatName": "Darkvision",
+        "FeatDescription": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "FeatName": "Dwarven Resilience",
+        "FeatDescription": "You have advantage on saving throws against poison, and you have resistance against poison damage."
+      },
+      {
+        "FeatName": "Dwarven Combat Training",
+        "FeatDescription": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer."
+      },
+      {
+        "FeatName": "Tool Proficiency",
+        "FeatDescription": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools."
+      },
+      {
+        "FeatName": "Stonecunning",
+        "FeatDescription": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus."
+      }
+    ],
+
+    "RaceProficiencies": [
+      {
+        "ProficiencyType": "weapon",
+        "ProficiencyName": "battleaxe"
+      },
+      {
+        "ProficiencyType": "weapon",
+        "ProficiencyName": "handeaxe"
+      },
+      {
+        "ProficiencyType": "weapon",
+        "ProficiencyName": "light hammer"
+      },
+      {
+        "ProficiencyType": "weapon",
+        "ProficiencyName": "warhammer"
+      },
+      {
+        "ProficiencyType": "tool",
+        "ProficiencyName": "smith's tools"
+      },
+      {
+        "ProficiencyType": "tool",
+        "ProficiencyName": "brewer's tools'"
+      },
+      {
+        "ProficiencyType": "tool",
+        "ProficiencyName": "mason's tools'"
+      }
+    ],
+
+    "Race_SpellAbilities": [],
+
+    "Languages": [ "Dwarvish", "Common" ],
+
+    "SubracesOfRace": [
+      {
+        "SubraceName": "Hill Dwarf",
+
+        "SubraceIncrease": {
+          "AbilityKey": "WIS",
+          "AbilityBonus": 1
+        },
+
+        "HeightMax ": {
+          "feet": 3,
+          "inches": 8
+        },
+        "HeightMin": {
+          "feet": 4,
+          "inches": 4
+        },
+
+        "WeightMax": 211,
+        "WeightMin": 115,
+
+        "SubraceFeats": [
+          {
+            "FeatName": "Dwarven Toughness",
+            "FeatDescription": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
+          }
+        ],
+
+        "SubraceProficiencies": [],
+        "Subrace_SpellAbilities": []
+      },
+
+      {
+        "SubraceName": "Mountain Dwarf",
+
+        "SubraceIncrease": {
+          "AbilityKey": "STR",
+          "AbilityBonus": 1
+        },
+
+        "HeightMax ": {
+          "feet": 4,
+          "inches": 0
+        },
+        "HeightMin": {
+          "feet": 4,
+          "inches": 8
+        },
+
+        "WeightMax": 226,
+        "WeightMin": 130,
+
+        "SubraceFeats": [],
+
+        "SubraceProficiencies": [
+          {
+            "ProficiencyType": "armor",
+            "ProficiencyName": "light armor"
+          },
+          {
+            "ProficiencyType": "armor",
+            "ProficiencyName": "medium armor"
+          }
+        ],
+
+        "Subrace_SpellAbilities": []
+      }
+    ]
+
+  },
+
+  {
+    "RaceName": "Elf",
+
+    "AbilityScoreIncreases": [
+      {
+        "AbilityKey": "DEX",
+        "AbilityBonus": 2
+      }
+    ],
+
+    "AgeMax": 750,
+    "AgeBackground": "Although elves reach physical maturity at about the same age as humans, the elven understanding of adulthood goes beyond physical growth to encompass worldly experience. An elf typically claims adulthood and an adult name around the age of 100 and can live to be 750 years old.",
+    "AlignmentBackground": "Elves love freedom, variety, and self-expression, so they lean strongly toward the gentler aspects of chaos. They value and protect others' freedom as well as their own, and they are more often good than not.",
+    "Size": "Medium",
+    "SizeBackground": "Elves range from under 5 to over 6 feet tall and have slender builds.",
+    "Speed": 30,
+
+    "RaceFeats": [
+      {
+        "FeatName": "Darkvision",
+        "FeatDescription": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "FeatName": "Fey Ancestry",
+        "FeatDescription": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+      },
+      {
+        "FeatName": "Keen Senses",
+        "FeatDescription": "You have proficiency in the Perception skill."
+      },
+      {
+        "FeatName": "Trance",
+        "FeatDescription": "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is “trance.”) While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep."
+      }
+    ],
+
+    "RaceProficiencies": [ {"ProficiencyType": "Skill", "ProficiencyName": "Perception"} ],
+
+    "Race_SpellAbilities": [],
+
+    "Languages": [ "Elvish", "Common" ],
+
+    "SubracesOfRace": [
+      {
+        "SubraceName": "High Elf",
+
+        "SubraceIncrease": {
+          "AbilityKey": "INT",
+          "AbilityBonus": 1
+        },
+
+        "HeightMax ": {
+          "feet": 6,
+          "inches": 2
+        },
+        "HeightMin": {
+          "feet": 4,
+          "inches": 6
+        },
+
+        "WeightMax": 170,
+        "WeightMin": 90,
+
+        "SubraceFeats": [
+          {
+            "FeatName": "Cantrip",
+            "FeatDescription": "You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it."
+          },
+          {
+            "FeatName": "Extra Language",
+            "FeatDescription": "You can speak, read, and write one extra language of your choice."
+          }
+        ],
+
+        "SubraceProficiencies": [
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "longsword"
+          },
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "shortsword"
+          },
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "longbow"
+          },
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "shortbow"
+          }
+        ],
+        "Subrace_SpellAbilities": []
+      },
+
+      {
+        "SubraceName": "Wood Elf",
+
+        "SubraceIncrease": {
+          "AbilityKey": "WIS",
+          "AbilityBonus": 1
+        },
+
+        "HeightMax ": {
+          "feet": 6,
+          "inches": 2
+        },
+        "HeightMin": {
+          "feet": 4,
+          "inches": 6
+        },
+
+        "WeightMax": 180,
+        "WeightMin": 100,
+
+        "SubraceFeats": [
+          {
+            "FeatName": "Fleet of Food",
+            "FeatDescription": "Your base walking speed increases to 35 feet."
+          },
+          {
+            "FeatName": "Mask of the Wild",
+            "FeatDescription": "You can attempt to hide even when your are only lightly obscured by foliage, heavy rain, falling snow."
+          }
+        ],
+
+        "SubraceProficiencies": [
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "longsword"
+          },
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "shortsword"
+          },
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "longbow"
+          },
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "shortbow"
+          }
+        ],
+
+        "Subrace_SpellAbilities": []
+      },
+
+      {
+        "SubraceName": "Drow",
+
+        "SubraceIncrease": {
+          "AbilityKey": "CHA",
+          "AbilityBonus": 1
+        },
+
+        "HeightMax ": {
+          "feet": 4,
+          "inches": 5
+        },
+        "HeightMin": {
+          "feet": 5,
+          "inches": 5
+        },
+
+        "WeightMax": 147,
+        "WeightMin": 75,
+
+        "SubraceFeats": [
+          {
+            "FeatName": "Superior Darkvision",
+            "FeatDescription": "Your darkvision has a radius 120 feet"
+          },
+          {
+            "FeatName": "Sunlight Sensitivity",
+            "FeatDescription": "You have disadvantage on attack rolls and Wisdom (Perception) checks that rely on sight when you, the target of your attack, or what ever you are trying to do is in direct sunlight."
+          }
+        ],
+
+        "SubraceProficiencies": [
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "rapier"
+          },
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "shortsword"
+          },
+          {
+            "ProficiencyType": "weapon",
+            "ProficiencyName": "hand crossbow"
+          }
+        ],
+
+        "Subrace_SpellAbilities": [
+          {
+            "SpellName": "Dancing Lights",
+            "ClassLevel": 1
+          },
+          {
+            "SpellName": "Faerie Fire",
+            "ClassLevel": 3
+          },
+          {
+            "SpellName": "Darkness",
+            "ClassLevel": 5
+          }
+        ]
+
+      }
+
+    ]
+
+  },
+
+  {
+    "RaceName": "Gnome",
+
+    "AbilityScoreIncreases": [
+      {
+        "AbilityKey": "INT",
+        "AbilityBonus": 2
+      }
+    ],
+
+    "AgeMax": 500,
+    "AgeBackground": "Gnomes mature at the same rate humans do, and most are expected to settle down into an adult life by around age 40. They can live 350 to almost 500 years.",
+    "AlignmentBackground": "Gnomes are most often good. Those who tend toward law are sages, engineers, researchers, scholars, investigators, or inventors. Those who tend toward chaos are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are good-hearted, and even the tricksters among them are more playful than vicious.",
+    "Size": "Small",
+    "SizeBackground": "Gnomes are between 3 and 4 feet tall and average about 40 pounds.",
+    "Speed": 25,
+
+    "RaceFeats": [
+      {
+        "FeatName": "Darkvision",
+        "FeatDescription": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "FeatName": "Gnome Cunning",
+        "FeatDescription": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
+      }
+    ],
+
+    "RaceProficiencies": [],
+
+    "Race_SpellAbilities": [],
+
+    "Languages": [ "Gnome", "Common" ],
+
+    "SubracesOfRace": [
+      {
+        "SubraceName": "Forest Gnome",
+
+        "SubraceIncrease": {
+          "AbilityKey": "DEX",
+          "AbilityBonus": 1
+        },
+
+        "HeightMax ": {
+          "feet": 3,
+          "inches": 7
+        },
+        "HeightMin": {
+          "feet": 2,
+          "inches": 11
+        },
+
+        "WeightMax": 43,
+        "WeightMin": 35,
+
+        "SubraceFeats": [
+          {
+            "FeatName": "Natural Illusionist",
+            "FeatDescription": "You know the minor illusion cantrip. Intelligence is your spell casting ability for it."
+          },
+          {
+            "FeatName": "Speak with Small Beasts",
+            "FeatDescription": "Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts. Forest gnomes love animals and often keep squirrels, badgers, rabbits, moles, woodpeckers, and other creatures as beloved pets."
+          }
+        ],
+
+        "SubraceProficiencies": [],
+        "Subrace_SpellAbilities": [
+          {
+            "SpellName": "Minor Illusion",
+            "ClassLevel": 1
+          }
+        ]
+      },
+
+      {
+        "SubraceName": "Rock Gnome",
+
+        "SubraceIncrease": {
+          "AbilityKey": "CON",
+          "AbilityBonus": 1
+        },
+
+        "HeightMax ": {
+          "feet": 3,
+          "inches": 7
+        },
+        "HeightMin": {
+          "feet": 2,
+          "inches": 11
+        },
+
+        "WeightMax": 43,
+        "WeightMin": 35,
+
+        "SubraceFeats": [
+          {
+            "FeatName": "Artificer's Lore",
+            "FeatDescription": "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices,\nyou can add twice your proficiency bonus, instead of any proficiency bonus you normally apply."
+          },
+          {
+            "FeatName": "Tinker",
+            "FeatDescription": "You have proficiency with artisan's tools (tinker's tools).\nUsing those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp).\nThe device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning),\nor when you use your action to dismantle it;\nat that time, you can reclaim the materials used to create it.\nYou can have up to three such devices active at a time.\nWhen you create a device, choose one of the following options:\nClockwork Toy:\nThis toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier.\nWhen placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction.\nIt makes noises as appropriate to the creature it represents.\nFire Starter:\nThe device produces a miniature flame, which you can use to light a candle, torch, or campfire.\nUsing the device requires your action.\nMusic Box:\nWhen opened, this music box plays a single song at a moderate volume.\nThe box stops playing when it reaches the song's end or when it is closed."
+          }
+        ],
+
+        "SubraceProficiencies": [],
+
+        "Subrace_SpellAbilities": []
+      }
+
+    ]
+
+  },
+
+  {
+    "RaceName": "Half-Elf",
+
+    "AbilityScoreIncreases": [
+      {
+        "AbilityKey": "CHA",
+        "AbilityBonus": 2
+      },
+      {
+        "AbilityKey": "1 of your choice",
+        "AbilityBonus": 1
+      },
+      {
+        "AbilityKey": "1 of your choice",
+        "AbilityBonus": 1
+      }
+    ],
+
+    "AgeMax": 220,
+    "AgeBackground": "Half-elves mature at the same rate humans do and reach adulthood around the age of 20. They live much longer than humans, however, often exceeding 180 years.",
+    "AlignmentBackground": "Half-elves share the chaotic bent of their elven heritage. They value both personal freedom and creative expression, demonstrating neither love of leaders nor desire for followers. They chafe at rules, resent others' demands, and sometimes prove unreliable, or at least unpredictable.",
+    "Size": "Medium",
+    "SizeBackground": "Half-elves are about the same size as humans, ranging from 5 to 6 feet tall.",
+    "Speed": 30,
+
+    "RaceFeats": [
+      {
+        "FeatName": "Darkvision",
+        "FeatDescription": "Thanks to your elf blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "FeatName": "Fey Ancestry",
+        "FeatDescription": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+      },
+      {
+        "FeatName": "Skill Versatility",
+        "FeatDescription": "You gain proficiency in two skills of your choice."
+      },
+      {
+        "FeatName": "Extra Language",
+        "FeatDescription": "You can speak, read, and write one extra language of your choice."
+      }
+    ],
+
+    "RaceProficiencies": [
+      {
+        "ProficiencyType": "Skill",
+        "ProficiencyName": "One of your choice"
+      },
+      {
+        "ProficiencyType": "Skill",
+        "ProficiencyName": "One of your choice"
+      }
+    ],
+
+    "Race_SpellAbilities": [],
+
+    "Languages": [ "Common", "Elvish", "one of your choice" ],
+
+    "SubracesOfRace": [
+      {
+        "SubraceName": "Half-Elven Variety",
+
+        "SubraceIncrease": {},
+
+        "HeightMax ": {
+          "feet": 6,
+          "inches": 1
+        },
+        "HeightMin": {
+          "feet": 4,
+          "inches": 9
+        },
+
+        "WeightMax": 174,
+        "WeightMin": 110,
+
+        "SubraceFeats": [],
+
+        "SubraceProficiencies": [],
+        "Subrace_SpellAbilities": []
+      }
+
+    ]
+
+  },
+
+  {
+    "RaceName": "Half-Orc",
+
+    "AbilityScoreIncreases": [
+      {
+        "AbilityKey": "STR",
+        "AbilityBonus": 2
+      },
+      {
+        "AbilityKey": "CON",
+        "AbilityBonus": 1
+      }
+    ],
+
+    "AgeMax": 90,
+    "AgeBackground": "Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.",
+    "AlignmentBackground": "Half-orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-orcs raised among orcs and willing to live out their lives among them are usually evil.",
+    "Size": "Medium",
+    "SizeBackground": "Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall.",
+    "Speed": 30,
+
+    "RaceFeats": [
+      {
+        "FeatName": "Darkvision",
+        "FeatDescription": "Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "FeatName": "Menacing",
+        "FeatDescription": "You gain proficiency in the Intimidation skill."
+      },
+      {
+        "FeatName": "Relentless Endurance",
+        "FeatDescription": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest."
+      },
+      {
+        "FeatName": "Savage Attacks",
+        "FeatDescription": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit."
+      }
+    ],
+
+    "RaceProficiencies": [],
+
+    "Race_SpellAbilities": [],
+
+    "Languages": [ "Common", "Orc" ],
+
+    "SubracesOfRace": [
+      {
+        "SubraceName": "Half-Orc Variety",
+
+        "SubraceIncrease": {},
+
+        "HeightMax ": {
+          "feet": 6,
+          "inches": 6
+        },
+        "HeightMin": {
+          "feet": 4,
+          "inches": 10
+        },
+
+        "WeightMax": 380,
+        "WeightMin": 140,
+
+        "SubraceFeats": [],
+
+        "SubraceProficiencies": [],
+        "Subrace_SpellAbilities": []
+      }
+
+    ]
+
+  },
+
+  {
+    "RaceName": "Halfling",
+
+    "AbilityScoreIncreases": [
+      {
+        "AbilityKey": "DEX",
+        "AbilityBonus": 2
+      }
+    ],
+
+    "AgeMax": 200,
+    "AgeBackground": "A halfling reaches adulthood at the age of 20 and generally lives into the middle of his or her second century.",
+    "AlignmentBackground": "Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways.",
+    "Size": "Small",
+    "SizeBackground": "Halflings average about 3 feet tall and weigh about 40 pounds.",
+    "Speed": 25,
+
+    "RaceFeats": [
+      {
+        "FeatName": "Lucky",
+        "FeatDescription": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll."
+      },
+      {
+        "FeatName": "Brave",
+        "FeatDescription": "You have advantage on saving throws against being frightened."
+      },
+      {
+        "FeatName": "Halfling Nimbleness",
+        "FeatDescription": "You can move through the space of any creature that is of a size larger than yours."
+      }
+    ],
+
+    "RaceProficiencies": [],
+
+    "Race_SpellAbilities": [],
+
+    "Languages": [ "Hafling", "Common" ],
+
+    "SubracesOfRace": [
+      {
+        "SubraceName": "Lightfoot Halfling",
+
+        "SubraceIncrease": {
+          "AbilityKey": "CHA",
+          "AbilityBonus": 1
+        },
+
+        "HeightMax ": {
+          "feet": 3,
+          "inches": 3
+        },
+        "HeightMin": {
+          "feet": 2,
+          "inches": 7
+        },
+
+        "WeightMax": 43,
+        "WeightMin": 35,
+
+        "SubraceFeats": [
+          {
+            "FeatName": "Naturally Stealthy",
+            "FeatDescription": "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you."
+          }
+        ],
+
+        "SubraceProficiencies": [],
+        "Subrace_SpellAbilities": []
+      },
+
+      {
+        "SubraceName": "Stout Halfling",
+
+        "SubraceIncrease": {
+          "AbilityKey": "CON",
+          "AbilityBonus": 1
+        },
+
+        "HeightMax ": {
+          "feet": 3,
+          "inches": 7
+        },
+        "HeightMin": {
+          "feet": 2,
+          "inches": 3
+        },
+
+        "WeightMax": 43,
+        "WeightMin": 35,
+
+        "SubraceFeats": [
+          {
+            "FeatName": "Stout Resilience",
+            "FeatDescription": "You have advantage on saving throws against poison, and you have resistance against poison damage."
+          }
+        ],
+
+        "SubraceProficiencies": [],
+
+        "Subrace_SpellAbilities": []
+      }
+
+    ]
+
+  },
+
+  {
+    "RaceName": "Human",
+
+    "AbilityScoreIncreases": [
+      {
+        "AbilityKey": "STR",
+        "AbilityBonus": 1
+      },
+      {
+        "AbilityKey": "DEX",
+        "AbilityBonus": 1
+      },
+      {
+        "AbilityKey": "CON",
+        "AbilityBonus": 1
+      },
+      {
+        "AbilityKey": "INT",
+        "AbilityBonus": 1
+      },
+      {
+        "AbilityKey": "WIS",
+        "AbilityBonus": 1
+      },
+      {
+        "AbilityKey": "CHA",
+        "AbilityBonus": 1
+      }
+    ],
+
+    "AgeMax": 100,
+    "AgeBackground": "Humans reach adulthood in their late teens and live less than a century.",
+    "AlignmentBackground": "Humans tend toward no particular alignment. The best and the worst are found among them.",
+    "Size": "Medium",
+    "SizeBackground": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range,",
+    "Speed": 30,
+
+    "RaceFeats": [
+      {
+        "FeatName": "Extra Language",
+        "FeatDescription": "You can speak, read, and write one extra language of your choice."
+      }
+    ],
+
+    "RaceProficiencies": [],
+
+    "Race_SpellAbilities": [],
+
+    "Languages": [ "Common" ],
+
+    "SubracesOfRace": [
+      {
+        "SubraceName": "Human Variety",
+
+        "SubraceIncrease": {},
+
+        "HeightMax ": {
+          "feet": 6,
+          "inches": 4
+        },
+        "HeightMin": {
+          "feet": 4,
+          "inches": 8
+        },
+
+        "WeightMax": 270,
+        "WeightMin": 110,
+
+        "SubraceFeats": [],
+
+        "SubraceProficiencies": [],
+        "Subrace_SpellAbilities": []
+      }
+
+    ]
+
+  },
+
+  {
+    "RaceName": "Tiefling",
+
+    "AbilityScoreIncreases": [
+      {
+        "AbilityKey": "INT",
+        "AbilityBonus": 1
+      },
+      {
+        "AbilityKey": "CHA",
+        "AbilityBonus": 2
+      }
+    ],
+
+    "AgeMax": 90,
+    "AgeBackground": "Tieflings mature at the same rate as humans but live a few years longer.",
+    "AlignmentBackground": "Tieflings might not have an innate tendency toward evil, but many of them end up there. Evil or not, an independent nature inclines many tieflings toward a chaotic alignment.",
+    "Size": "Medium",
+    "SizeBackground": "Tieflings are about the same size and build as humans.",
+    "Speed": 30,
+
+    "RaceFeats": [
+      {
+        "FeatName": "Darkvision",
+        "FeatDescription": "Thanks to your infernal heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "FeatName": "Hellish Resistance",
+        "FeatDescription": "You have resistance to fire damage."
+      },
+      {
+        "FeatName": "Infernal Legacy",
+        "FeatDescription": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells."
+      }
+    ],
+
+    "RaceProficiencies": [],
+
+    "Race_SpellAbilities": [
+      {
+        "SpellName": "Thaumaturgy",
+        "ClassLevel": "0"
+      },
+      {
+        "SpellName": "Hellish Rebuke",
+        "ClassLevel": "3"
+      },
+      {
+        "SpellName": "Darkness",
+        "ClassLevel": "5"
+      }
+    ],
+
+    "Languages": [ "Common", "Infernal" ],
+
+    "SubracesOfRace": [
+      {
+        "SubraceName": "Half-Orc Variety",
+
+        "SubraceIncrease": {},
+
+        "HeightMax ": {
+          "feet": 6,
+          "inches": 1
+        },
+        "HeightMin": {
+          "feet": 4,
+          "inches": 9
+        },
+
+        "WeightMax": 238,
+        "WeightMin": 110,
+
+        "SubraceFeats": [],
+
+        "SubraceProficiencies": [],
+        "Subrace_SpellAbilities": []
+      }
+
+    ]
+
+  }
+
+]
