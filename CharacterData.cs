@@ -22,6 +22,9 @@ namespace DnD_CharSheet_5e
 
         public int tempHP { set; get; }
 
+        public bool charIsAlive { set; get; }
+        public bool charIsConscious { get; set; }
+
         public int HD { set; get; }
         public int currHD { set; get; }
 
@@ -102,6 +105,11 @@ namespace DnD_CharSheet_5e
 
             maxHP = character.Get_maxHP();
             currHP = character.Get_currHP();
+
+            tempHP = character.Get_tempHP();
+
+            charIsAlive = character.Get_AliveStatus();
+            charIsConscious = character.Get_ConsciousnessStatus();
 
             HD = character.Get_hitDice();
             currHD = character.Get_currHitDice();
