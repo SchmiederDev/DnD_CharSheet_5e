@@ -7,8 +7,11 @@ namespace DnD_CharSheet_5e
     {
         public string SaveName { get; set; }
         public string SaveKey { get; set; }
+
         public int AbilityBonus { get; set; }
+
         public int SaveModifier { get; set; }
+
         public bool IsProficient { get; set; } = false;
 
         public void Set_AbilityBonus(int bonus)
@@ -16,17 +19,7 @@ namespace DnD_CharSheet_5e
             AbilityBonus = bonus;
         }
 
-        public void Set_Proficiency(bool proficiency)
-        {
-            IsProficient = proficiency;
-        }
-
-        public bool Get_Proficiency()
-        {
-            return IsProficient;
-        }
-
-        public void Set_SaveModifier(int profBonus)
+        public void Calculate_SaveModifier(int profBonus)
         {
             if(IsProficient)
             {
@@ -37,11 +30,6 @@ namespace DnD_CharSheet_5e
             {
                 SaveModifier = AbilityBonus;
             }
-        }
-
-        public int Get_SaveModifier()
-        {
-            return SaveModifier;
         }
     }
 }
