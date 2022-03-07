@@ -28,41 +28,41 @@ namespace DnD_CharSheet_5e
 
         public void SaveGame01_BT_Click(object sender, RoutedEventArgs e)
         {
-            saveGame_01_bt.Content = SheetManager.CS_Manager_Inst.character.Get_charName();
+            saveGame_01_bt.Content = SheetManager.CS_Manager_Inst.character.CharacterName;
             SaveSystem.SaveCharacter(SheetManager.CS_Manager_Inst.character, FileManager.FM_Inst.saveGame_01);
-            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.Get_charName(), FileManager.FM_Inst.namesDataBase, 0);            
+            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.CharacterName, FileManager.FM_Inst.namesDataBase, 0);            
             this.Close();
         }
 
         public void SaveGame02_BT_Click(object sender, RoutedEventArgs e)
         {
-            saveGame_02_bt.Content = SheetManager.CS_Manager_Inst.character.Get_charName();
+            saveGame_02_bt.Content = SheetManager.CS_Manager_Inst.character.CharacterName;
             SaveSystem.SaveCharacter(SheetManager.CS_Manager_Inst.character, FileManager.FM_Inst.saveGame_02);
-            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.Get_charName(), FileManager.FM_Inst.namesDataBase, 1);
+            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.CharacterName, FileManager.FM_Inst.namesDataBase, 1);
             this.Close();
         }
 
         public void SaveGame03_BT_Click(object sender, RoutedEventArgs e)
         {
-            saveGame_03_bt.Content = SheetManager.CS_Manager_Inst.character.Get_charName();
+            saveGame_03_bt.Content = SheetManager.CS_Manager_Inst.character.CharacterName;
             SaveSystem.SaveCharacter(SheetManager.CS_Manager_Inst.character, FileManager.FM_Inst.saveGame_03);
-            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.Get_charName(), FileManager.FM_Inst.namesDataBase, 2);
+            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.CharacterName, FileManager.FM_Inst.namesDataBase, 2);
             this.Close();
         }
 
         public void SaveGame04_BT_Click(object sender, RoutedEventArgs e)
         {
-            saveGame_04_bt.Content = SheetManager.CS_Manager_Inst.character.Get_charName();
+            saveGame_04_bt.Content = SheetManager.CS_Manager_Inst.character.CharacterName;
             SaveSystem.SaveCharacter(SheetManager.CS_Manager_Inst.character, FileManager.FM_Inst.saveGame_04);
-            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.Get_charName(), FileManager.FM_Inst.namesDataBase, 3);
+            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.CharacterName, FileManager.FM_Inst.namesDataBase, 3);
             this.Close();
         }
 
         public void SaveGame05_BT_Click(object sender, RoutedEventArgs e)
         {
-            saveGame_05_bt.Content = SheetManager.CS_Manager_Inst.character.Get_charName();
+            saveGame_05_bt.Content = SheetManager.CS_Manager_Inst.character.CharacterName;
             SaveSystem.SaveCharacter(SheetManager.CS_Manager_Inst.character, FileManager.FM_Inst.saveGame_05);
-            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.Get_charName(), FileManager.FM_Inst.namesDataBase, 4);
+            SaveSystem.Save_CharName(SheetManager.CS_Manager_Inst.character.CharacterName, FileManager.FM_Inst.namesDataBase, 4);
             this.Close();
         }
 
