@@ -24,7 +24,7 @@ namespace DnD_CharSheet_5e
 
         private void Init_UI()
         {
-            CharacterName_Box.Text = SheetManager.CS_Manager_Inst.character.Get_charName();            
+            CharacterName_Box.Text = SheetManager.CS_Manager_Inst.character.CharacterName;            
             Load_Background();
         }
 
