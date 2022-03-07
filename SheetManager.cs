@@ -112,7 +112,7 @@ namespace DnD_CharSheet_5e
 
         public void Activate_Deactive_TempHP()
         {
-            if (character.Get_tempHP() > 0)
+            if (character.TempHP > 0)
             {
                 IsTempHPactive = true;
             }
@@ -141,7 +141,7 @@ namespace DnD_CharSheet_5e
 
             do
             {
-                result = dSys.Roll_D20() + character.Get_iniBonus();
+                result = dSys.Roll_D20() + character.InitiativeBonus;
             } while (result < 1);
 
             return result;
@@ -175,7 +175,7 @@ namespace DnD_CharSheet_5e
         public int Melee_Attack()
         {
             int result;
-            result = dSys.Roll_D20() + character.Get_strModifier() + character.Get_ProfBonus();
+            result = dSys.Roll_D20() + character.StrModifier + character.ProficiencyBonus;
 
             return result;
         }
@@ -183,7 +183,7 @@ namespace DnD_CharSheet_5e
         public int Ranged_Attack()
         {
             int result;
-            result = dSys.Roll_D20() + character.Get_dexModifier() + character.Get_ProfBonus();
+            result = dSys.Roll_D20() + character.DexModifier + character.ProficiencyBonus;
 
             return result;
         }
@@ -194,20 +194,20 @@ namespace DnD_CharSheet_5e
 
             if (character.CharEquipment.RightHand_Weapon != null && character.CharEquipment.RightHand_Weapon.IsRanged == false)
             {
-                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Get_strModifier();
+                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.StrModifier;
                 return result;
             }
 
             else if (character.CharEquipment.RightHand_Weapon != null && character.CharEquipment.RightHand_Weapon.IsRanged == true)
             {
-                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Get_dexModifier();
+                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.DexModifier;
                 return result;
             }
 
             else
             {
                 MessageBox.Show($"You have no weapon equiped. Damage roll will be counted as 'Unarmed Strike'");
-                result = 1 + character.Get_strModifier();
+                result = 1 + character.StrModifier;
                 return result;
             }
         }
@@ -216,16 +216,16 @@ namespace DnD_CharSheet_5e
         {
             if (IsTempHPactive == false)
             {
-                int tempCurrHP = character.Get_currHP();
+                int tempCurrHP = character.CurrentHP;
                 tempCurrHP -= damage;
-                character.Set_currHP(tempCurrHP);
+                character.Set_CurrHP(tempCurrHP);
             }
 
             else
             {
-                int tempCurrHP = character.Get_currHP();
+                int tempCurrHP = character.CurrentHP;
 
-                int tempTempHP = character.Get_tempHP();
+                int tempTempHP = character.TempHP;
                 int tempHP_Excess = tempTempHP;
 
                 tempHP_Excess -= damage;
@@ -240,45 +240,45 @@ namespace DnD_CharSheet_5e
                     character.Set_tempHP(0);
 
                     tempCurrHP += tempHP_Excess;
-                    character.Set_currHP(tempCurrHP);
+                    character.Set_CurrHP(tempCurrHP);
                 }
             }
         }
 
         public void Heal_Amount(int hpHealed)
         {
-            int tempHP = character.Get_currHP();
+            int tempHP = character.CurrentHP;
             tempHP += hpHealed;
 
-            if (tempHP > character.Get_maxHP())
+            if (tempHP > character.MaxHP)
             {
-                tempHP = character.Get_maxHP();
-                character.Set_currHP(tempHP);
+                tempHP = character.MaxHP;
+                character.Set_CurrHP(tempHP);
             }
 
             else
             {
-                character.Set_currHP(tempHP);
+                character.Set_CurrHP(tempHP);
             }
         }
 
         public int Heal_withDice(int numerator, int denominator)
         {
-            int tempHP = character.Get_currHP();
+            int tempHP = character.CurrentHP;
 
             int hpHealed = dSys.Roll_Custom(numerator, denominator);
 
             tempHP += hpHealed;
 
-            if (tempHP > character.Get_maxHP())
+            if (tempHP > character.MaxHP)
             {
-                tempHP = character.Get_maxHP();
-                character.Set_currHP(tempHP);
+                tempHP = character.MaxHP;
+                character.Set_CurrHP(tempHP);
             }
 
             else
             {
-                character.Set_currHP(tempHP);
+                character.Set_CurrHP(tempHP);
             }
 
             return hpHealed;
