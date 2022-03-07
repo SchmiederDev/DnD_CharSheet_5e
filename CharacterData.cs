@@ -90,69 +90,68 @@ namespace DnD_CharSheet_5e
 
         public void Transfer_CharData(Character character)
         {
-            pName = character.Get_playerName();
-            cName = character.Get_charName();
+            pName = character.PlayerName;
+            cName = character.CharacterName;
 
-            race = character.Get_Race();
-            subrace = character.Get_Subrace();
+            race = character.CharacterRace;
+            subrace = character.CharacterSubrace;
 
-            charClass = character.Get_charClass();
+            charClass = character.CharacterClass;
 
-            alignment = character.Get_Alignment();
-            background = character.Get_Background();
+            alignment = character.Alignment;
+            background = character.Background;
 
-            level = character.Get_charLvl();
+            level = character.Level;
 
-            maxHP = character.Get_maxHP();
-            currHP = character.Get_currHP();
+            maxHP = character.MaxHP;
+            currHP = character.CurrentHP;
 
-            tempHP = character.Get_tempHP();
+            tempHP = character.TempHP;
 
-            charIsAlive = character.Get_AliveStatus();
-            charIsConscious = character.Get_ConsciousnessStatus();
+            charIsAlive = character.IsAlive;
+            charIsConscious = character.IsConscious;
 
-            HD = character.Get_hitDice();
-            currHD = character.Get_currHitDice();
+            HD = character.HitDice;
+            currHD = character.CurrentHitDice;
 
-            strength = character.Get_strValue();
-            dexerity = character.Get_dexValue();
-            constitution = character.Get_conValue();
-            intelligence = character.Get_intValue();
-            wisdom = character.Get_wisValue();
-            charisma = character.Get_chaValue();
+            strength = character.StrScore;
+            dexerity = character.DexScore;
+            constitution = character.ConScore;
+            intelligence = character.IntScore;
+            wisdom = character.WisScore;
+            charisma = character.ChaScore;
 
-            str_ST = character.Get_STR_Prof();
-            dex_ST = character.Get_DEX_Prof();
-            con_ST = character.Get_CON_Prof();
-            int_ST = character.Get_INT_Prof();
-            wis_ST = character.Get_WIS_Prof();
-            cha_ST = character.Get_CHA_Prof();
+            str_ST = character.STR_Save.IsProficient;
+            dex_ST = character.DEX_Save.IsProficient;
+            con_ST = character.CON_Save.IsProficient;
+            int_ST = character.INT_Save.IsProficient;
+            wis_ST = character.WIS_Save.IsProficient;
+            cha_ST = character.CHA_Save.IsProficient;
 
-            acrobatics = character.Get_Acrobatics_Prof();
-            animalHandling = character.Get_AnimalHandling_Prof();
-            arcana = character.Get_Arcana_Prof();
-            athletics = character.Get_Athletics_Prof();
+            acrobatics = character.Acrobatics.IsProficient;
+            animalHandling = character.AnimalHandling.IsProficient;
+            arcana = character.Arcana.IsProficient;
+            athletics = character.Athletics.IsProficient;
 
-            deception = character.Get_Deception_Prof();
+            deception = character.Deception.IsProficient;
 
-            history = character.Get_History_Prof();
-            insight = character.Get_Insight_Prof();
-            intimidation = character.Get_Intimidation_Prof();
-            investigation = character.Get_Investigation_Prof();
+            history = character.History.IsProficient;
+            insight = character.Insight.IsProficient;
+            investigation = character.Investigation.IsProficient;
 
-            medicine = character.Get_Medicine_Prof();
-            nature = character.Get_Nature_Prof();
+            medicine = character.Medicine.IsProficient;
+            nature = character.Nature.IsProficient;
 
-            perception = character.Get_Perception_Prof();
-            performance = character.Get_Performance_Prof();
-            persuasion = character.Get_Persuasion_Prof();
+            perception = character.Perception.IsProficient;
+            performance = character.Performance.IsProficient;
+            persuasion = character.Persuasion.IsProficient;
 
-            religion = character.Get_Religion_Prof();
+            religion = character.Religion.IsProficient;
 
-            sleightOfHand = character.Get_SleightOfHand_Prof();
-            stealth = character.Get_Stealth_Prof();
+            sleightOfHand = character.SleightOfHand.IsProficient;
+            stealth = character.Stealth.IsProficient;
 
-            survival = character.Get_Survival_Prof();
+            survival = character.Survival.IsProficient;
 
             CD_Age = character.Age;
             CD_Height = character.Height;
