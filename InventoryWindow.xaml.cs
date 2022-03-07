@@ -82,8 +82,8 @@ namespace DnD_CharSheet_5e
 
         public void Init_UI()
         {
-            CharName_Box.Text = SheetManager.CS_Manager_Inst.character.Get_charName();
-            PlayerName_Box.Text = SheetManager.CS_Manager_Inst.character.Get_playerName();
+            CharName_Box.Text = SheetManager.CS_Manager_Inst.character.CharacterName;
+            PlayerName_Box.Text = SheetManager.CS_Manager_Inst.character.PlayerName;
 
             Platinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Platinum().ToString();
             Gold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Gold().ToString();
@@ -279,7 +279,7 @@ namespace DnD_CharSheet_5e
                 if(!TempWeapon.IsTwoHanded)
                 {                    
                     SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
-                    MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.Get_charName() + " is wielding a " + TempWeapon.ItemName);
+                    MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.CharacterName + " is wielding a " + TempWeapon.ItemName);
                     RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
 
                     if(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon != null)
@@ -295,7 +295,7 @@ namespace DnD_CharSheet_5e
                     {
                         SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
                         SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon = TempWeapon;
-                        MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.Get_charName() + " is wielding a " + TempWeapon.ItemName);
+                        MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.CharacterName + " is wielding a " + TempWeapon.ItemName);
                         RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
                         LeftHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
                     }
@@ -313,7 +313,7 @@ namespace DnD_CharSheet_5e
                             SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon = TempWeapon;
                             SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
                             SheetManager.CS_Manager_Inst.character.Calculate_AC();
-                            MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.Get_charName() + " is wielding a " + TempWeapon.ItemName);
+                            MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.CharacterName + " is wielding a " + TempWeapon.ItemName);
                             RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
                             LeftHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
                         }
