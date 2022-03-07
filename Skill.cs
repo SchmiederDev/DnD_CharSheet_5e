@@ -5,42 +5,26 @@ namespace DnD_CharSheet_5e
 {
     public class Skill
     {
-        int abilityBonus;
-        int skillModifier;
-        bool isProficient = false;
+        public string SkillName { get; set; } 
+        public string AbilityReferenceKey { get; set; }
 
-        public void Set_abilityBonus(int bonus)
-        {
-            abilityBonus = bonus;
-        }
+        public int AbilityBonus { get; set; }
 
-        public void Set_Proficiency(bool proficiency)
-        {
-            isProficient = proficiency;
-        }
+        public int SkillModifier { get; set; }
 
-        public bool Get_Proficiency()
-        {
-            return isProficient;
-        }
+        public bool IsProficient { get; set; } = false;
 
-        public void Set_skillModifier(int profBonus)
+        public void Calculate_SkillModifier(int profBonus)
         {
-            if(isProficient)
+            if(IsProficient)
             {
-                skillModifier = abilityBonus + profBonus;
+                SkillModifier = AbilityBonus + profBonus;
             }
 
             else
             {
-                skillModifier = abilityBonus;
-            }
-            
+                SkillModifier = AbilityBonus;
+            }            
         }
-
-        public int Get_skillModifier()
-        {
-            return skillModifier;
-        }        
     }
 }
