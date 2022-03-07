@@ -84,16 +84,16 @@ namespace DnD_CharSheet_5e
 
         private void Initialize_IniPanel()
         { 
-            IniBonus.Text = SheetManager.CS_Manager_Inst.character.Get_dexModifier().ToString();
+            IniBonus.Text = SheetManager.CS_Manager_Inst.character.DexModifier.ToString();
         }
 
         private void Initialize_ACHP_Panel()
         {
-            AC_TB.Text = SheetManager.CS_Manager_Inst.character.Get_AC().ToString();
+            AC_TB.Text = SheetManager.CS_Manager_Inst.character.AC.ToString();
             
-            HP_Max_TB.Text = SheetManager.CS_Manager_Inst.character.Get_maxHP().ToString();
-            HP_Curr_TB.Text = SheetManager.CS_Manager_Inst.character.Get_currHP().ToString();
-            TempHP_TB.Text = SheetManager.CS_Manager_Inst.character.Get_tempHP().ToString();
+            HP_Max_TB.Text = SheetManager.CS_Manager_Inst.character.MaxHP.ToString();
+            HP_Curr_TB.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
+            TempHP_TB.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
         }
 
         public void Melee_Attack_Click(object sender, RoutedEventArgs e)
@@ -169,7 +169,7 @@ namespace DnD_CharSheet_5e
 
             else
             {
-                Damage_Result_TB_01.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.Get_strModifier()).ToString(); 
+                Damage_Result_TB_01.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.StrModifier).ToString(); 
             }
         }
 
@@ -183,7 +183,7 @@ namespace DnD_CharSheet_5e
 
             else
             {
-                Damage_Result_TB_02.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.Get_strModifier()).ToString();
+                Damage_Result_TB_02.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.StrModifier).ToString();
             }
         }
 
@@ -197,7 +197,7 @@ namespace DnD_CharSheet_5e
 
             else
             {
-                Damage_Result_TB_03.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.Get_strModifier()).ToString();
+                Damage_Result_TB_03.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.StrModifier).ToString();
             }
         }
 
@@ -210,26 +210,26 @@ namespace DnD_CharSheet_5e
             {
                 if(attackingWeapon.IsFinesse == false)
                 {
-                    result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Get_strModifier();
+                    result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.StrModifier;
                 }
 
                 else
                 {
-                    if(SheetManager.CS_Manager_Inst.character.Get_dexModifier() >= SheetManager.CS_Manager_Inst.character.Get_strModifier())
+                    if(SheetManager.CS_Manager_Inst.character.DexModifier >= SheetManager.CS_Manager_Inst.character.StrModifier)
                     {
-                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Get_dexModifier();
+                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.DexModifier;
                     }
 
                     else
                     {
-                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Get_strModifier();
+                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.StrModifier;
                     }
                 }
             }
 
             else
             {
-                result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Get_dexModifier();
+                result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.DexModifier;
             }
 
             return result;
@@ -406,7 +406,7 @@ namespace DnD_CharSheet_5e
 
             if(int.TryParse(Hit_TB.Text, out damage))
             {
-                Check_for_InstantDeath(SheetManager.CS_Manager_Inst.character.Get_currHP(), damage);
+                Check_for_InstantDeath(SheetManager.CS_Manager_Inst.character.CurrentHP, damage);
                 SheetManager.CS_Manager_Inst.Get_Hit(damage);
                 Check_ConsciousnessStatus();
                 Hit_TB.Text = null;
@@ -458,7 +458,7 @@ namespace DnD_CharSheet_5e
 
         private void Check_ConsciousnessStatus()
         {
-            if(SheetManager.CS_Manager_Inst.character.Get_currHP() <= 0)
+            if(SheetManager.CS_Manager_Inst.character.CurrentHP <= 0)
             {
                 IsUnconscious = true;
                 Enable_DeathSavingThrows();
@@ -480,9 +480,9 @@ namespace DnD_CharSheet_5e
 
         private void Check_AliveState()
         {
-            if(SheetManager.CS_Manager_Inst.character.Get_AliveStatus() == false)
+            if(SheetManager.CS_Manager_Inst.character.IsAlive == false)
             {
-                SheetManager.CS_Manager_Inst.character.Set_AliveStatus(true);
+                SheetManager.CS_Manager_Inst.character.IsAlive = true;
                 HealingPanel.IsEnabled = true;
             }
         }
@@ -490,9 +490,9 @@ namespace DnD_CharSheet_5e
         private void Check_for_InstantDeath(int formerHp, int damage)
         {
             int damageExcess = formerHp - damage;
-            int negativeHPMax = -SheetManager.CS_Manager_Inst.character.Get_maxHP();
+            int negativeHPMax = -SheetManager.CS_Manager_Inst.character.MaxHP;
 
-            if(damageExcess <= negativeHPMax && damage >= SheetManager.CS_Manager_Inst.character.Get_maxHP())
+            if(damageExcess <= negativeHPMax && damage >= SheetManager.CS_Manager_Inst.character.MaxHP)
             {
                 Character_Dies();
             }
@@ -500,7 +500,7 @@ namespace DnD_CharSheet_5e
 
         private void Character_Dies()
         {            
-            SheetManager.CS_Manager_Inst.character.Set_AliveStatus(false);
+            SheetManager.CS_Manager_Inst.character.IsAlive = false;
             MessageBox.Show(DeathMessage);
             Uncheck_DeathSaves();
             Disable_DeathSavingThrows();
@@ -513,15 +513,15 @@ namespace DnD_CharSheet_5e
             MessageBox.Show(StabilizedMessage);
 
             if (OneHP_CB.IsChecked == true)
-            {                
-                SheetManager.CS_Manager_Inst.character.Set_currHP(1);
+            {
+                SheetManager.CS_Manager_Inst.character.Set_CurrHP(1);
                 IsUnconscious = false;
                 
             }
 
             else
             {
-                SheetManager.CS_Manager_Inst.character.Set_currHP(0);
+                SheetManager.CS_Manager_Inst.character.Set_CurrHP(0);
             }
 
             Uncheck_DeathSaves();
@@ -772,14 +772,14 @@ namespace DnD_CharSheet_5e
 
         private void ReturnToLife()
         {
-            SheetManager.CS_Manager_Inst.character.Set_AliveStatus(true);
+            SheetManager.CS_Manager_Inst.character.IsAlive = true;
             IsUnconscious = false;
         }
 
         private void ComeBackWithOneHP()
         {
-            SheetManager.CS_Manager_Inst.character.Set_currHP(1);
-            HP_Curr_TB.Text = SheetManager.CS_Manager_Inst.character.Get_currHP().ToString();
+            SheetManager.CS_Manager_Inst.character.Set_CurrHP(1);
+            HP_Curr_TB.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
         }
 
         private void HealTxt_Btn_Click(object sender, RoutedEventArgs e)
@@ -840,32 +840,32 @@ namespace DnD_CharSheet_5e
 
         private void Update_CharacterState()
         {
-            if (SheetManager.CS_Manager_Inst.character.Get_currHP() <= 0)
+            if (SheetManager.CS_Manager_Inst.character.CurrentHP <= 0)
             {
-                SheetManager.CS_Manager_Inst.character.Set_ConsciousnessStatus(false);
+                SheetManager.CS_Manager_Inst.character.IsConscious = false;
             }
 
             else
             {
-                SheetManager.CS_Manager_Inst.character.Set_ConsciousnessStatus(true);
+                SheetManager.CS_Manager_Inst.character.IsConscious = true;
             }
         }
 
         private void Update_HP_Txt()
         {
-            HP_Curr_TB.Text = SheetManager.CS_Manager_Inst.character.Get_currHP().ToString();
+            HP_Curr_TB.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
         }
 
         private void Update_AC_Txt()
         {
-            AC_TB.Text = SheetManager.CS_Manager_Inst.character.Get_AC().ToString();
+            AC_TB.Text = SheetManager.CS_Manager_Inst.character.acChanged.ToString();
         }
 
         private void Update_TempHP_Txt()
         {
-            if(SheetManager.CS_Manager_Inst.character.Get_tempHP() > 0)
+            if(SheetManager.CS_Manager_Inst.character.TempHP > 0)
             {
-                TempHP_TB.Text = SheetManager.CS_Manager_Inst.character.Get_tempHP().ToString();
+                TempHP_TB.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
             }
 
             else
