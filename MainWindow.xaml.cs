@@ -188,12 +188,12 @@ namespace DnD_CharSheet_5e
 
         private void FirstLevel()
         {
-            sheetManager.character.Set_charLvl(1);
-            LevelText.Text = sheetManager.character.Get_charLvl().ToString();
+            sheetManager.character.Level = 1;
+            LevelText.Text = sheetManager.character.Level.ToString();
             Level_Up_bt.IsEnabled = true;            
-            sheetManager.character.Update_hitDice();
-            HDtext.Text = sheetManager.character.Get_hitDice().ToString();
-            ProfBonus_Box.Text = sheetManager.character.Get_ProfBonus().ToString();
+            sheetManager.character.Update_HitDice();
+            HDtext.Text = sheetManager.character.HitDice.ToString();
+            ProfBonus_Box.Text = sheetManager.character.ProficiencyBonus.ToString();
         }
 
         private void Init_HPHD_Panel()
@@ -202,7 +202,7 @@ namespace DnD_CharSheet_5e
             {
                 maxHPtext.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_maxHP_byText(maxHPtext.Text);
+                sheetManager.character.Set_MaxHP_byText(maxHPtext.Text);
             }
 
             else { hasError = true; }
@@ -212,27 +212,27 @@ namespace DnD_CharSheet_5e
             SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
             SheetManager.CS_Manager_Inst.Init_TempHPCallback();
 
-            currHPtext.Text = sheetManager.character.Get_currHP().ToString();
-            currHDtext.Text = sheetManager.character.Get_currHitDice().ToString();
+            currHPtext.Text = sheetManager.character.CurrentHP.ToString();
+            currHDtext.Text = sheetManager.character.CurrentHitDice.ToString();
         }
 
         private void Set_Level_and_HP_Panel()
         {
-            LevelText.Text = sheetManager.character.Get_charLvl().ToString();
+            LevelText.Text = sheetManager.character.Level.ToString();
             Level_Up_bt.IsEnabled = true;
 
             SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP;
             SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
             SheetManager.CS_Manager_Inst.Init_TempHPCallback();
 
-            maxHPtext.Text = sheetManager.character.Get_maxHP().ToString();
-            currHPtext.Text = sheetManager.character.Get_currHP().ToString();
-            tempHPtext.Text = sheetManager.character.Get_tempHP().ToString();
+            maxHPtext.Text = sheetManager.character.MaxHP.ToString();
+            currHPtext.Text = sheetManager.character.CurrentHP.ToString();
+            tempHPtext.Text = sheetManager.character.TempHP.ToString();
 
-            HDtext.Text = sheetManager.character.Get_hitDice().ToString();
-            currHDtext.Text = sheetManager.character.Get_currHitDice().ToString();
+            HDtext.Text = sheetManager.character.HitDice.ToString();
+            currHDtext.Text = sheetManager.character.CurrentHitDice.ToString();
             
-            ProfBonus_Box.Text = sheetManager.character.Get_ProfBonus().ToString();
+            ProfBonus_Box.Text = sheetManager.character.ProficiencyBonus.ToString();
         }
 
         private void Activate_Interaction()
@@ -286,24 +286,24 @@ namespace DnD_CharSheet_5e
 
         private void SubmitCharacter_byUserInput()
         {
-            sheetManager.character.Set_playerName(PlayerNameText.Text);
-            sheetManager.character.Set_charName(CharNameText.Text);
-            sheetManager.character.Set_Race(RaceMenu.Text);
-            sheetManager.character.Set_Subrace(SubRaceMenu.Text);
-            sheetManager.character.Set_charClass(ClassMenu.Text);
-            sheetManager.character.Set_Alignment(AlignmentBox.Text);
-            sheetManager.character.Set_Background(BackgroundBox.Text);
+            sheetManager.character.PlayerName = PlayerNameText.Text;
+            sheetManager.character.CharacterName = CharNameText.Text;
+            sheetManager.character.CharacterRace = RaceMenu.Text;
+            sheetManager.character.CharacterSubrace = SubRaceMenu.Text;
+            sheetManager.character.CharacterClass = ClassMenu.Text;
+            sheetManager.character.Alignment = AlignmentBox.Text;
+            sheetManager.character.Background = BackgroundBox.Text;
         }
         
         private void SubmitCharacter()
         {
-            PlayerNameText.Text = sheetManager.character.Get_playerName();
-            CharNameText.Text = sheetManager.character.Get_charName();
-            RaceMenu.Text = sheetManager.character.Get_Race();
-            SubRaceMenu.Text = sheetManager.character.Get_Subrace();
-            ClassMenu.Text = sheetManager.character.Get_charClass();
-            AlignmentBox.Text = sheetManager.character.Get_Alignment();
-            BackgroundBox.Text = sheetManager.character.Get_Background();
+            PlayerNameText.Text = sheetManager.character.PlayerName;
+            CharNameText.Text = sheetManager.character.CharacterName;
+            RaceMenu.Text = sheetManager.character.CharacterRace;
+            SubRaceMenu.Text = sheetManager.character.CharacterSubrace;
+            ClassMenu.Text = sheetManager.character.CharacterClass;
+            AlignmentBox.Text = sheetManager.character.Alignment;
+            BackgroundBox.Text = sheetManager.character.Background;
         }
 
         private void Activate_HP_Panel()
@@ -381,12 +381,12 @@ namespace DnD_CharSheet_5e
 
         private void Show_AbilityScores()
         {
-            strScoreText.Text = sheetManager.character.Get_strValue().ToString();
-            dexScoreText.Text = sheetManager.character.Get_dexValue().ToString();
-            conScoreText.Text = sheetManager.character.Get_conValue().ToString();
-            intScoreText.Text = sheetManager.character.Get_intValue().ToString();
-            wisScoreText.Text = sheetManager.character.Get_wisValue().ToString();
-            chaScoreText.Text = sheetManager.character.Get_chaValue().ToString();
+            strScoreText.Text = sheetManager.character.StrScore.ToString();
+            dexScoreText.Text = sheetManager.character.DexScore.ToString();
+            conScoreText.Text = sheetManager.character.ConScore.ToString();
+            intScoreText.Text = sheetManager.character.IntScore.ToString();
+            wisScoreText.Text = sheetManager.character.WisScore.ToString();
+            chaScoreText.Text = sheetManager.character.ChaScore.ToString();
         }
 
         private void Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput()
@@ -396,9 +396,9 @@ namespace DnD_CharSheet_5e
             {
                 strScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_strValue_byText(strScoreText.Text);
-                sheetManager.character.Set_strModifier(sheetManager.character.Get_strValue());
-                strModifierText.Text = sheetManager.character.Get_strModifier().ToString();
+                sheetManager.character.Set_StrScore_byText(strScoreText.Text);
+                sheetManager.character.Calculate_StrModifier();
+                strModifierText.Text = sheetManager.character.StrModifier.ToString();
             }
 
             else { hasError = true; }
@@ -407,9 +407,9 @@ namespace DnD_CharSheet_5e
             {
                 dexScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_dexValue_byText(dexScoreText.Text);
-                sheetManager.character.Set_dexModifier(sheetManager.character.Get_dexValue());
-                dexModifierText.Text = sheetManager.character.Get_dexModifier().ToString();
+                sheetManager.character.Set_DexScore_byText(dexScoreText.Text);
+                sheetManager.character.Calculate_DexModifier();
+                dexModifierText.Text = sheetManager.character.DexModifier.ToString();
             }
 
             else { hasError = true; }
@@ -418,9 +418,9 @@ namespace DnD_CharSheet_5e
             {
                 conScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_conValue_byText(conScoreText.Text);
-                sheetManager.character.Set_conModifier(sheetManager.character.Get_conValue());
-                conModifierText.Text = sheetManager.character.Get_conModifier().ToString();
+                sheetManager.character.Set_ConScore_byText(conScoreText.Text);
+                sheetManager.character.Calculate_ConModifier();
+                conModifierText.Text = sheetManager.character.ConModifier.ToString();
             }
 
             else { hasError = true; }
@@ -429,9 +429,9 @@ namespace DnD_CharSheet_5e
             {
                 intScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_intValue_byText(intScoreText.Text);
-                sheetManager.character.Set_intModifier(sheetManager.character.Get_intValue());
-                intModifierText.Text = sheetManager.character.Get_intModifier().ToString();
+                sheetManager.character.Set_IntScore_byText(intScoreText.Text);
+                sheetManager.character.Calculate_IntModifier();
+                intModifierText.Text = sheetManager.character.IntModifier.ToString();
             }
 
 
@@ -441,9 +441,9 @@ namespace DnD_CharSheet_5e
             {
                 wisScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_wisValue_byText(wisScoreText.Text);
-                sheetManager.character.Set_wisModifier(sheetManager.character.Get_wisValue());
-                wisModifierText.Text = sheetManager.character.Get_wisModifier().ToString();
+                sheetManager.character.Set_WisScore_byText(wisScoreText.Text);
+                sheetManager.character.Calculate_WisModifier();
+                wisModifierText.Text = sheetManager.character.WisModifier.ToString();
             }
 
             else { hasError = true; }
@@ -452,9 +452,9 @@ namespace DnD_CharSheet_5e
             {
                 chaScoreText.IsEnabled = false;
                 hasError = false;
-                sheetManager.character.Set_chaValue_byText(chaScoreText.Text);
-                sheetManager.character.Set_chaModifier(sheetManager.character.Get_chaValue());
-                chaModifierText.Text = sheetManager.character.Get_chaModifier().ToString();
+                sheetManager.character.Set_ChaScore_byText(chaScoreText.Text);
+                sheetManager.character.Calculate_ChaModifier();
+                chaModifierText.Text = sheetManager.character.ChaModifier.ToString();
             }
 
             else { hasError = true; }
@@ -482,28 +482,28 @@ namespace DnD_CharSheet_5e
             maxHPtext.IsEnabled = false;
 
             strScoreText.IsEnabled = false;            
-            strModifierText.Text = sheetManager.character.Get_strModifier().ToString();
+            strModifierText.Text = sheetManager.character.StrModifier.ToString();
             
             dexScoreText.IsEnabled = false;            
-            dexModifierText.Text = sheetManager.character.Get_dexModifier().ToString();
+            dexModifierText.Text = sheetManager.character.DexModifier.ToString();
 
             conScoreText.IsEnabled = false;            
-            conModifierText.Text = sheetManager.character.Get_conModifier().ToString();
+            conModifierText.Text = sheetManager.character.ConModifier.ToString();
 
             intScoreText.IsEnabled = false;            
-            intModifierText.Text = sheetManager.character.Get_intModifier().ToString();
+            intModifierText.Text = sheetManager.character.IntModifier.ToString();
 
             wisScoreText.IsEnabled = false;            
-            wisModifierText.Text = sheetManager.character.Get_wisModifier().ToString();
+            wisModifierText.Text = sheetManager.character.WisModifier.ToString();
 
             chaScoreText.IsEnabled = false;            
-            chaModifierText.Text = sheetManager.character.Get_chaModifier().ToString();            
+            chaModifierText.Text = sheetManager.character.ChaModifier.ToString();            
         }
 
         private void Activate_IniRolls()
         {
-            sheetManager.character.Set_iniBonus();
-            iniBonus.Text = sheetManager.character.Get_iniBonus().ToString();
+            sheetManager.character.Set_IniBonus();
+            iniBonus.Text = sheetManager.character.InitiativeBonus.ToString();
             iniButton.IsEnabled = true;
         }
 
@@ -608,7 +608,7 @@ namespace DnD_CharSheet_5e
         private void Transfer_SavingThrows()
         {
             sheetManager.character.Set_SaveBaseValues();
-            sheetManager.character.Set_SaveProficiencies(saveProf_STR.IsChecked.Value, saveProf_DEX.IsChecked.Value, saveProf_CON.IsChecked.Value, saveProf_INT.IsChecked.Value, saveProf_WIS.IsChecked.Value, saveProf_CHA.IsChecked.Value);
+            sheetManager.character.UI_Set_SaveProficiencies(saveProf_STR.IsChecked.Value, saveProf_DEX.IsChecked.Value, saveProf_CON.IsChecked.Value, saveProf_INT.IsChecked.Value, saveProf_WIS.IsChecked.Value, saveProf_CHA.IsChecked.Value);
         }
 
         private void Calculate_SaveModifiers()
@@ -618,32 +618,32 @@ namespace DnD_CharSheet_5e
 
         private void Set_SaveProficiency_Buttons()
         {
-            if(sheetManager.character.Get_STR_Prof())
+            if(sheetManager.character.STR_Save.IsProficient)
             {
                 saveProf_STR.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_DEX_Prof())
+            if (sheetManager.character.DEX_Save.IsProficient)
             {
                 saveProf_DEX.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_CON_Prof())
+            if (sheetManager.character.CON_Save.IsProficient)
             {
                 saveProf_CON.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_INT_Prof())
+            if (sheetManager.character.INT_Save.IsProficient)
             {
                 saveProf_INT.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_WIS_Prof())
+            if (sheetManager.character.WIS_Save.IsProficient)
             {
                 saveProf_WIS.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_CHA_Prof())
+            if (sheetManager.character.CHA_Save.IsProficient)
             {
                 saveProf_CHA.IsChecked = true;
             }
@@ -651,12 +651,12 @@ namespace DnD_CharSheet_5e
 
         private void Show_SaveModifiers()
         {
-            STRsave_Val.Text = sheetManager.character.Get_STR_Save().ToString();
-            DEXsave_Val.Text = sheetManager.character.Get_DEX_Save().ToString();
-            CONsave_Val.Text = sheetManager.character.Get_CON_Save().ToString();
-            WISsave_Val.Text = sheetManager.character.Get_WIS_Save().ToString();
-            INTsave_Val.Text = sheetManager.character.Get_INT_Save().ToString();
-            CHAsave_Val.Text = sheetManager.character.Get_CHA_Save().ToString();
+            STRsave_Val.Text = sheetManager.character.STR_Save.SaveModifier.ToString();
+            DEXsave_Val.Text = sheetManager.character.DEX_Save.SaveModifier.ToString();
+            CONsave_Val.Text = sheetManager.character.CON_Save.SaveModifier.ToString();
+            WISsave_Val.Text = sheetManager.character.WIS_Save.SaveModifier.ToString();
+            INTsave_Val.Text = sheetManager.character.INT_Save.SaveModifier.ToString();
+            CHAsave_Val.Text = sheetManager.character.CHA_Save.SaveModifier.ToString();
         }
 
         private void Activate_SavingThrows()
@@ -685,11 +685,11 @@ namespace DnD_CharSheet_5e
 
         private void Set_SkillProficiencies()
         {
-            sheetManager.character.Set_Proficiencies_strSkills(AthleticsProf.IsChecked.Value);
-            sheetManager.character.Set_Proficiencies_dexSkills(AcrobaticsProf.IsChecked.Value, SleightOfHandProf.IsChecked.Value, StealthProf.IsChecked.Value);
-            sheetManager.character.Set_Proficiencies_intSkills(ArcanaProf.IsChecked.Value, HistoryProf.IsChecked.Value, InvestigationProf.IsChecked.Value, NatureProf.IsChecked.Value, ReligionProf.IsChecked.Value);
-            sheetManager.character.Set_Proficiencies_wisSkills(AnimalHandlingProf.IsChecked.Value, InsightProf.IsChecked.Value, MedicineProf.IsChecked.Value, PerceptionProf.IsChecked.Value, SurvivalProf.IsChecked.Value);
-            sheetManager.character.Set_Proficiencies_chaSkills(DeceptionProf.IsChecked.Value, IntimidationProf.IsChecked.Value, PerformanceProf.IsChecked.Value, PersuasionProf.IsChecked.Value);
+            sheetManager.character.UI_Set_Proficiencies_strSkills(AthleticsProf.IsChecked.Value);
+            sheetManager.character.UI_Set_Proficiencies_dexSkills(AcrobaticsProf.IsChecked.Value, SleightOfHandProf.IsChecked.Value, StealthProf.IsChecked.Value);
+            sheetManager.character.UI_Set_Proficiencies_intSkills(ArcanaProf.IsChecked.Value, HistoryProf.IsChecked.Value, InvestigationProf.IsChecked.Value, NatureProf.IsChecked.Value, ReligionProf.IsChecked.Value);
+            sheetManager.character.UI_Set_Proficiencies_wisSkills(AnimalHandlingProf.IsChecked.Value, InsightProf.IsChecked.Value, MedicineProf.IsChecked.Value, PerceptionProf.IsChecked.Value, SurvivalProf.IsChecked.Value);
+            sheetManager.character.UI_Set_Proficiencies_chaSkills(DeceptionProf.IsChecked.Value, IntimidationProf.IsChecked.Value, PerformanceProf.IsChecked.Value, PersuasionProf.IsChecked.Value);
         }
 
         private void Calculate_SkillModifiers()
@@ -699,87 +699,87 @@ namespace DnD_CharSheet_5e
 
         private void Set_SkillProficiency_Buttons()
         {
-            if(sheetManager.character.Get_Acrobatics_Prof())
+            if(sheetManager.character.Acrobatics.IsProficient)
             {
                 AcrobaticsProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_AnimalHandling_Prof())
+            if(sheetManager.character.AnimalHandling.IsProficient)
             {
                 AnimalHandlingProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Arcana_Prof())
+            if(sheetManager.character.Arcana.IsProficient)
             {
                 ArcanaProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Athletics_Prof())
+            if(sheetManager.character.Athletics.IsProficient)
             {
                 AthleticsProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Deception_Prof())
+            if(sheetManager.character.Deception.IsProficient)
             {
                 DeceptionProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_History_Prof())
+            if(sheetManager.character.History.IsProficient)
             {
                 HistoryProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Insight_Prof())
+            if(sheetManager.character.Insight.IsProficient)
             {
                 InsightProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Intimidation_Prof())
+            if(sheetManager.character.Intimidation.IsProficient)
             {
                 IntimidationProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Investigation_Prof())
+            if(sheetManager.character.Investigation.IsProficient)
             {
                 InvestigationProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Medicine_Prof())
+            if(sheetManager.character.Medicine.IsProficient)
             {
                 MedicineProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Nature_Prof())
+            if(sheetManager.character.Nature.IsProficient)
             {
                 NatureProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Perception_Prof())
+            if(sheetManager.character.Perception.IsProficient)
             {
                 PerceptionProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Performance_Prof())
+            if(sheetManager.character.Performance.IsProficient)
             {
                 PerformanceProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Religion_Prof())
+            if(sheetManager.character.Religion.IsProficient)
             {
                 ReligionProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_SleightOfHand_Prof())
+            if(sheetManager.character.SleightOfHand.IsProficient)
             {
                 SleightOfHandProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Stealth_Prof())
+            if(sheetManager.character.Stealth.IsProficient)
             {
                 StealthProf.IsChecked = true;
             }
 
-            if (sheetManager.character.Get_Survival_Prof())
+            if(sheetManager.character.Survival.IsProficient)
             {
                 SurvivalProf.IsChecked = true;
             }
@@ -831,31 +831,31 @@ namespace DnD_CharSheet_5e
 
         private void Show_SkillModifiers()
         {
-            AcrobaticsTxt.Text = sheetManager.character.Get_Acrobatics().ToString();
-            AnimalHandlingTxt.Text = sheetManager.character.Get_AnimalHandling().ToString();
-            ArcanaTxt.Text = sheetManager.character.Get_Arcana().ToString();
-            AthleticsTxt.Text = sheetManager.character.Get_Athletics().ToString();
+            AcrobaticsTxt.Text = sheetManager.character.Acrobatics.SkillModifier.ToString();
+            AnimalHandlingTxt.Text = sheetManager.character.AnimalHandling.SkillModifier.ToString();
+            ArcanaTxt.Text = sheetManager.character.Arcana.SkillModifier.ToString();
+            AthleticsTxt.Text = sheetManager.character.Athletics.SkillModifier.ToString();
 
-            DeceptionTxt.Text = sheetManager.character.Get_Deception().ToString();
+            DeceptionTxt.Text = sheetManager.character.Deception.SkillModifier.ToString();
 
-            HistoryTxt.Text = sheetManager.character.Get_History().ToString();
-            InsightTxt.Text = sheetManager.character.Get_Insight().ToString();
-            IntimidationTxt.Text = sheetManager.character.Get_Intimidation().ToString();
-            InvestigationTxt.Text = sheetManager.character.Get_Investigation().ToString();
+            HistoryTxt.Text = sheetManager.character.History.SkillModifier.ToString();
+            InsightTxt.Text = sheetManager.character.Insight.SkillModifier.ToString();
+            IntimidationTxt.Text = sheetManager.character.Intimidation.SkillModifier.ToString();
+            InvestigationTxt.Text = sheetManager.character.Investigation.SkillModifier.ToString();
 
-            MedicineTxt.Text = sheetManager.character.Get_Medicine().ToString();
-            NatureTxt.Text = sheetManager.character.Get_Nature().ToString();
+            MedicineTxt.Text = sheetManager.character.Medicine.SkillModifier.ToString();
+            NatureTxt.Text = sheetManager.character.Nature.SkillModifier.ToString();
 
-            PerceptionTxt.Text = sheetManager.character.Get_Perception().ToString();
-            PerformanceTxt.Text = sheetManager.character.Get_Performance().ToString();
-            PersuasionTxt.Text = sheetManager.character.Get_Persuasion().ToString();
+            PerceptionTxt.Text = sheetManager.character.Perception.SkillModifier.ToString();
+            PerformanceTxt.Text = sheetManager.character.Performance.SkillModifier.ToString();
+            PersuasionTxt.Text = sheetManager.character.Persuasion.SkillModifier.ToString();
 
-            ReligionTxt.Text = sheetManager.character.Get_Religion().ToString();
+            ReligionTxt.Text = sheetManager.character.Religion.SkillModifier.ToString();
 
-            SleightOfHandTxt.Text = sheetManager.character.Get_SleightOfHand().ToString();
-            StealthTxt.Text = sheetManager.character.Get_Stealth().ToString();
+            SleightOfHandTxt.Text = sheetManager.character.SleightOfHand.SkillModifier.ToString();
+            StealthTxt.Text = sheetManager.character.Stealth.SkillModifier.ToString();
 
-            SurvivalTxt.Text = sheetManager.character.Get_Survival().ToString();
+            SurvivalTxt.Text = sheetManager.character.Survival.SkillModifier.ToString();
         }
 
         private void Activate_SkillCheck_Buttons()
@@ -997,19 +997,19 @@ namespace DnD_CharSheet_5e
         private void Update_AC()
         {
             //SheetManager.CS_Manager_Inst.character.Calculate_AC();
-            AC.Text = SheetManager.CS_Manager_Inst.character.Get_AC().ToString();
+            AC.Text = SheetManager.CS_Manager_Inst.character.AC.ToString();
         }
 
         private void Update_HP()
         {
-            currHPtext.Text = SheetManager.CS_Manager_Inst.character.Get_currHP().ToString();
+            currHPtext.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
         }
 
         private void Update_TempHP()
         {
-            if(SheetManager.CS_Manager_Inst.character.Get_tempHP() > 0)
+            if(SheetManager.CS_Manager_Inst.character.TempHP > 0)
             {
-                tempHPtext.Text = SheetManager.CS_Manager_Inst.character.Get_tempHP().ToString();
+                tempHPtext.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
             }
 
             else
@@ -1021,9 +1021,9 @@ namespace DnD_CharSheet_5e
         private void LevelUpButton_Click(object sender, RoutedEventArgs e)
         {            
             sheetManager.character.Level_Up();
-            LevelText.Text = sheetManager.character.Get_charLvl().ToString();            
-            HDtext.Text = sheetManager.character.Get_hitDice().ToString();
-            ProfBonus_Box.Text = sheetManager.character.Get_ProfBonus().ToString();
+            LevelText.Text = sheetManager.character.Level.ToString();            
+            HDtext.Text = sheetManager.character.HitDice.ToString();
+            ProfBonus_Box.Text = sheetManager.character.ProficiencyBonus.ToString();
             FileManager.FM_Inst.Play_ClickSound();
         }        
 
@@ -1035,181 +1035,181 @@ namespace DnD_CharSheet_5e
 
         public void StrButton_Click(object sender, RoutedEventArgs e)
         {           
-            strengthResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_strModifier()).ToString();
+            strengthResult.Text = sheetManager.Ability_Check(sheetManager.character.StrModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void DexButton_Click(object sender, RoutedEventArgs e)
         {
-            dexResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_dexModifier()).ToString();
+            dexResult.Text = sheetManager.Ability_Check(sheetManager.character.DexModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void ConButton_Click(object sender, RoutedEventArgs e)
         {
-            conResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_conModifier()).ToString();
+            conResult.Text = sheetManager.Ability_Check(sheetManager.character.ConModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void IntButton_Click(object sender, RoutedEventArgs e)
         {
-            intResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_intModifier()).ToString();
+            intResult.Text = sheetManager.Ability_Check(sheetManager.character.IntModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void WisButton_Click(object sender, RoutedEventArgs e)
         {
-            wisResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_wisModifier()).ToString();
+            wisResult.Text = sheetManager.Ability_Check(sheetManager.character.WisModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void ChaButton_Click(object sender, RoutedEventArgs e)
         {
-            chaResult.Text = sheetManager.Ability_Check(sheetManager.character.Get_chaModifier()).ToString();
+            chaResult.Text = sheetManager.Ability_Check(sheetManager.character.ChaModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void STR_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            STRsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_STR_Save()).ToString();
+            STRsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.STR_Save.SaveModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void DEX_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            DEXsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_DEX_Save()).ToString();
+            DEXsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.DEX_Save.SaveModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void CON_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            CONsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_CON_Save()).ToString();
+            CONsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.CON_Save.SaveModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void INT_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            INTsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_INT_Save()).ToString();
+            INTsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.INT_Save.SaveModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void WIS_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            WISsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_WIS_Save()).ToString();
+            WISsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.WIS_Save.SaveModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void CHA_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            CHAsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.Get_CHA_Save()).ToString();
+            CHAsave_Result.Text = sheetManager.SavingThrow(sheetManager.character.CHA_Save.SaveModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void AcrobaticsBT_Click(object sender, RoutedEventArgs e)
         {
-            Acrobatics_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Acrobatics()).ToString();
+            Acrobatics_Result.Text = sheetManager.Skill_Check(sheetManager.character.Acrobatics.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void AnimalHandlingBT_Click(object sender, RoutedEventArgs e)
         {
-            AnimalHandling_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_AnimalHandling()).ToString();
+            AnimalHandling_Result.Text = sheetManager.Skill_Check(sheetManager.character.AnimalHandling.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void ArcanaBT_Click(object sender, RoutedEventArgs e)
         {
-            Arcana_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Arcana()).ToString();
+            Arcana_Result.Text = sheetManager.Skill_Check(sheetManager.character.Arcana.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void AthleticsBT_Click(object sender, RoutedEventArgs e)
         {
-            Athletics_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Athletics()).ToString();
+            Athletics_Result.Text = sheetManager.Skill_Check(sheetManager.character.Athletics.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void DeceptionBT_Click(object sender, RoutedEventArgs e)
         {
-            Deception_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Deception()).ToString();
+            Deception_Result.Text = sheetManager.Skill_Check(sheetManager.character.Deception.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void HistoryBT_Click(object sender, RoutedEventArgs e)
         {
-            History_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_History()).ToString();
+            History_Result.Text = sheetManager.Skill_Check(sheetManager.character.History.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void InsightBT_Click(object sender, RoutedEventArgs e)
         {
-            Insight_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Insight()).ToString();
+            Insight_Result.Text = sheetManager.Skill_Check(sheetManager.character.Insight.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void IntimidationBT_Click(object sender, RoutedEventArgs e)
         {
-            Intimidation_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Intimidation()).ToString();
+            Intimidation_Result.Text = sheetManager.Skill_Check(sheetManager.character.Intimidation.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void InvestigationBT_Click(object sender, RoutedEventArgs e)
         {
-            Investigation_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Investigation()).ToString();
+            Investigation_Result.Text = sheetManager.Skill_Check(sheetManager.character.Investigation.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void MedicineBT_Click(object sender, RoutedEventArgs e)
         {
-            Medicine_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Medicine()).ToString();
+            Medicine_Result.Text = sheetManager.Skill_Check(sheetManager.character.Medicine.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void NatureBT_Click(object sender, RoutedEventArgs e)
         {
-            Nature_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Nature()).ToString();
+            Nature_Result.Text = sheetManager.Skill_Check(sheetManager.character.Nature.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void PerceptionBT_Click(object sender, RoutedEventArgs e)
         {
-            Perception_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Perception()).ToString();
+            Perception_Result.Text = sheetManager.Skill_Check(sheetManager.character.Perception.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void PerformanceBT_Click(object sender, RoutedEventArgs e)
         {
-            Performance_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Performance()).ToString();
+            Performance_Result.Text = sheetManager.Skill_Check(sheetManager.character.Performance.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void PersuasionBT_Click(object sender, RoutedEventArgs e)
         {
-            Persuasion_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Persuasion()).ToString();
+            Persuasion_Result.Text = sheetManager.Skill_Check(sheetManager.character.Persuasion.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void ReligionBT_Click(object sender, RoutedEventArgs e)
         {
-            Religion_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Religion()).ToString();
+            Religion_Result.Text = sheetManager.Skill_Check(sheetManager.character.Religion.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void SleightOfHandBT_Click(object sender, RoutedEventArgs e)
         {
-            SleightOfHand_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_SleightOfHand()).ToString();
+            SleightOfHand_Result.Text = sheetManager.Skill_Check(sheetManager.character.SleightOfHand.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void StealthBT_Click(object sender, RoutedEventArgs e)
         {
-            Stealth_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Stealth()).ToString();
+            Stealth_Result.Text = sheetManager.Skill_Check(sheetManager.character.Stealth.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void SurvivalBT_Click(object sender, RoutedEventArgs e)
         {
-            Survival_Result.Text = sheetManager.Skill_Check(sheetManager.character.Get_Survival()).ToString();
+            Survival_Result.Text = sheetManager.Skill_Check(sheetManager.character.Survival.SkillModifier).ToString();
             FileManager.FM_Inst.Play_DiceSound();
         }        
 
