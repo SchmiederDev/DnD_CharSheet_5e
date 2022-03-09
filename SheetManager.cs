@@ -17,18 +17,18 @@ namespace DnD_CharSheet_5e
             }
         }
 
-        public Character character = new Character();
+        public Character character { get; set; } = new Character();
 
-        public Character CharGenCharacter = new Character();
+        public Character CharGenCharacter { get; set; } = new Character();
 
-        public CharacterRace CharRace = new CharacterRace();
+        public CharacterRace CharRace { get; set; } = new CharacterRace();
 
-        public D20_System dSys = new D20_System();
+        public D20_System dSys { get; set; } = new D20_System();
 
-        public List<Race> CharacterRaces = new List<Race>();
-        public List<Dragonborn> Dragonborns = new List<Dragonborn>();
+        public List<Race> CharacterRaces { get; set; } = new List<Race>();
+        public List<Dragonborn> Dragonborns { get; set; } = new List<Dragonborn>();
 
-        public List<DnDLanguage> Languages = new List<DnDLanguage>();
+        public List<DnDLanguage> Languages { get; set; } = new List<DnDLanguage>();
 
         //The magical energetical field that surrounds and permeates the worlds of D&D is called 'The Weave' in the 'Forgotten Realms' campaign setting.
         //The instance of Mystra is therefore called 'theWeave'
@@ -38,17 +38,6 @@ namespace DnD_CharSheet_5e
         bool IsTempHPactive = false;
 
         public static uint DeathSaveDC { get; } = 10;
-
-        public void Set_Character(Character playerChar)
-        {
-            character = playerChar;
-        }
-
-
-        public Character Get_Character()
-        {
-            return character;
-        }
 
         // consider to load ALL relevant databases here instead of partially mainwindow
 
@@ -123,59 +112,19 @@ namespace DnD_CharSheet_5e
             }
         }
 
-        public int Ability_Check(int modifier)
-        {
-            int result;
-
-            do
-            {
-                result = dSys.Roll_D20() + modifier;
-            } while (result < 1);
-
-            return result;
-        }
-
         public int Roll_for_Initiative()
         {
             int result;
 
-            do
-            {
-                result = dSys.Roll_D20() + character.InitiativeBonus;
-            } while (result < 1);
-
-            return result;
-        }
-
-        public int Skill_Check(int skillModifier)
-        {
-            int result;
-
-            do
-            {
-                result = dSys.Roll_D20() + skillModifier;
-            } while (result < 1);
-
-            return result;
-        }
-
-        public int SavingThrow(int saveModifier)
-        {
-            int result;
-
-            do
-            {
-                result = dSys.Roll_D20() + saveModifier;
-
-            } while (result < 1);
-
+            result = dSys.Roll_D20() + character.InitiativeBonus;
+            
             return result;
         }
 
         public int Melee_Attack()
         {
             int result;
-            result = dSys.Roll_D20() + character.StrModifier + character.ProficiencyBonus;
+            result = dSys.Roll_D20() + character.Strength.Modifier + character.ProficiencyBonus;
 
             return result;
         }
@@ -183,7 +132,7 @@ namespace DnD_CharSheet_5e
         public int Ranged_Attack()
         {
             int result;
-            result = dSys.Roll_D20() + character.DexModifier + character.ProficiencyBonus;
+            result = dSys.Roll_D20() + character.Dexterity.Modifier + character.ProficiencyBonus;
 
             return result;
         }
@@ -194,20 +143,20 @@ namespace DnD_CharSheet_5e
 
             if (character.CharEquipment.RightHand_Weapon != null && character.CharEquipment.RightHand_Weapon.IsRanged == false)
             {
-                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.StrModifier;
+                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Strength.Modifier;
                 return result;
             }
 
             else if (character.CharEquipment.RightHand_Weapon != null && character.CharEquipment.RightHand_Weapon.IsRanged == true)
             {
-                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.DexModifier;
+                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Dexterity.Modifier;
                 return result;
             }
 
             else
             {
                 MessageBox.Show($"You have no weapon equiped. Damage roll will be counted as 'Unarmed Strike'");
-                result = 1 + character.StrModifier;
+                result = 1 + character.Strength.Modifier;
                 return result;
             }
         }
