@@ -297,7 +297,6 @@ namespace DnD_CharSheet_5e
         private void Apply_AbilityScores_Btn_Click(object sender, RoutedEventArgs e)
         {
             SheetManager.CS_Manager_Inst.CharGenCharacter.SetAllAbilityScores(tempAbilityScores);
-
             onStatsConfirmed.Invoke();
         }
 
@@ -444,8 +443,7 @@ namespace DnD_CharSheet_5e
                     if (abilityScoreBox.Name == convertedBoxName)
                     {
                         int indexOfBox = Find_TextBoxIndex(abilityScoreBox.Name);
-                        int tempScore = tempAbilityScores[indexOfBox] + (int)RaceSelected.AbilityScoreIncreases[i].AbilityBonus;
-                        tempAbilityScores[indexOfBox] = tempScore;
+                        int tempScore = tempAbilityScores[indexOfBox] + (int)RaceSelected.AbilityScoreIncreases[i].AbilityBonus;                        
                         abilityScoreBox.Foreground = Brushes.Coral;
                         abilityScoreBox.Text = tempScore.ToString();
                     }
@@ -463,7 +461,6 @@ namespace DnD_CharSheet_5e
                 if(indexOfBox >= 0 && indexOfBox < AbilityScoreBoxes.Count)
                 {
                     int tempScore = tempAbilityScores[indexOfBox] + (int)SubraceSelected.SubraceIncrease.AbilityBonus;
-                    tempAbilityScores[indexOfBox] = tempScore;
                     AbilityScoreBoxes[indexOfBox].Foreground = Brushes.Coral;
                     AbilityScoreBoxes[indexOfBox].Text = tempScore.ToString();
                 }
