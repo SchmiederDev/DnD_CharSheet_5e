@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace DnD_CharSheet_5e
 {
@@ -112,15 +113,15 @@ namespace DnD_CharSheet_5e
             charIsConscious = character.IsConscious;
 
             HD = character.HitDice;
-            currHD = character.CurrentHitDice;
+            currHD = character.CurrentHitDice;                       
 
-            strength = character.StrScore;
-            dexerity = character.DexScore;
-            constitution = character.ConScore;
-            intelligence = character.IntScore;
-            wisdom = character.WisScore;
-            charisma = character.ChaScore;
-
+            strength = character.Strength.Score;            
+            dexerity = character.Dexterity.Score;
+            constitution = character.Constitution.Score;
+            intelligence = character.Intelligence.Score;
+            wisdom = character.Wisdom.Score;
+            charisma = character.Charisma.Score;
+           
             str_ST = character.STR_Save.IsProficient;
             dex_ST = character.DEX_Save.IsProficient;
             con_ST = character.CON_Save.IsProficient;
