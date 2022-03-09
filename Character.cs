@@ -42,29 +42,24 @@ namespace DnD_CharSheet_5e
         public int ArmorBonus { get; set; } = 0;
         public int ShieldBonus { get; set; } = 0;
 
-        public int StrScore { get; set; }
-        public int DexScore { get; set; }
-        public int ConScore { get; set; }
-        public int IntScore { get; set; }
-        public int WisScore { get; set; }
-        public int ChaScore { get; set; }
+        public Ability Strength { get; set; } = new Ability();
+        public Ability Dexterity { get; set; } = new Ability();
+        public Ability  Constitution { get; set; } = new Ability();
+        public Ability Intelligence { get; set; } = new Ability();
+        public Ability Wisdom { get; set; } = new Ability();
+        public Ability Charisma { get; set; } = new Ability();
 
-        public int StrModifier { get; set; }
-        public int DexModifier { get; set; }
-        public int ConModifier { get; set; }
-        public int IntModifier { get; set; }
-        public int WisModifier { get; set; }
-        public int ChaModifier { get; set; }
+        public List<Ability> Abilities = new List<Ability>();
 
 
         public SavingThrow STR_Save { get; set; } = new SavingThrow();
         public SavingThrow DEX_Save { get; set; } = new SavingThrow();
         public SavingThrow CON_Save { get; set; } = new SavingThrow();
         public SavingThrow INT_Save { get; set; } = new SavingThrow();
-        public SavingThrow  WIS_Save { get; set; } = new SavingThrow();
+        public SavingThrow WIS_Save { get; set; } = new SavingThrow();
         public SavingThrow CHA_Save { get; set; } = new SavingThrow();
 
-        public List<SavingThrow> Saves { get; private set; }
+        public List<SavingThrow> Saves { get; private set; } = new List<SavingThrow>();
 
 
         public Skill Acrobatics { get; set; } = new Skill();
@@ -92,6 +87,9 @@ namespace DnD_CharSheet_5e
         public Skill Stealth { get; set; } = new Skill();
 
         public Skill Survival { get; set; } = new Skill();
+
+
+        public List<Skill> Skills { get; set; } = new List<Skill>();
 
         public int Age { get; set; }
         public float Height { get; set; }
@@ -124,7 +122,36 @@ namespace DnD_CharSheet_5e
         
         public void Init_Basics()
         {
+            Init_Abilities();
             Init_Saves();
+            Init_Skills();
+        }
+
+        private void Init_Abilities()
+        {
+            Strength.AbilityName = "Strength";
+            Strength.ReferenceKey = "STR";
+            Abilities.Add(Strength);
+
+            Dexterity.AbilityName = "Dexterity";
+            Dexterity.ReferenceKey = "DEX";
+            Abilities.Add(Dexterity);
+
+            Constitution.AbilityName = "Constitution";
+            Constitution.ReferenceKey = "CON";
+            Abilities.Add(Constitution);
+
+            Intelligence.AbilityName = "Intelligence";
+            Intelligence.ReferenceKey = "INT";
+            Abilities.Add(Intelligence);
+
+            Wisdom.AbilityName = "Wisdom";
+            Wisdom.ReferenceKey = "WIS";
+            Abilities.Add(Wisdom);
+
+            Charisma.AbilityName = "Charisma";
+            Charisma.ReferenceKey = "CHA";
+            Abilities.Add(Charisma);
         }
 
         private void Init_Saves()
@@ -158,6 +185,81 @@ namespace DnD_CharSheet_5e
             CHA_Save.SaveKey = "CHA";
 
             Saves.Add(CHA_Save);
+        }
+
+        private void Init_Skills()
+        {
+            Acrobatics.SkillName = "Acrobatics";
+            Acrobatics.AbilityReferenceKey = "DEX";
+            Skills.Add(Acrobatics);
+
+            AnimalHandling.SkillName = "Animal Handling";
+            AnimalHandling.AbilityReferenceKey = "WIS";
+            Skills.Add(AnimalHandling);
+
+            Arcana.SkillName = "Arcana";
+            Arcana.AbilityReferenceKey = "INT";
+            Skills.Add(Arcana);
+
+            Athletics.SkillName = "Athletics";
+            Athletics.AbilityReferenceKey = "STR";
+            Skills.Add(Athletics);
+
+            Deception.SkillName = "Deception";
+            Deception.AbilityReferenceKey = "CHA";
+            Skills.Add(Deception);
+
+            History.SkillName = "History";
+            History.AbilityReferenceKey = "INT";
+            Skills.Add(History);
+
+            Insight.SkillName = "Insight";
+            Insight.AbilityReferenceKey = "WIS";
+            Skills.Add(Insight);
+
+            Intimidation.SkillName = "Intimidation";
+            Intimidation.AbilityReferenceKey = "CHA";
+            Skills.Add(Intimidation);
+
+            Investigation.SkillName = "Investigation";
+            Investigation.AbilityReferenceKey = "INT";
+            Skills.Add(Investigation);
+
+            Medicine.SkillName = "Medicine";
+            Medicine.AbilityReferenceKey = "WIS";
+            Skills.Add(Medicine);
+
+            Nature.SkillName = "Nature";
+            Nature.AbilityReferenceKey = "INT";
+            Skills.Add(Nature);
+
+            Perception.SkillName = "Perception";
+            Perception.AbilityReferenceKey = "WIS";
+            Skills.Add(Perception);
+
+            Performance.SkillName = "Performance";
+            Performance.AbilityReferenceKey = "CHA";
+            Skills.Add(Performance);
+
+            Persuasion.SkillName = "Persuasion";
+            Persuasion.AbilityReferenceKey = "CHA";
+            Skills.Add(Persuasion);
+
+            Religion.SkillName = "Religion";
+            Religion.AbilityReferenceKey = "INT";
+            Skills.Add(Religion);
+
+            SleightOfHand.SkillName = "Sleight of Hand";
+            SleightOfHand.AbilityReferenceKey = "DEX";
+            Skills.Add(SleightOfHand);
+
+            Stealth.SkillName = "Stealth";
+            Stealth.AbilityReferenceKey = "DEX";
+            Skills.Add(Stealth);
+
+            Survival.SkillName = "Survival";
+            Survival.AbilityReferenceKey = "WIS";
+            Skills.Add(Survival);
         }
 
         public void Set_MaxHP_byText(string boxText)
@@ -228,12 +330,12 @@ namespace DnD_CharSheet_5e
 
         public void Set_IniBonus()
         {
-            InitiativeBonus = DexModifier;
+            InitiativeBonus = Dexterity.Modifier;
         }
 
         public bool Check_STR_Requirement(Armor armor)
         {
-            if(armor.StrMax <= StrScore)
+            if(armor.StrMax <= Strength.Score)
             {
                 return true;
             }
@@ -253,14 +355,14 @@ namespace DnD_CharSheet_5e
 
                 if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == false)
                 {
-                    AC = ACBase + ArmorBonus + ShieldBonus + DexModifier;
+                    AC = ACBase + ArmorBonus + ShieldBonus + Dexterity.Modifier;
                 }
 
                 else if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == true)
                 {
-                    if (DexModifier <= 2)
+                    if (Dexterity.Modifier <= 2)
                     {
-                        AC = ACBase + ArmorBonus + ShieldBonus + DexModifier;
+                        AC = ACBase + ArmorBonus + ShieldBonus + Dexterity.Modifier;
                     }
 
                     else
@@ -278,7 +380,7 @@ namespace DnD_CharSheet_5e
             else if(CharEquipment.CharacterArmor == null && CharEquipment.LeftHand_Armor != null)
             {
                 ShieldBonus = CharEquipment.LeftHand_Armor.ArmorBonus;
-                AC = ACBase + ShieldBonus + DexModifier;
+                AC = ACBase + ShieldBonus + Dexterity.Modifier;
             }
 
             else if(CharEquipment.CharacterArmor != null && CharEquipment.LeftHand_Armor == null)
@@ -287,14 +389,14 @@ namespace DnD_CharSheet_5e
 
                 if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == false)
                 {
-                    AC = ACBase + ArmorBonus + DexModifier;
+                    AC = ACBase + ArmorBonus + Dexterity.Modifier;
                 }
 
                 else if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == true)
                 {
-                    if(DexModifier <= 2)
+                    if(Dexterity.Modifier <= 2)
                     {
-                        AC = ACBase + ArmorBonus + DexModifier;
+                        AC = ACBase + ArmorBonus + Dexterity.Modifier;
                     }
 
                     else
@@ -311,7 +413,7 @@ namespace DnD_CharSheet_5e
 
             else if(CharEquipment.CharacterArmor == null && CharEquipment.LeftHand_Armor == null)
             {                
-                AC = ACBase + DexModifier;
+                AC = ACBase + Dexterity.Modifier;
             }
 
             if(acChanged != null)
@@ -323,116 +425,84 @@ namespace DnD_CharSheet_5e
 
         public void Set_StrScore_byText(string boxText)
         {
-            StrScore = int.Parse(boxText);
+            Strength.Score = int.Parse(boxText);
         }
 
-        public void Calculate_StrModifier()
-        {
-            StrModifier = CalculateModifier(StrScore);
-        }
 
         public void Set_DexScore_byText(string boxText)
         {
-            DexScore = int.Parse(boxText);
-        }
-
-        public void Calculate_DexModifier()
-        {
-            DexModifier = CalculateModifier(DexScore);
+            Dexterity.Score = int.Parse(boxText);
         }
 
         public void Set_ConScore_byText(string boxText)
         {
-            ConScore = int.Parse(boxText);
-        }
-
-        public void Calculate_ConModifier()
-        {
-            ConModifier = CalculateModifier(ConScore);
+            Constitution.Score = int.Parse(boxText);
         }
 
         public void Set_IntScore_byText(string boxText)
         {
-            IntScore = int.Parse(boxText);
-        }
-
-        public void Calculate_IntModifier()
-        {
-            IntModifier = CalculateModifier(IntScore);
+            Intelligence.Score = int.Parse(boxText);
         }
 
         public void Set_WisScore_byText(string boxText)
         {
-            WisScore = int.Parse(boxText);
-        }
-
-        public void Calculate_WisModifier()
-        {
-            WisModifier = CalculateModifier(WisScore);
+            Wisdom.Score = int.Parse(boxText);
         }
 
         public void Set_ChaScore_byText(string boxText)
         {
-            ChaScore = int.Parse(boxText);
-        }
-
-        public void Calculate_ChaModifier()
-        {
-            ChaModifier = CalculateModifier(ChaScore);
+            Charisma.Score = int.Parse(boxText);
         }
 
         public void SetAllAbilityScores(int[] abilityScores)
         {
             if(abilityScores.Length <= 6)
             {
-                StrScore = abilityScores[0];
-                DexScore = abilityScores[1];
-                ConScore = abilityScores[2];
-                IntScore = abilityScores[3];
-                WisScore = abilityScores[4];
-                ChaScore = abilityScores[5];
+                Strength.Score = abilityScores[0];
+                Dexterity.Score = abilityScores[1];
+                Constitution.Score = abilityScores[2];
+                Intelligence.Score = abilityScores[3];
+                Wisdom.Score = abilityScores[4];
+                Charisma.Score = abilityScores[5];
             }
-        }
-
-        public int CalculateModifier(int score)
-        {
-            int tempScore;
-            int tempMod;
-            int tempVal_01;
-            decimal tempVal_02;
-
-            tempScore = score;
-            tempVal_01 = tempScore - 10;
-            tempVal_02 = tempVal_01 / 2m;
-
-            tempVal_01 = (int)Math.Floor(tempVal_02);
-
-            tempMod = tempVal_01;
-
-            return tempMod;
         }
 
         public void CalculateAbilityModifiers()
         {
-            Calculate_StrModifier();
-            Calculate_DexModifier();
-            Calculate_ConModifier();
-            Calculate_IntModifier();
-            Calculate_WisModifier();
-            Calculate_ChaModifier();
+            foreach(Ability ability in Abilities)
+            {
+                ability.Calculate_Modifier();
+            }
+        }
+
+        public void CalculateSavingThrowModifiers()
+        {
+            foreach(SavingThrow savingThrow in Saves)
+            {
+                savingThrow.Calculate_SaveModifier(ProficiencyBonus);
+            }
+        }
+
+        public void CalculateSkillModifiers()
+        {
+            foreach(Skill skill in Skills)
+            {
+                skill.Calculate_SkillModifier(ProficiencyBonus);
+            }
         }
 
         public void Set_SaveBaseValues()
         {
-            STR_Save.AbilityBonus = StrModifier;
-            DEX_Save.AbilityBonus = DexModifier;
-            CON_Save.AbilityBonus = ConModifier;
-            INT_Save.AbilityBonus = IntModifier;
-            WIS_Save.AbilityBonus = WisModifier;
-            CHA_Save.AbilityBonus = ChaModifier;
+            STR_Save.AbilityBonus = Strength.Modifier;
+            DEX_Save.AbilityBonus = Dexterity.Modifier;
+            CON_Save.AbilityBonus = Constitution.Modifier;
+            INT_Save.AbilityBonus = Intelligence.Modifier;
+            WIS_Save.AbilityBonus = Wisdom.Modifier;
+            CHA_Save.AbilityBonus = Charisma.Modifier;
+                        
         }
 
-        public void UI_Set_SaveProficiencies(bool strProf, bool dexProf, bool conProf, bool intProf, bool wisProf, bool chaProf)
+        public void Set_SaveProficiencies(bool strProf, bool dexProf, bool conProf, bool intProf, bool wisProf, bool chaProf)
         {
             STR_Save.IsProficient = strProf;
             DEX_Save.IsProficient = dexProf;
@@ -442,58 +512,48 @@ namespace DnD_CharSheet_5e
             CHA_Save.IsProficient = chaProf;
         }
 
-        public void Calculate_SaveModifiers()
-        {
-            STR_Save.Calculate_SaveModifier(ProficiencyBonus);
-            DEX_Save.Calculate_SaveModifier(ProficiencyBonus);
-            CON_Save.Calculate_SaveModifier(ProficiencyBonus);
-            INT_Save.Calculate_SaveModifier(ProficiencyBonus);
-            WIS_Save.Calculate_SaveModifier(ProficiencyBonus);
-            CHA_Save.Calculate_SaveModifier(ProficiencyBonus);
-        }
-
         public void Set_SkillBaseValues()
         {
-            Acrobatics.AbilityBonus = DexModifier;
-            AnimalHandling.AbilityBonus = WisModifier;
-            Arcana.AbilityBonus = IntModifier;
-            Athletics.AbilityBonus = StrModifier;
+            Acrobatics.AbilityBonus = Dexterity.Modifier;
+            AnimalHandling.AbilityBonus = Wisdom.Modifier;
+            Arcana.AbilityBonus = Intelligence.Modifier;
+            Athletics.AbilityBonus = Strength.Modifier;
 
-            Deception.AbilityBonus = ChaModifier;
+            Deception.AbilityBonus = Charisma.Modifier;
 
-            History.AbilityBonus = IntModifier;
-            Insight.AbilityBonus = WisModifier;
-            Intimidation.AbilityBonus = ChaModifier;
-            Investigation.AbilityBonus = IntModifier;
+            History.AbilityBonus = Intelligence.Modifier;
+            Insight.AbilityBonus = Wisdom.Modifier;
+            Intimidation.AbilityBonus = Charisma.Modifier;
+            Investigation.AbilityBonus = Intelligence.Modifier;
 
-            Medicine.AbilityBonus = WisModifier;
-            Nature.AbilityBonus = IntModifier;
+            Medicine.AbilityBonus = Wisdom.Modifier;
+            Nature.AbilityBonus = Intelligence.Modifier;
 
-            Perception.AbilityBonus = WisModifier;
-            Performance.AbilityBonus = ChaModifier;
-            Persuasion.AbilityBonus = ChaModifier;
+            Perception.AbilityBonus = Wisdom.Modifier;
+            Performance.AbilityBonus = Charisma.Modifier;
+            Persuasion.AbilityBonus = Charisma.Modifier;
 
-            Religion.AbilityBonus = IntModifier;
+            Religion.AbilityBonus = Intelligence.Modifier;
 
-            SleightOfHand.AbilityBonus = DexModifier;
-            Stealth.AbilityBonus = DexModifier;
+            SleightOfHand.AbilityBonus = Dexterity.Modifier;
+            Stealth.AbilityBonus = Dexterity.Modifier;
 
-            Survival.AbilityBonus = DexModifier;
+            Survival.AbilityBonus = Dexterity.Modifier;
         }
 
-        public void UI_Set_Proficiencies_strSkills(bool athletics)
+        public void Set_Proficiencies_strSkills(bool athletics)
         {
             Athletics.IsProficient = athletics;
         }
 
-        public void UI_Set_Proficiencies_dexSkills(bool acrobatics, bool sleightOfHand, bool stealth)
+        public void Set_Proficiencies_dexSkills(bool acrobatics, bool sleightOfHand, bool stealth)
         {
             Acrobatics.IsProficient = acrobatics;
             SleightOfHand.IsProficient =sleightOfHand;
             Stealth.IsProficient = stealth;
         }
 
-        public void UI_Set_Proficiencies_intSkills(bool arcana, bool history, bool investigation, bool nature, bool religion)
+        public void Set_Proficiencies_intSkills(bool arcana, bool history, bool investigation, bool nature, bool religion)
         {
             Arcana.IsProficient = arcana;
             History.IsProficient = history;
@@ -502,7 +562,7 @@ namespace DnD_CharSheet_5e
             Religion.IsProficient = religion;
         }
 
-        public void UI_Set_Proficiencies_wisSkills(bool animalHandling, bool insight, bool medicine, bool perception, bool survival)
+        public void Set_Proficiencies_wisSkills(bool animalHandling, bool insight, bool medicine, bool perception, bool survival)
         {
             AnimalHandling.IsProficient = animalHandling;
             Insight.IsProficient = insight;
@@ -511,41 +571,12 @@ namespace DnD_CharSheet_5e
             Survival.IsProficient = survival;
         }
 
-        public void UI_Set_Proficiencies_chaSkills(bool deception, bool intimidation, bool performance, bool persuasion)
+        public void Set_Proficiencies_chaSkills(bool deception, bool intimidation, bool performance, bool persuasion)
         {
             Deception.IsProficient = deception;
             Intimidation.IsProficient = intimidation;
             Performance.IsProficient = performance;
             Persuasion.IsProficient = persuasion;
-        }
-
-        public void Calculate_SkillModifiers()
-        {
-            Acrobatics.Calculate_SkillModifier(ProficiencyBonus);
-            AnimalHandling.Calculate_SkillModifier(ProficiencyBonus);
-            Arcana.Calculate_SkillModifier(ProficiencyBonus);
-            Athletics.Calculate_SkillModifier(ProficiencyBonus);
-
-            Deception.Calculate_SkillModifier(ProficiencyBonus);
-
-            History.Calculate_SkillModifier(ProficiencyBonus);
-            Insight.Calculate_SkillModifier(ProficiencyBonus);
-            Intimidation.Calculate_SkillModifier(ProficiencyBonus);
-            Investigation.Calculate_SkillModifier(ProficiencyBonus);
-
-            Medicine.Calculate_SkillModifier(ProficiencyBonus);
-            Nature.Calculate_SkillModifier(ProficiencyBonus);
-
-            Perception.Calculate_SkillModifier(ProficiencyBonus);
-            Performance.Calculate_SkillModifier(ProficiencyBonus);
-            Persuasion.Calculate_SkillModifier(ProficiencyBonus);
-
-            Religion.Calculate_SkillModifier(ProficiencyBonus);
-
-            SleightOfHand.Calculate_SkillModifier(ProficiencyBonus);
-            Stealth.Calculate_SkillModifier(ProficiencyBonus);
-
-            Survival.Calculate_SkillModifier(ProficiencyBonus);
         }
 
         public void Level_Up()
@@ -557,6 +588,7 @@ namespace DnD_CharSheet_5e
 
         public void Load_Character(CharacterData charData)
         {
+            Init_Basics();
             PlayerName = charData.pName;
             CharacterName = charData.cName;
 
@@ -582,28 +614,29 @@ namespace DnD_CharSheet_5e
             HitDice = charData.HD;
             CurrentHitDice = charData.currHD;
 
-            StrScore = charData.strength;
-            DexScore = charData.dexerity;
-            ConScore = charData.constitution;
-            IntScore = charData.intelligence;
-            WisScore = charData.wisdom;
-            ChaScore = charData.charisma;
+            Strength.Score = charData.strength;           
+            Dexterity.Score = charData.dexerity;
+            Constitution.Score = charData.constitution;
+            Intelligence.Score = charData.intelligence;
+            Wisdom.Score = charData.wisdom;
+            Charisma.Score = charData.charisma;
 
             CalculateAbilityModifiers();
-            Set_SaveBaseValues();
-            Set_SkillBaseValues();
+           
+            Set_SaveBaseValues();            
 
-            UI_Set_SaveProficiencies(charData.str_ST, charData.dex_ST, charData.con_ST, charData.int_ST, charData.wis_ST, charData.cha_ST);
+            Set_SaveProficiencies(charData.str_ST, charData.dex_ST, charData.con_ST, charData.int_ST, charData.wis_ST, charData.cha_ST);
             
-            Calculate_SaveModifiers();
+            CalculateSavingThrowModifiers();
 
-            UI_Set_Proficiencies_strSkills(charData.athletics);
-            UI_Set_Proficiencies_dexSkills(charData.acrobatics, charData.sleightOfHand, charData.stealth);
-            UI_Set_Proficiencies_intSkills(charData.arcana, charData.history, charData.investigation, charData.nature, charData.religion);
-            UI_Set_Proficiencies_wisSkills(charData.animalHandling, charData.insight, charData.medicine, charData.perception, charData.survival);
-            UI_Set_Proficiencies_chaSkills(charData.deception, charData.intimidation, charData.performance, charData.persuasion);
-
-            Calculate_SkillModifiers();                       
+            Set_Proficiencies_strSkills(charData.athletics);
+            Set_Proficiencies_dexSkills(charData.acrobatics, charData.sleightOfHand, charData.stealth);
+            Set_Proficiencies_intSkills(charData.arcana, charData.history, charData.investigation, charData.nature, charData.religion);
+            Set_Proficiencies_wisSkills(charData.animalHandling, charData.insight, charData.medicine, charData.perception, charData.survival);
+            Set_Proficiencies_chaSkills(charData.deception, charData.intimidation, charData.performance, charData.persuasion);
+            
+            Set_SkillBaseValues();
+            CalculateSkillModifiers();                       
 
             Age = charData.CD_Age;
             Height = charData.CD_Height;
