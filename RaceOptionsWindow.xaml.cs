@@ -23,6 +23,7 @@ namespace DnD_CharSheet_5e
         HighElfSelectionPage2 highElfSelectionPage2;
 
         HumanSelectionPage humanSelectionPage;
+        HumanSelectionPage2 humanSelectionPage2;
 
         public bool highElfSelectionPage_IsFirstLoad { get; set; } = true;
 
@@ -50,6 +51,8 @@ namespace DnD_CharSheet_5e
             humanSelectionPage = new HumanSelectionPage();
             humanSelectionPage.onLanguageConfirmed += Close_Window;
             humanSelectionPage.onVariantSelected += Load_HumanSelectionPageTwo;
+
+            humanSelectionPage2 = new HumanSelectionPage2();
         }
 
         public void Set_CharRace()
@@ -115,7 +118,7 @@ namespace DnD_CharSheet_5e
 
         private void Load_HumanSelectionPageTwo()
         {
-
+            RaceOptionsFrame.Content = humanSelectionPage2;
         }
     }
 }
