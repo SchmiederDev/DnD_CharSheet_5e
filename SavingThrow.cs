@@ -31,5 +31,12 @@ namespace DnD_CharSheet_5e
                 SaveModifier = AbilityBonus;
             }
         }
+
+        public int Make_SavingThrow()
+        {
+            int result = result = SheetManager.CS_Manager_Inst.dSys.Roll_D20() + SaveModifier;
+
+            return result;
+        }
     }
 }
