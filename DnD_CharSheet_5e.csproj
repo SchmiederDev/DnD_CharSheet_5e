@@ -87,6 +87,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Ability.cs" />
     <Compile Include="AbilityStatsPage.xaml.cs">
       <DependentUpon>AbilityStatsPage.xaml</DependentUpon>
     </Compile>
@@ -116,6 +117,9 @@
     </Compile>
     <Compile Include="HumanSelectionPage.xaml.cs">
       <DependentUpon>HumanSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HumanSelectionPage2.xaml.cs">
+      <DependentUpon>HumanSelectionPage2.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageHandler.cs" />
     <Compile Include="Inventory.cs" />
@@ -196,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HumanSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HumanSelectionPage2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
