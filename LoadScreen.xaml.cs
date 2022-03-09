@@ -28,8 +28,8 @@ namespace DnD_CharSheet_5e
                 L_character.Load_Character(L_charData);                
 
                 if(L_character != null)
-                {
-                    SheetManager.CS_Manager_Inst.Set_Character(L_character);
+                {                    
+                    SheetManager.CS_Manager_Inst.character = L_character;
                     MainWindow.mainWindow_Inst.Load_Character();
                 }
             }
@@ -53,8 +53,8 @@ namespace DnD_CharSheet_5e
                 L_character.Load_Character(L_charData);
 
                 if (L_character != null)
-                {
-                    SheetManager.CS_Manager_Inst.Set_Character(L_character);
+                {                    
+                    SheetManager.CS_Manager_Inst.character = L_character;
                     MainWindow.mainWindow_Inst.Load_Character();
                 }
             }
@@ -79,7 +79,7 @@ namespace DnD_CharSheet_5e
 
                 if (L_character != null)
                 {
-                    SheetManager.CS_Manager_Inst.Set_Character(L_character);
+                    SheetManager.CS_Manager_Inst.character = L_character;
                     MainWindow.mainWindow_Inst.Load_Character();
                 }
             }
@@ -104,7 +104,7 @@ namespace DnD_CharSheet_5e
 
                 if (L_character != null)
                 {
-                    SheetManager.CS_Manager_Inst.Set_Character(L_character);
+                    SheetManager.CS_Manager_Inst.character = L_character;
                     MainWindow.mainWindow_Inst.Load_Character();
                 }
             }
@@ -129,7 +129,7 @@ namespace DnD_CharSheet_5e
 
                 if (L_character != null)
                 {
-                    SheetManager.CS_Manager_Inst.Set_Character(L_character);
+                    SheetManager.CS_Manager_Inst.character = L_character;
                     MainWindow.mainWindow_Inst.Load_Character();
                 }
             }
