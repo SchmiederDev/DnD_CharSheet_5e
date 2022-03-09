@@ -49,12 +49,7 @@ namespace DnD_CharSheet_5e
             SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP_Txt;
             SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP_Txt;
             SheetManager.CS_Manager_Inst.character.acChanged += Update_AC_Txt;
-        }
-
-        public void Set_SheetManager(SheetManager sheetManager)
-        {
-            
-        }       
+        }               
 
         public void Set_Weapons(List<Weapon> weaponList)
         {
@@ -84,7 +79,7 @@ namespace DnD_CharSheet_5e
 
         private void Initialize_IniPanel()
         { 
-            IniBonus.Text = SheetManager.CS_Manager_Inst.character.DexModifier.ToString();
+            IniBonus.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Modifier.ToString();
         }
 
         private void Initialize_ACHP_Panel()
@@ -169,7 +164,7 @@ namespace DnD_CharSheet_5e
 
             else
             {
-                Damage_Result_TB_01.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.StrModifier).ToString(); 
+                Damage_Result_TB_01.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.Strength.Modifier).ToString(); 
             }
         }
 
@@ -183,7 +178,7 @@ namespace DnD_CharSheet_5e
 
             else
             {
-                Damage_Result_TB_02.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.StrModifier).ToString();
+                Damage_Result_TB_02.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.Strength.Modifier).ToString();
             }
         }
 
@@ -197,7 +192,7 @@ namespace DnD_CharSheet_5e
 
             else
             {
-                Damage_Result_TB_03.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.StrModifier).ToString();
+                Damage_Result_TB_03.Text = (unarmedStrike_Damage + SheetManager.CS_Manager_Inst.character.Strength.Modifier).ToString();
             }
         }
 
@@ -210,26 +205,26 @@ namespace DnD_CharSheet_5e
             {
                 if(attackingWeapon.IsFinesse == false)
                 {
-                    result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.StrModifier;
+                    result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Strength.Modifier;
                 }
 
                 else
                 {
-                    if(SheetManager.CS_Manager_Inst.character.DexModifier >= SheetManager.CS_Manager_Inst.character.StrModifier)
+                    if(SheetManager.CS_Manager_Inst.character.Dexterity.Modifier >= SheetManager.CS_Manager_Inst.character.Strength.Modifier)
                     {
-                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.DexModifier;
+                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Dexterity.Modifier;
                     }
 
                     else
                     {
-                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.StrModifier;
+                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Strength.Modifier;
                     }
                 }
             }
 
             else
             {
-                result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.DexModifier;
+                result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Dexterity.Modifier;
             }
 
             return result;
