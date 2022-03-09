@@ -10,6 +10,9 @@ namespace DnD_CharSheet_5e
 
         public Feat HumanFeat { get; set; }
 
+        public Skill AdditionalSkillProficiency_One { get; set; }
+        public Skill AdditionalSkillProficiency_Two { get; set; }
+
         public List<Proficiency> RaceProficiencies { get; set; }
         public List<Race_SpellAbility> RaceSpellAbilities { get; set; }
 
