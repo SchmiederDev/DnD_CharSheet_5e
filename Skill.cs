@@ -26,5 +26,11 @@ namespace DnD_CharSheet_5e
                 SkillModifier = AbilityBonus;
             }            
         }
+
+        public int SkillCheck()
+        {
+            int result = SheetManager.CS_Manager_Inst.dSys.Roll_D20() + SkillModifier;
+            return result;
+        }
     }
 }
