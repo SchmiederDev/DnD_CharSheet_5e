@@ -20,8 +20,7 @@ namespace DnD_CharSheet_5e
         public Character character { get; set; } = new Character();
 
         public Character CharGenCharacter { get; set; } = new Character();
-
-        public CharacterRace CharRace { get; set; } = new CharacterRace();
+        
 
         public D20_System dSys { get; set; } = new D20_System();
 
@@ -265,12 +264,11 @@ namespace DnD_CharSheet_5e
         }
 
         public void CharGen_SetLanguages()
-        {
-            CharGenCharacter.CharLanguages = new List<string>();
+        {            
 
-           for(int i = 0; i < CharRace.RaceBackground.Languages.Length; i++)
+           for(int i = 0; i < CharGenCharacter.CharRace.RaceBackground.Languages.Length; i++)
            {
-                CharGenCharacter.CharLanguages.Add(CharRace.RaceBackground.Languages[i]);
+                CharGenCharacter.CharLanguages.Add(CharGenCharacter.CharRace.RaceBackground.Languages[i]);
            }
         }
 
