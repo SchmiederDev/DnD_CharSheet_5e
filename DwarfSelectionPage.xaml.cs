@@ -142,7 +142,7 @@ namespace DnD_CharSheet_5e
         {
             if(SelectedProficiency.ProficiencyName != null)
             {
-                SheetManager.CS_Manager_Inst.CharRace.RaceProficiencies.Add(SelectedProficiency);
+                SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace.RaceProficiencies.Add(SelectedProficiency);
                 onSelectionConfirmed.Invoke();
             }
 
