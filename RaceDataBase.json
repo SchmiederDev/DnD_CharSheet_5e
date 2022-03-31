@@ -577,7 +577,7 @@
           }
         ],
 
-        "SubraceProficiencies": [],
+        "SubraceProficiencies": [ {"ProficiencyType": "Tool", "ProficiencyName": "Tinker's Tools"} ],
 
         "Subrace_SpellAbilities": []
       }
@@ -988,7 +988,7 @@
 
     "SubracesOfRace": [
       {
-        "SubraceName": "Half-Orc Variety",
+        "SubraceName": "Tiefling Variety",
 
         "SubraceIncrease": {},
 
