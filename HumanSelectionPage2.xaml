@@ -74,6 +74,22 @@
 
                 </Grid>
 
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border BorderBrush="SlateGray" BorderThickness="2" Background="Thistle" Width="160" HorizontalAlignment="Right" Grid.Column="0">
+                        <TextBlock Text="Selected Ability: " HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                    </Border>
+
+                    <Border BorderBrush="SlateGray" BorderThickness="2" Background="Azure" Width="170" Grid.Column="1">
+                        <TextBlock x:Name="SelectedAbilityTxt" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                    </Border>
+                    
+                </Grid>
+
             </StackPanel>
 
             <StackPanel Grid.Column="1">
@@ -87,6 +103,22 @@
                         <StackPanel x:Name="SkillsPanel" Background="Thistle"/>
                     </ScrollViewer>
                 </Border>
+
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border BorderBrush="SlateGray" BorderThickness="2" Background="Thistle" Width="160" HorizontalAlignment="Right" Grid.Column="0">
+                        <TextBlock Text="Selected Skill: " HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                    </Border>
+
+                    <Border BorderBrush="SlateGray" BorderThickness="2" Background="Azure" Width="170" Grid.Column="1">
+                        <TextBlock x:Name="SelectedSkillTxt" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                    </Border>
+
+                </Grid>
 
             </StackPanel>
 
@@ -118,8 +150,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="EditBtn" Click="EditButton_Click" Content="Edit" Height="30" Width="150" HorizontalAlignment="Right" Margin="10 20 20 10" FontSize="16" FontWeight="Bold" Background="PaleVioletRed" Grid.Column="0"/>
-                    <Button x:Name="OKBtn" Click="OKBtn_Click" Content="OK" Height="30" Width="150" HorizontalAlignment="Left" Margin="20 20 10 10" FontSize="16" FontWeight="Bold" Background="PaleVioletRed" Grid.Column="1"/>
+                    <Button x:Name="EditBtn" Click="EditButton_Click" Content="Edit" Height="30" Width="150" HorizontalAlignment="Right" Margin="10 20 10 10" FontSize="16" FontWeight="Bold" Background="PaleVioletRed" Grid.Column="0"/>
+                    <Button x:Name="OKBtn" Click="OKBtn_Click" Content="OK" Height="30" Width="150" HorizontalAlignment="Left" Margin="10 20 10 10" FontSize="16" FontWeight="Bold" Background="PaleVioletRed" Grid.Column="1"/>
 
                 </Grid>
 
@@ -128,7 +160,7 @@
 
         </Grid>
 
-        <Button x:Name="ConfirmBtn" Click="ConfirmButton_Click" Content="Confirm and Continue" Margin="60" Width="300" Height="40" Background="PaleVioletRed" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+        <Button x:Name="ConfirmBtn" Click="ConfirmButton_Click" Content="Confirm and Continue" Margin="20" Width="300" Height="40" Background="PaleVioletRed" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
 
     </StackPanel>
     
