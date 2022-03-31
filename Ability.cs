@@ -4,6 +4,7 @@ using System.Windows;
 
 namespace DnD_CharSheet_5e
 {
+    [Serializable]
     public class Ability
     {
         public string AbilityName { get; set; }
