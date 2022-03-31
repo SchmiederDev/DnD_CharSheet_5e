@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace DnD_CharSheet_5e
 {
+    [Serializable]
     public class SavingThrow
     {
         public string SaveName { get; set; }
