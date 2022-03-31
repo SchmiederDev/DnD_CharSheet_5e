@@ -12,6 +12,8 @@ namespace DnD_CharSheet_5e
         public string CharacterRace { get; set; }
         public string CharacterSubrace { get; set; }
 
+        public CharacterRace CharRace { get; set; } = new CharacterRace();
+
         public string CharacterClass { get; set; }
         public string Alignment { get; set; }
 
@@ -594,6 +596,8 @@ namespace DnD_CharSheet_5e
 
             CharacterRace = charData.race;
             CharacterSubrace = charData.subrace;
+
+            CharRace = charData.raceData;
 
             CharacterClass = charData.charClass;
 
