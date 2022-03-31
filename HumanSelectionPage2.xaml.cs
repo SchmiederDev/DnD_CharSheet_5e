@@ -21,11 +21,14 @@ namespace DnD_CharSheet_5e
     {
         List<CheckBox> AbilityBoxes;
 
+        Ability SelectedAbility = new Ability();
         Skill SelectedSkill = new Skill();
         Feat CustomFeat = new Feat();
 
         public delegate void OnSelecionConfirmed();
         public OnSelecionConfirmed onSelecionConfirmed;
+
+        bool HasFeatConfirmed = false;
 
         public HumanSelectionPage2()
         {
@@ -86,6 +89,7 @@ namespace DnD_CharSheet_5e
         {
             Button SelectedSkillBtn = (Button)sender;
             SelectedSkill = Find_CorrespondingSkill(SelectedSkillBtn.Content.ToString());
+            SelectedSkillTxt.Text = SelectedSkill.SkillName;
         }
 
         private Skill Find_CorrespondingSkill(string skillName)
@@ -98,6 +102,11 @@ namespace DnD_CharSheet_5e
         {
             FeatNameBox.IsEnabled = true;
             FeatDescriptionBox.IsEnabled = true;
+
+            FeatNameBox.Background = Brushes.Azure;
+            FeatDescriptionBox.Background = Brushes.Azure;
+
+            HasFeatConfirmed = false;
         }
 
         private void OKBtn_Click(object sender, RoutedEventArgs e)
@@ -105,27 +114,43 @@ namespace DnD_CharSheet_5e
             FeatNameBox.IsEnabled = false;
             FeatDescriptionBox.IsEnabled = false;
 
-            CustomFeat.FeatName = FeatNameBox.Text;
-            CustomFeat.FeatDescription = FeatDescriptionBox.Text;
-        }
+            FeatNameBox.Background = Brushes.AliceBlue;
+            FeatDescriptionBox.Background = Brushes.AliceBlue;
 
-        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
-        {
+            if(FeatNameBox.Text.Length > 0 && FeatDescriptionBox.Text.Length > 0)
+            {
+                CustomFeat.FeatName = FeatNameBox.Text;
+                CustomFeat.FeatDescription = FeatDescriptionBox.Text;
+                HasFeatConfirmed = true;
+            }
 
-        }
+            else
+            {
+                HasFeatConfirmed = false;
+            }
+        }        
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            foreach(CheckBox checkBox in AbilityBoxes)
-            {
-                if(checkBox.IsChecked == false)
-                {
-                    checkBox.IsEnabled = false;
-                }
-            }
+            CheckBox SelectedCheckBox = (CheckBox)sender;
+
+            Disable_CheckBoxes();
+
+            string abKeyToFind = TrimTo_AbilityKey(SelectedCheckBox.Name);
+
+            SelectedAbility = FindCorrespondingAbility(abKeyToFind);
+
+            SelectedAbilityTxt.Text = SelectedAbility.AbilityName;
+
+            
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Enable_CheckBoxes();
+        }
+
+        private void Enable_CheckBoxes()
         {
             foreach (CheckBox checkBox in AbilityBoxes)
             {
@@ -135,5 +160,66 @@ namespace DnD_CharSheet_5e
                 }
             }
         }
+
+        private void Disable_CheckBoxes()
+        {
+            foreach (CheckBox checkBox in AbilityBoxes)
+            {
+                if (checkBox.IsChecked == false)
+                {
+                    checkBox.IsEnabled = false;
+                }
+            }
+        }
+
+        private string TrimTo_AbilityKey(string checkBoxName)
+        {
+            string tempName = checkBoxName;
+            string[] tempStrings = tempName.Split('_');
+            string abilityToFind = tempStrings[0];
+            return abilityToFind;
+        }
+
+        private Ability FindCorrespondingAbility(string key)
+        {
+            Ability AbilityToFind = SheetManager.CS_Manager_Inst.character.Abilities.Find(elementKey => elementKey.ReferenceKey == key);
+            return AbilityToFind;
+        }
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(Verify_Selection())
+            {
+                SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace.AbScoreIncrease_One = SelectedAbility;
+                SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace.AdditionalSkillProficiency_One = SelectedSkill;
+                SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace.HumanFeat = CustomFeat;
+                
+                onSelecionConfirmed.Invoke();
+            }
+
+            else
+            {
+                MessageBox.Show("Your selection is incomplete. Please select/ enter data for all of the options.");
+            }
+        }
+
+        private bool Verify_Selection()
+        {
+            bool selectionComplete;
+
+            if(SelectedAbility.AbilityName != null && SelectedSkill.SkillName != null && HasFeatConfirmed == true)
+            {
+                selectionComplete = true;
+            }
+
+            else
+            {
+                selectionComplete = false;
+            }
+
+            return selectionComplete;
+        }
+
+        
     }
 }
