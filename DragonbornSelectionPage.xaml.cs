@@ -120,8 +120,8 @@ namespace DnD_CharSheet_5e
         {
             if(SelectedDragonborn.DragonType != null)
             {
-                SheetManager.CS_Manager_Inst.CharRace = SelectedDragonborn;
-                Dragonborn testDragon = (Dragonborn)SheetManager.CS_Manager_Inst.CharRace;
+                SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace = SelectedDragonborn;
+                Dragonborn testDragon = (Dragonborn)SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace;
                 onSelectionConfirmed.Invoke();
             }
 
