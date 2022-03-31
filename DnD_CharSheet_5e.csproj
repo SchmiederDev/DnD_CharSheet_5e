@@ -95,11 +95,15 @@
     <Compile Include="BackgroundWindow.xaml.cs">
       <DependentUpon>BackgroundWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CharacterClass.cs" />
     <Compile Include="CharacterCreationWindow.xaml.cs">
       <DependentUpon>CharacterCreationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CharacterData.cs" />
     <Compile Include="CharacterRace.cs" />
+    <Compile Include="ClassSelectionPage.xaml.cs">
+      <DependentUpon>ClassSelectionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DiceMachine.xaml.cs">
       <DependentUpon>DiceMachine.xaml</DependentUpon>
     </Compile>
@@ -109,6 +113,9 @@
     </Compile>
     <Compile Include="Equipment.cs" />
     <Compile Include="Feat.cs" />
+    <Compile Include="HalfElfSelectionPage.xaml.cs">
+      <DependentUpon>HalfElfSelectionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HighElfSelectionPage.xaml.cs">
       <DependentUpon>HighElfSelectionPage.xaml</DependentUpon>
     </Compile>
@@ -179,6 +186,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ClassSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CombatWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DwarfSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HalfElfSelectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,6 +288,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="CharacterClassDataBase.json" />
     <None Include="DragonbornDB.json" />
     <None Include="ItemDataBase.json" />
     <None Include="ArmorDataBase.json" />
