@@ -17,6 +17,7 @@ namespace DnD_CharSheet_5e
         
         AbilityStatsPage abilityStatsPage;
         RaceSelectionPage raceSelectionPage;
+        ClassSelectionPage classSelectionPage;
 
         RaceOptionsWindow RaceOptionsWdw;
 
@@ -44,6 +45,10 @@ namespace DnD_CharSheet_5e
             CreationPages.Add(raceSelectionPage);
             raceSelectionPage.onRaceConfirm += Enable_NextBtn;
             raceSelectionPage.onNewRaceSelected += Disable_NextBtn;
+
+            classSelectionPage = new ClassSelectionPage();
+            classSelectionPage.Name = "classSelectionPage";
+            CreationPages.Add(classSelectionPage);
         }
 
         private void Previous_Btn_Click(object sender, RoutedEventArgs e)
