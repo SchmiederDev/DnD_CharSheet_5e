@@ -25,7 +25,10 @@ namespace DnD_CharSheet_5e
         HumanSelectionPage humanSelectionPage;
         HumanSelectionPage2 humanSelectionPage2;
 
+        HalfElfSelectionPage halfElfSelectionPage;
+
         public bool highElfSelectionPage_IsFirstLoad { get; set; } = true;
+        bool humanSelectionPage_IsFirstLoad = true;
 
         public RaceOptionsWindow()
         {
@@ -53,13 +56,17 @@ namespace DnD_CharSheet_5e
             humanSelectionPage.onVariantSelected += Load_HumanSelectionPageTwo;
 
             humanSelectionPage2 = new HumanSelectionPage2();
+            humanSelectionPage2.onSelecionConfirmed += Close_Window;
+
+            halfElfSelectionPage = new HalfElfSelectionPage();
+            halfElfSelectionPage.onSelecionConfirmed += Close_Window;
         }
 
         public void Set_CharRace()
         {
-            if(SheetManager.CS_Manager_Inst.CharRace != null)
+            if(SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace != null)
             {
-                CharRace = SheetManager.CS_Manager_Inst.CharRace;
+                CharRace = SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace;
                 RaceNmeTxt.Text = CharRace.RaceBackground.RaceName;
             }
         }
@@ -96,7 +103,16 @@ namespace DnD_CharSheet_5e
 
             else if (CharRace.RaceBackground.RaceName == "Human")
             {
-                RaceOptionsFrame.Content = humanSelectionPage;
+                if(humanSelectionPage_IsFirstLoad)
+                {
+                    RaceOptionsFrame.Content = humanSelectionPage;
+                    humanSelectionPage_IsFirstLoad = false;
+                }
+            }
+
+            else if (CharRace.RaceBackground.RaceName == "Half-Elf")
+            {
+                RaceOptionsFrame.Content = halfElfSelectionPage;
             }
 
             else
@@ -108,6 +124,7 @@ namespace DnD_CharSheet_5e
         private void Close_Window()
         {
             highElfSelectionPage_IsFirstLoad = true;
+            humanSelectionPage_IsFirstLoad = true;
             this.Close();
         }
 
