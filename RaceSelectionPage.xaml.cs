@@ -121,7 +121,7 @@ namespace DnD_CharSheet_5e
             
             if(PreviewRace != null)
             {
-                SheetManager.CS_Manager_Inst.CharRace.RaceBackground = PreviewRace;
+                SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace.RaceBackground = PreviewRace;
                 SheetManager.CS_Manager_Inst.CharGen_SetLanguages();
             }
         }
@@ -194,7 +194,7 @@ namespace DnD_CharSheet_5e
         {
             if(PreviewRace.SubracesOfRace.Length <= 1)
             {
-                SheetManager.CS_Manager_Inst.CharRace.CharakterSubrace = PreviewRace.SubracesOfRace[0];                
+                SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace.CharakterSubrace = PreviewRace.SubracesOfRace[0];                
                 onRaceConfirm.Invoke();
             }
 
@@ -264,7 +264,7 @@ namespace DnD_CharSheet_5e
             if(SelectedSubrace != null && !SelectedSubrace.SubraceName.Contains("Variety"))
             {
                 Fill_SubracePreview(SelectedSubrace);
-                SheetManager.CS_Manager_Inst.CharRace.CharakterSubrace = SelectedSubrace;
+                SheetManager.CS_Manager_Inst.CharGenCharacter.CharRace.CharakterSubrace = SelectedSubrace;
             }
 
             onRaceConfirm.Invoke();
