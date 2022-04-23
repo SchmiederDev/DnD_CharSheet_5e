@@ -5,16 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="Save Character" Height="550" Width="800">
+        Title="Save Character" Height="500" Width="800">
 
-    <StackPanel>
+    <Window.Resources>
 
-        <Button x:Name="saveGame_01_bt" Content="Empty Slot" Click="SaveGame01_BT_Click" Height="30" Width="500" Margin="10 50 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_02_bt" Content="Empty Slot" Click="SaveGame02_BT_Click" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_03_bt" Content="Empty Slot" Click="SaveGame03_BT_Click" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_04_bt" Content="Empty Slot" Click="SaveGame04_BT_Click" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="saveGame_05_bt" Content="Empty Slot" Click="SaveGame05_BT_Click" Height="30" Width="500" Margin="10 30 10 10" FontWeight="Bold" FontSize="18"/>
-        <TextBox x:Name="pathVisualizer" IsEnabled="False" Height="30" Margin="100 30 100 10"/>
+        <Style TargetType="Button" x:Key="SaveSlotBtn" BasedOn="{StaticResource StandardBtn}">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+        </Style>
+        
+    </Window.Resources>
+
+    <StackPanel Background="AliceBlue">
+
+        <Button x:Name="saveGame_01_bt" Content="Empty Slot" Click="SaveGame01_BT_Click" Margin="0 50 0 20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_02_bt" Content="Empty Slot" Click="SaveGame02_BT_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_03_bt" Content="Empty Slot" Click="SaveGame03_BT_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_04_bt" Content="Empty Slot" Click="SaveGame04_BT_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_05_bt" Content="Empty Slot" Click="SaveGame05_BT_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        
 
     </StackPanel>
     
