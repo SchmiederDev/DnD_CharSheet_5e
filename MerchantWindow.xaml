@@ -5,83 +5,145 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="Merchant" Height="950" Width="800">
+        Title="Merchant" Height="950" Width="1000" WindowStartupLocation="Manual" Left="0" Top="0">
+
+    <Window.Resources>
+
+        <Style TargetType="Border" x:Key="TreasurePanelBorder">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#ffdca2"/>
+            <Setter Property="Background" Value="PapayaWhip"/>
+            <Setter Property="Margin" Value="30 10 20 30"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TreasurePanelCaption" BasedOn="{StaticResource H3_Caption}">
+            <Setter Property="Foreground" Value="#343434"/>
+            <Setter Property="Margin" Value="10 10 0 5"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="InventoryHeader">
+
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+
+            <Setter Property="Margin" Value="0 0 20 5"/>
+
+            <Setter Property="Foreground" Value="#35453b"/>
+
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+
+        </Style>
+
+        <Style TargetType="Border" x:Key="InventoryPanelBorder">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#a4aaff"/>
+            <Setter Property="Background" Value="PapayaWhip"/>
+
+            <Setter Property="Margin" Value="0 0 0 20"/>
+        </Style>
+
+    </Window.Resources>
 
     <StackPanel>
 
-        <TextBlock Text="Player Fortune: "  Margin="285 25 10 10" FontSize="24" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <TextBlock Text="Character Fortune:" Margin="0 20" Style="{StaticResource MainHeader}" Foreground="#343434"/>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource TreasurePanelBorder}">
+            
+            <StackPanel>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="pGold_Txt" Text="Gold:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
-            <TextBlock x:Name="pSilver_Txt" Text="Silver:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="1"/>
-            <TextBlock x:Name="pCopper_Txt" Text="Copper:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
-            <TextBlock x:Name="pPlatinum_Txt" Text="Platinum:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
+                    <TextBlock x:Name="pGold_Txt" Text="Gold" Style="{StaticResource TreasurePanelCaption}" Grid.Column="0"/>
+                    <TextBlock x:Name="pSilver_Txt" Text="Silver:" Style="{StaticResource TreasurePanelCaption}" Grid.Column="1"/>
+                    <TextBlock x:Name="pCopper_Txt" Text="Copper:" Style="{StaticResource TreasurePanelCaption}" Grid.Column="2"/>
+                    <TextBlock x:Name="pPlatinum_Txt" Text="Platinum:" Style="{StaticResource TreasurePanelCaption}" Grid.Column="3"/>
 
-        </Grid>
+                </Grid>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <Grid Margin="0 0 0 20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="pGold_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" IsEnabled="False" Grid.Column="0"/>
-            <TextBox x:Name="pSilver_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" IsEnabled="False" Grid.Column="1"/>
-            <TextBox x:Name="pCopper_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" IsEnabled="False" Grid.Column="2"/>
-            <TextBox x:Name="pPlatinum_Box" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" IsEnabled="False" Grid.Column="3"/>
+                    <TextBox x:Name="pGold_Box" IsEnabled="False" Margin="10 5 0 5" Style="{StaticResource InputField}" Grid.Column="0"/>
+                    <TextBox x:Name="pSilver_Box" IsEnabled="False" Margin="10 5 0 5" Style="{StaticResource InputField}" Grid.Column="1"/>
+                    <TextBox x:Name="pCopper_Box" IsEnabled="False" Margin="10 5 0 5" Style="{StaticResource InputField}" Grid.Column="2"/>
+                    <TextBox x:Name="pPlatinum_Box" IsEnabled="False" Margin="10 5 0 5" Style="{StaticResource InputField}" Grid.Column="3"/>
 
-        </Grid>
+                </Grid>
+                
+            </StackPanel>
+            
+        </Border>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "*" />
-            </Grid.ColumnDefinitions>
+        <TextBlock Text="Merchant" Margin="0 0 0 20" Style="{StaticResource MainHeader}" Foreground="#343434"/>
 
-            <StackPanel Margin="25 10" Grid.Column="0">
+        <Border Margin="30 0 30 0" BorderBrush="DarkSlateBlue" BorderThickness="2">
+            
+            <StackPanel>
 
-                <TextBlock Text="Adventuring Gear" Margin="90 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width = "*" />
+                        <ColumnDefinition Width = "*" />
+                    </Grid.ColumnDefinitions>
 
-                <ScrollViewer x:Name="ItemPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
-                    <StackPanel x:Name="ItemsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
-                </ScrollViewer>
+                    <StackPanel Margin="25 10 25 30" Grid.Column="0">
 
-                <TextBlock Text="Tools" Margin="140 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+                        <TextBlock Text="Adventuring Gear" Style="{StaticResource InventoryHeader}"/>
 
-                <ScrollViewer x:Name="ToolPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
-                    <StackPanel x:Name="ToolsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
-                </ScrollViewer>
+                        <Border Style="{StaticResource InventoryPanelBorder}">
+                            <ScrollViewer x:Name="ItemPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <StackPanel x:Name="ItemsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                            </ScrollViewer>
+                        </Border>
+
+                        <TextBlock Text="Tools" Style="{StaticResource InventoryHeader}"/>
+
+                        <Border Style="{StaticResource InventoryPanelBorder}">
+                            <ScrollViewer x:Name="ToolPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <StackPanel x:Name="ToolsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                            </ScrollViewer>
+                        </Border>
+
+                    </StackPanel>
+
+                    <StackPanel Margin="15 10" Grid.Column="1">
+
+                        <TextBlock Text="Weapons" Style="{StaticResource InventoryHeader}"/>
+
+                        <Border Style="{StaticResource InventoryPanelBorder}">
+                            <ScrollViewer x:Name="WeaponsPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <StackPanel x:Name="WeaponsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                            </ScrollViewer>
+                        </Border>
+
+                        <TextBlock Text="Armor" Style="{StaticResource InventoryHeader}"/>
+
+                        <Border Style="{StaticResource InventoryPanelBorder}">
+                            <ScrollViewer x:Name="ArmorPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <StackPanel x:Name="ArmorPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
+                            </ScrollViewer>
+                        </Border>
+
+                    </StackPanel>
+
+                </Grid>
 
             </StackPanel>
-
-            <StackPanel Margin="15 10" Grid.Column="1">
-
-                <TextBlock Text="Weapons" Margin="140 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
-
-                <ScrollViewer x:Name="WeaponsPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
-                    <StackPanel x:Name="WeaponsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
-                </ScrollViewer>
-
-                <TextBlock Text="Armor" Margin="140 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
-
-                <ScrollViewer x:Name="ArmorPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10 15 10 10" Background="PapayaWhip">
-                    <StackPanel x:Name="ArmorPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
-                </ScrollViewer>
-
-            </StackPanel>
-
-        </Grid>
-
-        <TextBox x:Name="ContentBox" IsEnabled="True" Margin="10 10 10 10" Height="25" Width="750" VerticalScrollBarVisibility="Visible"/>
+            
+        </Border>
 
     </StackPanel>
     
