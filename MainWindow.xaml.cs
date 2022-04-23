@@ -31,7 +31,6 @@ namespace DnD_CharSheet_5e
             Init_theWeave();
 
             SheetManager.CS_Manager_Inst.character.Init_Basics();
-            SheetManager.CS_Manager_Inst.CharGenCharacter.Init_Basics();
         }
 
         private void Init_FileSystem()
@@ -80,9 +79,8 @@ namespace DnD_CharSheet_5e
         }
 
         private void CreateCharButton_Click(object sender, RoutedEventArgs e)
-        {
-            CharacterCreationWindow CharGenWdw = new CharacterCreationWindow();
-            CharGenWdw.Show();
+        {           
+           
             FileManager.FM_Inst.Play_ClickSound();
         }
 
@@ -252,17 +250,9 @@ namespace DnD_CharSheet_5e
         private void Reset_CharacterMenus()
         {
             CharNameText.Clear();        
-            PlayerNameText.Clear();  
-            
-            AlignmentBox.SelectedIndex = 0;           
-            BackgroundBox.SelectedIndex = 0;
+            PlayerNameText.Clear();           
 
-            LevelText.Clear();
-            
-            RaceMenu.SelectedIndex = 0;           
-            SubRaceMenu.SelectedIndex = 0;
-            
-            ClassMenu.SelectedIndex = 0;            
+            LevelText.Clear();           
         }
 
         private void Activate_CharacterMenus()
@@ -271,9 +261,9 @@ namespace DnD_CharSheet_5e
             PlayerNameText.IsEnabled = true;
             AlignmentBox.IsEnabled = true;
             BackgroundBox.IsEnabled = true;
-            RaceMenu.IsEnabled = true;
-            SubRaceMenu.IsEnabled = true;
-            ClassMenu.IsEnabled = true;
+            RaceBox.IsEnabled = true;
+            SubRaceBox.IsEnabled = true;
+            ClassBox.IsEnabled = true;
         }
 
         private void Deactivate_Menus()
@@ -284,18 +274,18 @@ namespace DnD_CharSheet_5e
             AlignmentBox.IsEnabled = false;
             BackgroundBox.IsEnabled = false;
 
-            RaceMenu.IsEnabled = false;
-            SubRaceMenu.IsEnabled = false;
-            ClassMenu.IsEnabled = false;
+            RaceBox.IsEnabled = false;
+            SubRaceBox.IsEnabled = false;
+            ClassBox.IsEnabled = false;
         }
 
         private void SubmitCharacter_byUserInput()
         {
             SheetManager.CS_Manager_Inst.character.PlayerName = PlayerNameText.Text;
             SheetManager.CS_Manager_Inst.character.CharacterName = CharNameText.Text;
-            SheetManager.CS_Manager_Inst.character.CharacterRace = RaceMenu.Text;
-            SheetManager.CS_Manager_Inst.character.CharacterSubrace = SubRaceMenu.Text;
-            SheetManager.CS_Manager_Inst.character.CharacterClass = ClassMenu.Text;
+            SheetManager.CS_Manager_Inst.character.RaceName = RaceBox.Text;
+            SheetManager.CS_Manager_Inst.character.SubraceName = SubRaceBox.Text;
+            SheetManager.CS_Manager_Inst.character.ClassName = ClassBox.Text;
             SheetManager.CS_Manager_Inst.character.Alignment = AlignmentBox.Text;
             SheetManager.CS_Manager_Inst.character.Background = BackgroundBox.Text;
         }
@@ -304,9 +294,9 @@ namespace DnD_CharSheet_5e
         {
             PlayerNameText.Text = SheetManager.CS_Manager_Inst.character.PlayerName;
             CharNameText.Text = SheetManager.CS_Manager_Inst.character.CharacterName;
-            RaceMenu.Text = SheetManager.CS_Manager_Inst.character.CharacterRace;
-            SubRaceMenu.Text = SheetManager.CS_Manager_Inst.character.CharacterSubrace;
-            ClassMenu.Text = SheetManager.CS_Manager_Inst.character.CharacterClass;
+            RaceBox.Text = SheetManager.CS_Manager_Inst.character.RaceName;
+            SubRaceBox.Text = SheetManager.CS_Manager_Inst.character.SubraceName;
+            ClassBox.Text = SheetManager.CS_Manager_Inst.character.ClassName;
             AlignmentBox.Text = SheetManager.CS_Manager_Inst.character.Alignment;
             BackgroundBox.Text = SheetManager.CS_Manager_Inst.character.Background;
         }
