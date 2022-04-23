@@ -43,11 +43,6 @@ namespace DnD_CharSheet_5e
             Allies_n_Orgas_Box.Text = SheetManager.CS_Manager_Inst.character.AlliesAndOrgas;           
         }
 
-        private void Window_Closed(object sender, EventArgs e)                                                      // happens after Closing
-        {
-            
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)                         // happens before Closing
         {
             SheetManager.CS_Manager_Inst.character.CharApperance = Appearance_Box.Text;                             // <- Insert functionality that checks for text Limit
