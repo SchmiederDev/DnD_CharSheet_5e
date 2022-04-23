@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="DiceMachine" Height="450" Width="800">
+        Title="DiceMachine" Height="525" Width="800" Background="AliceBlue">
     
     <StackPanel>
 
-        <TextBlock Text="DICE MACHINE" Margin="300 20 20 10" FontSize="24" FontWeight="Bold"/>
+        <TextBlock Text="DICE MACHINE" Margin="0 20 0 20" Style="{StaticResource MainHeader}"/>
 
         <Grid Margin="20">
 
@@ -19,9 +19,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="D4_Button" Content="d4" Click="D4_Bt_Click" Width="50" Height="50" Grid.Column="0"/>
-            <Button x:Name="D6_Button" Content="d6" Click="D6_Bt_Click" Width="50" Height="50" Grid.Column="1"/>
-            <Button x:Name="D8_Button" Content="d8" Click="D8_Bt_Click" Width="50" Height="50" Grid.Column="2"/>
+            <Button x:Name="D4_Button" Content="d4" Click="D4_Bt_Click" Style="{StaticResource LargeBtnSquare}" Grid.Column="0"/>
+            <Button x:Name="D6_Button" Content="d6" Click="D6_Bt_Click" Style="{StaticResource LargeBtnSquare}" Grid.Column="1"/>
+            <Button x:Name="D8_Button" Content="d8" Click="D8_Bt_Click" Style="{StaticResource LargeBtnSquare}" Grid.Column="2"/>
 
         </Grid>
 
@@ -33,9 +33,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="D10_Button" Content="d10" Click="D10_Bt_Click" Width="50" Height="50" Grid.Column="0"/>
-            <Button x:Name="D12_Button" Content="d12" Click="D12_Bt_Click" Width="50" Height="50" Grid.Column="1"/>
-            <Button x:Name="D20_Button" Content="d20" Click="D20_Bt_Click" Width="50" Height="50" Grid.Column="2"/>
+            <Button x:Name="D10_Button" Content="d10" Click="D10_Bt_Click" Style="{StaticResource LargeBtnSquare}" Grid.Column="0"/>
+            <Button x:Name="D12_Button" Content="d12" Click="D12_Bt_Click" Style="{StaticResource LargeBtnSquare}" Grid.Column="1"/>
+            <Button x:Name="D20_Button" Content="d20" Click="D20_Bt_Click" Style="{StaticResource LargeBtnSquare}" Grid.Column="2"/>
 
         </Grid>
 
@@ -47,13 +47,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="D100_Button" Content="d100" Click="D100_Bt_Click" Width="50" Height="50" Grid.Column="0"/>
-            <TextBlock Text="RESULT:" Margin="75 15 10 10" FontSize="24" FontWeight="bold" FontFamily="Times New Roman" Grid.Column="1"/>
-            <TextBox x:Name="DM_ResultBox" IsEnabled="False" Width="50" Height="50" Padding="5" FontSize="18" FontWeight="Bold" Grid.Column="2"/>
+            <Button x:Name="D100_Button" Content="d100" Click="D100_Bt_Click" Style="{StaticResource LargeBtnSquare}" Grid.Column="0"/>
+            <TextBlock Text="RESULT:" Margin="0 20 0 10" Style="{StaticResource H2_Header}" Grid.Column="1"/>
+            <TextBox x:Name="DM_ResultBox" IsEnabled="False" Style="{StaticResource ResultBox_LargeSquare}" Grid.Column="2"/>
 
         </Grid>
 
-        <Button x:Name="Reset_Button" Content="RESET" Click="Reset_Button_Click" Margin="50 20 50 10" Height ="40" Width = "150" FontSize="20" FontWeight="Bold"/>
+        <Button x:Name="Reset_Button" Content="RESET" Click="Reset_Button_Click" Margin="50 20 50 10" Height ="40" Width = "150" Style="{StaticResource StandardBtn}" FontSize="20"/>
 
     </StackPanel>
 </Window>
