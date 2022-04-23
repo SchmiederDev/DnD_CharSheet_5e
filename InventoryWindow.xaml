@@ -5,7 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="InventoryWindow" Height="850" Width="1200">
+        Title="InventoryWindow" Height="1000" Width="1200" WindowStartupLocation="Manual" Left="0" Top="0">
+
+    <Window.Resources>
+
+        <Style TargetType="Border" x:Key="TreasurePanelBorder">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#ffdca2"/>
+            <Setter Property="Background" Value="PapayaWhip"/>
+            <Setter Property="Margin" Value="10 10 10 30"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TreasurePanelCaption" BasedOn="{StaticResource H3_Caption}">
+            <Setter Property="Foreground" Value="#343434"/>
+            <Setter Property="Margin" Value="10 10 0 5"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="EquipmentPanelBorder">            
+            <Setter Property="BorderBrush" Value="SlateBlue"/>
+            <Setter Property="Background" Value="#d5e5ff"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ItemSlot">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="DarkSlateBlue"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="InventoryHeader">
+            
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+
+            <Setter Property="Margin" Value="0 0 20 5"/>
+
+            <Setter Property="Foreground" Value="#35453b"/>
+
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            
+        </Style>
+
+        <Style TargetType="Border" x:Key="InventoryPanelBorder">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#a4aaff"/>
+            <Setter Property="Background" Value="PapayaWhip"/>
+            
+            <Setter Property="Margin" Value="0 0 0 20"/>
+        </Style>
+        
+    </Window.Resources>
 
     <StackPanel>
 
@@ -18,160 +70,204 @@
 
             <StackPanel Grid.Column="0">
 
-                <TextBlock x:Name="CharName_Txt" Text="Character:" Margin="10 20 10 5" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
-                <TextBox x:Name="CharName_Box" IsEnabled="False" Margin="10 5 10 10" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
+                <TextBlock x:Name="CharName_Txt" Text="Character:" Margin="10 20 10 5" HorizontalAlignment="Left" Style="{StaticResource H2_Header}"/>
+                <TextBox x:Name="CharName_Box" IsEnabled="False" Margin="10 5 10 10" Style="{StaticResource InputField}" Width="300" Height="30" FontSize="16"/>
 
             </StackPanel>
 
             <StackPanel Grid.Column="1">
 
-                <TextBlock x:Name="PlayerName_Txt" Text="Player:" Margin="10 20 10 5" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
-                <TextBox x:Name="PlayerName_Box" IsEnabled="False" Margin="10 5 10 10" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
+                <TextBlock x:Name="PlayerName_Txt" Text="Player:" Margin="10 20 10 5" Style="{StaticResource H2_Caption}"/>
+                <TextBox x:Name="PlayerName_Box" IsEnabled="False" Margin="10 5 10 10" Style="{StaticResource InputField}" Width="300" Height="30" FontSize="16"/>
 
             </StackPanel>
 
         </Grid>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource TreasurePanelBorder}">
 
-            <TextBlock x:Name="Gold_Txt" Text="Gold:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
-            <TextBlock x:Name="Silver_Txt" Text="Silver:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="1"/>
-            <TextBlock x:Name="Copper_Txt" Text="Copper:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
-            <TextBlock x:Name="Platinum_Txt" Text="Platinum:" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
+            <StackPanel>
 
-        </Grid>
+                <Grid>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="Gold_Box" IsEnabled="False" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
-            <TextBox x:Name="Silver_Box" IsEnabled="False" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="1"/>
-            <TextBox x:Name="Copper_Box" IsEnabled="False" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
-            <TextBox x:Name="Platinum_Box" IsEnabled="False" Margin="10 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
+                    <TextBlock x:Name="Gold_Txt" Text="Gold:" Style="{StaticResource TreasurePanelCaption}" Grid.Column="0"/>
+                    <TextBlock x:Name="Silver_Txt" Text="Silver:" Style="{StaticResource TreasurePanelCaption}" Grid.Column="1"/>
+                    <TextBlock x:Name="Copper_Txt" Text="Copper:" Style="{StaticResource TreasurePanelCaption}" Grid.Column="2"/>
+                    <TextBlock x:Name="Platinum_Txt" Text="Platinum:" Style="{StaticResource TreasurePanelCaption}" Grid.Column="3"/>
 
-        </Grid>
+                </Grid>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <Grid Margin="0 0 0 20">
 
-            <Button x:Name="Edit_Money_Btn" Content="Edit Riches" Click="Edit_Money_Btn_Click" Margin="10 10 10 10" Height="30" Width="200" FontSize="16" FontWeight="Bold" FontStyle="Italic" Grid.Column="0"/>
-            <Button x:Name="Apply_Money_Btn" Content="Apply" Click="Apply_Money_Bt_Click" IsEnabled="False" Visibility="Hidden" Margin="10 10 10 10" Height="30" Width="200" FontSize="16" FontWeight="Bold" FontStyle="Italic" Grid.Column="1"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-        </Grid>
+                    <TextBox x:Name="Gold_Box" IsEnabled="False" Margin="10 5 0 5" Style="{StaticResource InputField}" Grid.Column="0"/>
+                    <TextBox x:Name="Silver_Box" IsEnabled="False" Margin="10 5 0 5" Style="{StaticResource InputField}" Grid.Column="1"/>
+                    <TextBox x:Name="Copper_Box" IsEnabled="False" Margin="10 5 0 5" Style="{StaticResource InputField}" Grid.Column="2"/>
+                    <TextBox x:Name="Platinum_Box" IsEnabled="False" Margin="10 5 0 5" Style="{StaticResource InputField}" Grid.Column="3"/>
+
+                </Grid>
+
+                <Grid Margin="0 0 0 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="Edit_Money_Btn" Content="Edit Riches" Click="Edit_Money_Btn_Click" Margin="10" Style="{StaticResource EditBtn}" FontSize="16" Grid.Column="0"/>
+                    <Button x:Name="Apply_Money_Btn" Content="Apply" Click="Apply_Money_Bt_Click" IsEnabled="False" Visibility="Hidden" Margin="0 10" Style="{StaticResource EditBtn}" FontSize="16" Grid.Column="1"/>
+
+                </Grid>
+
+            </StackPanel>
+            
+        </Border>
 
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width = "1.5*" />
-                <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "*" />
+                <ColumnDefinition Width = "2*" />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" Margin="10 20">
+            <StackPanel Grid.Column="0">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width = "*" />
-                    <ColumnDefinition Width = "*" />
-                    <ColumnDefinition Width = "*" />
-                </Grid.ColumnDefinitions>
+                <TextBlock Text="Equipment" Margin="20" Style="{StaticResource MainHeader}"/>
 
-                <StackPanel Grid.Column="0">
+                <Border Style="{StaticResource EquipmentPanelBorder}" Margin="10">
 
-                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 150 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="Amulett_Img" Height="15" Width="70" Margin="5 5"/>
-                    </Border>
+                    <Grid>
 
-                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 20 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="RightHand_Img" Height="60" Width="50" Margin="10 10"/>
-                    </Border>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width = "*" />
+                            <ColumnDefinition Width = "*" />
+                            <ColumnDefinition Width = "*" />
+                        </Grid.ColumnDefinitions>
 
-                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 10 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="RightHandRing_Img" Height="20" Width="20" Margin="10 10 10 10"/>
-                    </Border>
+                        <StackPanel Grid.Column="0">
 
-                </StackPanel>
+                            <Border Margin="10 120 10 10" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="Amulett_Img" Height="15" Width="70" Margin="5 5"/>
+                            </Border>
 
-                <StackPanel Grid.Column="1">
+                            <Border Margin="10 20 10 10" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="RightHand_Img" Height="60" Width="50" Margin="10 10"/>
+                            </Border>
 
-                    <Border BorderThickness="1" Margin="10 75 10 10" BorderBrush="SlateGray" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="Head_Img" Height="70" Width="60" Panel.ZIndex="0"/>
-                    </Border>
+                            <Border Margin="10 10 10 10" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="RightHandRing_Img" Height="20" Width="20" Margin="10 10 10 10"/>
+                            </Border>
 
-                    <Border BorderThickness="1" Margin="10 20 10 10" BorderBrush="SlateGray" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="Armor_Img" Height="95" Width="75" Panel.ZIndex="0"/>
-                    </Border>
+                        </StackPanel>
 
-                    <Border BorderThickness="1" Margin="10 20 10 10" BorderBrush="SlateGray" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="Belt_Img" Height="40" Width="95" Panel.ZIndex="0"/>
-                    </Border>
+                        <StackPanel Grid.Column="1">
 
-                    <Border BorderThickness="1" Margin="10 20 10 10" BorderBrush="SlateGray" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="Boots_Img" Height="70" Width="65" Panel.ZIndex="0"/>
-                    </Border>
+                            <Border Margin="10 45 10 10" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="Head_Img" Height="70" Width="60" Panel.ZIndex="0"/>
+                            </Border>
 
-                </StackPanel>
+                            <Border Margin="10 20 10 10" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="Armor_Img" Height="95" Width="75" Panel.ZIndex="0"/>
+                            </Border>
 
-                <StackPanel Grid.Column="2">
+                            <Border Margin="10 20 10 10" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="Belt_Img" Height="40" Width="95" Panel.ZIndex="0"/>
+                            </Border>
 
-                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 130 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="Cape_Img" Height="80" Width="50" Margin="10 10 10 10"/>
-                    </Border>
+                            <Border Margin="10 20 10 50" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="Boots_Img" Height="70" Width="65" Panel.ZIndex="0"/>
+                            </Border>
 
-                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 10 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="LeftHand_Img" Height="60" Width="50" Margin="10 10 10 10"/>
-                    </Border>
+                        </StackPanel>
 
-                    <Border BorderThickness="1" BorderBrush="SlateGray" Margin="10 10 10 10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image x:Name="LeftHandRing_Img" Height="20" Width="20" Margin="10 10 10 10"/>
-                    </Border>
+                        <StackPanel Grid.Column="2">
 
-                </StackPanel>
+                            <Border Margin="10 100 10 10" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="Cape_Img" Height="80" Width="50" Margin="10 10 10 10"/>
+                            </Border>
 
-            </Grid>
+                            <Border Margin="10 10 10 10" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="LeftHand_Img" Height="60" Width="50" Margin="10 10 10 10"/>
+                            </Border>
 
-            <StackPanel Margin="15 10" Grid.Column="1">
+                            <Border Margin="10 10 10 10" Style="{StaticResource ItemSlot}">
+                                <Image x:Name="LeftHandRing_Img" Height="20" Width="20" Margin="10 10 10 10"/>
+                            </Border>
 
-                <TextBlock Text="Adventuring Gear" Margin="50 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+                        </StackPanel>
 
-                <ScrollViewer x:Name="ItemPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="PapayaWhip">
-                    <StackPanel x:Name="ItemsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
-                </ScrollViewer>
+                    </Grid>
 
-                <TextBlock Text="Tools" Margin="95 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
-
-                <ScrollViewer x:Name="ToolPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="PapayaWhip">
-                    <StackPanel x:Name="ToolsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
-                </ScrollViewer>
+                </Border>
 
             </StackPanel>
 
-            <StackPanel Margin="15 10" Grid.Column="2">
+            <StackPanel Grid.Column="1">
 
-                <TextBlock Text="Weapons" Margin="95 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+                <TextBlock Text="Inventory" Margin="20" Style="{StaticResource MainHeader}"/>
 
-                <ScrollViewer x:Name="WeaponsPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="PapayaWhip">
-                    <StackPanel x:Name="WeaponsPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
-                </ScrollViewer>
+                <Grid>
 
-                <TextBlock Text="Armor" Margin="100 25 10 5" FontFamily="Times New Roman" FontSize="18" FontWeight="Bold" Foreground="SlateGray"/>
+                    <Grid.ColumnDefinitions>
+                        
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        
+                    </Grid.ColumnDefinitions>
 
-                <ScrollViewer x:Name="ArmorPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="PapayaWhip">
-                    <StackPanel x:Name="ArmorPanel" Orientation="Vertical" MaxWidth="300" MaxHeight="250"/>
-                </ScrollViewer>
+                    <StackPanel Margin="10" Grid.Column="0">
 
+                        <TextBlock Text="Adventuring Gear" Style="{StaticResource InventoryHeader}"/>
+                        
+                        <Border Style="{StaticResource InventoryPanelBorder}">
+                            <ScrollViewer x:Name="ItemPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <StackPanel x:Name="ItemsPanel" MaxWidth="300" MaxHeight="250"/>
+                            </ScrollViewer>
+                        </Border>
+
+                        <TextBlock Text="Tools" Style="{StaticResource InventoryHeader}"/>
+
+                        <Border Style="{StaticResource InventoryPanelBorder}">
+                            <ScrollViewer x:Name="ToolPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <StackPanel x:Name="ToolsPanel" MaxWidth="300" MaxHeight="250"/>
+                            </ScrollViewer>
+                        </Border>
+
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Grid.Column="2">
+
+                        <TextBlock Text="Weapons" Style="{StaticResource InventoryHeader}"/>
+
+                        <Border Style="{StaticResource InventoryPanelBorder}">
+                            <ScrollViewer x:Name="WeaponsPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <StackPanel x:Name="WeaponsPanel" MaxWidth="300" MaxHeight="250"/>
+                            </ScrollViewer>
+                        </Border>
+
+                        <TextBlock Text="Armor" Style="{StaticResource InventoryHeader}"/>
+
+                        <Border Style="{StaticResource InventoryPanelBorder}">
+                            <ScrollViewer x:Name="ArmorPanelviewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <StackPanel x:Name="ArmorPanel" MaxWidth="300" MaxHeight="250"/>
+                            </ScrollViewer>
+                        </Border>
+
+                    </StackPanel>
+
+                </Grid>
+                
             </StackPanel>
 
         </Grid>
