@@ -45,7 +45,7 @@ namespace DnD_CharSheet_5e
             }
             catch (Exception ex)
             {
-                ContentBox.Text = ex.Message.ToString();
+                MessageBox.Show(ex.Message.ToString());
             }
 
             FileManager.FM_Inst.Set_WDBPath();
@@ -55,7 +55,7 @@ namespace DnD_CharSheet_5e
             }
             catch(Exception ex01)
             {
-                ContentBox.Text = ex01.Message.ToString();
+                MessageBox.Show(ex01.Message.ToString());
             }
 
             FileManager.FM_Inst.Set_ADBPath();
@@ -65,7 +65,7 @@ namespace DnD_CharSheet_5e
             }
             catch(Exception ex02)
             {
-                ContentBox.Text = ex02.Message.ToString();
+                MessageBox.Show(ex02.Message.ToString());
             }
             
         }               
