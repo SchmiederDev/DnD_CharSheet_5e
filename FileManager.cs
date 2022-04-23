@@ -69,10 +69,7 @@ namespace DnD_CharSheet_5e
         string WDB_Path;
 
         string ADB_FileName = @"\ArmorDataBase.json";
-        string ADB_Path;
-
-        string DragonbornDB_FileName = @"\DragonbornDB.json";
-        string Dragonborn_Path;
+        string ADB_Path;        
 
         string SDB_FileName = @"\SpellDataBase.json";
         string SDB_Path;
@@ -215,11 +212,6 @@ namespace DnD_CharSheet_5e
             ADB_Path = Find_RootPath() + ADB_FileName;
         }
 
-        public void Set_DragonbornDBPath()
-        {
-            Dragonborn_Path = Find_RootPath() + DragonbornDB_FileName;
-        }
-
         public void Set_Path_Spells_and_SpellLists()
         {
             string roothpath;
@@ -262,13 +254,6 @@ namespace DnD_CharSheet_5e
             string jsonADB = File.ReadAllText(ADB_Path);
 
             return jsonADB;
-        }      
-
-        public string Read_DragonbornDB()
-        {
-            string jsonDragonbornDB = File.ReadAllText(Dragonborn_Path);
-
-            return jsonDragonbornDB;
         }
         
         public void Read_Spells_and_SpellLists()
