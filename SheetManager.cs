@@ -17,15 +17,9 @@ namespace DnD_CharSheet_5e
             }
         }
 
-        public Character character { get; set; } = new Character();
-
-        public Character CharGenCharacter { get; set; } = new Character();
-        
+        public Character character { get; set; } = new Character();        
 
         public D20_System dSys { get; set; } = new D20_System();
-
-        public List<Race> CharacterRaces { get; set; } = new List<Race>();
-        public List<Dragonborn> Dragonborns { get; set; } = new List<Dragonborn>();
 
         public List<DnDLanguage> Languages { get; set; } = new List<DnDLanguage>();
 
@@ -42,17 +36,17 @@ namespace DnD_CharSheet_5e
 
         public void Init_DataBases()
         {
-            FileManager.FM_Inst.Set_RDBPath();
+            //FileManager.FM_Inst.Set_RDBPath();
 
-            try
-            {
-                Load_RaceDataBase(FileManager.FM_Inst.Read_RaceDataBase());
-                //MessageBox.Show("Loaded successfully");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
+            //try
+            //{
+            //    Load_RaceDataBase(FileManager.FM_Inst.Read_RaceDataBase());
+            //    //MessageBox.Show("Loaded successfully");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message.ToString());
+            //}
 
             FileManager.FM_Inst.Set_LanguageDBPath();
 
@@ -65,27 +59,7 @@ namespace DnD_CharSheet_5e
             {
                 MessageBox.Show(ex.Message.ToString());
             }
-
-            FileManager.FM_Inst.Set_DragonbornDBPath();
-
-            try
-            {
-                Load_Dragonborn(FileManager.FM_Inst.Read_DragonbornDB());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-        }
-
-        public void Load_RaceDataBase(string jsonRDB)
-        {
-            CharacterRaces = JsonConvert.DeserializeObject<List<Race>>(jsonRDB);
-        }
-
-        public void Load_Dragonborn(string jsonDDB)
-        {
-            Dragonborns = JsonConvert.DeserializeObject<List<Dragonborn>>(jsonDDB);
+            
         }
 
         public void Load_LanguageDataBase(string jsonLDB)
@@ -266,10 +240,10 @@ namespace DnD_CharSheet_5e
         public void CharGen_SetLanguages()
         {            
 
-           for(int i = 0; i < CharGenCharacter.CharRace.RaceBackground.Languages.Length; i++)
-           {
-                CharGenCharacter.CharLanguages.Add(CharGenCharacter.CharRace.RaceBackground.Languages[i]);
-           }
+           //for(int i = 0; i < CharGenCharacter.CharacterRace.RaceBackground.Languages.Length; i++)
+           //{
+           //     CharGenCharacter.CharLanguages.Add(CharGenCharacter.CharacterRace.RaceBackground.Languages[i]);
+           //}
         }
 
     }    
