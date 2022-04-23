@@ -19,9 +19,9 @@ namespace DnD_CharSheet_5e
             Load_Names_for_SlotButtons();
         }
 
+        // Is it still called anywhere?
         public void Show_FilePath()
-        {
-            pathVisualizer.Text = FileManager.FM_Inst.Find_RootPath();
+        {            
             FileManager.FM_Inst.Check_for_SaveGameFolder();
             FileManager.FM_Inst.Set_SaveGames();
         }        
