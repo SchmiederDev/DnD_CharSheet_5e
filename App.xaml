@@ -3,7 +3,172 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DnD_CharSheet_5e"
              StartupUri="MainWindow.xaml" ShutdownMode="OnMainWindowClose">
+    
     <Application.Resources>
-         
+        
+        <Style TargetType="Border" x:Key="StandardBorder">
+            <Setter Property="BorderBrush" Value="#4c7f7f"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="StandardText">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="MainHeader" BasedOn="{StaticResource StandardText}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="H2_Header" BasedOn="{StaticResource MainHeader}">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="H3_Header" BasedOn="{StaticResource MainHeader}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="H4_Header" BasedOn="{StaticResource MainHeader}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="MainCaption" BasedOn="{StaticResource StandardText}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="H2_Caption" BasedOn="{StaticResource MainCaption}">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="H3_Caption" BasedOn="{StaticResource MainCaption}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="H4_Caption" BasedOn="{StaticResource MainCaption}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="StandardTextBox">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="StandardValueBox">
+            <Setter Property="BorderBrush" Value="#426f6f"/>
+            <Setter Property="Foreground" Value="#121f1f"/>
+            <Setter Property="Background" Value="#f0f8ff"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="InputField" BasedOn="{StaticResource StandardTextBox}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="StandardResultBox" BasedOn="{StaticResource StandardValueBox}">
+            <Setter Property="Background" Value="#f0f1ff"/>
+            <Setter Property="BorderBrush" Value="#a4aaff"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="SmallValueBox" BasedOn="{StaticResource StandardValueBox}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="40"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="MediumValueBox" BasedOn="{StaticResource StandardValueBox}">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="LargeValueBox" BasedOn="{StaticResource StandardValueBox}">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="SmallResultBox" BasedOn="{StaticResource StandardResultBox}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="40"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="MediumResultBox" BasedOn="{StaticResource StandardResultBox}">            
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="LargeResultBox" BasedOn="{StaticResource StandardResultBox}">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="ThickMediumResultBox" BasedOn="{StaticResource MediumResultBox}">            
+            <Setter Property="BorderThickness" Value="3"/>                       
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="ValueBox_LargeSquare" BasedOn="{StaticResource StandardValueBox}">
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="ResultBox_LargeSquare" BasedOn="{StaticResource StandardResultBox}">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="StandardBtn">
+            <Setter Property="BorderBrush" Value="DarkSlateGray"/>
+            <Setter Property="Foreground" Value="#343434"/>
+            <Setter Property="Background" Value="#f4f4f6"/>
+
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="EditBtn" BasedOn="{StaticResource StandardBtn}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="200"/>
+            
+            <Setter Property="FontStyle" Value="Italic"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="SmallBtn" BasedOn="{StaticResource StandardBtn}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="40"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="MediumBtn" BasedOn="{StaticResource StandardBtn}">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="LargeBtn" BasedOn="{StaticResource StandardBtn}">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="LargeBtnSquare" BasedOn="{StaticResource StandardBtn}">
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
     </Application.Resources>
+    
 </Application>
