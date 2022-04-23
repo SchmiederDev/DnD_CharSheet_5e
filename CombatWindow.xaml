@@ -5,355 +5,424 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="CombatWindow" Height="1500" Width="1600" WindowStartupLocation="Manual" Left="0" Top="0">
+        Title="CombatWindow" Height="1000" Width="1600" WindowStartupLocation="Manual" Left="0" Top="0">
+
+    <Window.Resources>
+
+        <Style TargetType="TextBlock" x:Key="CombatWindow_MainHeader" BasedOn="{StaticResource MainHeader}">
+            <Setter Property="FontStyle" Value="Italic"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="CombatWdw_MediumInputField" BasedOn="{StaticResource StandardValueBox}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="CombatWdw_BtnMedium" BasedOn="{StaticResource EditBtn}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="CombatWdw_BtnLarge" BasedOn="{StaticResource EditBtn}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="WeaponSelection">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="300"/>
+            
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+    </Window.Resources>
        
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width ="1.25*"/>
-            <ColumnDefinition Width ="0.25*"/>
-            <ColumnDefinition Width ="1.25*"/>
-            <ColumnDefinition Width ="1.25*"/>
+            <ColumnDefinition Width ="*"/>
+            <ColumnDefinition Width ="*"/>
+            <ColumnDefinition Width ="*"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
 
-            <TextBlock Text="ATTACKS" Margin="10 50 10 20" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
-            <Button x:Name="Melee_Attack" Content="MELEE ATTACK" Click="Melee_Attack_Click" Height="30" Width="300" Margin="10 30 10 20" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-            <Button x:Name="Ranged_Attack" Content="RANGED ATTACK" Click="Ranged_Attack_Click" Height="30" Width="300" Margin="10 20 10 20" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            <TextBlock Text="ATTACKS" Margin="0 50 0 10" Style="{StaticResource CombatWindow_MainHeader}"/>
 
+            <Border Margin="25 10" Background="AliceBlue" Style="{StaticResource StandardBorder}">
 
-            <TextBlock Text="1st Weapon"  Margin="10 50 10 10" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <ComboBox x:Name="FirstWeapon_CB" SelectionChanged="FirstWeapon_CB_SelectionChanged" Height="30" Width="300" HorizontalAlignment="Center">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.25*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+
+                        <Button x:Name="Melee_Attack" Content="MELEE ATTACK" Click="Melee_Attack_Click" Margin="10 75 10 20" Style="{StaticResource CombatWdw_BtnLarge}"/>
+                        <Button x:Name="Ranged_Attack" Content="RANGED ATTACK" Click="Ranged_Attack_Click" Margin="10 20 10 20" Style="{StaticResource CombatWdw_BtnLarge}"/>
+
+                        <TextBlock Text="DAMAGE"  Margin="0 40 0 10" Style="{StaticResource H2_Header}"/>
+
+                        <TextBlock Text="1st Weapon"  Margin="0 20 0 10" Style="{StaticResource H3_Header}"/>
+                        <ComboBox x:Name="FirstWeapon_CB" SelectionChanged="FirstWeapon_CB_SelectionChanged" Style="{StaticResource WeaponSelection}">
+
+                        </ComboBox>
+                        <Button x:Name="Damage_Btn_1stWeapon" Content="ROLL FOR DAMAGE" Click="Damage_Btn_1stWeapon_Click" Margin="10 10 10 20" Style="{StaticResource CombatWdw_BtnLarge}"/>
+
+                        <TextBlock Text="2nd Weapon"  Margin="10 10 10 10" Style="{StaticResource H3_Header}"/>
+                        <ComboBox x:Name="SecondWeapon_CB" SelectionChanged="SecondWeapon_CB_SelectionChanged" Style="{StaticResource WeaponSelection}">
+
+                        </ComboBox>
+                        <Button x:Name="Damage_Btn_2ndWeapon" Content="ROLL FOR DAMAGE" Click="Damage_Btn_2ndWeapon_Click" Margin="10 10 10 20" Style="{StaticResource CombatWdw_BtnLarge}"/>
+
+                        <TextBlock Text="3rd Weapon"  Margin="10 10 10 10" Style="{StaticResource H3_Header}"/>
+                        <ComboBox x:Name="ThirdWeapon_CB" SelectionChanged="ThirdWeapon_CB_SelectionChanged" Style="{StaticResource WeaponSelection}">
+
+                        </ComboBox>
+                        <Button x:Name="Damage_Btn_3rdWeapon" Content="ROLL FOR DAMAGE" Click="Damage_Btn_3rdWeapon_Click" Margin="10 10 10 50" Style="{StaticResource CombatWdw_BtnLarge}"/>
+
+                        <!-- Insert later in the extended version with characater-class handlers:
+                            Button Content="SPELL ATTACK ROLL" Margin="10 50 10 50" Style="{StaticResource CombatWdw_BtnLarge}"/>
+                        -->
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+
+                        <TextBlock Text="Result" Margin="10 5 10 10" Style="{StaticResource StandardText}" HorizontalAlignment="Center"/>
+
+                        <TextBox x:Name="Melee_Result" IsEnabled="False" Margin="0 45 0 20" Style="{StaticResource ThickMediumResultBox}"/>
+                        <TextBox x:Name="Ranged_Result" IsEnabled="False" Margin="0 15 0 10" Style="{StaticResource ThickMediumResultBox}"/>
+
+                        <TextBox x:Name="Damage_Result_TB_01" IsEnabled="False" Margin="0 145 0 10" Style="{StaticResource ThickMediumResultBox}"/>
+                        <TextBox x:Name="Damage_Result_TB_02" IsEnabled="False" Margin="0 85 0 10" Style="{StaticResource ThickMediumResultBox}"/>
+                        <TextBox x:Name="Damage_Result_TB_03" IsEnabled="False" Margin="0 85 0 10" Style="{StaticResource ThickMediumResultBox}"/>
+
+                        <!-- Insert later in the extended version with character-class handlers
+                            <TextBox x:Name="Spell_Result" IsEnabled="False" Margin="10 70 10 10" Style="{StaticResource MediumResultBox}"/>
+                        -->
+
+                    </StackPanel>
+                    
+                </Grid>
                 
-            </ComboBox>
-            <Button x:Name="Damage_Btn_1stWeapon" Content="ROLL FOR DAMAGE" Click="Damage_Btn_1stWeapon_Click" Height="30" Width="300" Margin="10 10 10 20" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-
-            <TextBlock Text="2nd Weapon"  Margin="10 10 10 10" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <ComboBox x:Name="SecondWeapon_CB" SelectionChanged="SecondWeapon_CB_SelectionChanged" Height="30" Width="300" HorizontalAlignment="Center">
-                
-            </ComboBox>
-            <Button x:Name="Damage_Btn_2ndWeapon" Content="ROLL FOR DAMAGE" Click="Damage_Btn_2ndWeapon_Click" Height="30" Width="300" Margin="10 10 10 20" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-
-            <TextBlock Text="3rd Weapon"  Margin="10 10 10 10" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <ComboBox x:Name="ThirdWeapon_CB" SelectionChanged="ThirdWeapon_CB_SelectionChanged" Height="30" Width="300" HorizontalAlignment="Center">
-                
-            </ComboBox>
-            <Button x:Name="Damage_Btn_3rdWeapon" Content="ROLL FOR DAMAGE" Click="Damage_Btn_3rdWeapon_Click" Height="30" Width="300" Margin="10 10 10 10" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-
-            <Button Content="SPELL ATTACK ROLL" Height="30" Width="300" Margin="10 50 10 30" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            </Border>
 
         </StackPanel>
 
+        
         <StackPanel Grid.Column="1">
 
-            <TextBlock Text="RESULT" Margin="10 60 10 20" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+            <TextBlock Text="INITIATIVE" Margin="10 50 10 10" Style="{StaticResource CombatWindow_MainHeader}"/>
 
-            <TextBox x:Name="Melee_Result" IsEnabled="False" Height="40" Width="60" Margin="10 20 10 20" Padding="5" FontSize="18" FontWeight="Bold"/>
-            <TextBox x:Name="Ranged_Result" IsEnabled="False" Height="40" Width="60" Margin="10 10 10 10" Padding="5" FontSize="18" FontWeight="Bold"/>
-            
-            <TextBox x:Name="Damage_Result_TB_01" IsEnabled="False" Height="40" Width="60" Margin="10 100 10 10" Padding="5" FontSize="18" FontWeight="Bold"/>
-            <TextBox x:Name="Damage_Result_TB_02" IsEnabled="False" Height="40" Width="60" Margin="10 80 10 10" Padding="5" FontSize="18" FontWeight="Bold"/>
-            <TextBox x:Name="Damage_Result_TB_03" IsEnabled="False" Height="40" Width="60" Margin="10 90 10 10" Padding="5" FontSize="18" FontWeight="Bold"/>
+            <Border BorderBrush="#bb8fbb" Background="MintCream" Margin="25 10" Style="{StaticResource StandardBorder}">
 
-            <TextBox x:Name="Spell_Result" IsEnabled="False" Height="40" Width="60" Margin="10 70 10 10" Padding="5" FontSize="18" FontWeight="Bold"/>
+                <StackPanel Height="700">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width = "2*"/>
+                            <ColumnDefinition Width = "*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Bonus (DEX)" Margin="15 35 10 10" HorizontalAlignment="Left" Style="{StaticResource H2_Header}" Grid.Column="0"/>
+                        <TextBlock Text="Result" Margin="10 35 20 10" Style="{StaticResource H2_Header}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width = "*"/>
+                            <ColumnDefinition Width = "*"/>
+                            <ColumnDefinition Width = "*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="IniBonus" IsEnabled="False" Style="{StaticResource MediumValueBox}" Grid.Column="0"/>
+                        <Button x:Name="IniButton" Content="ROLL" Click="IniButton_Click" Style="{StaticResource MediumBtn}" Grid.Column="1"/>
+                        <TextBox x:Name="IniResult" IsEnabled="False" Style="{StaticResource MediumResultBox}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Button x:Name="ActivateIniOrder_Btn" Click="ActivateIniOrder_Btn_Click" Content="Create Initiative List" Margin="10 35 10 10" Style="{StaticResource CombatWdw_BtnMedium}"/>
+
+                    <TextBlock x:Name="IniOrder_Txt" Text="INITIATIVE ORDER" Visibility="Hidden" Margin="10 20 10 25" Style="{StaticResource H2_Header}"/>                    
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="CombatantName_Txt" Text="Name of Combatant" Visibility="Hidden" Margin="0 0 15 10" Style="{StaticResource H3_Header}" Grid.Column="0"/>
+                        <TextBlock x:Name="CombatantValue_Txt" Text="Initiative Value" Visibility="Hidden" Margin="0 0 57.5 10" Style="{StaticResource H3_Header}" Grid.Column="1"/>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="TB_CombatantName" IsEnabled="False" Visibility="Hidden" Style="{StaticResource CombatWdw_MediumInputField}" Grid.Column="0"/>
+                        <TextBox x:Name="TB_IniValue" IsEnabled="False" Visibility="Hidden" Style="{StaticResource CombatWdw_MediumInputField}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="NewCombatant_Btn" Click="NewCombatant_Btn_Click" Content="NEW COMBATANT" Visibility="Hidden" Margin="10 15 10 25" Style="{StaticResource CombatWdw_BtnMedium}" Grid.Column="0"/>
+                        <Button x:Name="AddCombatant_Btn" Click="AddCombatant_Btn_Click" Content="ADD COMBATANT" Visibility="Hidden" Margin="10 15 10 25" Style="{StaticResource CombatWdw_BtnMedium}" Grid.Column="1"/>
+                        
+                    </Grid>
+                    
+                    <ListView x:Name="InitiativeOrder_LV" ItemsSource="{Binding Combatants}" Visibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10 10" Width="435">                       
+
+                        <ListView.View>
+                            <GridView>
+
+                                <GridViewColumn x:Name="GVC_1_CombatantName" DisplayMemberBinding="{Binding CombatantName}" Header="Combatant" Width="290"/>
+                                <GridViewColumn x:Name="GVC_2_CombatantOrder" DisplayMemberBinding="{Binding IniOrderValue}" Header="Initiative Result" Width="130"/>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </StackPanel>
+                
+            </Border>
+
 
         </StackPanel>
 
         <StackPanel Grid.Column="2">
 
-            <TextBlock Text="INITIATIVE" Margin="10 50 10 10" HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"/>            
+            <TextBlock Text="DAMAGE, DEATH SAVES AND HEALING" Margin="10 50 10 10" Style="{StaticResource CombatWindow_MainHeader}"/>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width = "2*"/>
-                    <ColumnDefinition Width = "*"/>
-                </Grid.ColumnDefinitions>
+            <Border Background="#f0f1ff" Margin="10 10 10 0" Height="705" MaxHeight="705" Style="{StaticResource StandardBorder}">
 
-                <TextBlock Text="Bonus (DEX)" Margin="25 35 10 10" FontWeight="Bold" FontSize="22" Grid.Column="0"/>
-                <TextBlock Text="Result" Margin="10 35 20 10" FontWeight="Bold" FontSize="22" HorizontalAlignment="Center" Grid.Column="1"/>
-
-            </Grid>
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width = "*"/>
-                    <ColumnDefinition Width = "*"/>
-                    <ColumnDefinition Width = "*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox x:Name="IniBonus" IsEnabled="False" Margin="10 30" Height="40" Width="60" HorizontalAlignment="Center" Padding="5" FontSize="18" FontWeight="Bold" Grid.Column="0"/>
-                <Button x:Name="IniButton" Content="ROLL" Click="IniButton_Click" Margin="10 30" Height="40" Width="60" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Grid.Column="1"/>
-                <TextBox x:Name="IniResult" IsEnabled="False" Margin="10 30" Height="40" Width="60" HorizontalAlignment="Center" Padding="5" FontSize="18" FontWeight="Bold" Grid.Column="2"/>
-
-            </Grid>
-
-            <Button x:Name="ActivateIniOrder_Btn" Click="ActivateIniOrder_Btn_Click" Content="Create Initiative List" Margin="10 25 10 10" Height="40" Width="250" FontWeight="Bold" FontSize="18"/>
-
-            <TextBlock x:Name="IniOrder_Txt" Text="INITIATIVE ORDER" Visibility="Hidden" Margin="10 40 10 10" HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"/>
-
-            <ListView x:Name="InitiativeOrder_LV" Visibility="Hidden" ItemsSource="{Binding Combatants}">
-
-                <!--<ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding CombatantName}"/>
-                            <TextBlock Text="{Binding IniOrderValue}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>-->
-                
-                <ListView.View>
-                    <GridView>
-
-                        <GridViewColumn x:Name="GVC_1_CombatantName" DisplayMemberBinding="{Binding CombatantName}" Header="Combatant" Width="370"/>
-                        <GridViewColumn x:Name="GVC_2_CombatantOrder" DisplayMemberBinding="{Binding IniOrderValue}" Header="Initiative Result" Width="145"/>
-
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock x:Name="CombatantName_Txt" Text="Name of Combatant" Visibility="Hidden" Margin="25 25 10 10" FontWeight="Bold" FontSize="20" Grid.Column="0"/>
-                <TextBlock x:Name="CombatantValue_Txt" Text="Initiative Value" Visibility="Hidden" Margin="15 25 10 10" FontWeight="Bold" FontSize="20" Grid.Column="1"/>
-            </Grid>
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox x:Name="TB_CombatantName" IsEnabled="False" Visibility="Hidden" Margin="25 5 10 10" Height="35" FontSize="16" FontWeight="Bold" Grid.Column="0"/>
-                <TextBox x:Name="TB_IniValue" IsEnabled="False" Visibility="Hidden" Margin="10 5 35 10" Height="35" Width="80" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-
-            </Grid>
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Button x:Name="NewCombatant_Btn" Click="NewCombatant_Btn_Click" Content="NEW COMBATANT" Visibility="Hidden" Height="40" Width="200" Margin="10 25 10 25" FontWeight="Bold" FontSize="16" Grid.Column="0"/>
-                <Button x:Name="AddCombatant_Btn" Click="AddCombatant_Btn_Click" Content="ADD COMBATANT" Visibility="Hidden" Height="40" Width="200" Margin="10 25 10 25" FontWeight="Bold" FontSize="16" Grid.Column="1"/>
-            </Grid>
-
-
-        </StackPanel>
-
-        <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden" Grid.Column="3">
-
-            <StackPanel>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="ARMOR CLASS (AC)" Margin="10 55 10 10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="0"/>
-                    <TextBox x:Name="AC_TB" IsEnabled="False" Height="40" Width="60" Margin="10 50 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="HITPOINTS (HP) (Max.)" Margin="10 50 10 10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="0"/>
-                    <TextBox x:Name="HP_Max_TB" IsEnabled="False" Height="40" Width="60" Margin="10 50 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="CURRENT HP" Margin="10 40 10 10" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="0"/>
-                    <TextBox x:Name="HP_Curr_TB" IsEnabled="False" Height="40" Width="60" Margin="10 40 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="TEMPORARY HP" Margin="10 20 10 10" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="0"/>
-                    <TextBox x:Name="TempHP_TB" IsEnabled="False" Height="40" Width="60" Margin="10 20 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
-
-                </Grid>
-
-                <Expander Header="Click here to expand or collapse the temporary hitpoint menu">
+                <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden">
 
                     <StackPanel>
-                        
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button x:Name="AddTempHP_Btn" Content="ADD TEMPORARY HP" Click="AddTempHP_Btn_Click" Height="40" Width="250" Margin="10 25 10 10" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Grid.Column="0"/>
-                            <TextBox x:Name="AddTempHP_TB" Height="40" Width="60" Margin="10 25 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
+                            <TextBlock Text="Armor Class (AC)" Margin="10 35 10 10" Style="{StaticResource H2_Header}" Grid.Column="0"/>
+                            <TextBox x:Name="AC_TB" IsEnabled="False" Margin="10 30 10 10" Style="{StaticResource MediumValueBox}" Grid.Column="1"/>
 
                         </Grid>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="1.5*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="Dice_Add_TempHP_01_TB" Height="50" Width="75" Margin="35 25 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="0"/>
-                            <TextBlock Text="d" Margin="10 25 10 10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" FontWeight="Bold" Grid.Column="1"/>
-                            <TextBox x:Name="Dice_Add_TempHP_02_TP" Height="50" Width="75" Margin="20 25 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="2"/>
-                            <Button x:Name="Dice_Add_TempHP_Btn" Content="Roll and Add" Click="Dice_Add_TempHP_Btn_Click" Height="50" Width="120" Margin="10 25 10 10" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="3"/>
+                            <TextBlock Text="Hitpoints(HP) (Max.)" Margin="10 35 10 10" Style="{StaticResource MainHeader}" Grid.Column="0"/>
+                            <TextBox x:Name="HP_Max_TB" IsEnabled="False" Margin="10 30 10 10" BorderThickness="2" Style="{StaticResource MediumValueBox}" Grid.Column="1"/>
 
                         </Grid>
-                        
-                    </StackPanel>
 
-                </Expander>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                <TextBlock Text="TAKE DAMAGE" Margin="10 50 10 10" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
-                <TextBlock Text="Damage" Margin="35 20 10 5" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock Text="Current HP" Margin="10 25 10 10" Style="{StaticResource H2_Header}" Grid.Column="0"/>
+                            <TextBox x:Name="HP_Curr_TB" IsEnabled="False" Margin="10 20 10 10" Style="{StaticResource MediumValueBox}" Grid.Column="1"/>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
+                        </Grid>
 
-                    <TextBox x:Name="Hit_TB" Height="50" Width="75" Margin="10 15 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="0"/>
-                    <Button x:Name="Hit_Btn" Content="GET HIT" Click="Hit_Btn_Click" Height="50" Width="120" Margin="10 10 10 10" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Grid.Column="1"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                </Grid>
+                            <TextBlock Text="Temporary HP" Margin="10 25 10 10" Style="{StaticResource H2_Header}" Grid.Column="0"/>
+                            <TextBox x:Name="TempHP_TB" IsEnabled="False" Margin="10 20 10 10" Style="{StaticResource MediumValueBox}" Grid.Column="1"/>
 
-                <TextBlock Text="DEATH SAVING THROWS" Margin="10 30 10 10" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
-                <TextBlock x:Name="DS_Panel_Info_TBl" Text="Will be enbabled if you drop to 0 or less HP" Visibility="Visible" Margin="10 10 10 10" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold"/>
+                        </Grid>
 
-                <StackPanel x:Name="DS_Panel" Visibility="Collapsed">
+                        <Expander Header="Click here to expand or collapse the Temporary Hitpoint Menu" HorizontalAlignment="Center">
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                            <StackPanel>
 
-                        <TextBlock Text="Use optional one HP rule" Margin="10 10 10 10" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="0"/>
-                        <CheckBox x:Name="OneHP_CB" Margin="10 15 10 10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                    </Grid>
+                                    <Button x:Name="AddTempHP_Btn" Content="Add Temporary HP" Click="AddTempHP_Btn_Click" Margin="10 25 10 10" Style="{StaticResource CombatWdw_BtnMedium}" Grid.Column="0"/>
+                                    <TextBox x:Name="AddTempHP_TB" Margin="10 20 10 10" Style="{StaticResource MediumValueBox}" Grid.Column="1"/>
 
-                    <TextBlock Text="SUCCESSES" Margin="10 20 10 5" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                                </Grid>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                    </Grid.ColumnDefinitions>
 
-                        <Ellipse x:Name="DeathSave_Success_01" MouseLeftButtonDown="DeathSave_Success_01_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="0"/>
-                        <Ellipse x:Name="DeathSave_Success_02" MouseLeftButtonDown="DeathSave_Success_02_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="1"/>
-                        <Ellipse x:Name="DeathSave_Success_03" MouseLeftButtonDown="DeathSave_Success_03_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="2"/>
+                                    <TextBox x:Name="Dice_Add_TempHP_01_TB" Margin="35 25 10 10" Style="{StaticResource MediumValueBox}" Grid.Column="0"/>
+                                    <TextBlock Text="d" Margin="15 25 10 10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+                                    <TextBox x:Name="Dice_Add_TempHP_02_TP" Margin="20 25 10 10" Style="{StaticResource MediumValueBox}" Grid.Column="2"/>
+                                    <Button x:Name="Dice_Add_TempHP_Btn" Content="Roll and Add" Click="Dice_Add_TempHP_Btn_Click" Margin="10 25 10 10" Style="{StaticResource CombatWdw_BtnMedium}" Grid.Column="3"/>
 
-                    </Grid>
+                                </Grid>
 
-                    <TextBlock Text="FAILURES" Margin="10 20 10 5" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        </Expander>
 
-                        <Ellipse x:Name="DeathSave_Failure_01" MouseLeftButtonDown="DeathSave_Failure_01_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="0"/>
-                        <Ellipse x:Name="DeathSave_Failure_02" MouseLeftButtonDown="DeathSave_Failure_02_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="1"/>
-                        <Ellipse x:Name="DeathSave_Failure_03" MouseLeftButtonDown="DeathSave_Failure_03_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="2"/>
+                        <TextBlock Text="TAKE DAMAGE" Margin="10 50 10 10" Style="{StaticResource MainHeader}"/>
+                        <TextBlock Text="Damage" Margin="50 10 10 5" HorizontalAlignment="Left" Style="{StaticResource H3_Header}"/>
 
-                    </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Make a Death Saving Throw" Margin="10 20 10 10" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <TextBox x:Name="Hit_TB" Margin="30 20 10 25" Style="{StaticResource LargeValueBox}" Grid.Column="0"/>
+                            <Button x:Name="Hit_Btn" Content="Get Hit!" Click="Hit_Btn_Click" Height="50" Width="120" Margin="25 5 10 10" HorizontalAlignment="Left" Style="{StaticResource LargeBtn}" Grid.Column="1"/>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        </Grid>
 
-                        <Button x:Name="DeathSave_Btn" Content="ROLL DEATH SAVE" Click="DeathSave_Btn_Click" Height="40" Width="250" Margin="10 40 10 10" FontSize="18" FontWeight="Bold" Grid.Column="0"/>
-                        <StackPanel Grid.Column="1">
-                            <TextBlock Text="Result" Margin="10 15 10 5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                            <TextBox x:Name="DeathSave_Result_TB" IsEnabled="False" Height="40" Width="70" Margin="10 5 10 10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="DEATH SAVING THROWS" Margin="10 30 10 5" Style="{StaticResource MainHeader}"/>
+                        <TextBlock x:Name="DS_Panel_Info_TBl" Text="Will be enbabled if you drop to 0 or less HP" Margin="10 5 10 10" Style="{StaticResource StandardText}" HorizontalAlignment="Center"/>
+
+                        <StackPanel x:Name="DS_Panel" Visibility="Collapsed">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Use optional one HP rule" Margin="5" Style="{StaticResource H3_Header}" FontSize="14" Grid.Column="0"/>
+                                <CheckBox x:Name="OneHP_CB" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
+
+                            </Grid>
+
+                            <TextBlock Text="SUCCESSES" Margin="10 20 10 5" HorizontalAlignment="Center" Style="{StaticResource H2_Header}"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Ellipse x:Name="DeathSave_Success_01" MouseLeftButtonDown="DeathSave_Success_01_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="0"/>
+                                <Ellipse x:Name="DeathSave_Success_02" MouseLeftButtonDown="DeathSave_Success_02_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="1"/>
+                                <Ellipse x:Name="DeathSave_Success_03" MouseLeftButtonDown="DeathSave_Success_03_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="2"/>
+
+                            </Grid>
+
+                            <TextBlock Text="FAILURES" Margin="10 20 10 5" Style="{StaticResource H2_Header}"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Ellipse x:Name="DeathSave_Failure_01" MouseLeftButtonDown="DeathSave_Failure_01_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="0"/>
+                                <Ellipse x:Name="DeathSave_Failure_02" MouseLeftButtonDown="DeathSave_Failure_02_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="1"/>
+                                <Ellipse x:Name="DeathSave_Failure_03" MouseLeftButtonDown="DeathSave_Failure_03_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="2"/>
+
+                            </Grid>
+
+                            <TextBlock Text="Make a Death Saving Throw" Margin="10 30 10 10" Style="{StaticResource H3_Header}"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button x:Name="DeathSave_Btn" Content="ROLL DEATH SAVE" Click="DeathSave_Btn_Click" Margin="10 47.5 10 10" Height="40" FontSize="20" Style="{StaticResource CombatWdw_BtnMedium}" Grid.Column="0"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Result" Margin="0 15 10 5" Style="{StaticResource H3_Header}"/>
+                                    <TextBox x:Name="DeathSave_Result_TB" IsEnabled="False" Margin="10 5 10 10" BorderThickness="2" Background="#fff0f1" Style="{StaticResource LargeResultBox}"/>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                            <Button x:Name="Resurrect_Btn" Content="Resurrect" IsEnabled="False" Click="Resurrect_Btn_Click" Margin="10 30 10 10" Style="{StaticResource CombatWdw_BtnMedium}" Width="150" FontSize="18" FontStyle="Italic"/>
 
                         </StackPanel>
 
-                    </Grid>
+                        <TextBlock Text="HEALING" Margin="10 30 10 10" Style="{StaticResource MainHeader}"/>
 
-                    <Button x:Name="Resurrect_Btn" Content="Resurrect" IsEnabled="False" Click="Resurrect_Btn_Click" Height="40" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 30 10 10" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+                        <Expander x:Name="HealingPanel_Expander" Header="Click here to expand or collapse Healing options" HorizontalAlignment="Center">
 
-                </StackPanel>               
+                            <StackPanel x:Name="HealingPanel" IsEnabled="True">
 
-                <TextBlock Text="HEALING" Margin="10 30 10 10" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
-                
-                <Expander x:Name="HealingPanel_Expander" Header="Click here to expand or collapse Healing options">
-                    
-                    <StackPanel x:Name="HealingPanel" IsEnabled="True">
+                                <TextBlock Text="HP" Margin="65 10 10 5" HorizontalAlignment="Left" Style="{StaticResource H2_Header}"/>
 
-                        <TextBlock Text="HP" Margin="65 10 10 5" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="Heal_TB" Margin="25 15 10 10" HorizontalAlignment="Left" Style="{StaticResource LargeValueBox}" Grid.Column="0"/>
+                                    <Button x:Name="HealTxt_Btn" Content="Heal" Click="HealTxt_Btn_Click" Margin="10 10 35 10" Style="{StaticResource LargeBtn}" Grid.Column="1"/>
 
-                            <TextBox x:Name="Heal_TB" Height="50" Width="75" Margin="25 15 10 10" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="0"/>
-                            <Button x:Name="HealTxt_Btn" Content="HEAL" Click="HealTxt_Btn_Click" Height="50" Width="120" Margin="10 10 35 10" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold" Grid.Column="1"/>
+                                </Grid>
 
-                        </Grid>
+                                <Grid Margin="15 10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="1.5*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="HP_Dice_01_TB" Margin="10 15 10 10" Style="{StaticResource MediumValueBox}" Grid.Column="0"/>
+                                    <TextBlock Text="d" Margin="10 15 10 10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+                                    <TextBox x:Name="HP_Dice_02_TB" Margin="10 15 10 10" Style="{StaticResource MediumValueBox}" Grid.Column="2"/>
+                                    <Button x:Name="HealDice_Btn" Content="Heal" Click="HealDice_Btn_Click" Margin="10 10 10 10" Style="{StaticResource LargeBtn}" Grid.Column="3"/>
+                                    <TextBox x:Name="Heal_Dice_Result_TB" IsEnabled="False" Margin="10 15 10 10" Style="{StaticResource MediumResultBox}" BorderThickness="2" Background="#fff0f1" Grid.Column="4"/>
 
-                            <TextBox x:Name="HP_Dice_01_TB" Height="40" Width="60" Margin="10 15 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="0"/>
-                            <TextBlock Text="d" Margin="10 15 10 10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" FontWeight="Bold" Grid.Column="1"/>
-                            <TextBox x:Name="HP_Dice_02_TB" Height="40" Width="60" Margin="10 15 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="2"/>
-                            <Button x:Name="HealDice_Btn" Content="HEAL" Click="HealDice_Btn_Click" Height="45" Width="120" Margin="10 15 10 10" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Grid.Column="3"/>
-                            <TextBox x:Name="Heal_Dice_Result_TB" IsEnabled="False" Height="40" Width="60" Margin="10 15 10 10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold" Grid.Column="4"/>
+                                </Grid>
 
-                        </Grid>
+                                <Button x:Name="Clear_HealinDice_Btn" Content="RESET HEALING DICE" Click="Clear_HealinDice_Btn_Click" Margin="15 15 10 10" HorizontalAlignment="Left" Style="{StaticResource CombatWdw_BtnMedium}"/>
+                            </StackPanel>
 
-                        <Button x:Name="Clear_HealinDice_Btn" Content="RESET HEALING DICE" Click="Clear_HealinDice_Btn_Click" Height="40" Width="260" Margin="25 15 10 10" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"/>
+                        </Expander>
+
                     </StackPanel>
-                    
-                </Expander>                
 
-            </StackPanel>
+                </ScrollViewer>
 
-        </ScrollViewer>
+            </Border>
+
+        </StackPanel>
         
     </Grid>
     
