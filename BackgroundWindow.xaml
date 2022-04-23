@@ -5,7 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="Character Background, Feats and Traits" Height="850" Width="800" Closed="Window_Closed" Closing="Window_Closing">
+        Title="Character Background, Feats and Traits" Height="850" Width="800" Closing="Window_Closing">
+
+    <Window.Resources>
+
+        <Style TargetType="TextBlock" x:Key="DescriptionHeader" BasedOn="{StaticResource StandardText}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="10 10 0 5"/>
+            
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="BackgroundHeader" BasedOn="{StaticResource StandardText}">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 25 0 10"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="DescriptionBox" BasedOn="{StaticResource StandardTextBox}">
+            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="10 0 10 0"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="EditBtnDesign" BasedOn="{StaticResource StandardBtn}" >            
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="BackgroundBox" BasedOn="{StaticResource StandardTextBox}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="15 0 10 10"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Height" Value="250"/>
+            <Setter Property="MaxHeight" Value="250"/>            
+        </Style>
+        
+    </Window.Resources>
 
     <StackPanel>
 
@@ -13,52 +51,79 @@
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0">
 
-                <TextBlock x:Name="CharacterName_Txt" Text="Character:" Margin="10 25 10 5" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
-                <TextBox x:Name="CharacterName_Box" IsEnabled="False" Margin="10 5 10 10" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>               
+                <TextBlock x:Name="CharacterName_Txt" Text="Character:" Margin="40 15 10 5" Style="{StaticResource StandardText}" FontSize="18"/>
+                <TextBox x:Name="CharacterName_Box" IsEnabled="False" Width="200" Height="25" HorizontalAlignment="Left" Style="{StaticResource StandardTextBox}" Margin="40 5 10 10" FontSize="18"/>               
 
             </StackPanel>
 
-            <Grid Grid.Column="1">
+            <Border Margin="10 45 10 10" Style="{StaticResource StandardBorder}" Grid.Column="1">
+                
+                <StackPanel>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <Grid>
 
-                <StackPanel Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock x:Name="Age_Txt" Text="Age" Margin="45 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Age_Box" IsEnabled="False" Margin="10 0 10 0" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBlock x:Name="Eyes_Txt" Text="Eyes" Margin="45 5 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Eyes_Box" IsEnabled="False" Margin="10 0 10 10" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>                    
+                        <TextBlock x:Name="Age_Txt" Text="Age" Style="{StaticResource DescriptionHeader}" Grid.Column="0"/>
+                        <TextBlock x:Name="Height_Txt" Text="Height" Style="{StaticResource DescriptionHeader}" Grid.Column="1"/>
+                        <TextBlock x:Name="Weight_Txt" Text="Weight" Style="{StaticResource DescriptionHeader}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="Age_Box" Style="{StaticResource DescriptionBox}" Grid.Column="0"/>
+                        <TextBox x:Name="Height_Box" Style="{StaticResource DescriptionBox}" Grid.Column="1"/>
+                        <TextBox x:Name="Weight_Box" Style="{StaticResource DescriptionBox}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="Eyes_Txt" Text="Eyes" Style="{StaticResource DescriptionHeader}" Grid.Column="0"/>
+                        <TextBlock x:Name="Skin_Txt" Text="Skin" Style="{StaticResource DescriptionHeader}" Grid.Column="1"/>
+                        <TextBlock x:Name="Hair_Txt" Text="Hair" Style="{StaticResource DescriptionHeader}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid Margin="0 0 0 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="Eyes_Box" Style="{StaticResource DescriptionBox}" Grid.Column="0"/>
+                        <TextBox x:Name="Skin_Box" Style="{StaticResource DescriptionBox}" Grid.Column="1"/>
+                        <TextBox x:Name="Hair_Box" Style="{StaticResource DescriptionBox}" Grid.Column="2"/>
+
+                    </Grid>                    
 
                 </StackPanel>
-
-                <StackPanel Grid.Column="1">
-
-                    <TextBlock x:Name="Height_Txt" Text="Height" Margin="45 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Height_Box" IsEnabled="False" Margin="10 0 10 0" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBlock x:Name="Skin_Txt" Text="Skin" Margin="45 5 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Skin_Box" IsEnabled="False" Margin="10 0 10 10" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-
-                </StackPanel>
-
-                <StackPanel Grid.Column="2">
-
-                    <TextBlock x:Name="Weight_Txt" Text="Weight" Margin="45 10 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Weight_Box" IsEnabled="False" Margin="10 0 10 0" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBlock x:Name="Hair_Txt" Text="Hair" Margin="45 5 10 5" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <TextBox x:Name="Hair_Box" IsEnabled="False" Margin="10 0 10 10" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>                   
-
-                </StackPanel>
-
-            </Grid>
+                
+            </Border>
 
         </Grid>
 
@@ -68,8 +133,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="Edit_btn" Content="Edit Background" Click="Edit_btn_Click" Margin="10 25 10 10" Height="30" Width="150" FontSize="16" FontWeight="Bold" FontStyle="Italic" FontFamily="Times New Roman" Grid.Column="0"/>
-            <Button x:Name="OK_btn" Content="OK" Click="OK_btn_Click" Margin="10 5 10 10" Height="30" Width="80" FontSize="16" FontWeight="Bold" FontStyle="Italic" FontFamily="Times New Roman" Visibility="Hidden" IsEnabled="False" Grid.Column="1"/>
+            <Button x:Name="Edit_btn" Content="Edit Background" Click="Edit_btn_Click" Margin="10 25 10 10" Width="150" Style="{StaticResource EditBtnDesign}" Grid.Column="0"/>
+            <Button x:Name="OK_btn" Content="OK" Click="OK_btn_Click" Margin="10 25 10 10" Width="80" Style="{StaticResource EditBtnDesign}" Visibility="Hidden" IsEnabled="False" Grid.Column="1"/>
 
         </Grid>
 
@@ -84,15 +149,16 @@
 
             <StackPanel Grid.Column="0">
 
-                <TextBlock x:Name="Feats_n_Traits_Txt" Text="Features and Traits" Margin="150 25 10 10" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
-                <TextBox x:Name="Feats_n_Traits_Box" IsEnabled="False" Margin="15 0 10 10" Height="300" FontSize="12" FontWeight="Bold" FontFamily="Times New Roman" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"/>
+                <!--Margin="150 25 10 10"-->
+                <TextBlock x:Name="Feats_n_Traits_Txt" Text="Features and Traits" Style="{StaticResource BackgroundHeader}"/>
+                <TextBox x:Name="Feats_n_Traits_Box" IsEnabled="False" Width="400" Style="{StaticResource BackgroundBox}" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"/>
 
             </StackPanel>
 
             <StackPanel Grid.Column="1">
 
-                <TextBlock x:Name="Appearance_Txt" Text="Character Appearance" Margin="85 25 10 12" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                <TextBox x:Name="Appearance_Box" IsEnabled="False" Margin="15 0 10 10" Height="300" FontSize="12" FontWeight="Bold" FontFamily="Times New Roman" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Appearance_Txt" Text="Character Appearance" Style="{StaticResource BackgroundHeader}"/>
+                <TextBox x:Name="Appearance_Box" IsEnabled="False" Width="275" BorderBrush="#bb8fbb" Style="{StaticResource BackgroundBox}" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"/>
 
             </StackPanel>
 
@@ -109,15 +175,15 @@
 
             <StackPanel Grid.Column="0">
 
-                <TextBlock x:Name="Backstory_Txt" Text="Character Backstory" Margin="150 25 10 10" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
-                <TextBox x:Name="Backstory_Box" IsEnabled="False" Margin="15 0 10 10" Height="250" FontSize="12" FontWeight="Bold" FontFamily="Times New Roman" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <TextBlock x:Name="Backstory_Txt" Text="Character Backstory" Style="{StaticResource BackgroundHeader}"/>
+                <TextBox x:Name="Backstory_Box" IsEnabled="False" Width="400" BorderBrush="#4c667f" Style="{StaticResource BackgroundBox}" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" AcceptsReturn="True"/>
 
             </StackPanel>
 
             <StackPanel Grid.Column="1">
 
-                <TextBlock x:Name="Allies_n_Orgas_Txt" Text="Allies and Organizations" Margin="85 25 10 12" FontSize="16" FontWeight="Bold" FontFamily="Times New Roman"/>
-                <TextBox x:Name="Allies_n_Orgas_Box" IsEnabled="False" Margin="15 0 10 10" Height="250" FontSize="12" FontWeight="Bold" FontFamily="Times New Roman" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Allies_n_Orgas_Txt" Text="Allies and Organizations" Style="{StaticResource BackgroundHeader}"/>
+                <TextBox x:Name="Allies_n_Orgas_Box" IsEnabled="False" Width="275" Style="{StaticResource BackgroundBox}" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"/>
 
             </StackPanel>
 
