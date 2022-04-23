@@ -9,12 +9,10 @@ namespace DnD_CharSheet_5e
         public string PlayerName { get; set; }
         public string CharacterName { get; set; }
 
-        public string CharacterRace { get; set; }
-        public string CharacterSubrace { get; set; }
+        public string RaceName { get; set; }
+        public string SubraceName { get; set; }
 
-        public CharacterRace CharRace { get; set; } = new CharacterRace();
-
-        public string CharacterClass { get; set; }
+        public string ClassName { get; set; }
         public string Alignment { get; set; }
 
         public string Background { get; set; }
@@ -594,12 +592,10 @@ namespace DnD_CharSheet_5e
             PlayerName = charData.pName;
             CharacterName = charData.cName;
 
-            CharacterRace = charData.race;
-            CharacterSubrace = charData.subrace;
+            RaceName = charData.race;
+            SubraceName = charData.subrace;
 
-            CharRace = charData.raceData;
-
-            CharacterClass = charData.charClass;
+            ClassName = charData.charClass;
 
             Alignment = charData.alignment;
             Background = charData.background;
