@@ -12,8 +12,6 @@ namespace DnD_CharSheet_5e
         public string race { set; get; }
         public string subrace { set; get; }
 
-        public CharacterRace raceData { get; set; }
-
         public string charClass { set; get; }
         public string alignment { set; get; }
         public string background { set; get; }
@@ -96,12 +94,10 @@ namespace DnD_CharSheet_5e
             pName = character.PlayerName;
             cName = character.CharacterName;
 
-            race = character.CharacterRace;
-            subrace = character.CharacterSubrace;
+            race = character.RaceName;
+            subrace = character.SubraceName;
 
-            raceData = character.CharRace;
-
-            charClass = character.CharacterClass;
+            charClass = character.ClassName;
 
             alignment = character.Alignment;
             background = character.Background;
