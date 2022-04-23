@@ -5,559 +5,136 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="DnD 5e Character Sheet" Height="950" Width="1200"
+        Title="DnD 5e Character Sheet" Height="1000" Width="1200"
         WindowStartupLocation="CenterScreen">
 
-    <Border Padding="10">
+    <Window.Resources>
+
+        <Style TargetType="TextBlock" x:Key="BasicsHeader" BasedOn="{StaticResource StandardText}">            
+            <Setter Property="Margin" Value="5 5 0 5"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="BasicCaption">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="SkillCaption" BasedOn="{StaticResource BasicCaption}">
+            <Setter Property="Margin" Value="0 9.5"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="SkillBtn" BasedOn="{StaticResource SmallBtn}">
+            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0 7.5"/>
+        </Style>
         
-        <StackPanel>
+        <Style TargetType="Border" x:Key="BasicsBorder">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#4c7f7f"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
 
-            <Grid>
-                
-                <Grid.ColumnDefinitions>
-                    
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="4*"/>
+        </Style>
 
-                </Grid.ColumnDefinitions>
+        <Style TargetType="TextBox" x:Key="BasicsInputField" BasedOn="{StaticResource InputField}">
+            <Setter Property="Margin" Value="10 5 0 20"/>
+        </Style>
 
-                <StackPanel Grid.Column="0">
+        <Style TargetType="CheckBox" x:Key="SkillCB">
+            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 10"/>
+        </Style>
 
-                    <Button x:Name="NewCharButton" Click="NewCharButton_Click" Content="New Character" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button x:Name="ApplyButton" IsEnabled="False" Click="ApplyCharButton_Click" Content="Apply Character" Margin ="15 10 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <Style TargetType="TextBox" x:Key="SkillModBox" BasedOn="{StaticResource SmallValueBox}">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0 7.5"/>
+            <Setter Property="IsEnabled" Value="False"/>
+        </Style>
 
-                    <Button x:Name="CreateCharButton" Click="CreateCharButton_Click" Content="Create Character" Margin="15 35 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    
-                    <Button x:Name="saveCharButton" Content="Save Character" IsEnabled="False" Click="SaveScreen_bt_Click" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button x:Name="loadCharButton" Content="Load Character" Click="LoadPage_bt_Click" Margin ="15 10 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <Style TargetType="TextBox" x:Key="SkillResBox" BasedOn="{StaticResource SmallResultBox}">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0 7.5"/>
+            <Setter Property="IsEnabled" Value="False"/>            
+        </Style>
 
-                    <Button x:Name="SpellWindow_bt" Content="Spells" IsEnabled="False" Click="SpellWindow_bt_Click" Margin ="15 40 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <Style TargetType="Button" x:Key="MainMenuBtn" BasedOn="{StaticResource EditBtn}"> 
+            
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="170"/>
+            
+        </Style>
+        
+    </Window.Resources>
 
-                    <Button x:Name="CombatWindow_bt" IsEnabled="False" Content="Combat" Click="CombatWindow_bt_Click" Margin ="15 20 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button x:Name="DiceMachineWindow_bt" IsEnabled="False" Content="Dice Machine" Click="DiceMachineWindow_bt_Click" Margin ="15 20 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+    <StackPanel>
 
+        <!-- Consider using Labels in a few spots - since they may e.g. specify a border directly -->
+        <TextBlock Text="Dungeons &amp; Dragons 5e - Character Sheet" Foreground="#343434" FontFamily="Cambria" FontStyle="Italic" Margin="0 10 0 10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontWeight="Bold"/>
 
-                    <Button x:Name="BackgroundPage_bt" IsEnabled="False" Content="Background" Click="BackgroundPageButton_Click" Margin ="15 25 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button x:Name="Inventory_bt" IsEnabled="False" Click="InventoryWindow_bt_Click" Content="Inventory" Margin ="15 25 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
-                    <Button x:Name="Merchant_bt" IsEnabled="False" Click="MerchantWindow_bt_Click" Content="Merchant" Margin ="15 50 10 5" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Border Margin="10 90 10 100" Style="{StaticResource StandardBorder}" Grid.Column="0">
+
+                <StackPanel Background="AliceBlue">
+
+                    <Button x:Name="NewCharButton" Content="New Character" Click="NewCharButton_Click" Margin ="0 15 0 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="ApplyButton" Content="Apply Character" Click="ApplyCharButton_Click" IsEnabled="False" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+
+                    <Button x:Name="BackgroundPage_bt" IsEnabled="False" Content="Background" Click="BackgroundPageButton_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="SpellWindow_bt" Content="Spells" IsEnabled="False" Click="SpellWindow_bt_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+
+                    <Button x:Name="CombatWindow_bt" IsEnabled="False" Content="Combat" Click="CombatWindow_bt_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="DiceMachineWindow_bt" IsEnabled="False" Content="Dice Machine" Click="DiceMachineWindow_bt_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+
+                    <Button x:Name="Inventory_bt" IsEnabled="False" Click="InventoryWindow_bt_Click" Content="Inventory" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="Merchant_bt" IsEnabled="False" Click="MerchantWindow_bt_Click" Content="Merchant" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+
+                    <Button x:Name="saveCharButton" Content="Save Character" IsEnabled="False" Click="SaveScreen_bt_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="loadCharButton" Content="Load Character" Click="LoadPage_bt_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
 
                 </StackPanel>
 
-                <ScrollViewer x:Name="MainPanelViewer" CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1">
+            </Border>
 
-                    <StackPanel x:Name="MainPanel" Orientation="Vertical" MaxHeight="850">
+            <StackPanel x:Name="MainPanel" Orientation="Vertical" MaxHeight="1000" Grid.Column="1">
 
-                        <Grid>
-                            <!-- Spieler, SC, Gesinnung Text-->
+                <Grid Margin="0 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Background="AliceBlue" Height="40" Width="150" HorizontalAlignment="Right" Margin="0 0 5 0" Style="{StaticResource StandardBorder}" Grid.Column="0">
+                        <TextBlock Text="Character:" Foreground="#343434" Style="{StaticResource H2_Header}" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <TextBox x:Name="CharNameText" IsEnabled="False" Padding="10 0 0 0" Margin="5 10 12 10" Width="250" Height="40" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="20" FontFamily="Georgia" FontWeight="Bold" Grid.Column="1"/>
+
+                </Grid>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+
+                    <StackPanel MaxHeight="850">
+
+                        <Grid Margin="10 10">
+                            
                             <Grid.ColumnDefinitions>
 
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-
-                            </Grid.ColumnDefinitions>
-
-                            <!-- Alternative zu 'TextBlock' = 'Label', aber sehr eingeschränkte Möglichkeiten -->
-                            <TextBlock Text="Character Name:" Margin="10 20 10 0" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
-                            <!-- Normalerweise <Textblock> [...] </Textblock> kann so wie hier verkürzt werden -->
-                            <TextBlock Text="Player Name:" Margin="10 20 10 0" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="1"/>
-                            <TextBlock Text="Alignment:" Margin="10 20 10 0" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
-                            <TextBlock Text="Background:" Margin="10 20 10 0" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
-
-                        </Grid>
-
-                        <Grid>
-                            <!-- Spieler, SC, Gesinnung Steuerelemente-->
-
-                            <Grid.ColumnDefinitions>
-
-                                <ColumnDefinition Width="*"/>
-                                <!-- ein '*' = gleiche Aufteilung, 3x '*' = ein Drittel; '2*' bedeutet dieses Element nimmt doppelt so viel Platz ein, wie die anderen Elemente des Grid/Panel -->
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-
-                            </Grid.ColumnDefinitions>
-
-                            <TextBox x:Name="CharNameText" Padding="2" Margin="10 10 12 10" IsEnabled="False" Grid.Column="0"/>
-                            <!-- Kann mit 'IsReadOnly' oder 'IsEnabled' für Eingabe gesperrt werden; mit 'Background' kann eine Hintergrundfarbe via Hexadezimalcode festgelegt werden -->
-                            <TextBox x:Name="PlayerNameText" Padding="2" Margin="10 10 12 10" IsEnabled="False" Grid.Column="1"/>
-
-                            <!-- Alignment Menu -->
-                            <ComboBox x:Name="AlignmentBox" SelectedIndex = "0" Margin="10 10 30 10" FontWeight="Bold" IsEnabled="False" Grid.Column="2">
-
-                                <ComboBoxItem></ComboBoxItem>
-                                <ComboBoxItem>Lawful Good</ComboBoxItem>
-                                <ComboBoxItem>Neutral Good</ComboBoxItem>
-                                <ComboBoxItem>Chaotic Good</ComboBoxItem>
-                                <ComboBoxItem>Lawful Neutral</ComboBoxItem>
-                                <ComboBoxItem>Neutral</ComboBoxItem>
-                                <ComboBoxItem>Chaotic Neutral</ComboBoxItem>
-                                <ComboBoxItem>Lawful Evil</ComboBoxItem>
-                                <ComboBoxItem>Neutral Evil</ComboBoxItem>
-                                <ComboBoxItem>Chaotic Evil</ComboBoxItem>
-
-                            </ComboBox>
-
-                            <ComboBox x:Name="BackgroundBox" SelectedIndex = "0" Margin="10 10 30 10" FontWeight="Bold" IsEnabled="False" Grid.Column="3">
-
-                                <ComboBoxItem></ComboBoxItem>
-                                <ComboBoxItem>Acolyte</ComboBoxItem>
-                                <ComboBoxItem>Charlatan</ComboBoxItem>
-                                <ComboBoxItem>Criminal</ComboBoxItem>
-                                <ComboBoxItem>Entertainer</ComboBoxItem>
-                                <ComboBoxItem>Folk Hero</ComboBoxItem>
-                                <ComboBoxItem>Guild Artisan</ComboBoxItem>
-                                <ComboBoxItem>Hermit</ComboBoxItem>
-                                <ComboBoxItem>Noble</ComboBoxItem>
-                                <ComboBoxItem>Outlander</ComboBoxItem>
-                                <ComboBoxItem>Sage</ComboBoxItem>
-                                <ComboBoxItem>Sailor</ComboBoxItem>
-                                <ComboBoxItem>Soldier</ComboBoxItem>
-                                <ComboBoxItem>Urchin</ComboBoxItem>
-
-                            </ComboBox>
-
-                        </Grid>
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-                                <!-- Race, Subrace, Class Text-->
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-
-
-                            <TextBlock Text="Level: " Margin="10 10 0 0" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="0"/>
-                            <TextBlock Text="Race: " Margin="10 10 0 0" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="2"/>
-                            <TextBlock Text="Subrace: " Margin="10 10 0 0" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="3"/>
-                            <TextBlock Text="Class: " Margin="10 10 0 0" FontWeight="Bold" FontFamily="Times New Roman" Grid.Column="4"/>
-
-                        </Grid>
-
-                        <Grid>
-                            <!-- Level/ Race/ Subrace/ Class Steuerelemente -->
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBox x:Name="LevelText" IsEnabled="False" Margin="5 0 0 0" Padding="2" Height="25" Width="50" Grid.Column="0"/>
-
-                            <Button x:Name="Level_Up_bt" IsEnabled="False" Content="+" Click="LevelUpButton_Click" Margin="0 10 0 10" Height="20" Width="20" Grid.Column="1"/>
-
-                            <!-- Race Menu-->
-                            <ComboBox x:Name="RaceMenu" SelectedIndex = "0" Padding="2" Margin="10 15 0 15" FontWeight="Bold" IsEnabled="False" Grid.Column="2">
-
-                                <!-- Über 'SelectedIndex' kann die default-Auswahl für die ComboBox festgelegt werden -->
-
-                                <ComboBoxItem></ComboBoxItem>
-                                <ComboBoxItem>Dragonborn</ComboBoxItem>
-                                <ComboBoxItem>Dwarf</ComboBoxItem>
-                                <ComboBoxItem>Elf</ComboBoxItem>
-                                <ComboBoxItem>Gnome</ComboBoxItem>
-                                <ComboBoxItem>Half-Elf</ComboBoxItem>
-                                <ComboBoxItem>Half-Orc</ComboBoxItem>
-                                <ComboBoxItem>Halfling</ComboBoxItem>
-                                <ComboBoxItem>Human</ComboBoxItem>
-                                <ComboBoxItem>Tiefling</ComboBoxItem>
-
-                            </ComboBox>
-
-                            <!-- Subrace Menu -->
-                            <ComboBox x:Name="SubRaceMenu" SelectedIndex = "0" Padding="2" Margin="10 15 0 15" FontWeight="Bold" IsEnabled="False" Grid.Column="3">
-
-                                <ComboBoxItem></ComboBoxItem>
-                                <ComboBoxItem>Drow</ComboBoxItem>
-                                <ComboBoxItem>High Elf</ComboBoxItem>
-                                <ComboBoxItem>Wood Elf</ComboBoxItem>
-                                <ComboBoxItem>Hill Dwarf</ComboBoxItem>
-                                <ComboBoxItem>Moutain Dwarf</ComboBoxItem>
-                                <ComboBoxItem>Forest Gnome</ComboBoxItem>
-                                <ComboBoxItem>Rock Gnome</ComboBoxItem>
-                                <ComboBoxItem>Lightfood Halfling</ComboBoxItem>
-                                <ComboBoxItem>Stout Halfling</ComboBoxItem>
-
-                            </ComboBox>
-
-                            <!-- Class Menu -->
-                            <ComboBox x:Name="ClassMenu" SelectedIndex = "0" Padding="2" Margin="10 15 0 15" FontWeight="Bold" IsEnabled ="False" Grid.Column="4">
-
-                                <ComboBoxItem></ComboBoxItem>
-                                <ComboBoxItem>Barbarian</ComboBoxItem>
-                                <ComboBoxItem>Bard</ComboBoxItem>
-                                <ComboBoxItem>Cleric</ComboBoxItem>
-                                <ComboBoxItem>Druid</ComboBoxItem>
-                                <ComboBoxItem>Fighter</ComboBoxItem>
-                                <ComboBoxItem>Monk</ComboBoxItem>
-                                <ComboBoxItem>Paladin</ComboBoxItem>
-                                <ComboBoxItem>Ranger</ComboBoxItem>
-                                <ComboBoxItem>Rogue</ComboBoxItem>
-                                <ComboBoxItem>Sorcerer</ComboBoxItem>
-                                <ComboBoxItem>Warlock</ComboBoxItem>
-                                <ComboBoxItem>Wizard</ComboBoxItem>
-
-                            </ComboBox>
-
-                        </Grid>
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="HITPOINTS (Max.): " Margin="10 40 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="0"/>
-                            <TextBox x:Name="maxHPtext" IsEnabled="False" Margin="0 35 0 10" Height="25"  Width="40" Grid.Column="1"/>
-                            <TextBlock Text="CURRENT HP: " Margin="10 40 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="2"/>
-                            <TextBox x:Name="currHPtext" IsEnabled="False" Margin="0 35 0 10" Height="25" Width="40" Grid.Column="3"/>
-                            <TextBlock Text="TEMPORARY HP: " Margin="10 40 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="4"/>
-                            <TextBox x:Name="tempHPtext" IsEnabled="False" Margin="0 35 0 10" Height="25"  Width="40" Grid.Column="5"/>
-
-                        </Grid>
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="HIT DICE (Total): " Margin="10 15 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="0"/>
-                            <TextBox x:Name="HDtext" IsEnabled="False" Margin="0 10 0 10" Height="25" Width ="40" Grid.Column="1"/>
-                            <TextBlock Text="CURRENT HIT DICE: " Margin="0 15 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="2"/>
-                            <TextBox x:Name="currHDtext" IsEnabled="False" Margin="0 10 0 10" Height="25" Width ="40" Grid.Column="3"/>
-                            <TextBlock Text="PROFICIENCY BONUS: " Margin="0 15 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="4"/>
-                            <TextBox x:Name="ProfBonus_Box" IsEnabled="False" Margin="0 10 0 10" Height="25" Width ="40" Grid.Column="5"/>
-
-                        </Grid>
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-
-                                <ColumnDefinition Width="1.5*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="INITIATIVE:" Margin="10 30" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="0"/>
-                            <TextBox x:Name="iniBonus" IsEnabled ="False" Height="25" Width="40" Grid.Column="1"/>
-                            <Button x:Name="iniButton" IsEnabled="False" Click ="IniButton_Click" Content="Roll" Height="25" Width="40" Grid.Column="2"/>
-                            <TextBox x:Name="iniResult" IsEnabled ="False" Height="25" Width="40" Grid.Column="3"/>
-                            <TextBlock Text="ARMOR CLASS (AC):" Margin="10 30" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="4"/>
-                            <TextBox x:Name="AC" IsEnabled="False" Height="25" Width="40" Grid.Column="5"/>
-                            <TextBlock Text="SPEED:" Margin="10 30" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="6"/>
-                            <TextBox x:Name="baseSpeed" IsEnabled="False" Height="25" Width="40" Grid.Column="7"/>
-
-                        </Grid>
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0">
-
-                                <Grid>
-
-                                    <Grid.ColumnDefinitions>
-
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Text="STRENGTH" Margin="10 30 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="18" Grid.Column="0"/>
-                                    <TextBox x:Name="strScoreText" Margin ="0 20 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
-                                    <TextBox x:Name="strModifierText" Margin ="0 25 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                    <Button x:Name="strRoll_bt" Content="Roll" Click="StrButton_Click" Margin = "0 25 20 10" Height ="35" Width="60" IsEnabled="False" Grid.Column="3"/>
-                                    <TextBox x:Name="strengthResult" Margin ="0 30 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
-
-                                </Grid>
-
-                                <Grid>
-
-                                    <Grid.ColumnDefinitions>
-
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Text="DEXTERITY" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="18" Grid.Column="0"/>
-                                    <TextBox x:Name="dexScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
-                                    <TextBox x:Name="dexModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                    <Button x:Name="dexRoll_bt" Content="Roll" Click="DexButton_Click" Margin = "0 0 20 10" Height ="35" Width="60" IsEnabled="False" Grid.Column="3"/>
-                                    <TextBox x:Name="dexResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
-
-                                </Grid>
-
-                                <Grid>
-
-                                    <Grid.ColumnDefinitions>
-
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Text="CONSTITUTION" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16" Grid.Column="0"/>
-                                    <TextBox x:Name="conScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
-                                    <TextBox x:Name="conModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                    <Button x:Name="conRoll_bt" Content="Roll" Click="ConButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
-                                    <TextBox x:Name="conResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
-
-                                </Grid>
-
-                                <Grid>
-
-                                    <Grid.ColumnDefinitions>
-
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Text="INTELLIGENCE" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16" Grid.Column="0"/>
-                                    <TextBox x:Name="intScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
-                                    <TextBox x:Name="intModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                    <Button x:Name="intRoll_bt" Content="Roll" Click="IntButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
-                                    <TextBox x:Name="intResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
-
-                                </Grid>
-
-                                <Grid>
-
-                                    <Grid.ColumnDefinitions>
-
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Text="WISDOM" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="18" Grid.Column="0"/>
-                                    <TextBox x:Name="wisScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
-                                    <TextBox x:Name="wisModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                    <Button x:Name="wisRoll_bt" Content="Roll" Click="WisButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
-                                    <TextBox x:Name="wisResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
-
-                                </Grid>
-
-                                <Grid>
-
-                                    <Grid.ColumnDefinitions>
-
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Text="CHARISMA" Margin="10 10 10 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="18" Grid.Column="0"/>
-                                    <TextBox x:Name="chaScoreText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" IsEnabled="False" Grid.Column="1"/>
-                                    <TextBox x:Name="chaModifierText" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="2" IsEnabled="false"/>
-                                    <Button x:Name="chaRoll_bt" Content="Roll" Click="ChaButton_Click" Margin = "0 0 20 10" Height="35" Width="60" IsEnabled="False" Grid.Column="3"/>
-                                    <TextBox x:Name="chaResult" Margin ="0 0 20 10" Padding ="5" Height="35" Width="60" Grid.Column="4" IsEnabled="false"/>
-
-                                </Grid>
-
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1">
-
-                                <StackPanel>
-
-                                    <TextBlock Text="SAVING THROWS" Margin="50 40 50 20" FontFamily="Times New Roman" FontWeight="Bold" FontSize="18"/>
-
-                                    <Grid>
-
-                                        <Grid.ColumnDefinitions>
-
-                                            <ColumnDefinition Width ="25"/>
-                                            <ColumnDefinition Width ="100"/>
-                                            <ColumnDefinition Width ="50"/>
-                                            <ColumnDefinition Width ="70"/>
-                                            <ColumnDefinition Width ="75"/>
-
-                                        </Grid.ColumnDefinitions>
-
-                                        <CheckBox x:Name="saveProf_STR" IsEnabled="False" Margin="10 10 0 10" Grid.Column="0"/>
-                                        <TextBlock Text="Strength" IsEnabled="False" Margin="10 9 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="1"/>
-                                        <TextBox x:Name="STRsave_Val" IsEnabled="False"  Height="25" Width="40" Grid.Column="2"/>
-                                        <Button x:Name="STRsave_roll" Click="STR_Save_bt_Click" IsEnabled="False" Content="Roll" Height="25" Width="40" Grid.Column="3"/>
-                                        <TextBox x:Name="STRsave_Result" IsEnabled="False" Height="25" Width="40" Grid.Column="4"/>
-
-                                    </Grid>
-
-                                    <Grid>
-
-                                        <Grid.ColumnDefinitions>
-
-                                            <ColumnDefinition Width ="25"/>
-                                            <ColumnDefinition Width ="100"/>
-                                            <ColumnDefinition Width ="50"/>
-                                            <ColumnDefinition Width ="70"/>
-                                            <ColumnDefinition Width ="75"/>
-
-                                        </Grid.ColumnDefinitions>
-
-                                        <CheckBox x:Name="saveProf_DEX" IsEnabled="False" Margin="10 10 0 10" Grid.Column="0"/>
-                                        <TextBlock Text="Dexterity" IsEnabled="False" Margin="10 9 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="1"/>
-                                        <TextBox x:Name="DEXsave_Val" IsEnabled="False"  Height="25" Width="40" Grid.Column="2"/>
-                                        <Button x:Name="DEXsave_roll" Click="DEX_Save_bt_Click" IsEnabled="False" Content="Roll" Height="25" Width="40" Grid.Column="3"/>
-                                        <TextBox x:Name="DEXsave_Result" IsEnabled="False" Height="25" Width="40" Grid.Column="4"/>
-
-                                    </Grid>
-
-                                    <Grid>
-
-                                        <Grid.ColumnDefinitions>
-
-                                            <ColumnDefinition Width ="25"/>
-                                            <ColumnDefinition Width ="100"/>
-                                            <ColumnDefinition Width ="50"/>
-                                            <ColumnDefinition Width ="70"/>
-                                            <ColumnDefinition Width ="75"/>
-
-                                        </Grid.ColumnDefinitions>
-
-                                        <CheckBox x:Name="saveProf_CON" IsEnabled="False" Margin="10 10 0 10" Grid.Column="0"/>
-                                        <TextBlock Text="Constitution" IsEnabled="False" Margin="10 9 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="1"/>
-                                        <TextBox x:Name="CONsave_Val" IsEnabled="False" Height="25" Width="40" Grid.Column="2"/>
-                                        <Button x:Name="CONsave_roll" Click="CON_Save_bt_Click" IsEnabled="False" Content="Roll" Height="25" Width="40" Grid.Column="3"/>
-                                        <TextBox x:Name="CONsave_Result" IsEnabled="False" Height="25" Width="40" Grid.Column="4"/>
-
-                                    </Grid>
-
-                                    <Grid>
-
-                                        <Grid.ColumnDefinitions>
-
-                                            <ColumnDefinition Width ="25"/>
-                                            <ColumnDefinition Width ="100"/>
-                                            <ColumnDefinition Width ="50"/>
-                                            <ColumnDefinition Width ="70"/>
-                                            <ColumnDefinition Width ="75"/>
-
-                                        </Grid.ColumnDefinitions>
-
-                                        <CheckBox x:Name="saveProf_INT" IsEnabled="False" Margin="10 10 0 10" Grid.Column="0"/>
-                                        <TextBlock Text="Intelligence" IsEnabled="False" Margin="10 9 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="1"/>
-                                        <TextBox x:Name="INTsave_Val" IsEnabled="False" Height="25" Width="40" Grid.Column="2"/>
-                                        <Button x:Name="INTsave_roll" Click="INT_Save_bt_Click" IsEnabled="False" Content="Roll" Height="25" Width="40" Grid.Column="3"/>
-                                        <TextBox x:Name="INTsave_Result" IsEnabled="False" Height="25" Width="40" Grid.Column="4"/>
-
-                                    </Grid>
-
-                                    <Grid>
-
-                                        <Grid.ColumnDefinitions>
-
-                                            <ColumnDefinition Width ="25"/>
-                                            <ColumnDefinition Width ="100"/>
-                                            <ColumnDefinition Width ="50"/>
-                                            <ColumnDefinition Width ="70"/>
-                                            <ColumnDefinition Width ="75"/>
-
-                                        </Grid.ColumnDefinitions>
-
-                                        <CheckBox x:Name="saveProf_WIS" IsEnabled="False" Margin="10 10 0 10" Grid.Column="0"/>
-                                        <TextBlock Text="Wisdom" IsEnabled="False" Margin="10 9 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="1"/>
-                                        <TextBox x:Name="WISsave_Val" IsEnabled="False" Height="25" Width="40" Grid.Column="2"/>
-                                        <Button x:Name="WISsave_roll" Click="WIS_Save_bt_Click" IsEnabled="False" Content="Roll" Height="25" Width="40" Grid.Column="3"/>
-                                        <TextBox x:Name="WISsave_Result" IsEnabled="False" Height="25" Width="40" Grid.Column="4"/>
-
-                                    </Grid>
-
-                                    <Grid>
-
-                                        <Grid.ColumnDefinitions>
-
-                                            <ColumnDefinition Width ="25"/>
-                                            <ColumnDefinition Width ="100"/>
-                                            <ColumnDefinition Width ="50"/>
-                                            <ColumnDefinition Width ="70"/>
-                                            <ColumnDefinition Width ="75"/>
-
-                                        </Grid.ColumnDefinitions>
-
-                                        <CheckBox x:Name="saveProf_CHA" IsEnabled="False" Margin="10 10 0 10" Grid.Column="0"/>
-                                        <TextBlock Text="Charisma" IsEnabled="False" Margin="10 9 10 10" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14" Grid.Column="1"/>
-                                        <TextBox x:Name="CHAsave_Val" IsEnabled="False" Height="25" Width="40" Grid.Column="2"/>
-                                        <Button x:Name="CHAsave_roll" Click="CHA_Save_bt_Click" IsEnabled="False" Content="Roll" Height="25" Width="40" Grid.Column="3"/>
-                                        <TextBox x:Name="CHAsave_Result" IsEnabled="False" Height="25" Width="40" Grid.Column="4"/>
-
-                                    </Grid>
-
-
-                                </StackPanel>
-
-
-                            </StackPanel>
-
-                        </Grid>
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
 
@@ -565,158 +142,702 @@
 
                             <StackPanel Grid.Column="0">
 
-                                <CheckBox x:Name="AcrobaticsProf" IsEnabled="False" Margin="15 12 10 5"/>
-                                <CheckBox x:Name="AnimalHandlingProf" IsEnabled="False" Margin="15 12 10 8"/>
-                                <CheckBox x:Name="ArcanaProf" IsEnabled="False" Margin="15 12 10 8"/>
-                                <CheckBox x:Name="AthleticsProf" IsEnabled="False" Margin="15 12 10 8"/>
-                                <CheckBox x:Name="DeceptionProf" IsEnabled="False" Margin="15 12 10 8"/>
-                                <CheckBox x:Name="HistoryProf" IsEnabled="False" Margin="15 12 10 8"/>
-                                <CheckBox x:Name="InsightProf" IsEnabled="False" Margin="15 12 10 8"/>
-                                <CheckBox x:Name="IntimidationProf" IsEnabled="False" Margin="15 10 10 8"/>
-                                <CheckBox x:Name="InvestigationProf" IsEnabled="False" Margin="15 10 10 8"/>
+                                <Border Style="{StaticResource BasicsBorder}">
+                                    <TextBlock Text="Player:" Style="{StaticResource BasicsHeader}"/>
+                                </Border>
+                                <TextBox x:Name="PlayerNameText" IsEnabled="False" Style="{StaticResource BasicsInputField}"/>
 
                             </StackPanel>
 
                             <StackPanel Grid.Column="1">
-
-                                <TextBox x:Name="AcrobaticsTxt" IsEnabled="False" Margin="15 11"/>
-                                <TextBox x:Name="AnimalHandlingTxt" IsEnabled="False" Margin="15 5"/>
-                                <TextBox x:Name="ArcanaTxt" IsEnabled="False" Margin="15 10"/>
-                                <TextBox x:Name="AthleticsTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="DeceptionTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="HistoryTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="InsightTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="IntimidationTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="InvestigationTxt" IsEnabled="False" Margin="15 8"/>
-
+                                <Border Style="{StaticResource BasicsBorder}">
+                                    <TextBlock Text="Race: " Style="{StaticResource BasicsHeader}"/>
+                                </Border>
+                                <TextBox x:Name="RaceBox" IsEnabled="False" Style="{StaticResource BasicsInputField}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
-
-                                <TextBlock Text="Acrobatics" Margin="20 10 10 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Animal Handling" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Arcana" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Athletics" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Deception" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="History" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Insight" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Intimidation" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Investigation" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-
+                                <Border Style="{StaticResource BasicsBorder}">
+                                    <TextBlock Text="Subrace: " Style="{StaticResource BasicsHeader}"/>
+                                </Border>
+                                <TextBox x:Name="SubRaceBox" IsEnabled="False" Style="{StaticResource BasicsInputField}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="3">
 
-                                <Button x:Name="AcrobaticsCheck_bt" Click="AcrobaticsBT_Click" Content="Roll" IsEnabled="False" Margin="15 10"/>
-                                <Button x:Name="AnimalHandlingCheck_bt" Click="AnimalHandlingBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                                <Button x:Name="ArcanaCheck_bt" Click="ArcanaBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                                <Button x:Name="AthleticsCheck_bt" Click="AthleticsBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                                <Button x:Name="DeceptionCheck_bt" Click="DeceptionBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                                <Button x:Name="HistoryCheck_bt" Click="HistoryBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                                <Button x:Name="InsightCheck_bt" Click="InsightBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                                <Button x:Name="IntimidationCheck_bt" Click="IntimidationBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                                <Button x:Name="InvestigationCheck_bt" Click="InvestigationBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
+                                <Border Style="{StaticResource BasicsBorder}">
+                                    <TextBlock Text="Alignment:"  Style="{StaticResource BasicsHeader}"/>
+                                </Border>
+                                
+                                <ComboBox x:Name="AlignmentBox" IsEnabled="False" SelectedIndex = "0" Width="200" Height="25" Margin="2 5 10 20" FontWeight="Bold" FontFamily="Cambria">
+
+                                    <ComboBoxItem ></ComboBoxItem>
+                                    <ComboBoxItem>Lawful Good</ComboBoxItem>
+                                    <ComboBoxItem>Neutral Good</ComboBoxItem>
+                                    <ComboBoxItem>Chaotic Good</ComboBoxItem>
+                                    <ComboBoxItem>Lawful Neutral</ComboBoxItem>
+                                    <ComboBoxItem>Neutral</ComboBoxItem>
+                                    <ComboBoxItem>Chaotic Neutral</ComboBoxItem>
+                                    <ComboBoxItem>Lawful Evil</ComboBoxItem>
+                                    <ComboBoxItem>Neutral Evil</ComboBoxItem>
+                                    <ComboBoxItem>Chaotic Evil</ComboBoxItem>
+
+                                </ComboBox>
 
                             </StackPanel>
-
-                            <StackPanel Grid.Column="4">
-
-                                <TextBox x:Name="Acrobatics_Result" Margin="15 11" IsEnabled="False"/>
-                                <TextBox x:Name="AnimalHandling_Result" Margin="15 5" IsEnabled="False"/>
-                                <TextBox x:Name="Arcana_Result" Margin="15 10" IsEnabled="False"/>
-                                <TextBox x:Name="Athletics_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="Deception_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="History_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="Insight_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="Intimidation_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="Investigation_Result" Margin="15 8" IsEnabled="False"/>
-
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="5">
-
-                                <CheckBox x:Name="MedicineProf" IsEnabled="False" Margin="15 12 10 5"/>
-                                <CheckBox x:Name="NatureProf" IsEnabled="False" Margin="15 17 10 8"/>
-                                <CheckBox x:Name="PerceptionProf" IsEnabled="False" Margin="15 12 10 8"/>
-                                <CheckBox x:Name="PerformanceProf" IsEnabled="False" Margin="15 10 10 8"/>
-                                <CheckBox x:Name="PersuasionProf" IsEnabled="False" Margin="15 10 10 8"/>
-                                <CheckBox x:Name="ReligionProf" IsEnabled="False" Margin="15 10 10 8"/>
-                                <CheckBox x:Name="SleightOfHandProf" IsEnabled="False" Margin="15 10 10 8"/>
-                                <CheckBox x:Name="StealthProf" IsEnabled="False" Margin="15 10 10 8"/>
-                                <CheckBox x:Name="SurvivalProf" IsEnabled="False" Margin="15 10 10 8"/>
-
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="6">
-
-                                <TextBox x:Name="MedicineTxt" IsEnabled="False" Margin="15 11"/>
-                                <TextBox x:Name="NatureTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="PerceptionTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="PerformanceTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="PersuasionTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="ReligionTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="SleightOfHandTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="StealthTxt" IsEnabled="False" Margin="15 8"/>
-                                <TextBox x:Name="SurvivalTxt" IsEnabled="False" Margin="15 8"/>
-
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="7">
-
-                                <TextBlock Text="Medicine" Margin="20 10" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Nature" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Perception" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Perfomance" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Persuasion" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Religion" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Sleight of Hand" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Stealth" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-                                <TextBlock Text="Survival" Margin="20 8" FontWeight="Bold" FontFamily="Times New Roman" FontSize="16"/>
-
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="8">
-
-                                <Button x:Name="MedicineCheck_bt" Click="MedicineBT_Click" Content="Roll" IsEnabled="False" Margin="15 10"/>
-                                <Button x:Name="NatureCheck_bt" Click="NatureBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                                <Button x:Name="PerceptionCheck_bt" Click="PerceptionBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                                <Button x:Name="PerfomanceCheck_bt" Click="PerformanceBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                                <Button x:Name="PersuasionCheck_bt" Click="PersuasionBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                                <Button x:Name="ReligionCheck_bt" Click="ReligionBT_Click" Content="Roll" IsEnabled="False" Margin="15 5"/>
-                                <Button x:Name="SleightOfHandCheck_bt" Click="SleightOfHandBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-                                <Button x:Name="StealthCheck_bt" Click="StealthBT_Click" Content="Roll" IsEnabled="False" Margin="15 10"/>
-                                <Button x:Name="SurvivalCheck_bt" Click="SurvivalBT_Click" Content="Roll" IsEnabled="False" Margin="15 8"/>
-
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="9">
-
-                                <TextBox x:Name="Medicine_Result" Margin="15 11" IsEnabled="False"/>
-                                <TextBox x:Name="Nature_Result" Margin="15 5" IsEnabled="False"/>
-                                <TextBox x:Name="Perception_Result" Margin="15 10" IsEnabled="False"/>
-                                <TextBox x:Name="Performance_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="Persuasion_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="Religion_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="SleightOfHand_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="Stealth_Result" Margin="15 8" IsEnabled="False"/>
-                                <TextBox x:Name="Survival_Result" Margin="15 8" IsEnabled="False"/>
-
-                            </StackPanel>
-
-
 
                         </Grid>
+
+                        <Grid Margin="10 10">
+                            
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"/>                                
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <Border Style="{StaticResource BasicsBorder}">
+                                    <TextBlock Text="Class: "  Style="{StaticResource BasicsHeader}"/>
+                                </Border>
+                                <TextBox x:Name="ClassBox" IsEnabled ="False" Style="{StaticResource BasicsInputField}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+
+                                <Border Style="{StaticResource BasicsBorder}">
+                                    <TextBlock Text="Level: " Style="{StaticResource BasicsHeader}"/>
+                                </Border>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox x:Name="LevelText" IsEnabled="False" Margin="10 0 0 0" HorizontalAlignment="Left" Style="{StaticResource SmallValueBox}" Grid.Column="0"/>
+                                    <Button x:Name="Level_Up_bt" IsEnabled="False" Content="+" Click="LevelUpButton_Click" Margin="0 10 20 10" Height="30" Width="30" HorizontalAlignment="Right" VerticalContentAlignment="Top" Style="{StaticResource StandardBtn}" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
+
+                                </Grid>
+
+                            </StackPanel>                            
+
+                            <StackPanel Grid.Column="3">
+
+                                <Border Style="{StaticResource BasicsBorder}">
+                                    <TextBlock Text="Background:"  Style="{StaticResource BasicsHeader}" Grid.Column="2"/>
+                                </Border>
+                                <TextBox x:Name="BackgroundBox" IsEnabled="False" Style="{StaticResource BasicsInputField}"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                        <Grid Margin="0 20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="Armor Class (AC)" Style="{StaticResource BasicsHeader}" Margin="0 0 0 5" HorizontalAlignment="Center" FontSize="14"/>
+                                <TextBox x:Name="AC" IsEnabled="False" Style="{StaticResource ValueBox_LargeSquare}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+
+                            <Grid Grid.Column="1">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Initiative" Style="{StaticResource BasicsHeader}" Margin="0 0 0 5" HorizontalAlignment="Right" FontSize="14"/>
+                                    <TextBox x:Name="iniBonus" IsEnabled ="False" Margin="5 0 10 0" Style="{StaticResource ValueBox_LargeSquare}" HorizontalAlignment="Right" FontSize="20"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <Button x:Name="iniButton" IsEnabled="False" Click ="IniButton_Click" Height="20" Width="50" Margin="10 20 0 0" HorizontalAlignment="Left" Style="{StaticResource StandardBtn}"/>
+                                    <TextBox x:Name="iniResult" IsEnabled ="False" Height="20" Width="50" Margin="10 10" HorizontalAlignment="Left" Style="{StaticResource SmallResultBox}"/>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Speed" Style="{StaticResource BasicsHeader}" Margin="0 0 0 5" HorizontalAlignment="Center" FontSize="14"/>
+                                <TextBox x:Name="baseSpeed" IsEnabled="False" Style="{StaticResource ValueBox_LargeSquare}" Margin="5 0 0 0" HorizontalAlignment="Center" FontSize="20"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3">
+                                <TextBlock Text="Proficiency Bonus: " Margin="0 0 0 5" HorizontalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="14" Grid.Column="4"/>
+                                <TextBox x:Name="ProfBonus_Box" IsEnabled="False" Style="{StaticResource ValueBox_LargeSquare}" FontSize="20" Grid.Column="5"/>
+
+                            </StackPanel>
+
+                        </Grid>                        
+
+                        <Grid Margin="0 20">
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Hitpoints(Max.):" Margin="10 0" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="0"/>
+                            <TextBox x:Name="maxHPtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="1"/>
+                            <TextBlock Text="Current HP:" Margin="10 0" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="2"/>
+                            <TextBox x:Name="currHPtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="3"/>
+                            <TextBlock Text="Temporary HP:" Margin="10 0" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="4"/>
+                            <TextBox x:Name="tempHPtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="5"/>
+
+                        </Grid>
+
+                        <Grid Margin="0 20">
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="0.5*"/>
+
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Hit Dice (Total):" HorizontalAlignment="Right" Margin="10 0" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="0"/>
+                            <TextBox x:Name="HDtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="1"/>
+                            <TextBlock Text="Current Hit Dice:" HorizontalAlignment="Right" Margin="10 0" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="2"/>
+                            <TextBox x:Name="currHDtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="3"/>                            
+
+                        </Grid>
+
+                        
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Margin="5 30" Grid.Column="0">
+
+                                <TextBlock Text="Ability Scores" Margin="0 0 0 5" Style="{StaticResource MainHeader}"/>
+
+                                <Border Style="{StaticResource StandardBorder}">
+
+                                    <StackPanel>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="Score" Margin="0 20 0 5" Style="{StaticResource BasicsHeader}" Grid.Column="1"/>
+                                            <TextBlock Text="Modifier" Margin="0 20 0 5" Style="{StaticResource BasicsHeader}" Grid.Column="2"/>
+                                            <TextBlock Text="Result" Margin="0 20 0 5" Style="{StaticResource BasicsHeader}" Grid.Column="4"/>
+
+                                        </Grid>
+
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="Strength (STR)" Margin="10 12 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
+                                            <TextBox x:Name="strScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="strModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="strRoll_bt" Content="Roll" Click="StrButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="strengthResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+
+                                        </Grid>
+
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="Dexterity (DEX)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
+                                            <TextBox x:Name="dexScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="dexModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="dexRoll_bt" Content="Roll" Click="DexButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="dexResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+
+                                        </Grid>
+
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="Constitution (CON)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
+                                            <TextBox x:Name="conScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="conModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="conRoll_bt" Content="Roll" Click="ConButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="conResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+
+                                        </Grid>
+
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="Intelligence (INT)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
+                                            <TextBox x:Name="intScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Width="60" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="intModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="intRoll_bt" Content="Roll" Click="IntButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="intResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+
+                                        </Grid>
+
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="Wisdom (WIS)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
+                                            <TextBox x:Name="wisScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="wisModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="wisRoll_bt" Content="Roll" Click="WisButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="wisResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+
+                                        </Grid>
+
+                                        <Grid Margin="0 0 0 20">
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+                                                <ColumnDefinition Width="0.75*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="Charisma (CHA)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
+                                            <TextBox x:Name="chaScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="chaModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="chaRoll_bt" Content="Roll" Click="ChaButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="chaResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+
+                                        </Grid>
+
+                                    </StackPanel>
+
+                                </Border>
+
+                            </StackPanel>
+
+                            <StackPanel Margin="5 25" Grid.Column="1">
+
+                                <TextBlock Text="Saving Throws" Margin="0 5" Style="{StaticResource MainHeader}"/>
+
+                                <Border BorderBrush="#bb8fbb" Style="{StaticResource StandardBorder}">
+
+                                    <StackPanel>
+
+                                        <Grid Margin="0 15 0 5">
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width ="0.5*"/>
+                                                <ColumnDefinition Width ="2.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="Modifier" HorizontalAlignment="Center" FontSize="10" Style="{StaticResource StandardText}" Grid.Column="2"/>
+                                            <TextBlock Text="Result" Margin="10 0" FontSize="10" Style="{StaticResource StandardText}" Grid.Column="4"/>
+
+                                        </Grid>
+
+                                        <Grid Margin="0 0 0 10">
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width ="0.5*"/>
+                                                <ColumnDefinition Width ="2.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox x:Name="saveProf_STR" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <TextBlock Text="Strength" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" Style="{StaticResource StandardText}" FontSize="14" Grid.Column="1"/>
+                                            <TextBox x:Name="STRsave_Val" IsEnabled="False"  Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="STRsave_roll" Click="STR_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="STRsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+
+                                        </Grid>
+
+                                        <Grid Margin="0 0 0 10">
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width ="0.5*"/>
+                                                <ColumnDefinition Width ="2.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox x:Name="saveProf_DEX" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <TextBlock Text="Dexterity" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" Style="{StaticResource StandardText}" FontSize="14" Grid.Column="1"/>
+                                            <TextBox x:Name="DEXsave_Val" IsEnabled="False"  Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="DEXsave_roll" Click="DEX_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="DEXsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+
+                                        </Grid>
+
+                                        <Grid Margin="0 0 0 10">
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width ="0.5*"/>
+                                                <ColumnDefinition Width ="2.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox x:Name="saveProf_CON" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <TextBlock Text="Constitution" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" Style="{StaticResource StandardText}" FontSize="14" Grid.Column="1"/>
+                                            <TextBox x:Name="CONsave_Val" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="CONsave_roll" Click="CON_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="CONsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+
+                                        </Grid>
+
+                                        <Grid Margin="0 0 0 10">
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width ="0.5*"/>
+                                                <ColumnDefinition Width ="2.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox x:Name="saveProf_INT" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <TextBlock Text="Intelligence" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StandardText}" Margin="5 0 0 0" FontSize="14" Grid.Column="1"/>
+                                            <TextBox x:Name="INTsave_Val" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="INTsave_roll" Click="INT_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="INTsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+
+                                        </Grid>
+
+                                        <Grid Margin="0 0 0 10">
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width ="0.5*"/>
+                                                <ColumnDefinition Width ="2.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox x:Name="saveProf_WIS" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <TextBlock Text="Wisdom" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" Style="{StaticResource StandardText}" FontSize="14" Grid.Column="1"/>
+                                            <TextBox x:Name="WISsave_Val" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="WISsave_roll" Click="WIS_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="WISsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+
+                                        </Grid>
+
+                                        <Grid Margin="0 0 0 10">
+
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width ="0.5*"/>
+                                                <ColumnDefinition Width ="2.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+                                                <ColumnDefinition Width ="1.25*"/>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox x:Name="saveProf_CHA" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <TextBlock Text="Charisma" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" FontSize="14" Style="{StaticResource StandardText}" Grid.Column="1"/>
+                                            <TextBox x:Name="CHAsave_Val" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="CHAsave_roll" Click="CHA_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="CHAsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+
+                                        </Grid>
+
+                                    </StackPanel>
+
+                                </Border>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                        <TextBlock Text="Skills" Style="{StaticResource MainHeader}"/>
+
+                        <Border Margin="5" Style="{StaticResource StandardBorder}">
+
+                            <StackPanel>
+
+                                <Grid Margin="0 10 0 0">
+                                    
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="0.25*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.25*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Modifier" Style="{StaticResource BasicsHeader}" HorizontalAlignment="Center" FontSize="11" Grid.Column="2"/>
+                                    <TextBlock Text="Result" Style="{StaticResource BasicsHeader}" HorizontalAlignment="Center" FontSize="11" Grid.Column="4"/>
+                                    <TextBlock Text="Modifier" Style="{StaticResource BasicsHeader}" HorizontalAlignment="Center" FontSize="11" Grid.Column="7"/>
+                                    <TextBlock Text="Result" Style="{StaticResource BasicsHeader}" HorizontalAlignment="Center" FontSize="11" Grid.Column="9"/>
+
+                                </Grid>
+                                
+                                <Grid Margin="0 10">
+
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+
+                                    <CheckBox x:Name="AcrobaticsProf" IsEnabled="False" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <CheckBox x:Name="AnimalHandlingProf" IsEnabled="False" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <CheckBox x:Name="ArcanaProf" IsEnabled="False" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <CheckBox x:Name="AthleticsProf" IsEnabled="False" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <CheckBox x:Name="DeceptionProf" IsEnabled="False" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <CheckBox x:Name="HistoryProf" IsEnabled="False" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <CheckBox x:Name="InsightProf" IsEnabled="False" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <CheckBox x:Name="IntimidationProf" IsEnabled="False" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <CheckBox x:Name="InvestigationProf" IsEnabled="False" HorizontalAlignment="Center" Margin="0 10"/>
+
+                                </StackPanel>                                
+
+                                <StackPanel Grid.Column="1">
+
+                                    <TextBlock Text="Acrobatics" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Animal Handling" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Arcana" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Athletics" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Deception" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="History" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Insight" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Intimidation" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Investigation" Style="{StaticResource SkillCaption}"/>
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2">
+
+                                    <TextBox x:Name="AcrobaticsTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="AnimalHandlingTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="ArcanaTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="AthleticsTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="DeceptionTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="HistoryTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="InsightTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="IntimidationTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="InvestigationTxt" Style="{StaticResource SkillModBox}"/>
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="3">
+
+                                    <Button x:Name="AcrobaticsCheck_bt" Click="AcrobaticsBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="AnimalHandlingCheck_bt" Click="AnimalHandlingBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="ArcanaCheck_bt" Click="ArcanaBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="AthleticsCheck_bt" Click="AthleticsBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="DeceptionCheck_bt" Click="DeceptionBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="HistoryCheck_bt" Click="HistoryBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="InsightCheck_bt" Click="InsightBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="IntimidationCheck_bt" Click="IntimidationBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="InvestigationCheck_bt" Click="InvestigationBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="4">
+
+                                    <TextBox x:Name="Acrobatics_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="AnimalHandling_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Arcana_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Athletics_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Deception_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="History_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Insight_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Intimidation_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Investigation_Result" Style="{StaticResource SkillResBox}"/>
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="5">
+
+                                    <CheckBox x:Name="MedicineProf" Style="{StaticResource SkillCB}"/>
+                                    <CheckBox x:Name="NatureProf" Style="{StaticResource SkillCB}"/>
+                                    <CheckBox x:Name="PerceptionProf" Style="{StaticResource SkillCB}"/>
+                                    <CheckBox x:Name="PerformanceProf" Style="{StaticResource SkillCB}"/>
+                                    <CheckBox x:Name="PersuasionProf" Style="{StaticResource SkillCB}"/>
+                                    <CheckBox x:Name="ReligionProf" Style="{StaticResource SkillCB}"/>
+                                    <CheckBox x:Name="SleightOfHandProf" Style="{StaticResource SkillCB}"/>
+                                    <CheckBox x:Name="StealthProf" Style="{StaticResource SkillCB}"/>
+                                    <CheckBox x:Name="SurvivalProf" Style="{StaticResource SkillCB}"/>
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="6">
+
+                                    <TextBlock Text="Medicine" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Nature" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Perception" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Perfomance" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Persuasion" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Religion" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Sleight of Hand" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Stealth" Style="{StaticResource SkillCaption}"/>
+                                    <TextBlock Text="Survival" Style="{StaticResource SkillCaption}"/>
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="7">
+
+                                    <TextBox x:Name="MedicineTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="NatureTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="PerceptionTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="PerformanceTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="PersuasionTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="ReligionTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="SleightOfHandTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="StealthTxt" Style="{StaticResource SkillModBox}"/>
+                                    <TextBox x:Name="SurvivalTxt" Style="{StaticResource SkillModBox}"/>
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="8">
+
+                                    <Button x:Name="MedicineCheck_bt" Click="MedicineBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="NatureCheck_bt" Click="NatureBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="PerceptionCheck_bt" Click="PerceptionBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="PerfomanceCheck_bt" Click="PerformanceBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="PersuasionCheck_bt" Click="PersuasionBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="ReligionCheck_bt" Click="ReligionBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="SleightOfHandCheck_bt" Click="SleightOfHandBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="StealthCheck_bt" Click="StealthBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+                                    <Button x:Name="SurvivalCheck_bt" Click="SurvivalBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="9">
+
+                                    <TextBox x:Name="Medicine_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Nature_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Perception_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Performance_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Persuasion_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Religion_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="SleightOfHand_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Stealth_Result" Style="{StaticResource SkillResBox}"/>
+                                    <TextBox x:Name="Survival_Result" Style="{StaticResource SkillResBox}"/>
+
+                                </StackPanel>
+
+                            </Grid>
+                                
+                            </StackPanel>
+
+                        </Border>
 
                     </StackPanel>
 
                 </ScrollViewer>
 
-                <Frame x:Name="MainFrame" Grid.Column="1"/>
+            </StackPanel>
 
-            </Grid>
-
-
-        </StackPanel>
-   
-    </Border>
+        </Grid>
+        
+    </StackPanel>
+    
 </Window>
