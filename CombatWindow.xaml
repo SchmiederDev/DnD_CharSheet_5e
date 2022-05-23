@@ -7,6 +7,30 @@
         mc:Ignorable="d"
         Title="CombatWindow" Height="1000" Width="1600" WindowStartupLocation="Manual" Left="0" Top="0">
 
+    <!-- Common abbreviations for the app:
+    
+        Controls:
+    
+        TextBlock -> 'Text' or 'Txt'
+        TextBox -> 'Box' or 'TB'
+        Button -> 'Btn'
+        CheckBox -> 'CB'
+        
+        Variables:
+    
+        Value -> 'Val'
+        Temporary -> 'Temp'
+        Current -> 'Curr'
+    
+        Terms of the Game:
+        
+        Initiative: 'Ini'
+        Hit Points: 'HP'
+        Hit Dice: 'HD'
+    
+        Attack: 'Atk'
+    -->
+
     <Window.Resources>
 
         <Style TargetType="TextBlock" x:Key="CombatWindow_MainHeader" BasedOn="{StaticResource MainHeader}">
@@ -64,10 +88,10 @@
                         <ColumnDefinition Width="0.5*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0">
+                    <StackPanel x:Name="AttackPanel" Grid.Column="0">
 
-                        <Button x:Name="Melee_Attack" Content="MELEE ATTACK" Click="Melee_Attack_Click" Margin="10 75 10 20" Style="{StaticResource CombatWdw_BtnLarge}"/>
-                        <Button x:Name="Ranged_Attack" Content="RANGED ATTACK" Click="Ranged_Attack_Click" Margin="10 20 10 20" Style="{StaticResource CombatWdw_BtnLarge}"/>
+                        <Button x:Name="Melee_Attack_Btn" Content="MELEE ATTACK" Click="Melee_Attack_Click" Margin="10 75 10 20" Style="{StaticResource CombatWdw_BtnLarge}"/>
+                        <Button x:Name="Ranged_Attack_Btn" Content="RANGED ATTACK" Click="Ranged_Attack_Click" Margin="10 20 10 20" Style="{StaticResource CombatWdw_BtnLarge}"/>
 
                         <TextBlock Text="DAMAGE"  Margin="0 40 0 10" Style="{StaticResource H2_Header}"/>
 
@@ -153,51 +177,56 @@
 
                     <Button x:Name="ActivateIniOrder_Btn" Click="ActivateIniOrder_Btn_Click" Content="Create Initiative List" Margin="10 35 10 10" Style="{StaticResource CombatWdw_BtnMedium}"/>
 
-                    <TextBlock x:Name="IniOrder_Txt" Text="INITIATIVE ORDER" Visibility="Hidden" Margin="10 20 10 25" Style="{StaticResource H2_Header}"/>                    
+                    <StackPanel x:Name="IniOrderPanel" Visibility="Collapsed">
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="IniOrder_Txt" Text="INITIATIVE ORDER"  Margin="10 20 10 25" Style="{StaticResource H2_Header}"/>
 
-                        <TextBlock x:Name="CombatantName_Txt" Text="Name of Combatant" Visibility="Hidden" Margin="0 0 15 10" Style="{StaticResource H3_Header}" Grid.Column="0"/>
-                        <TextBlock x:Name="CombatantValue_Txt" Text="Initiative Value" Visibility="Hidden" Margin="0 0 57.5 10" Style="{StaticResource H3_Header}" Grid.Column="1"/>
-                    </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="CombatantName_Txt" Text="Name of Combatant" Margin="0 0 15 10" Style="{StaticResource H3_Header}" Grid.Column="0"/>
+                            <TextBlock x:Name="CombatantValue_Txt" Text="Initiative Value" Margin="0 0 57.5 10" Style="{StaticResource H3_Header}" Grid.Column="1"/>
+                        </Grid>
 
-                        <TextBox x:Name="TB_CombatantName" IsEnabled="False" Visibility="Hidden" Style="{StaticResource CombatWdw_MediumInputField}" Grid.Column="0"/>
-                        <TextBox x:Name="TB_IniValue" IsEnabled="False" Visibility="Hidden" Style="{StaticResource CombatWdw_MediumInputField}" Grid.Column="1"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                    </Grid>
+                            <TextBox x:Name="CombatantName_Box" IsEnabled="False" Style="{StaticResource CombatWdw_MediumInputField}" Grid.Column="0"/>
+                            <TextBox x:Name="IniValue_Box" IsEnabled="False" Style="{StaticResource CombatWdw_MediumInputField}" Grid.Column="1"/>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        </Grid>
 
-                        <Button x:Name="NewCombatant_Btn" Click="NewCombatant_Btn_Click" Content="NEW COMBATANT" Visibility="Hidden" Margin="10 15 10 25" Style="{StaticResource CombatWdw_BtnMedium}" Grid.Column="0"/>
-                        <Button x:Name="AddCombatant_Btn" Click="AddCombatant_Btn_Click" Content="ADD COMBATANT" Visibility="Hidden" Margin="10 15 10 25" Style="{StaticResource CombatWdw_BtnMedium}" Grid.Column="1"/>
-                        
-                    </Grid>
-                    
-                    <ListView x:Name="InitiativeOrder_LV" ItemsSource="{Binding Combatants}" Visibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10 10" Width="435">                       
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <ListView.View>
-                            <GridView>
+                            <Button x:Name="NewCombatant_Btn" Click="NewCombatant_Btn_Click" Content="NEW COMBATANT" Margin="10 15 10 25" Style="{StaticResource CombatWdw_BtnMedium}" Grid.Column="0"/>
+                            <Button x:Name="AddCombatant_Btn" Click="AddCombatant_Btn_Click" Content="ADD COMBATANT" Margin="10 15 10 25" Style="{StaticResource CombatWdw_BtnMedium}" Grid.Column="1"/>
 
-                                <GridViewColumn x:Name="GVC_1_CombatantName" DisplayMemberBinding="{Binding CombatantName}" Header="Combatant" Width="290"/>
-                                <GridViewColumn x:Name="GVC_2_CombatantOrder" DisplayMemberBinding="{Binding IniOrderValue}" Header="Initiative Result" Width="130"/>
+                        </Grid>
 
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                        <!-- 'LV' = ListView -->
+                        <ListView x:Name="InitiativeOrder_LV" ItemsSource="{Binding Combatants}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10 10" Width="435">
+
+                            <ListView.View>
+                                <GridView>
+
+                                    <GridViewColumn DisplayMemberBinding="{Binding CombatantName}" Header="Combatant" Width="290"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding IniOrderValue}" Header="Initiative Result" Width="130"/>
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                    </StackPanel>
 
                 </StackPanel>
                 
@@ -262,7 +291,7 @@
 
                         <Expander Header="Click here to expand or collapse the Temporary Hitpoint Menu" HorizontalAlignment="Center">
 
-                            <StackPanel>
+                            <StackPanel x:Name="TempHP_Panel">
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -326,31 +355,32 @@
 
                             <TextBlock Text="SUCCESSES" Margin="10 20 10 5" HorizontalAlignment="Center" Style="{StaticResource H2_Header}"/>
 
-                            <Grid>
+                            <Grid x:Name="DeathSaveSuccesses_Grid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Ellipse x:Name="DeathSave_Success_01" MouseLeftButtonDown="DeathSave_Success_01_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="0"/>
-                                <Ellipse x:Name="DeathSave_Success_02" MouseLeftButtonDown="DeathSave_Success_02_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="1"/>
-                                <Ellipse x:Name="DeathSave_Success_03" MouseLeftButtonDown="DeathSave_Success_03_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="2"/>
+                                <!-- 'RB' is short for RadioButton here - named this way because these Ellipses work like RadioButtons -->
+                                <Ellipse x:Name="DeathSave_Success_RB_01" MouseLeftButtonDown="DeathSave_Success_01_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="0"/>
+                                <Ellipse x:Name="DeathSave_Success_RB_02" MouseLeftButtonDown="DeathSave_Success_02_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="1"/>
+                                <Ellipse x:Name="DeathSave_Success_RB_03" MouseLeftButtonDown="DeathSave_Success_03_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="2"/>
 
                             </Grid>
 
                             <TextBlock Text="FAILURES" Margin="10 20 10 5" Style="{StaticResource H2_Header}"/>
 
-                            <Grid>
+                            <Grid x:Name="DeathSaveFailures_Grid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Ellipse x:Name="DeathSave_Failure_01" MouseLeftButtonDown="DeathSave_Failure_01_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="0"/>
-                                <Ellipse x:Name="DeathSave_Failure_02" MouseLeftButtonDown="DeathSave_Failure_02_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="1"/>
-                                <Ellipse x:Name="DeathSave_Failure_03" MouseLeftButtonDown="DeathSave_Failure_03_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="2"/>
+                                <Ellipse x:Name="DeathSave_Failure_RB_01" MouseLeftButtonDown="DeathSave_Failure_01_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="0"/>
+                                <Ellipse x:Name="DeathSave_Failure_RB_02" MouseLeftButtonDown="DeathSave_Failure_02_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="1"/>
+                                <Ellipse x:Name="DeathSave_Failure_RB_03" MouseLeftButtonDown="DeathSave_Failure_03_MouseLeftButtonDown" Stroke="Black" StrokeThickness="3" Fill="White" Height="25" Width="25" Margin="10 20 10 10" Grid.Column="2"/>
 
                             </Grid>
 
@@ -379,7 +409,7 @@
 
                         <Expander x:Name="HealingPanel_Expander" Header="Click here to expand or collapse Healing options" HorizontalAlignment="Center">
 
-                            <StackPanel x:Name="HealingPanel" IsEnabled="True">
+                            <StackPanel x:Name="HealingPanel">
 
                                 <TextBlock Text="HP" Margin="65 10 10 5" HorizontalAlignment="Left" Style="{StaticResource H2_Header}"/>
 
