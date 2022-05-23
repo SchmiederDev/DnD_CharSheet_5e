@@ -22,5 +22,24 @@ namespace DnD_CharSheet_5e
 
         public Item LeftHand_Ring { get; set; }
         public Item RightHand_Ring { get; set; }
+
+        public void Clear_Equipment()
+        {
+            CharacterArmor = null;
+            LeftHand_Armor = null;
+
+            RightHand_Weapon = null;
+            LeftHand_Weapon = null;
+
+            Head_Slot = null;
+            Neck_Slot = null;
+            Cape_Slot = null;
+
+            Belt_Slot = null;
+            Boots_Slot = null;
+            
+            LeftHand_Ring = null;
+            RightHand_Ring = null;
+        }
     }
 }
