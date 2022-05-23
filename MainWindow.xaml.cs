@@ -1,20 +1,77 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DnD_CharSheet_5e
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
+
+
+    #region THE PURPOSE OF MAIN WINDOW
+    /* The Main Window of this app contains the actual Character Sheet for the character played in the game. 
+     * (or to be more precise the most important page of a D&D-Characrer Sheet - page 1 - for those familiar with the game).
+     * 
+     * That means it serves in the creation of a character by user input as well as processing this most relevant information (data/ values) about the character.
+     * It also serves to emulate some of the most important actions a player/ character can make during the game by processing user input.
+     * This concerns mostly clicking buttons for dice rolls. 
+     */
+    #endregion
+
     public partial class MainWindow : Window
     {
 
+        #region MEMBER PROPERTIES OF MAIN WINDOW
+
+        // Singleton to access the Main Window from sub windows
         public static MainWindow mainWindow_Inst;
 
+        // Bool for handling invalid types of user input during character creation in all of the important number (int) input fields (when the user fills out the sheet)
         bool hasError = false;
-        bool IsSidebar_Active = false;
 
-        SheetManager sheetManager = new SheetManager();
+        #region PURPOSE AND EXPLANATION OF MAIN MENU BUTTONS
+        /* 
+         * The Main Menu Buttons serve to navigate between the Main Window and different sub windows which handle game mechanics not included in the Main Sheet.
+         * This serves the purpose of logical structuring of the app as well as making it more usable.
+         * 
+         * ----------------------------
+         * Most of the Buttons of the Main Menu which initialize and load different sub windows are disabled upon start of the app or when the user clicks the 'New Character'-Button
+         * because these windows rely on valid data/ member property values of the character-class to work properly. (For the function of the character class, see 'App.xaml.cs' and the class itself)
+         * Consequentially, these buttons are only enabled if the user has loaded or created a character with valid member property values.
+        */
+        #endregion
 
+        List<Button> MainMenuBtns;
+
+        // This boolean serves to check whether main menu buttons are enabled or not and whether they should be enabled/ disabled or not (see explanation above).
+        
+        bool IsMainMenu_Active = false;
+
+        // A collection of all the TextBoxes on the UI from which numbers (int's) are parsed and processed.
+        // The List serves mainly to enable and disable them because the user isn't supposed to be able to change most of these values after character creation is completed.  
+        
+        List<TextBox> MainSheetNumberBoxes;
+
+
+        List<TextBox> AbilityScoreBoxes;
+
+        
+        List<CheckBox> SavingThrowProficiencyCheckBoxes;
+        List<CheckBox> SkillProficiencyCheckBoxes;
+
+        // A collection of all the CheckBoxes on MainWindow - Saving Throw'-Checkboxes and 'Skill Proficiency'-CheckBoxes combined.
+        // Again, to enable and disable them for the same reason as with the 'Number Boxes': There Value shoudln't be changed after character creation.
+
+        List<CheckBox> MainSheetCheckBoxes;
+
+
+        List<Button> DiceRollBtns;
+
+        #endregion
+
+        #region CONSTRUCTOR
         public MainWindow()
         {
             InitializeComponent();
@@ -23,104 +80,371 @@ namespace DnD_CharSheet_5e
             {
                 mainWindow_Inst = this;
             }
+
+            Init_UIControls();
             
-            sheetManager.dSys.InitializeRandom();
-
-            Init_FileSystem();
-            SheetManager.CS_Manager_Inst.Init_DataBases();
-            Init_theWeave();
-
-            SheetManager.CS_Manager_Inst.character.Init_Basics();
         }
+        #endregion
 
-        private void Init_FileSystem()
-        {
-            FileManager.FM_Inst.Find_RootPath();
-            FileManager.FM_Inst.Check_for_SaveGameFolder();
-            FileManager.FM_Inst.Set_SaveGames();
-            FileManager.FM_Inst.Check_for_SoundEffects_Folder();
-            FileManager.FM_Inst.Init_SoundEffects();
-            FileManager.FM_Inst.Check_for_Images_Folder();
-        }
 
-        // consider to load ALL relevant databases in SheetManager instead of partially here
-
-        private void Init_theWeave()
+        #region INITIALIZATION OF UI-ELEMENTS - EXECUTED IN THE CONSTTRUCTOR
+        private void Init_UIControls()
         {
-            FileManager.FM_Inst.Set_Path_Spells_and_SpellLists();
-            FileManager.FM_Inst.Read_Spells_and_SpellLists();
-            SheetManager.CS_Manager_Inst.theWeave.Read_SpellDataBase(FileManager.FM_Inst.jsonSDB);
-            SheetManager.CS_Manager_Inst.theWeave.Read_BardSpellList(FileManager.FM_Inst.jsonBSL);
-            SheetManager.CS_Manager_Inst.theWeave.Read_WizardSpellList(FileManager.FM_Inst.jsonWSL);
-        }
-                
-        private void CreateCharacter()
-        {
-            //SheetManager.CS_Manager_Inst.character = new Character();                       // Memory Issue here? (Apparently not, Destructor/ Finalizer is called)
-            Reset_Form();
+            Init_MainMenuBtns();
+            Init_DiceRollBtns();
+            Init_MainSheetNumberBoxes();
+            Init_MainSheetCheckBoxes();
             
-            if(IsSidebar_Active == true)
+        }
+        #endregion
+
+        #region MEMBER FUNCTIONS FOR INITIALIZATION OF UI-ELEMENTS
+        private void Init_MainMenuBtns()
+        {
+            MainMenuBtns = new List<Button>();
+
+            foreach (Button MenuBtn in MenuBtnsPanel.Children)
             {
-                Deactivate_SideBarMenu_Buttons();
+                MenuBtn.Click += new RoutedEventHandler(PlayClickSound_Onclick);
+                MainMenuBtns.Add(MenuBtn);
             }
-            
-            FirstLevel();
-            Activate_Interaction();
         }
 
+        private void PlayClickSound_Onclick(object sender, RoutedEventArgs e)
+        {
+            FileManager.FM_Inst.Play_ClickSound();
+        }
+
+        private void Init_MainSheetNumberBoxes()
+        {
+            MainSheetNumberBoxes = new List<TextBox>();
+
+            Init_AbilityScoreBoxes();
+
+            Init_AbilityBoxes();
+            Init_SavingThrowBoxes();
+            Init_SkillBoxes();
+        }
+
+        private void Init_AbilityScoreBoxes()
+        {
+            AbilityScoreBoxes = new List<TextBox>();
+
+            foreach (Grid grid in AbilityScoresPanel.Children)
+            {
+                foreach (UIElement element in grid.Children)
+                {
+                    if (element is TextBox)
+                    {
+                        TextBox textBox = element as TextBox;
+
+                        if (textBox.Name.Contains("ScoreBox"))
+                        {
+                            AbilityScoreBoxes.Add(textBox);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Init_AbilityBoxes()
+        {
+            foreach (Grid grid in AbilityScoresPanel.Children)
+            {
+                foreach (UIElement element in grid.Children)
+                {
+                    if (element is TextBox)
+                    {
+                        MainSheetNumberBoxes.Add(element as TextBox);
+                    }
+                }
+            }
+        }
+
+        private void Init_SavingThrowBoxes()
+        {
+            foreach (Grid grid in SavesPanel.Children)
+            {
+                foreach (UIElement element in grid.Children)
+                {
+                    if (element is TextBox)
+                    {
+                        MainSheetNumberBoxes.Add(element as TextBox);
+                    }
+                }
+            }
+        }
+
+        private void Init_SkillBoxes()
+        {
+            foreach (StackPanel SkillPnl in SkillsGrid.Children)
+            {
+                foreach (UIElement element in SkillPnl.Children)
+                {
+                    if (element is TextBox)
+                    {
+                        MainSheetNumberBoxes.Add(element as TextBox);
+                    }
+                }
+            }
+        }
+
+
+        private void Init_DiceRollBtns()
+        {
+            DiceRollBtns = new List<Button>();
+
+            Init_AbilityCheckBtns();
+            Init_SavingThrowBtns();
+            Init_SkillCheckBtns();
+
+            Set_DieRollBtn_Image();
+            Init_DiceSound_OnBtnClick();
+        }
+
+        private void Init_AbilityCheckBtns()
+        {
+            foreach (Grid grid in AbilityScoresPanel.Children)
+            {
+                foreach (UIElement element in grid.Children)
+                {
+                    if (element is Button)
+                    {
+                        DiceRollBtns.Add(element as Button);
+                    }
+                }
+            }
+        }
+
+        private void Init_SavingThrowBtns()
+        {
+            foreach (Grid grid in SavesPanel.Children)
+            {
+                foreach (UIElement element in grid.Children)
+                {
+                    if (element is Button)
+                    {
+                        DiceRollBtns.Add(element as Button);
+                    }
+                }
+            }
+        }
+
+        private void Init_SkillCheckBtns()
+        {
+            foreach (Button SkillCheckBtn in SkillCheckBtns_Panel_AtoI.Children)
+            {
+                DiceRollBtns.Add(SkillCheckBtn);
+            }
+
+            foreach (Button SkillCheckBtn in SkillCheckBtns_Panel_MtoS.Children)
+            {
+                DiceRollBtns.Add(SkillCheckBtn);
+            }
+        }
+
+        private void Set_DieRollBtn_Image()
+        {
+            foreach (Button CheckBtn in DiceRollBtns)
+            {
+                Image DieImage = new Image();
+
+                Thickness ImagePadding = new Thickness();
+                ImagePadding.Top = 2;
+                ImagePadding.Bottom = 2;
+
+                DieImage.Margin = ImagePadding;
+
+                DieImage.Source = ImageHandler.ImgHandlerInst.DieImage.Source;
+                CheckBtn.Content = DieImage;
+            }
+        }
+
+        private void Init_MainSheetCheckBoxes()
+        {
+            MainSheetCheckBoxes = new List<CheckBox>();
+
+            Init_SavingThrow_CheckBoxes();
+            MainSheetCheckBoxes.AddRange(SavingThrowProficiencyCheckBoxes);
+
+            Init_SkillCheckBoxes();
+            MainSheetCheckBoxes.AddRange(SkillProficiencyCheckBoxes);
+        }
+        private void Init_SavingThrow_CheckBoxes()
+        {
+            SavingThrowProficiencyCheckBoxes = new List<CheckBox>();
+
+            foreach (Grid grid in SavesPanel.Children)
+            {
+                foreach (UIElement element in grid.Children)
+                {
+                    if (element is CheckBox)
+                    {
+                        SavingThrowProficiencyCheckBoxes.Add(element as CheckBox);
+                    }
+                }
+            }
+        }
+
+        private void Init_SkillCheckBoxes()
+        {
+            SkillProficiencyCheckBoxes = new List<CheckBox>();
+
+            foreach (StackPanel SkillPnl in SkillsGrid.Children)
+            {
+                foreach (UIElement element in SkillPnl.Children)
+                {
+                    if (element is CheckBox)
+                    {
+                        SkillProficiencyCheckBoxes.Add(element as CheckBox);
+                    }
+                }
+            }
+        }
+
+        private void CheckClickSound(object sender, RoutedEventArgs e)
+        {
+            FileManager.FM_Inst.Play_DiceSound();
+        }
+
+        private void Init_DiceSound_OnBtnClick()
+        {
+            foreach (Button CheckBtn in DiceRollBtns)
+            {
+                CheckBtn.Click += new RoutedEventHandler(CheckClickSound);
+            }
+        }
+
+        #endregion
+
+
+        #region MAIN MENU BUTTON EVENT HANDLER
         private void NewCharButton_Click(object sender, RoutedEventArgs e)
         {
+            SheetManager.CS_Manager_Inst.character.Reset_Character();
+
             CreateCharacter();
             if (ApplyButton.IsEnabled == false)
             {
                 ApplyButton.IsEnabled = true;
             }
-            FileManager.FM_Inst.Play_ClickSound();
-        }
-
-        private void CreateCharButton_Click(object sender, RoutedEventArgs e)
-        {           
-           
-            FileManager.FM_Inst.Play_ClickSound();
-        }
-
-        private void ApplyCharacter()
-        {                        
-            Activate_SideBarMenu_Buttons();
-            Deactivate_Menus();            
-            SubmitCharacter_byUserInput();            
-            Init_HPHD_Panel();
-            Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput();
-            Activate_IniRolls();            
-            Activate_AbilityChecks();
-            Activate_SavingThrows();            
-            Activate_SkillChecks();
-            Init_AC_Update();
+            
         }
 
         private void ApplyCharButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplyCharacter();
+
+        }
+
+        private void SaveWindow_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            SaveWindow SaveWdw = new SaveWindow();
+            SaveWdw.Show();
+        }
+
+        private void LoadWindow_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            LoadWindow LoadWdw = new LoadWindow();
+            LoadWdw.Show();
+        }
+
+        private void SpellWindow_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            SpellsWindow SpellsWdw = new SpellsWindow();
+            SpellsWdw.Show();
+        }
+
+        private void CombatWindow_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            CombatWindow CombatWdw = new CombatWindow();
+            CombatWdw.Show();
+        }
+
+        private void DiceMachineWindow_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            DiceMachine DiceMachineWdw = new DiceMachine();
+            DiceMachineWdw.Show();
+        }
+
+        private void BackgroundWindow_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            BackgroundWindow BackgroundWdw = new BackgroundWindow();
+            BackgroundWdw.Show();
+        }
+
+        private void InventoryWindow_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryWindow InventoryWdw = new InventoryWindow();
+            InventoryWdw.Show();
+        }
+
+        private void MerchantWindow_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            MerchantWindow MerchantWdw = new MerchantWindow();
+            MerchantWdw.Show();
+        }
+
+        #endregion
+
+        #region MAIN FUNCTIONS FOR HANDLING USER INPUT, ENABLING AND DISABLING UI-ELEMENTS
+        private void CreateCharacter()
+        {
+            Reset_Form();
+
+            if (IsMainMenu_Active == true)
+            {
+                Deactivate_SideBarMenu_Buttons();
+            }
+
+            FirstLevel();
+            EnableUIForUserInput();
+        }
+
+        private void Reset_Form()
+        {
+            Reset_CharacterInputs();
+            Reset_HP_Panel();
+
+            Deactivate_IniRolls();
+            Reset_IniPanel();
+
+            Clear_AllValues();
+        }
+
+        private void ApplyCharacter()
+        {
+            Check_Values();
+            
             if(!hasError)
             {
                 ApplyButton.IsEnabled = false;
-                ApplyCharacter();
-                FileManager.FM_Inst.Play_ClickSound();
+                Activate_SideBarMenu_Buttons();
+                Deactivate_CharacterInputs();
+                SubmitCharacter_byUserInput();
+                Init_HPHD_Panel();
+                Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput();
+                Activate_IniRolls();
+
+                Activate_SavingThrows();
+                Activate_SkillChecks();
+                Init_AC_Update();
+
+                Activate_Checks();
             }
 
-            else if(hasError)
+            else
             {
-                ApplyButton.IsEnabled = true;
-                return;
+                MessageBox.Show($"A Value you have entered in one of the number-fields is invalid.\nPlease make sure all values are integers (numbers without decimals)\nand within the range of 1 and 20.");
             }
-            
-        }
+        }        
 
         public void Load_Character()
         {            
             Reset_Form();
             ApplyButton.IsEnabled = false;
 
-            Deactivate_Menus();
+            Deactivate_CharacterInputs();
 
             SubmitCharacter_OnLoad();
             
@@ -129,133 +453,105 @@ namespace DnD_CharSheet_5e
             Deactivate_Scores_and_Show_AbilityModifiers();
             Show_AbilityScores();
 
-            Deactivate_SaveProf_Buttons();
+            Deactivate_SaveProf_CheckBoxes();
             Show_SaveModifiers();
             Set_SaveProficiency_Buttons();
 
-            Deactivate_SkillProficiency_Buttons();
+            Deactivate_SkillProficiency_CheckBoxes();
             Show_SkillModifiers();
             Set_SkillProficiency_Buttons();
-
-            Activate_AbilityChecks();
+           
             Activate_IniRolls();
-            Activate_SaveCheck_Buttons();
-            Activate_SkillCheck_Buttons();
-            Init_AC_Update();          
+           
+            Init_AC_Update();
+
+            Activate_Checks();
         }
 
-        private void Reset_Form()
-        {
-            Reset_CharacterMenus();
-            Reset_HP_Panel();
-            
-            Deactivate_IniRolls();
-            Reset_IniPanel();            
-            
-            Deactivate_AbilityChecks();
-            Reset_AbilityPanel();
-
-            Deactivate_SaveCheck_Buttons();
-            Clear_SavingThrows();
-            Deactivate_SaveProf_Buttons();
-
-            Deactivate_SkillCheck_Buttons();
-            Clear_Skills();            
-        }
+        
+        #endregion
 
         public void Activate_SideBarMenu_Buttons()
         {
-            saveCharButton.IsEnabled = true;
-            SpellWindow_bt.IsEnabled = true;
-            CombatWindow_bt.IsEnabled = true;
-            DiceMachineWindow_bt.IsEnabled = true;
-            BackgroundPage_bt.IsEnabled = true;
-            Inventory_bt.IsEnabled = true;
-            Merchant_bt.IsEnabled = true;
+            foreach(Button MenuBtn in MainMenuBtns)
+            {
+                MenuBtn.IsEnabled = true;
+            }
 
-            IsSidebar_Active = true;
+            IsMainMenu_Active = true;
         }
 
         public void Deactivate_SideBarMenu_Buttons()
         {
-            saveCharButton.IsEnabled = false;
-            SpellWindow_bt.IsEnabled = false;
-            CombatWindow_bt.IsEnabled = false;
-            DiceMachineWindow_bt.IsEnabled = false;
-            BackgroundPage_bt.IsEnabled = false;
-            Inventory_bt.IsEnabled = false;
-            Merchant_bt.IsEnabled = false;
+            foreach (Button MenuBtn in MainMenuBtns)
+            {
+                if(MenuBtn.Name != "LoadCharBtn")
+                {
+                    MenuBtn.IsEnabled = false;
+                }
+            }
 
-            IsSidebar_Active = false;
+            IsMainMenu_Active = false;
         }
 
         private void FirstLevel()
         {
             SheetManager.CS_Manager_Inst.character.Level = 1;
             LevelText.Text = SheetManager.CS_Manager_Inst.character.Level.ToString();
-            Level_Up_bt.IsEnabled = true;            
+            LevelUp_Btn.IsEnabled = true;            
             SheetManager.CS_Manager_Inst.character.Update_HitDice();
-            HDtext.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
-            ProfBonus_Box.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
+            HDBox.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
+            ProficiencyBonusBox.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
+        }
+
+        private void EnableUIForUserInput()
+        {
+            Activate_CharacterInputs();
+            Activate_HP_Panel();
+            Activate_ScoreInput();
+            Activate_SaveProf_CheckBoxes();
+            Activate_SkillProficiency_CheckBoxes();
         }
 
         private void Init_HPHD_Panel()
         {
-            if (CheckValue(maxHPtext.Text))
-            {
-                maxHPtext.IsEnabled = false;
-                hasError = false;
-                SheetManager.CS_Manager_Inst.character.Set_MaxHP_byText(maxHPtext.Text);
-            }
-
-            else { hasError = true; }
+            SheetManager.CS_Manager_Inst.character.Set_MaxHP_byText(MaxHPBox.Text);
+            MaxHPBox.IsEnabled = false;            
 
             SheetManager.CS_Manager_Inst.character.Init_HP_HD();
+
             SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP;
             SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
             SheetManager.CS_Manager_Inst.Init_TempHPCallback();
 
-            currHPtext.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
-            currHDtext.Text = SheetManager.CS_Manager_Inst.character.CurrentHitDice.ToString();
+            CurrHPBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
+            CurrHDBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHitDice.ToString();
         }
 
         private void Set_Level_and_HP_Panel()
         {
             LevelText.Text = SheetManager.CS_Manager_Inst.character.Level.ToString();
-            Level_Up_bt.IsEnabled = true;
+            LevelUp_Btn.IsEnabled = true;
 
             SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP;
             SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
             SheetManager.CS_Manager_Inst.Init_TempHPCallback();
 
-            maxHPtext.Text = SheetManager.CS_Manager_Inst.character.MaxHP.ToString();
-            currHPtext.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
-            tempHPtext.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
+            MaxHPBox.Text = SheetManager.CS_Manager_Inst.character.MaxHP.ToString();
+            CurrHPBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
+            TempHPBox.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
 
-            HDtext.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
-            currHDtext.Text = SheetManager.CS_Manager_Inst.character.CurrentHitDice.ToString();
-            
-            ProfBonus_Box.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
+            HDBox.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
+            CurrHDBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHitDice.ToString();
+
+            ProficiencyBonusBox.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
         }
 
-        private void Activate_Interaction()
-        {
-            Activate_CharacterMenus();
-            Activate_HP_Panel();
-            Activate_Scores();
-            Activate_SaveProf_Buttons();
-            Activate_SkillProficiency_Buttons();            
-        }
+        
 
-        private void Reset_CharacterMenus()
-        {
-            CharNameText.Clear();        
-            PlayerNameText.Clear();           
-
-            LevelText.Clear();           
-        }
-
-        private void Activate_CharacterMenus()
+        // I could have grabbed these elements on initialization of the window - like e. g. the ability score textboxes - to set them all at once with a loop
+        // but, since that wouldn't make the code very much shorter - on the contrary - I opted against this method and just set these manually
+        private void Activate_CharacterInputs()
         {
             CharNameText.IsEnabled = true;
             PlayerNameText.IsEnabled = true;
@@ -266,7 +562,7 @@ namespace DnD_CharSheet_5e
             ClassBox.IsEnabled = true;
         }
 
-        private void Deactivate_Menus()
+        private void Deactivate_CharacterInputs()
         {
             CharNameText.IsEnabled = false;
             PlayerNameText.IsEnabled = false;
@@ -278,6 +574,23 @@ namespace DnD_CharSheet_5e
             SubRaceBox.IsEnabled = false;
             ClassBox.IsEnabled = false;
         }
+
+
+        private void Reset_CharacterInputs()
+        {
+            CharNameText.Clear();        
+            PlayerNameText.Clear();
+
+            RaceBox.Clear();
+            SubRaceBox.Clear();
+
+            ClassBox.Clear();
+
+            AlignmentBox.SelectedIndex = 0;
+            BackgroundBox.Clear();
+
+            LevelText.Clear();           
+        }        
 
         private void SubmitCharacter_byUserInput()
         {
@@ -303,307 +616,221 @@ namespace DnD_CharSheet_5e
 
         private void Activate_HP_Panel()
         {
-            maxHPtext.IsEnabled = true;
-            currHPtext.IsEnabled = true;
-            tempHPtext.IsEnabled = true;
-            currHDtext.IsEnabled = true;            
+            MaxHPBox.IsEnabled = true;
+            CurrHPBox.IsEnabled = true;
+            TempHPBox.IsEnabled = true;
+            CurrHDBox.IsEnabled = true;            
         }
 
-        private void Activate_Scores()
-        {        
-            strScoreText.IsEnabled = true;            
-            dexScoreText.IsEnabled = true;            
-            conScoreText.IsEnabled = true;            
-            intScoreText.IsEnabled = true;            
-            wisScoreText.IsEnabled = true;            
-            chaScoreText.IsEnabled = true;
+        private void Activate_ScoreInput()
+        {            
+            foreach (TextBox ScoreBox in AbilityScoreBoxes)
+            {
+                ScoreBox.IsEnabled = true;
+            }
         }        
 
         private void Reset_HP_Panel()
         {
-            maxHPtext.Clear();
-            currHPtext.Clear();
-            tempHPtext.Clear();
-            HDtext.Clear();
-            currHDtext.Clear();
-            ProfBonus_Box.Clear();
+            MaxHPBox.Clear();
+            CurrHPBox.Clear();
+            TempHPBox.Clear();
+            HDBox.Clear();
+            CurrHDBox.Clear();            
         }
 
+        // Initiative will hereafter sometimes be abbreviated to 'Ini' as is also common for the game
         private void Reset_IniPanel()
         {
-            iniBonus.Clear();
-            iniResult.Clear();
-            AC.Clear();
-            baseSpeed.Clear();
-        }
-
-        private void Reset_AbilityPanel()
-        {
-            Clear_AbilityScoreBoxes();
-            Clear_AbilityModifierBoxes();
-            Clear_AbilityResultBoxes();
-        }
-
-        private void Clear_AbilityScoreBoxes()
-        {
-            strScoreText.Clear();
-            dexScoreText.Clear();
-            conScoreText.Clear();
-            intScoreText.Clear();
-            wisScoreText.Clear();
-            chaScoreText.Clear();
-        }
-
-        private void Clear_AbilityModifierBoxes()
-        {
-            strModifierText.Clear();
-            dexModifierText.Clear();
-            conModifierText.Clear();
-            intModifierText.Clear();
-            wisModifierText.Clear();
-            chaModifierText.Clear();
-        }
-
-        private void Clear_AbilityResultBoxes()
-        {
-            strengthResult.Clear();
-            dexResult.Clear();
-            conResult.Clear();
-            intResult.Clear();
-            wisResult.Clear();
-            chaResult.Clear();
+            InitiativeBonusBox.Clear();
+            InitiativeResultBox.Clear();
+            AC_Box.Clear();
+            BaseSpeedBox.Clear();
+            ProficiencyBonusBox.Clear();
         }
 
         private void Show_AbilityScores()
         {
-            strScoreText.Text = SheetManager.CS_Manager_Inst.character.Strength.Score.ToString();
-            dexScoreText.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Score.ToString();
-            conScoreText.Text = SheetManager.CS_Manager_Inst.character.Constitution.Score.ToString();
-            intScoreText.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Score.ToString();
-            wisScoreText.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Score.ToString();
-            chaScoreText.Text = SheetManager.CS_Manager_Inst.character.Charisma.Score.ToString();
+            StrScoreBox.Text = SheetManager.CS_Manager_Inst.character.Strength.Score.ToString();
+            DexScoreBox.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Score.ToString();
+            ConScoreBox.Text = SheetManager.CS_Manager_Inst.character.Constitution.Score.ToString();
+            IntScoreBox.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Score.ToString();
+            WisScoreBox.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Score.ToString();
+            ChaScoreBox.Text = SheetManager.CS_Manager_Inst.character.Charisma.Score.ToString();
         }
 
-        private void Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput()
-        {            
-
-            if (CheckValue(strScoreText.Text))
-            {
-                strScoreText.IsEnabled = false;
-                hasError = false;
-                SheetManager.CS_Manager_Inst.character.Set_StrScore_byText(strScoreText.Text);
-                SheetManager.CS_Manager_Inst.character.Strength.Calculate_Modifier();
-                strModifierText.Text = SheetManager.CS_Manager_Inst.character.Strength.Modifier.ToString();
-            }
-
-            else { hasError = true; }
-
-            if (CheckValue(dexScoreText.Text))
-            {
-                dexScoreText.IsEnabled = false;
-                hasError = false;
-                SheetManager.CS_Manager_Inst.character.Set_DexScore_byText(dexScoreText.Text);
-                SheetManager.CS_Manager_Inst.character.Dexterity.Calculate_Modifier();
-                dexModifierText.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Modifier.ToString();
-            }
-
-            else { hasError = true; }
-
-            if (CheckValue(conScoreText.Text))
-            {
-                conScoreText.IsEnabled = false;
-                hasError = false;
-                SheetManager.CS_Manager_Inst.character.Set_ConScore_byText(conScoreText.Text);
-                SheetManager.CS_Manager_Inst.character.Constitution.Calculate_Modifier();
-                conModifierText.Text = SheetManager.CS_Manager_Inst.character.Constitution.Modifier.ToString();
-            }
-
-            else { hasError = true; }
-
-            if (CheckValue(intScoreText.Text))
-            {
-                intScoreText.IsEnabled = false;
-                hasError = false;
-                SheetManager.CS_Manager_Inst.character.Set_IntScore_byText(intScoreText.Text);
-                SheetManager.CS_Manager_Inst.character.Intelligence.Calculate_Modifier();
-                intModifierText.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Modifier.ToString();
-            }
-
-
-            else { hasError = true; }
-
-            if (CheckValue(wisScoreText.Text))
-            {
-                wisScoreText.IsEnabled = false;
-                hasError = false;
-                SheetManager.CS_Manager_Inst.character.Set_WisScore_byText(wisScoreText.Text);
-                SheetManager.CS_Manager_Inst.character.Wisdom.Calculate_Modifier();
-                wisModifierText.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Modifier.ToString();
-            }
-
-            else { hasError = true; }
-
-            if (CheckValue(chaScoreText.Text))
-            {
-                chaScoreText.IsEnabled = false;
-                hasError = false;
-                SheetManager.CS_Manager_Inst.character.Set_ChaScore_byText(chaScoreText.Text);
-                SheetManager.CS_Manager_Inst.character.Charisma.Calculate_Modifier();
-                chaModifierText.Text = SheetManager.CS_Manager_Inst.character.Charisma.Modifier.ToString();
-            }
-
-            else { hasError = true; }
-            
-        }        
-
         private bool CheckValue(string textBoxTxt)
-        {            
+        {
 
-            if(int.TryParse(textBoxTxt, out int number))
+            if (int.TryParse(textBoxTxt, out int number))
             {
-                return true;
+                if(number > 0 && number < 21)
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
             }
 
-            // -> Solve issue that Message Box either appears for every error or not at all
             else
             {
-                MessageBox.Show($"A Value you have entered in one of the number-fields is invalid. Please make sure all values are integers (numbers without decimals).");
                 return false;
             }
         }
 
+        private void Check_Values()
+        {            
+            if(CheckValue(MaxHPBox.Text))
+            {                
+                bool AreScoreValuesCorrect = AbilityScoreBoxes.TrueForAll(ScoreBox => CheckValue(ScoreBox.Text));
+
+                if(AreScoreValuesCorrect)
+                {
+                    hasError = false;
+                }
+
+                else
+                {
+                    hasError = true;
+                }
+            }
+
+            else
+            {
+                hasError = true;
+            }
+        }
+
+        private void Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput()
+        {
+
+            foreach(TextBox ScoreBox in AbilityScoreBoxes)
+            {
+                ScoreBox.IsEnabled = false;
+            }
+
+            SheetManager.CS_Manager_Inst.character.Set_StrScore_byText(StrScoreBox.Text);
+            SheetManager.CS_Manager_Inst.character.Strength.Calculate_Modifier();
+            StrModifierBox.Text = SheetManager.CS_Manager_Inst.character.Strength.Modifier.ToString();
+
+            SheetManager.CS_Manager_Inst.character.Set_DexScore_byText(DexScoreBox.Text);
+            SheetManager.CS_Manager_Inst.character.Dexterity.Calculate_Modifier();
+            DexModifierBox.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Modifier.ToString();
+
+            SheetManager.CS_Manager_Inst.character.Set_ConScore_byText(ConScoreBox.Text);
+            SheetManager.CS_Manager_Inst.character.Constitution.Calculate_Modifier();
+            ConModifierBox.Text = SheetManager.CS_Manager_Inst.character.Constitution.Modifier.ToString();
+
+            SheetManager.CS_Manager_Inst.character.Set_IntScore_byText(IntScoreBox.Text);
+            SheetManager.CS_Manager_Inst.character.Intelligence.Calculate_Modifier();
+            IntModifierBox.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Modifier.ToString();
+
+            SheetManager.CS_Manager_Inst.character.Set_WisScore_byText(WisScoreBox.Text);
+            SheetManager.CS_Manager_Inst.character.Wisdom.Calculate_Modifier();
+            WisModifierBox.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Modifier.ToString();
+
+            SheetManager.CS_Manager_Inst.character.Set_ChaScore_byText(ChaScoreBox.Text);
+            SheetManager.CS_Manager_Inst.character.Charisma.Calculate_Modifier();
+            ChaModifierBox.Text = SheetManager.CS_Manager_Inst.character.Charisma.Modifier.ToString();            
+            
+        }               
+
         private void Deactivate_Scores_and_Show_AbilityModifiers()
         {
-            maxHPtext.IsEnabled = false;
+            MaxHPBox.IsEnabled = false;
 
-            strScoreText.IsEnabled = false;            
-            strModifierText.Text = SheetManager.CS_Manager_Inst.character.Strength.Modifier.ToString();
-            
-            dexScoreText.IsEnabled = false;            
-            dexModifierText.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Modifier.ToString();
+            foreach(TextBox ScoreBox in AbilityScoreBoxes)
+            {
+                ScoreBox.IsEnabled = false;
+            }
 
-            conScoreText.IsEnabled = false;            
-            conModifierText.Text = SheetManager.CS_Manager_Inst.character.Constitution.Modifier.ToString();
-
-            intScoreText.IsEnabled = false;            
-            intModifierText.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Modifier.ToString();
-
-            wisScoreText.IsEnabled = false;            
-            wisModifierText.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Modifier.ToString();
-
-            chaScoreText.IsEnabled = false;            
-            chaModifierText.Text = SheetManager.CS_Manager_Inst.character.Charisma.Modifier.ToString();            
+            StrModifierBox.Text = SheetManager.CS_Manager_Inst.character.Strength.Modifier.ToString();
+            DexModifierBox.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Modifier.ToString();
+            ConModifierBox.Text = SheetManager.CS_Manager_Inst.character.Constitution.Modifier.ToString();
+            IntModifierBox.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Modifier.ToString();
+            WisModifierBox.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Modifier.ToString();
+            ChaModifierBox.Text = SheetManager.CS_Manager_Inst.character.Charisma.Modifier.ToString();            
         }
 
         private void Activate_IniRolls()
         {
             SheetManager.CS_Manager_Inst.character.Set_IniBonus();
-            iniBonus.Text = SheetManager.CS_Manager_Inst.character.InitiativeBonus.ToString();
-            iniButton.IsEnabled = true;
+            InitiativeBonusBox.Text = SheetManager.CS_Manager_Inst.character.InitiativeBonus.ToString();
+            InitiativeBtn.IsEnabled = true;
         }
 
         private void Deactivate_IniRolls()
         {
-            iniButton.IsEnabled = false;
+            InitiativeBtn.IsEnabled = false;
         }
 
         private void Init_AC_Update()
         {
             SheetManager.CS_Manager_Inst.character.acChanged += Update_AC;
             SheetManager.CS_Manager_Inst.character.Calculate_AC();            
+        }    
+
+        private void Activate_SaveProf_CheckBoxes()
+        {
+            foreach(CheckBox SaveCB in SavingThrowProficiencyCheckBoxes)
+            {
+                SaveCB.IsEnabled = true;
+            }
         }
 
-        private void Activate_AbilityChecks()
+        private void Deactivate_SaveProf_CheckBoxes()
         {
-            strRoll_bt.IsEnabled = true;
-            dexRoll_bt.IsEnabled = true;
-            conRoll_bt.IsEnabled = true;
-            intRoll_bt.IsEnabled = true;
-            wisRoll_bt.IsEnabled = true;
-            chaRoll_bt.IsEnabled = true;
+            foreach (CheckBox SaveCB in SavingThrowProficiencyCheckBoxes)
+            {
+                SaveCB.IsEnabled = false;
+            }
+        }       
+
+        private void Activate_Checks()
+        {
+            foreach(Button CheckBtn in DiceRollBtns)
+            {
+                CheckBtn.IsEnabled = true;
+            }
         }
 
-        private void Deactivate_AbilityChecks()
+        private void Deactivate_Checks()
         {
-            strRoll_bt.IsEnabled = false;
-            dexRoll_bt.IsEnabled = false;
-            conRoll_bt.IsEnabled = false;
-            intRoll_bt.IsEnabled = false;
-            wisRoll_bt.IsEnabled = false;
-            chaRoll_bt.IsEnabled = false;
-        }        
-
-        private void Activate_SaveProf_Buttons()
-        {
-            saveProf_STR.IsEnabled = true;
-            saveProf_DEX.IsEnabled = true;
-            saveProf_CON.IsEnabled = true;
-            saveProf_INT.IsEnabled = true;
-            saveProf_WIS.IsEnabled = true;
-            saveProf_CHA.IsEnabled = true;
+            foreach (Button CheckBtn in DiceRollBtns)
+            {
+                CheckBtn.IsEnabled = false;
+            }
         }
 
-        private void Deactivate_SaveProf_Buttons()
+        private void Clear_AllValues()
         {
-            saveProf_STR.IsEnabled = false;
-            saveProf_DEX.IsEnabled = false;
-            saveProf_CON.IsEnabled = false;
-            saveProf_INT.IsEnabled = false;
-            saveProf_WIS.IsEnabled = false;
-            saveProf_CHA.IsEnabled = false;
+            Clear_AllNumberBoxes();
+            Clear_AllCheckBoxes();
         }
 
-        private void Activate_SaveCheck_Buttons()
+        private void Clear_AllNumberBoxes()
         {
-            STRsave_roll.IsEnabled = true;
-            DEXsave_roll.IsEnabled = true;
-            CONsave_roll.IsEnabled = true;
-            INTsave_roll.IsEnabled = true;
-            WISsave_roll.IsEnabled = true;
-            CHAsave_roll.IsEnabled = true;
-        }
-
-        private void Deactivate_SaveCheck_Buttons()
+            foreach(TextBox NumberBox in MainSheetNumberBoxes)
+            {
+                NumberBox.Clear();
+            }
+        }       
+        
+        private void Clear_AllCheckBoxes()
         {
-            STRsave_roll.IsEnabled = false;
-            DEXsave_roll.IsEnabled = false;
-            CONsave_roll.IsEnabled = false;
-            INTsave_roll.IsEnabled = false;
-            WISsave_roll.IsEnabled = false;
-            CHAsave_roll.IsEnabled = false;
-        }
-
-        private void Clear_SavingThrows()
-        {
-            saveProf_STR.IsChecked = false;
-            STRsave_Val.Clear();
-            STRsave_Result.Clear();
-
-            saveProf_DEX.IsChecked = false;
-            DEXsave_Val.Clear();
-            DEXsave_Result.Clear();
-
-            saveProf_CON.IsChecked = false;
-            CONsave_Val.Clear();
-            CONsave_Result.Clear();
-
-            saveProf_INT.IsChecked = false;
-            INTsave_Val.Clear();
-            INTsave_Result.Clear();
-
-            saveProf_WIS.IsChecked = false;
-            WISsave_Val.Clear();
-            WISsave_Result.Clear();
-
-            saveProf_CHA.IsChecked = false;
-            CHAsave_Val.Clear();
-            CHAsave_Result.Clear();
+            foreach(CheckBox ProficiencyCheckBox in MainSheetCheckBoxes)
+            {
+                ProficiencyCheckBox.IsChecked = false;
+            }
         }
 
         private void Transfer_SavingThrows()
         {
             SheetManager.CS_Manager_Inst.character.Set_SaveBaseValues();
-            SheetManager.CS_Manager_Inst.character.Set_SaveProficiencies(saveProf_STR.IsChecked.Value, saveProf_DEX.IsChecked.Value, saveProf_CON.IsChecked.Value, saveProf_INT.IsChecked.Value, saveProf_WIS.IsChecked.Value, saveProf_CHA.IsChecked.Value);
+            SheetManager.CS_Manager_Inst.character.Set_SaveProficiencies(StrSaveProficiency_CB.IsChecked.Value, DexSaveProficiency_CB.IsChecked.Value, ConSaveProficiency_CB.IsChecked.Value, IntSaveProficiency_CB.IsChecked.Value, WisSaveProficiency_CB.IsChecked.Value, ChaSaveProficiency_CB.IsChecked.Value);
         }
 
         private void Calculate_SaveModifiers()
@@ -615,61 +842,59 @@ namespace DnD_CharSheet_5e
         {
             if(SheetManager.CS_Manager_Inst.character.STR_Save.IsProficient)
             {
-                saveProf_STR.IsChecked = true;
+                StrSaveProficiency_CB.IsChecked = true;
             }
 
             if (SheetManager.CS_Manager_Inst.character.DEX_Save.IsProficient)
             {
-                saveProf_DEX.IsChecked = true;
+                DexSaveProficiency_CB.IsChecked = true;
             }
 
             if (SheetManager.CS_Manager_Inst.character.CON_Save.IsProficient)
             {
-                saveProf_CON.IsChecked = true;
+                ConSaveProficiency_CB.IsChecked = true;
             }
 
             if (SheetManager.CS_Manager_Inst.character.INT_Save.IsProficient)
             {
-                saveProf_INT.IsChecked = true;
+                IntSaveProficiency_CB.IsChecked = true;
             }
 
             if (SheetManager.CS_Manager_Inst.character.WIS_Save.IsProficient)
             {
-                saveProf_WIS.IsChecked = true;
+                WisSaveProficiency_CB.IsChecked = true;
             }
 
             if (SheetManager.CS_Manager_Inst.character.CHA_Save.IsProficient)
             {
-                saveProf_CHA.IsChecked = true;
+                ChaSaveProficiency_CB.IsChecked = true;
             }
         }
 
         private void Show_SaveModifiers()
         {
-            STRsave_Val.Text = SheetManager.CS_Manager_Inst.character.STR_Save.SaveModifier.ToString();
-            DEXsave_Val.Text = SheetManager.CS_Manager_Inst.character.DEX_Save.SaveModifier.ToString();
-            CONsave_Val.Text = SheetManager.CS_Manager_Inst.character.CON_Save.SaveModifier.ToString();
-            WISsave_Val.Text = SheetManager.CS_Manager_Inst.character.WIS_Save.SaveModifier.ToString();
-            INTsave_Val.Text = SheetManager.CS_Manager_Inst.character.INT_Save.SaveModifier.ToString();
-            CHAsave_Val.Text = SheetManager.CS_Manager_Inst.character.CHA_Save.SaveModifier.ToString();
+            StrSaveModifierBox.Text = SheetManager.CS_Manager_Inst.character.STR_Save.SaveModifier.ToString();
+            DexSaveModifierBox.Text = SheetManager.CS_Manager_Inst.character.DEX_Save.SaveModifier.ToString();
+            ConSaveModifierBox.Text = SheetManager.CS_Manager_Inst.character.CON_Save.SaveModifier.ToString();
+            IntSaveModifierBox.Text = SheetManager.CS_Manager_Inst.character.INT_Save.SaveModifier.ToString();
+            WisSaveModifierBox.Text = SheetManager.CS_Manager_Inst.character.WIS_Save.SaveModifier.ToString();
+            ChaSaveModifierBox.Text = SheetManager.CS_Manager_Inst.character.CHA_Save.SaveModifier.ToString();
         }
 
         private void Activate_SavingThrows()
         {
-            Deactivate_SaveProf_Buttons();
+            Deactivate_SaveProf_CheckBoxes();
             Transfer_SavingThrows();
             Calculate_SaveModifiers();
             Show_SaveModifiers();
-            Activate_SaveCheck_Buttons();
         }
 
         private void Activate_SkillChecks()
         {
-            Deactivate_SkillProficiency_Buttons();
+            Deactivate_SkillProficiency_CheckBoxes();
             Transfer_Skill_Values();
             Calculate_SkillModifiers();
             Show_SkillModifiers();
-            Activate_SkillCheck_Buttons();
         }
 
         private void Transfer_Skill_Values()
@@ -694,8 +919,7 @@ namespace DnD_CharSheet_5e
 
         private void Set_SkillProficiency_Buttons()
         {
-            if(SheetManager.CS_Manager_Inst.character.Acrobatics.IsProficient)
-            {
+            if(SheetManager.CS_Manager_Inst.character.Acrobatics.IsProficient) {
                 AcrobaticsProf.IsChecked = true;
             }
 
@@ -780,48 +1004,20 @@ namespace DnD_CharSheet_5e
             }
         }
 
-        private void Activate_SkillProficiency_Buttons()
+        private void Activate_SkillProficiency_CheckBoxes()
         {
-            AcrobaticsProf.IsEnabled = true;
-            AnimalHandlingProf.IsEnabled = true;
-            ArcanaProf.IsEnabled = true;
-            AthleticsProf.IsEnabled = true;
-            DeceptionProf.IsEnabled = true;
-            HistoryProf.IsEnabled = true;
-            InsightProf.IsEnabled = true;
-            IntimidationProf.IsEnabled = true;
-            InvestigationProf.IsEnabled = true;
-            MedicineProf.IsEnabled = true;
-            NatureProf.IsEnabled = true;
-            PerceptionProf.IsEnabled = true;
-            PerformanceProf.IsEnabled = true;
-            PersuasionProf.IsEnabled = true;
-            ReligionProf.IsEnabled = true;
-            SleightOfHandProf.IsEnabled = true;
-            StealthProf.IsEnabled = true;
-            SurvivalProf.IsEnabled = true;
+            foreach(CheckBox SkillProfBox in SkillProficiencyCheckBoxes)
+            {
+                SkillProfBox.IsEnabled = true;
+            }
         }
 
-        private void Deactivate_SkillProficiency_Buttons()
+        private void Deactivate_SkillProficiency_CheckBoxes()
         {
-            AcrobaticsProf.IsEnabled = false;
-            AnimalHandlingProf.IsEnabled = false;
-            ArcanaProf.IsEnabled = false;
-            AthleticsProf.IsEnabled = false;
-            DeceptionProf.IsEnabled = false;
-            HistoryProf.IsEnabled = false;
-            InsightProf.IsEnabled = false;
-            IntimidationProf.IsEnabled = false;
-            InvestigationProf.IsEnabled = false;
-            MedicineProf.IsEnabled = false;
-            NatureProf.IsEnabled = false;
-            PerceptionProf.IsEnabled = false;
-            PerformanceProf.IsEnabled = false;
-            PersuasionProf.IsEnabled = false;
-            ReligionProf.IsEnabled = false;
-            SleightOfHandProf.IsEnabled = false;
-            StealthProf.IsEnabled = false;
-            SurvivalProf.IsEnabled = false;
+            foreach(CheckBox SkillProfBox in SkillProficiencyCheckBoxes)
+            {
+                SkillProfBox.IsEnabled = false;
+            }
         }       
 
         private void Show_SkillModifiers()
@@ -851,165 +1047,28 @@ namespace DnD_CharSheet_5e
             StealthTxt.Text = SheetManager.CS_Manager_Inst.character.Stealth.SkillModifier.ToString();
 
             SurvivalTxt.Text = SheetManager.CS_Manager_Inst.character.Survival.SkillModifier.ToString();
-        }
-
-        private void Activate_SkillCheck_Buttons()
-        {
-            AcrobaticsCheck_bt.IsEnabled = true;
-            AnimalHandlingCheck_bt.IsEnabled = true;
-            ArcanaCheck_bt.IsEnabled = true;
-            AthleticsCheck_bt.IsEnabled = true;
-
-            DeceptionCheck_bt.IsEnabled = true;
-
-            HistoryCheck_bt.IsEnabled = true;
-
-            InsightCheck_bt.IsEnabled = true;
-            IntimidationCheck_bt.IsEnabled = true;
-            InvestigationCheck_bt.IsEnabled = true;
-
-            MedicineCheck_bt.IsEnabled = true;
-            NatureCheck_bt.IsEnabled = true;
-
-            PerceptionCheck_bt.IsEnabled = true;
-            PerfomanceCheck_bt.IsEnabled = true;
-            PersuasionCheck_bt.IsEnabled = true;
-
-            ReligionCheck_bt.IsEnabled = true;
-
-            SleightOfHandCheck_bt.IsEnabled = true;
-            StealthCheck_bt.IsEnabled = true;
-
-            SurvivalCheck_bt.IsEnabled = true;
-        }
-
-        private void Deactivate_SkillCheck_Buttons()
-        {
-            AcrobaticsCheck_bt.IsEnabled = false;
-            AnimalHandlingCheck_bt.IsEnabled = false;
-            ArcanaCheck_bt.IsEnabled = false;
-            AthleticsCheck_bt.IsEnabled = false;
-
-            DeceptionCheck_bt.IsEnabled = false;
-
-            HistoryCheck_bt.IsEnabled = false;
-
-            InsightCheck_bt.IsEnabled = false;
-            IntimidationCheck_bt.IsEnabled = false;
-            InvestigationCheck_bt.IsEnabled = false;
-
-            MedicineCheck_bt.IsEnabled = false;
-            NatureCheck_bt.IsEnabled = false;
-
-            PerceptionCheck_bt.IsEnabled = false;
-            PerfomanceCheck_bt.IsEnabled = false;
-            PersuasionCheck_bt.IsEnabled = false;
-
-            ReligionCheck_bt.IsEnabled = false;
-
-            SleightOfHandCheck_bt.IsEnabled = false;
-            StealthCheck_bt.IsEnabled = false;
-
-            SurvivalCheck_bt.IsEnabled = false;
-        }
-
-        private void Clear_Skills()
-        {
-            AcrobaticsProf.IsChecked = false;
-            AcrobaticsTxt.Clear();
-            Acrobatics_Result.Clear();
-
-            AnimalHandlingProf.IsChecked = false;
-            AnimalHandlingTxt.Clear();
-            AnimalHandling_Result.Clear();
-
-            ArcanaProf.IsChecked = false;
-            ArcanaTxt.Clear();
-            Arcana_Result.Clear();
-
-            AthleticsProf.IsChecked = false;
-            AthleticsTxt.Clear();
-            Athletics_Result.Clear();
-
-            DeceptionProf.IsChecked = false;
-            DeceptionTxt.Clear();
-            Deception_Result.Clear();
-
-            HistoryProf.IsChecked = false;
-            HistoryTxt.Clear();
-            History_Result.Clear();
-
-            InsightProf.IsChecked = false;
-            InsightTxt.Clear();
-            Insight_Result.Clear();
-
-            IntimidationProf.IsChecked = false;
-            IntimidationTxt.Clear();
-            Intimidation_Result.Clear();
-
-            InvestigationProf.IsChecked = false;
-            InvestigationTxt.Clear();
-            Investigation_Result.Clear();
-
-            MedicineProf.IsChecked = false;
-            MedicineTxt.Clear();
-            Medicine_Result.Clear();
-
-            NatureProf.IsChecked = false;
-            NatureTxt.Clear();
-            Nature_Result.Clear();
-
-            PerceptionProf.IsChecked = false;
-            PerceptionTxt.Clear();
-            Perception_Result.Clear();
-
-            PerformanceProf.IsChecked = false;
-            PerformanceTxt.Clear();
-            Performance_Result.Clear();
-
-            PersuasionProf.IsChecked = false;
-            PersuasionTxt.Clear();
-            Persuasion_Result.Clear();
-
-            ReligionProf.IsChecked = false;
-            ReligionTxt.Clear();
-            Religion_Result.Clear();
-
-            SleightOfHandProf.IsChecked = false;
-            SleightOfHandTxt.Clear();
-            SleightOfHand_Result.Clear();
-
-            StealthProf.IsChecked = false;
-            StealthTxt.Clear();
-            Stealth_Result.Clear();
-
-            SurvivalProf.IsChecked = false;
-            SurvivalTxt.Clear();
-            Survival_Result.Clear();
-
-        }        
+        }  
 
         private void Update_AC()
         {
-            //SheetManager.CS_Manager_Inst.character.Calculate_AC();
-            AC.Text = SheetManager.CS_Manager_Inst.character.AC.ToString();
+            AC_Box.Text = SheetManager.CS_Manager_Inst.character.AC.ToString();
         }
 
         private void Update_HP()
         {
-            currHPtext.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
+            CurrHPBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
         }
 
         private void Update_TempHP()
         {
             if(SheetManager.CS_Manager_Inst.character.TempHP > 0)
             {
-                tempHPtext.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
+                TempHPBox.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
             }
 
             else
             {
-                tempHPtext.Text = null;
+                TempHPBox.Text = null;
             }
         }
 
@@ -1017,254 +1076,184 @@ namespace DnD_CharSheet_5e
         {            
             SheetManager.CS_Manager_Inst.character.Level_Up();
             LevelText.Text = SheetManager.CS_Manager_Inst.character.Level.ToString();            
-            HDtext.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
-            ProfBonus_Box.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
-            FileManager.FM_Inst.Play_ClickSound();
+            HDBox.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
+            ProficiencyBonusBox.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
+            
         }        
 
         private void IniButton_Click(object sender, RoutedEventArgs e)
-        {            
-            iniResult.Text = SheetManager.CS_Manager_Inst.Roll_for_Initiative().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+        {
+            InitiativeResultBox.Text = SheetManager.CS_Manager_Inst.Roll_for_Initiative().ToString();
         }
 
         public void StrButton_Click(object sender, RoutedEventArgs e)
-        {           
-            strengthResult.Text = SheetManager.CS_Manager_Inst.character.Strength.Ability_Check().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+        {
+            StrCheckResultBox.Text = SheetManager.CS_Manager_Inst.character.Strength.Ability_Check().ToString();
         }
 
         public void DexButton_Click(object sender, RoutedEventArgs e)
         {
-            dexResult.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Ability_Check().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            DexCheckResultBox.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Ability_Check().ToString();
         }
 
         public void ConButton_Click(object sender, RoutedEventArgs e)
         {
-            conResult.Text = SheetManager.CS_Manager_Inst.character.Constitution.Ability_Check().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            ConCheckResultBox.Text = SheetManager.CS_Manager_Inst.character.Constitution.Ability_Check().ToString();
         }
 
         public void IntButton_Click(object sender, RoutedEventArgs e)
         {
-            intResult.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Ability_Check().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            IntCheckResultBox.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Ability_Check().ToString();
         }
 
         public void WisButton_Click(object sender, RoutedEventArgs e)
         {
-            wisResult.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Ability_Check().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            WisCheckResultBox.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Ability_Check().ToString();
+            
         }
 
         public void ChaButton_Click(object sender, RoutedEventArgs e)
         {
-            chaResult.Text = SheetManager.CS_Manager_Inst.character.Charisma.Ability_Check().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            ChaCheckResultBox.Text = SheetManager.CS_Manager_Inst.character.Charisma.Ability_Check().ToString();            
         }
 
         public void STR_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            STRsave_Result.Text = SheetManager.CS_Manager_Inst.character.STR_Save.Make_SavingThrow().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            StrSaveResultBox.Text = SheetManager.CS_Manager_Inst.character.STR_Save.Make_SavingThrow().ToString();            
         }
 
         public void DEX_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            DEXsave_Result.Text = SheetManager.CS_Manager_Inst.character.DEX_Save.Make_SavingThrow().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            DexSaveResultBox.Text = SheetManager.CS_Manager_Inst.character.DEX_Save.Make_SavingThrow().ToString();            
         }
 
         public void CON_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            CONsave_Result.Text = SheetManager.CS_Manager_Inst.character.CON_Save.Make_SavingThrow().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            ConSaveResultBox.Text = SheetManager.CS_Manager_Inst.character.CON_Save.Make_SavingThrow().ToString();            
         }
 
         public void INT_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            INTsave_Result.Text = SheetManager.CS_Manager_Inst.character.INT_Save.Make_SavingThrow().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            IntSaveResultBox.Text = SheetManager.CS_Manager_Inst.character.INT_Save.Make_SavingThrow().ToString();            
         }
 
         public void WIS_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            WISsave_Result.Text = SheetManager.CS_Manager_Inst.character.WIS_Save.Make_SavingThrow().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            WisSaveResultBox.Text = SheetManager.CS_Manager_Inst.character.WIS_Save.Make_SavingThrow().ToString();           
         }
 
         public void CHA_Save_bt_Click(object sender, RoutedEventArgs e)
         {
-            CHAsave_Result.Text = SheetManager.CS_Manager_Inst.character.CHA_Save.Make_SavingThrow().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            ChaSaveResultBox.Text = SheetManager.CS_Manager_Inst.character.CHA_Save.Make_SavingThrow().ToString();            
         }
 
         public void AcrobaticsBT_Click(object sender, RoutedEventArgs e)
         {
             Acrobatics_Result.Text = SheetManager.CS_Manager_Inst.character.Acrobatics.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void AnimalHandlingBT_Click(object sender, RoutedEventArgs e)
         {
             AnimalHandling_Result.Text = SheetManager.CS_Manager_Inst.character.AnimalHandling.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void ArcanaBT_Click(object sender, RoutedEventArgs e)
         {
             Arcana_Result.Text = SheetManager.CS_Manager_Inst.character.Arcana.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void AthleticsBT_Click(object sender, RoutedEventArgs e)
         {
             Athletics_Result.Text = SheetManager.CS_Manager_Inst.character.Athletics.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void DeceptionBT_Click(object sender, RoutedEventArgs e)
         {
             Deception_Result.Text = SheetManager.CS_Manager_Inst.character.Deception.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void HistoryBT_Click(object sender, RoutedEventArgs e)
         {
             History_Result.Text = SheetManager.CS_Manager_Inst.character.History.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void InsightBT_Click(object sender, RoutedEventArgs e)
         {
             Insight_Result.Text = SheetManager.CS_Manager_Inst.character.Insight.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void IntimidationBT_Click(object sender, RoutedEventArgs e)
         {
             Intimidation_Result.Text = SheetManager.CS_Manager_Inst.character.Intimidation.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void InvestigationBT_Click(object sender, RoutedEventArgs e)
         {
             Investigation_Result.Text = SheetManager.CS_Manager_Inst.character.Investigation.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void MedicineBT_Click(object sender, RoutedEventArgs e)
         {
             Medicine_Result.Text = SheetManager.CS_Manager_Inst.character.Medicine.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void NatureBT_Click(object sender, RoutedEventArgs e)
         {
             Nature_Result.Text = SheetManager.CS_Manager_Inst.character.Nature.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void PerceptionBT_Click(object sender, RoutedEventArgs e)
         {
             Perception_Result.Text = SheetManager.CS_Manager_Inst.character.Perception.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void PerformanceBT_Click(object sender, RoutedEventArgs e)
         {
             Performance_Result.Text = SheetManager.CS_Manager_Inst.character.Performance.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void PersuasionBT_Click(object sender, RoutedEventArgs e)
         {
             Persuasion_Result.Text = SheetManager.CS_Manager_Inst.character.Persuasion.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void ReligionBT_Click(object sender, RoutedEventArgs e)
         {
             Religion_Result.Text = SheetManager.CS_Manager_Inst.character.Religion.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void SleightOfHandBT_Click(object sender, RoutedEventArgs e)
         {
             SleightOfHand_Result.Text = SheetManager.CS_Manager_Inst.character.SleightOfHand.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void StealthBT_Click(object sender, RoutedEventArgs e)
         {
             Stealth_Result.Text = SheetManager.CS_Manager_Inst.character.Stealth.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }
 
         public void SurvivalBT_Click(object sender, RoutedEventArgs e)
         {
             Survival_Result.Text = SheetManager.CS_Manager_Inst.character.Survival.SkillCheck().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }        
-
-        private void SaveScreen_bt_Click(object sender, RoutedEventArgs e)
-        {
-            FileManager.FM_Inst.Play_ClickSound();
-            SaveScreen saveScreenWindow = new SaveScreen();
-            saveScreenWindow.Show();                        
-        }
-
-        private void LoadPage_bt_Click(object sender, RoutedEventArgs e)
-        {            
-            LoadScreen loadScreenWindow = new LoadScreen();            
-            loadScreenWindow.Show();
-            FileManager.FM_Inst.Play_ClickSound();
-        }
-
-        private void SpellWindow_bt_Click(object sender, RoutedEventArgs e)
-        {            
-            SpellsWindow spellsWindow = new SpellsWindow();
-            spellsWindow.Show();            
-            FileManager.FM_Inst.Play_ClickSound();            
-        }
-
-        private void CombatWindow_bt_Click(object sender, RoutedEventArgs e)
-        {            
-            CombatWindow combatWindow = new CombatWindow();
-            combatWindow.Init_CombatUI();
-            combatWindow.Show();
-            FileManager.FM_Inst.Play_ClickSound();
-        }
-
-        private void DiceMachineWindow_bt_Click(object sender, RoutedEventArgs e)
-        {
-            DiceMachine dmWindow = new DiceMachine();
-            dmWindow.Set_SheetManager(SheetManager.CS_Manager_Inst);
-            dmWindow.Show();
-            FileManager.FM_Inst.Play_ClickSound();
-        }
-
-        private void BackgroundPageButton_Click(object sender, RoutedEventArgs e)
-        {            
-            BackgroundWindow backgroundWindow = new BackgroundWindow();
-            backgroundWindow.Show();
-            FileManager.FM_Inst.Play_ClickSound();
-        }
-
-        private void InventoryWindow_bt_Click(object sender, RoutedEventArgs e)
-        {            
-            InventoryWindow inventoryWindow = new InventoryWindow();
-            inventoryWindow.Show();
-            FileManager.FM_Inst.Play_ClickSound();
-        }
-
-        private void MerchantWindow_bt_Click(object sender, RoutedEventArgs e)
-        {            
-            MerchantWindow merchantWindow = new MerchantWindow();
-            merchantWindow.Show();
-            FileManager.FM_Inst.Play_ClickSound();
-        }
         
     }
 }
