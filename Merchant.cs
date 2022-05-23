@@ -22,15 +22,7 @@ namespace DnD_CharSheet_5e
         
         public Item Find_Item_byID(string id)
         {
-            Item tempItem = new Item();
-
-            foreach(Item mItem in merchItems)
-            {
-                if(mItem.Item_ID == id)
-                {
-                    tempItem = mItem;
-                }
-            }
+            Item tempItem = merchItems.Find(ItemElement => ItemElement.Item_ID == id);
 
             return tempItem;
         }
@@ -42,15 +34,7 @@ namespace DnD_CharSheet_5e
 
         public Weapon Find_Weapon_byID(string id)
         {
-            Weapon tempWeapon = new Weapon();
-
-            foreach (Weapon mWeapon in merchWeapons)
-            {
-                if (mWeapon.Item_ID == id)
-                {
-                    tempWeapon = mWeapon;
-                }
-            }
+            Weapon tempWeapon = merchWeapons.Find(WeaponElement => WeaponElement.Item_ID == id);
 
             return tempWeapon;
         }
@@ -62,15 +46,7 @@ namespace DnD_CharSheet_5e
 
         public Armor Find_Armor_byID(string id)
         {
-            Armor tempArmor = new Armor();
-
-            foreach (Armor mArmor in merchArmor)
-            {
-                if(mArmor.Item_ID == id)
-                {
-                    tempArmor = mArmor;
-                }
-            }
+            Armor tempArmor = merchArmor.Find(ArmorElement => ArmorElement.Item_ID == id);
 
             return tempArmor;
         }
