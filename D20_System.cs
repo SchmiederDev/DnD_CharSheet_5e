@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DnD_CharSheet_5e
 {
@@ -64,9 +63,9 @@ namespace DnD_CharSheet_5e
             return result;
         }
 
-        public int Roll_Custom(int nominator, int denominator)
+        public int Roll_Custom(int numerator, int denominator)
         {
-            int result = nominator * dieSeed.Next(dieBase, denominator + 1);
+            int result = numerator * dieSeed.Next(dieBase, denominator + 1);
             return result;
         }
     }
