@@ -110,8 +110,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Item.cs" />
-    <Compile Include="LoadScreen.xaml.cs">
-      <DependentUpon>LoadScreen.xaml</DependentUpon>
+    <Compile Include="LoadWindow.xaml.cs">
+      <DependentUpon>LoadWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Merchant.cs" />
     <Compile Include="MerchantWindow.xaml.cs">
@@ -119,8 +119,8 @@
     </Compile>
     <Compile Include="Mystra.cs" />
     <Compile Include="Proficiency.cs" />
-    <Compile Include="SaveScreen.xaml.cs">
-      <DependentUpon>SaveScreen.xaml</DependentUpon>
+    <Compile Include="SaveWindow.xaml.cs">
+      <DependentUpon>SaveWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SaveSystem.cs" />
     <Compile Include="SavingThrow.cs" />
@@ -147,7 +147,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoadScreen.xaml">
+    <Page Include="LoadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
@@ -170,7 +170,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SaveScreen.xaml">
+    <Page Include="SaveWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
