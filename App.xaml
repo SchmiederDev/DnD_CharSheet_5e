@@ -4,6 +4,30 @@
              xmlns:local="clr-namespace:DnD_CharSheet_5e"
              StartupUri="MainWindow.xaml" ShutdownMode="OnMainWindowClose">
     
+    <!-- Common abbreviations for the app:
+    
+        Controls:
+    
+        TextBlock -> 'Text' or 'Txt'
+        TextBox -> 'Box' or 'TB'
+        Button -> 'Btn'
+        CheckBox -> 'CB'
+        
+        Variables:
+    
+        Value -> 'Val'
+        Temporary -> 'Temp'
+        Current -> 'Curr'
+    
+        Terms of the Game:
+        
+        Initiative: 'Ini'
+        Hit Points: 'HP'
+        Hit Dice: 'HD'
+    
+        Attack: 'Atk'
+    -->
+    
     <Application.Resources>
         
         <Style TargetType="Border" x:Key="StandardBorder">
@@ -155,7 +179,7 @@
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="60"/>
             <Setter Property="FontSize" Value="18"/>
-        </Style>
+        </Style>        
 
         <Style TargetType="Button" x:Key="LargeBtn" BasedOn="{StaticResource StandardBtn}">
             <Setter Property="Height" Value="45"/>
