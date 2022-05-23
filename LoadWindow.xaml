@@ -1,0 +1,31 @@
+﻿<Window x:Class="DnD_CharSheet_5e.LoadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DnD_CharSheet_5e"
+        mc:Ignorable="d"
+        Title="Load Character" Height="500" Width="800">
+
+    <Window.Resources>
+
+        <Style TargetType="Button" x:Key="SaveSlotBtn" BasedOn="{StaticResource StandardBtn}">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+        </Style>
+
+    </Window.Resources>
+
+    <StackPanel x:Name="CharacterSavesPanel" Background="AliceBlue">
+
+        <Button x:Name="saveGame_01_bt" Click="LoadCharacter_Slot01bt_Click" Content="Empty Slot" Margin="0 50 0 20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_02_bt" Click="LoadCharacter_Slot02bt_Click" Content="Empty Slot" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_03_bt" Click="LoadCharacter_Slot03bt_Click" Content="Empty Slot" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_04_bt" Click="LoadCharacter_Slot04bt_Click" Content="Empty Slot" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_05_bt" Click="LoadCharacter_Slot05bt_Click" Content="Empty Slot" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+
+    </StackPanel>
+
+</Window>
