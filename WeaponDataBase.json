@@ -13,7 +13,7 @@
 
     "ItemInfo": "Damage: 1d4 bludgeoning, Properties: Light",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 4,
 
     "IsRanged": false,
@@ -42,7 +42,7 @@
 
     "ItemInfo": "Damage: 1d4 piercing, Properties: Finesse, light, thrown (range 20/60)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 4,
 
     "IsRanged": false,
@@ -71,7 +71,7 @@
 
     "ItemInfo": "Damage: 1d8 bludgeoning, Properties: Two-handed",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": false,
@@ -100,7 +100,7 @@
 
     "ItemInfo": "Damage: 1d6 slashing, Properties: Light, thrown (range 20/60)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -129,7 +129,7 @@
 
     "ItemInfo": "Damage: 1d6 piercing, Properties: Thrown (range 30/120)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -158,7 +158,7 @@
 
     "ItemInfo": "Damage: 1d4 bludgeoning, Properties: Light, thrown (range 20/60)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 4,
 
     "IsRanged": false,
@@ -187,7 +187,7 @@
 
     "ItemInfo": "Damage: 1d6 bludgeoning, Properties: -",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -216,7 +216,7 @@
 
     "ItemInfo": "Damage: 1d6 bludgeoning, Properties: Versatile (1d8)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -245,7 +245,7 @@
 
     "ItemInfo": "Damage: 1d4 slashing, Properties: Light",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 4,
 
     "IsRanged": false,
@@ -274,7 +274,7 @@
 
     "ItemInfo": "Damage: 1d6 piercing, Properties: Thrown (range 20/60), versatile (1d8)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -303,7 +303,7 @@
 
     "ItemInfo": "Damage: 1d8 piercing, Properties: Ammunition (range 80/320), loading, two-handed",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": true,
@@ -332,7 +332,7 @@
 
     "ItemInfo": "Damage: 1d4 piercing, Properties: Finesse, thrown (range 20/60)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 4,
 
     "IsRanged": true,
@@ -361,7 +361,7 @@
 
     "ItemInfo": "Damage: 1d6 piercing, Properties: Ammunition (range 80/320), two-handed",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": true,
@@ -390,7 +390,7 @@
 
     "ItemInfo": "Damage: 1d4 bludgeoning, Properties: Ammunition (range 30/120)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 4,
 
     "IsRanged": true,
@@ -419,7 +419,7 @@
 
     "ItemInfo": "Damage: 1d8 slashing, Properties: Versatile (1d10)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": false,
@@ -448,7 +448,7 @@
 
     "ItemInfo": "Damage: 1d8 bludgeoning, Properties: -",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": false,
@@ -477,7 +477,7 @@
 
     "ItemInfo": "Damage: 1d10 slashing, Properties: Heavy, reach, two-handed",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 10,
 
     "IsRanged": false,
@@ -506,7 +506,7 @@
 
     "ItemInfo": "Damage: 1d12 slashing, Properties: Heavy, two-handed",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 12,
 
     "IsRanged": false,
@@ -535,7 +535,7 @@
 
     "ItemInfo": "Damage: 2d6 slashing, Properties: Heavy, two-handed",
 
-    "DamageNominator": 2,
+    "DamageNumerator": 2,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -564,7 +564,7 @@
 
     "ItemInfo": "Damage: 1d10 slashing, Properties: Heavy, reach, two-handed",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 10,
 
     "IsRanged": false,
@@ -593,7 +593,7 @@
 
     "ItemInfo": "Damage: 1d12 piercing, Properties: Reach, special",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 12,
 
     "IsRanged": false,
@@ -622,7 +622,7 @@
 
     "ItemInfo": "Damage: 1d8 slashing, Properties: Versatile (1d10)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": false,
@@ -651,7 +651,7 @@
 
     "ItemInfo": "Damage: 2d6 bludgeoning, Properties: Heavy, two-handed",
 
-    "DamageNominator": 2,
+    "DamageNumerator": 2,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -680,7 +680,7 @@
 
     "ItemInfo": "Damage: 1d8 piercing, Properties: -",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": false,
@@ -709,7 +709,7 @@
 
     "ItemInfo": "Damage: 1d10 piercing, Properties: Heavy, reach, two-handed",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 10,
 
     "IsRanged": false,
@@ -738,7 +738,7 @@
 
     "ItemInfo": "Damage: 1d8 piercing, Properties: Finesse",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": false,
@@ -767,7 +767,7 @@
 
     "ItemInfo": "Damage: 1d6 slashing, Properties: Finesse, light",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -796,7 +796,7 @@
 
     "ItemInfo": "Damage: 1d6 piercing, Properties: Finesse, light",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -825,7 +825,7 @@
 
     "ItemInfo": "Damage: 1d6 piercing, Properties: Thrown (range 20/60), Versatile (1d8)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": false,
@@ -854,7 +854,7 @@
 
     "ItemInfo": "Damage: 1d8 piercing, Properties: -",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": false,
@@ -883,7 +883,7 @@
 
     "ItemInfo": "Damage: 1d8 bludgeoning, Properties: Versatile (1d10)",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": false,
@@ -912,7 +912,7 @@
 
     "ItemInfo": "Damage: 1d4 slashing, Properties: Finesse, reach",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 4,
 
     "IsRanged": false,
@@ -941,7 +941,7 @@
 
     "ItemInfo": "Damage: 1 piercing, Properties: Ammunition (range 25/100), loading",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 1,
 
     "IsRanged": true,
@@ -970,7 +970,7 @@
 
     "ItemInfo": "Damage: 1d6 piercing, Properties: Ammunition (range 30/120), light, loading",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 6,
 
     "IsRanged": true,
@@ -999,7 +999,7 @@
 
     "ItemInfo": "Damage: 1d10 piercing, Properties: Ammunition (range 100/140), heavy, loading, two-handed",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 10,
 
     "IsRanged": true,
@@ -1028,7 +1028,7 @@
 
     "ItemInfo": "Damage: 1d8 piercing, Properties: Ammunition (range 150/600), heavy, two-handed",
 
-    "DamageNominator": 1,
+    "DamageNumerator": 1,
     "DamageDenominator": 8,
 
     "IsRanged": true,
@@ -1057,7 +1057,7 @@
 
     "ItemInfo": "Damage: -, Properties: Special, thrown (range 5/15)",
 
-    "DamageNominator": 0,
+    "DamageNumerator": 0,
     "DamageDenominator": 0,
 
     "IsRanged": true,
