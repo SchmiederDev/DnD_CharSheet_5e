@@ -11,121 +11,89 @@ namespace DnD_CharSheet_5e
         public List<Weapon> cWeapons { get; } = new List<Weapon>();
         public List<Armor> cArmor { get; } = new List<Armor>();
 
-        int platinum;
-        int gold;
-        int silver;
-        int copper;
+        public int Platinum { get; set; }
+        public int Gold { get; set; }
+        public int Silver { get; set; }
 
-        public void Set_Platinum_byTxt(string platinumTxt)
+        public int Copper { get; set; }
+
+        const string ValueErrorMessage = "Invalid input. Please enter an integer number.";
+        const string ItemNotFoundMsg = "Item not found";
+
+
+
+        public void Set_Platinum_byTxt(string PlatinumTxt)
         {
-            if(int.TryParse(platinumTxt, out int number))
+            if(int.TryParse(PlatinumTxt, out int platinumPrice))
             {
-                platinum = int.Parse(platinumTxt);
+                Platinum = platinumPrice;
             }
 
             else
             {
-                MessageBox.Show($"Invalid input. Please enter an integer number.");
+                MessageBox.Show(ValueErrorMessage);
             }
         }
 
-        public void Set_Platinum(int amount)
+        
+        public void Set_Gold_byTxt(string GoldTxt)
         {
-            platinum = amount;
-        }
-
-        public int Get_Platinum()
-        {
-            return platinum;
-        }
-
-        public void Set_Gold_byTxt(string goldTxt)
-        {
-            if (int.TryParse(goldTxt, out int number))
+            if (int.TryParse(GoldTxt, out int goldPrice))
             {
-                gold = int.Parse(goldTxt);
+                Gold = goldPrice;
             }
 
             else
             {
-                MessageBox.Show($"Invalid input. Please enter an integer number.");
+                MessageBox.Show(ValueErrorMessage);
             }
-        }
+        }       
 
-        public void Set_Gold(int amount)
+        public void Set_Silver_byTxt(string SilverTxt)
         {
-            gold = amount;
-        }
-
-        public int Get_Gold()
-        {
-            return gold;
-        }
-
-        public void Set_Silver_byTxt(string silverTxt)
-        {
-            if (int.TryParse(silverTxt, out int number))
+            if (int.TryParse(SilverTxt, out int silverPrice))
             {
-                silver = int.Parse(silverTxt);
+                Silver = silverPrice;
             }
            
             else
             {
-                MessageBox.Show($"Invalid input. Please enter an integer number.");
+                MessageBox.Show(ValueErrorMessage);
             }
         }
-
-        public void Set_Silver(int amount)
+       
+        public void Set_Copper_byTxt(string CopperTxt)
         {
-            silver = amount;
-        }
-
-        public int Get_Silver()
-        {
-            return silver;
-        }
-
-        public void Set_Copper_byTxt(string copperTxt)
-        {
-            if (int.TryParse(copperTxt, out int number))
+            if (int.TryParse(CopperTxt, out int copperPrice))
             {
-                copper = int.Parse(copperTxt);
+                Copper = copperPrice;
             }           
 
             else
             {
-                MessageBox.Show($"Invalid input. Please enter an integer number.");
+                MessageBox.Show(ValueErrorMessage);
             }
-        }
-
-        public void Set_Copper(int amount)
-        {
-            copper = amount;
-        }
-
-        public int Get_Copper()
-        {
-            return copper;
         }
 
         public void Add_Item(Item newItem)
         {
-            cItems.Add(newItem);
+            cItems.Add(newItem);            
         }
 
         public Item Find_Item_byID(string id)
         {
-            Item tempItem = new Item();
+            Item tempItem = cItems.Find(itemElement => itemElement.Item_ID == id);
 
-            foreach (Item mItem in cItems)
+            if(tempItem != null)
             {
-                if (mItem.Item_ID == id)
-                {
-                    tempItem = mItem;
-                }
+                return tempItem;
             }
 
-            return tempItem;
+            else
+            {
+                MessageBox.Show(ItemNotFoundMsg);
+                return null;
+            }
         }
 
         public void Remove_Item(Item item_toRemove)
@@ -135,58 +103,65 @@ namespace DnD_CharSheet_5e
 
         public void Remove_Item_byID(string id)                             // What if the Item exists in the Inventory several times + additional Button_ID?
         {
-            foreach(Item cItem in cItems)
+            Item tempItem = cItems.Find(itemElement => itemElement.Item_ID == id);
+
+            if(tempItem != null)
             {
-                if(cItem.Item_ID == id)
-                {
-                    cItems.Remove(cItem);
-                }
+                cItems.Remove(tempItem);
+            }
+
+            else
+            {
+                MessageBox.Show(ItemNotFoundMsg);
             }
         }
 
         public void Add_Weapon(Weapon newWeapon)
         {
-            cWeapons.Add(newWeapon);
+            cWeapons.Add(newWeapon);            
         }
 
         public Weapon Find_Weapon_byID(string id)
         {
-            Weapon tempWeapon = new Weapon();
+            Weapon tempWeapon = cWeapons.Find(weaponElement => weaponElement.Item_ID == id);
 
-            foreach (Weapon cWeapon in cWeapons)
+            if (tempWeapon != null)
             {
-                if (cWeapon.Item_ID == id)
-                {
-                    tempWeapon = cWeapon;
-                }
+                return tempWeapon;
             }
 
-            return tempWeapon;
+            else
+            {
+                MessageBox.Show(ItemNotFoundMsg);
+                return null;
+            }
         }
 
         public void Remove_Weapon(Weapon weapon_toRemove)
         {
-            cWeapons.Remove(weapon_toRemove);
+            cWeapons.Remove(weapon_toRemove);            
         }
 
         public void Add_Armor(Armor newArmor)
         {
-            cArmor.Add(newArmor);            
+            cArmor.Add(newArmor);
         }
 
         public Armor Find_Armor_byID(string id)
         {
-            Armor tempArmor = new Armor();
+            Armor tempArmor = cArmor.Find(armorElement => armorElement.Item_ID == id);
 
-            foreach(Armor armor in cArmor)
+
+            if (tempArmor != null)
             {
-                if(armor.Item_ID == id)
-                {
-                    tempArmor = armor;
-                }
+                return tempArmor;
             }
 
-            return tempArmor;
+            else
+            {
+                MessageBox.Show(ItemNotFoundMsg);
+                return null;
+            }
         }
 
         public void Remove_Armor(Armor armor_toRemove)
@@ -198,51 +173,51 @@ namespace DnD_CharSheet_5e
         {            
             if(coin.CoinKey == "PP")
             {
-                if (coin.Price <= platinum)
+                if (coin.Price <= Platinum)
                 {
-                    platinum -= coin.Price;
+                    Platinum -= coin.Price;
                     return true;
                 }
 
                 else
                 {
-                    int tempPlatinum = platinum;
+                    int tempPlatinum = Platinum;
                     tempPlatinum -= coin.Price;
                     int priceRemainderGold = Math.Abs(tempPlatinum * 10);
 
-                    if (priceRemainderGold <= gold)
+                    if (priceRemainderGold <= Gold)
                     {
-                        gold -= priceRemainderGold;
-                        platinum = 0;
+                        Gold -= priceRemainderGold;
+                        Platinum = 0;
                         return true;
                     }
 
                     else
                     {
-                        int tempGold = gold;
+                        int tempGold = Gold;
                         tempGold -= priceRemainderGold;
                         int priceRemainderSilver = Math.Abs(tempGold * 10);
 
-                        if (priceRemainderSilver <= silver)
+                        if (priceRemainderSilver <= Silver)
                         {
-                            silver -= priceRemainderSilver;
-                            platinum = 0;
-                            gold = 0;
+                            Silver -= priceRemainderSilver;
+                            Platinum = 0;
+                            Gold = 0;
                             return true;
                         }
 
                         else
                         {
-                            int tempSilver = silver;
+                            int tempSilver = Silver;
                             tempSilver -= priceRemainderSilver;
                             int priceRemainderCopper = Math.Abs(tempSilver * 10);
 
-                            if (priceRemainderCopper <= copper)
+                            if (priceRemainderCopper <= Copper)
                             {
-                                copper -= priceRemainderCopper;
-                                platinum = 0;
-                                gold = 0;
-                                silver = 0;
+                                Copper -= priceRemainderCopper;
+                                Platinum = 0;
+                                Gold = 0;
+                                Silver = 0;
                                 return true;
                             }
 
@@ -258,58 +233,58 @@ namespace DnD_CharSheet_5e
 
             if (coin.CoinKey == "GP")
             {
-                if (coin.Price <= gold)
+                if (coin.Price <= Gold)
                 {
-                    gold -= coin.Price;
+                    Gold -= coin.Price;
 
                     return true;
                 }
 
                 else
                 {
-                    int tempGold = gold;
+                    int tempGold = Gold;
                     tempGold -= coin.Price;
-                    int goldPriceRemainder = Math.Abs(tempGold);
-                    int tempPlatinumGold = platinum * 10;
+                    int GoldPriceRemainder = Math.Abs(tempGold);
+                    int tempPlatinumGold = Platinum * 10;
 
-                    if (tempPlatinumGold >= goldPriceRemainder)
+                    if (tempPlatinumGold >= GoldPriceRemainder)
                     {
-                        tempPlatinumGold -= goldPriceRemainder;
+                        tempPlatinumGold -= GoldPriceRemainder;
                         int tempPlatinumRem = tempPlatinumGold;
-                        int goldRem = tempPlatinumRem % 10;
-                        int tempPlatinum = tempPlatinumRem - goldRem;
-                        platinum = tempPlatinum / 10;
-                        gold += goldRem;
+                        int GoldRem = tempPlatinumRem % 10;
+                        int tempPlatinum = tempPlatinumRem - GoldRem;
+                        Platinum = tempPlatinum / 10;
+                        Gold += GoldRem;
 
                         return true;
                     }
 
                     else 
                     {
-                        goldPriceRemainder -= tempPlatinumGold;
-                        int priceRemainderSilver = goldPriceRemainder * 10;
+                        GoldPriceRemainder -= tempPlatinumGold;
+                        int priceRemainderSilver = GoldPriceRemainder * 10;
 
-                        if (priceRemainderSilver <= silver)
+                        if (priceRemainderSilver <= Silver)
                         {
-                            silver -= priceRemainderSilver;
-                            platinum = 0;
-                            gold = 0;
+                            Silver -= priceRemainderSilver;
+                            Platinum = 0;
+                            Gold = 0;
 
                             return true;
                         }
 
                         else
                         {
-                            int tempSilver = silver;
+                            int tempSilver = Silver;
                             tempSilver -= priceRemainderSilver;
                             int priceRemainderCopper = Math.Abs(tempSilver * 10);
 
-                            if (priceRemainderCopper <= copper)
+                            if (priceRemainderCopper <= Copper)
                             {
-                                copper -= priceRemainderCopper;
-                                platinum = 0;
-                                gold = 0;
-                                silver = 0;
+                                Copper -= priceRemainderCopper;
+                                Platinum = 0;
+                                Gold = 0;
+                                Silver = 0;
 
                                 return true;
                             }
@@ -327,28 +302,28 @@ namespace DnD_CharSheet_5e
 
             if (coin.CoinKey == "SP")
             {
-                if (coin.Price <= silver)
+                if (coin.Price <= Silver)
                 {
-                    silver -= coin.Price;
+                    Silver -= coin.Price;
 
                     return true;
                 }
 
                 else
                 {
-                    int tempSilver = silver;
+                    int tempSilver = Silver;
                     tempSilver -= coin.Price;
-                    int silverPriceRemainder = Math.Abs(tempSilver);
-                    int tempGoldSilver = gold * 10;
+                    int SilverPriceRemainder = Math.Abs(tempSilver);
+                    int tempGoldSilver = Gold * 10;
 
-                    if (silverPriceRemainder <= tempGoldSilver)
+                    if (SilverPriceRemainder <= tempGoldSilver)
                     {
-                        tempGoldSilver -= silverPriceRemainder;
-                        int silverRem = tempGoldSilver % 10;
-                        int tempGold = tempGoldSilver - silverRem;
-                        gold = tempGold / 10;
-                        silver = 0;
-                        silver += silverRem;
+                        tempGoldSilver -= SilverPriceRemainder;
+                        int SilverRem = tempGoldSilver % 10;
+                        int tempGold = tempGoldSilver - SilverRem;
+                        Gold = tempGold / 10;
+                        Silver = 0;
+                        Silver += SilverRem;
 
                         return true;
                         
@@ -356,30 +331,30 @@ namespace DnD_CharSheet_5e
 
                     else 
                     {
-                        int priceRemainder = silverPriceRemainder - tempGoldSilver;
-                        int tempPlatinumSilver = platinum * 100;
+                        int priceRemainder = SilverPriceRemainder - tempGoldSilver;
+                        int tempPlatinumSilver = Platinum * 100;
 
                         if (priceRemainder <= tempPlatinumSilver)
                         {
                             tempPlatinumSilver -= priceRemainder;
-                            platinum = tempPlatinumSilver / 100;
-                            gold = 0;
-                            silver = 0;
+                            Platinum = tempPlatinumSilver / 100;
+                            Gold = 0;
+                            Silver = 0;
 
                             return true;
                         }
 
                         else
                         {
-                            int copperPriceRemainder_inSilver = tempPlatinumSilver - priceRemainder;
-                            int copperPriceRemainder_inCopper = copperPriceRemainder_inSilver * 10;
+                            int CopperPriceRemainder_inSilver = tempPlatinumSilver - priceRemainder;
+                            int CopperPriceRemainder_inCopper = CopperPriceRemainder_inSilver * 10;
 
-                            if (copperPriceRemainder_inCopper <= copper)
+                            if (CopperPriceRemainder_inCopper <= Copper)
                             {
-                                copper -= copperPriceRemainder_inCopper;
-                                platinum = 0;
-                                gold = 0;
-                                silver = 0;
+                                Copper -= CopperPriceRemainder_inCopper;
+                                Platinum = 0;
+                                Gold = 0;
+                                Silver = 0;
 
                                 return true;
                             }
@@ -397,64 +372,64 @@ namespace DnD_CharSheet_5e
 
             if (coin.CoinKey == "CP")
             {
-                if (coin.Price <= copper)
+                if (coin.Price <= Copper)
                 {
-                    copper -= coin.Price;
+                    Copper -= coin.Price;
                     return true;
                 }
 
                 else 
                 {
-                    int tempCopper = copper;
+                    int tempCopper = Copper;
                     tempCopper -= coin.Price;
-                    int copperPriceRemainder = Math.Abs(tempCopper);
+                    int CopperPriceRemainder = Math.Abs(tempCopper);
 
-                    int tempCopperSilver = silver * 10;
+                    int tempCopperSilver = Silver * 10;
 
-                    if (copperPriceRemainder <= tempCopperSilver)
+                    if (CopperPriceRemainder <= tempCopperSilver)
                     {
-                        tempCopperSilver -= copperPriceRemainder;
-                        int copperRem = tempCopperSilver % 10;
-                        int tempSilver = tempCopperSilver - copperRem;
-                        silver = tempSilver / 10;
-                        copper = 0;
-                        copper += copperRem;
+                        tempCopperSilver -= CopperPriceRemainder;
+                        int CopperRem = tempCopperSilver % 10;
+                        int tempSilver = tempCopperSilver - CopperRem;
+                        Silver = tempSilver / 10;
+                        Copper = 0;
+                        Copper += CopperRem;
 
                         return true;                        
                     }
 
                     else 
                     {                        
-                        int tempGold_inCopper = gold * 100;
+                        int tempGold_inCopper = Gold * 100;
 
-                        if(copperPriceRemainder <= tempGold_inCopper)
+                        if(CopperPriceRemainder <= tempGold_inCopper)
                         {
-                            tempGold_inCopper -= copperPriceRemainder;
-                            int copperRem = tempGold_inCopper % 10;
-                            int tempGold = tempGold_inCopper - copperRem;
-                            gold = tempGold / 10;
-                            copper = 0;
-                            copper += copperRem;
+                            tempGold_inCopper -= CopperPriceRemainder;
+                            int CopperRem = tempGold_inCopper % 10;
+                            int tempGold = tempGold_inCopper - CopperRem;
+                            Gold = tempGold / 10;
+                            Copper = 0;
+                            Copper += CopperRem;
 
                             return true;
                         }
 
                         else
                         {
-                           if(platinum > 0)
+                           if(Platinum > 0)
                             {
-                                int tempPlatinumCopper = platinum * 1000;
-                                int tempPlatinum_inCopper = tempPlatinumCopper - copperPriceRemainder;
+                                int tempPlatinumCopper = Platinum * 1000;
+                                int tempPlatinum_inCopper = tempPlatinumCopper - CopperPriceRemainder;
 
                                 int tempRem = tempPlatinum_inCopper % 1000;
                                 int tempPlatinum = tempPlatinum_inCopper - tempRem;
-                                platinum = tempPlatinum / 1000;
+                                Platinum = tempPlatinum / 1000;
 
                                 int tempSilverRem = tempRem % 10;
                                 int tempGold = tempRem - tempSilverRem;
-                                gold = tempGold / 10;
-                                silver += tempSilverRem;
-                                copper = 0;
+                                Gold = tempGold / 10;
+                                Silver += tempSilverRem;
+                                Copper = 0;
 
                                 return true;
                             }
@@ -474,5 +449,18 @@ namespace DnD_CharSheet_5e
 
             else { return false; }
         }
+
+        public void Clear_Inventory()
+        {
+            Platinum = 0;
+            Gold = 0;
+            Silver = 0;
+            Copper = 0;
+
+            cItems.Clear();
+            cWeapons.Clear();
+            cArmor.Clear();
+        }
+
     }
 }
