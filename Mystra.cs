@@ -18,32 +18,24 @@ namespace DnD_CharSheet_5e
             WizardSpellList = new List<SpellList_Item>();
         }
 
-        public void Read_SpellDataBase(string jsonSDB)
+        public void Load_SpellDataBase(string jsonSDB)
         {
             SpellDataBase = JsonConvert.DeserializeObject<List<Spell>>(jsonSDB);
         }
 
-        public void Read_BardSpellList(string jsonBSL)
+        public void Load_BardSpellList(string jsonBSL)
         {
             BardSpellList = JsonConvert.DeserializeObject<List<SpellList_Item>>(jsonBSL);
         }
 
-        public void Read_WizardSpellList(string jsonWSL)
+        public void Load_WizardSpellList(string jsonWSL)
         {
             WizardSpellList = JsonConvert.DeserializeObject<List<SpellList_Item>>(jsonWSL);
         }
 
         public Spell Find_Spell_in_Database_byName(string spellName)
         {
-            Spell tempSpell = new Spell();
-
-            foreach(Spell spell in SpellDataBase)
-            {
-                if(spell.SpellName == spellName)
-                {
-                    tempSpell = spell;
-                }
-            }
+            Spell tempSpell = SpellDataBase.Find(spellElement => spellElement.SpellName == spellName);
 
             return tempSpell;
         }
