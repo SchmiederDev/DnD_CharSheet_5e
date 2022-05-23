@@ -5,8 +5,8 @@ namespace DnD_CharSheet_5e
     [Serializable]
     public class Weapon : Item
     {
-        public uint DamageNominator { get; set; }
-        public uint DamageDenominator { get; set; }
+        public int DamageNumerator { get; set; }
+        public int DamageDenominator { get; set; }
 
         public bool IsRanged { get; set; }
         public uint NormRange { get; set; }
