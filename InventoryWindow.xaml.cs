@@ -1,29 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using Microsoft.Win32;
-using System.IO;
+using System.Windows.Media;
 
 namespace DnD_CharSheet_5e
 {
     /// <summary>
     /// Interaktionslogik für InventoryWindow.xaml
     /// </summary>
+    /// 
+
     public partial class InventoryWindow : Window
     {
-        public static InventoryWindow inventoryWindow_Inst;
         
-        List<Button> ItemButtons;
-        List<Button> WeaponButtons;
-        List<Button> ArmorButtons;
-      
-        Inventory characterInventory;
-
-        ImageHandler imageHandler;
+        public static InventoryWindow inventoryWindow_Inst;
 
         public InventoryWindow()
         {
@@ -34,156 +26,132 @@ namespace DnD_CharSheet_5e
                 inventoryWindow_Inst = this;
             }
 
-            ItemButtons = new List<Button>();
-            WeaponButtons = new List<Button>();
-            ArmorButtons = new List<Button>();
-
-            characterInventory = new Inventory();           
-
-            if(SheetManager.CS_Manager_Inst.character.cInventory != null)
-            {
-                characterInventory = SheetManager.CS_Manager_Inst.character.cInventory;
-            }
-
-            Init_ImageHandler();
             Init_UI();
-            Load_Icons();
-        }
-
-        public void Init_ImageHandler()
-        {
-            imageHandler = new ImageHandler();
-            imageHandler.ImageFileNames = FileManager.FM_Inst.Get_ImagesFileNames();
-            imageHandler.Set_Uris();
-        }
-
-        public void Load_Icons()
-        {
-            if(SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon != null)
-            {
-                RightHand_Img.Source = imageHandler.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon.ItemName);
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor != null)
-            {
-                LeftHand_Img.Source = imageHandler.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor.ItemName);
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon != null)
-            {
-                LeftHand_Img.Source = imageHandler.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon.ItemName);
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor != null)
-            {
-                Armor_Img.Source = imageHandler.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor.ItemName);
-            }
-        }
-
+            Load_IconsForEquipedItems();
+        }       
+       
         public void Init_UI()
         {
             CharName_Box.Text = SheetManager.CS_Manager_Inst.character.CharacterName;
             PlayerName_Box.Text = SheetManager.CS_Manager_Inst.character.PlayerName;
 
-            Platinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Platinum().ToString();
-            Gold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Gold().ToString();
-            Silver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Silver().ToString();
-            Copper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Copper().ToString();
-
-            foreach (Item item in characterInventory.cItems)
+            Update_Riches();
+            Clear_InventoryPanels();
+            Generate_ItemBtns();
+        }
+        public void Load_IconsForEquipedItems()
+        {
+            if (SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon != null)
             {
-                Create_Item_Buttons(item);
+                RightHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon.ItemName);
             }
 
-            foreach(Weapon weapon in characterInventory.cWeapons)
+            if (SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor != null)
             {
-                Create_Weapon_Buttons(weapon);
+                LeftHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor.ItemName);
             }
 
-            foreach(Armor armor in characterInventory.cArmor)
+            if (SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon != null)
             {
-                Create_Armor_Buttons(armor);
+                LeftHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon.ItemName);
+            }
+
+            if (SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor != null)
+            {
+                Armor_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor.ItemName);
             }
         }
 
         public void Refresh_UI()
-        {           
+        {
+            Update_Riches();
+            Clear_InventoryPanels();
+            Generate_ItemBtns();
+        }
 
-            Platinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Platinum().ToString();
-            Gold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Gold().ToString();
-            Silver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Silver().ToString();
-            Copper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Copper().ToString();
+        public void Update_Riches()
+        {
+            Platinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Platinum.ToString();
+            Gold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Gold.ToString();
+            Silver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Silver.ToString();
+            Copper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Copper.ToString();
+        }
 
-            foreach (Item item in characterInventory.cItems)
-            {
-                Create_Item_Buttons(item);
-            }
-
-            foreach (Weapon weapon in characterInventory.cWeapons)
-            {
-                Create_Weapon_Buttons(weapon);
-            }
-
+        public void Clear_InventoryPanels()
+        {
+            ItemsPanel.Children.Clear();
+            WeaponsPanel.Children.Clear();
             ArmorPanel.Children.Clear();
+            
+        }
 
-            foreach (Armor armor in characterInventory.cArmor)
+
+        public void Generate_ItemBtns()
+        {
+            foreach (Item item in SheetManager.CS_Manager_Inst.character.cInventory.cItems)
+            {                
+                Create_Item_Button(item);
+            }            
+
+            foreach (Weapon weapon in SheetManager.CS_Manager_Inst.character.cInventory.cWeapons)
             {
-                Create_Armor_Buttons(armor);
+                Create_Weapon_Button(weapon);
+            }
+
+            foreach (Armor armor in SheetManager.CS_Manager_Inst.character.cInventory.cArmor)
+            {
+                Create_Armor_Button(armor);
             }
         }
 
-        public void Create_Item_Buttons(Item item)
+        public void Create_Item_Button(Item item)
         {
             Button itemButton = new Button();
             itemButton.Height = 20;
             itemButton.Width = 250;
 
-            Thickness thickB = itemButton.Margin;
-            thickB.Bottom = 5;
-            itemButton.Margin = thickB;
+            Thickness BtnMargin = new Thickness();
+            BtnMargin.Top = 10;
+            BtnMargin.Bottom = 5;
 
-            Thickness thickU = itemButton.Margin;
-            thickU.Top = 10;
-            itemButton.Margin = thickU;
+            itemButton.Margin = BtnMargin;
 
             itemButton.FontWeight = FontWeights.Bold;
 
-            itemButton.Foreground = System.Windows.Media.Brushes.SlateGray; 
+            itemButton.Foreground = Brushes.DarkSlateGray; 
 
-            itemButton.Background = System.Windows.Media.Brushes.WhiteSmoke;
+            itemButton.Background = Brushes.WhiteSmoke;
 
             itemButton.Name = item.Item_ID;
 
             itemButton.Content = item.ItemName + " | Price: " + item.Coin.Price + " " + item.Coin.CoinKey + " | Weight: " + item.ItemWeight;
 
+            // Later on a functionality will be implemented here for the consumption of 'consumable' items on 'Item-Button-Click'
             //itemButton.Click += new RoutedEventHandler(Item_Button_Click);
+
             itemButton.MouseEnter += new MouseEventHandler(Item_Hover_Over);
             itemButton.MouseRightButtonDown += new MouseButtonEventHandler(Item_Button_RightClick);
-
-            ItemButtons.Add(itemButton);
-
+            
             ItemsPanel.Children.Add(itemButton);
         }
 
-        public void Create_Weapon_Buttons(Weapon weapon)
+        public void Create_Weapon_Button(Weapon weapon)
         {
             Button weaponButton = new Button();
             weaponButton.Height = 20;
             weaponButton.Width = 250;
 
-            Thickness thickB = weaponButton.Margin;
-            thickB.Bottom = 5;
-            weaponButton.Margin = thickB;
+            Thickness BtnMargin = new Thickness();
+            BtnMargin.Top = 10;
+            BtnMargin.Bottom = 5;
 
-            Thickness thickU = weaponButton.Margin;
-            thickU.Top = 10;
-            weaponButton.Margin = thickU;
+            weaponButton.Margin = BtnMargin;
 
             weaponButton.FontWeight = FontWeights.Bold;
 
-            weaponButton.Foreground = System.Windows.Media.Brushes.SlateGray;
+            weaponButton.Foreground = Brushes.DarkSlateGray;
 
-            weaponButton.Background = System.Windows.Media.Brushes.WhiteSmoke;
+            weaponButton.Background = Brushes.WhiteSmoke;
 
             weaponButton.Name = weapon.Item_ID;
 
@@ -193,30 +161,26 @@ namespace DnD_CharSheet_5e
             weaponButton.MouseEnter += new MouseEventHandler(Weapon_Hover_Over);
             weaponButton.MouseRightButtonDown += new MouseButtonEventHandler(Weapon_Button_RightClick);
 
-            WeaponButtons.Add(weaponButton);
-
             WeaponsPanel.Children.Add(weaponButton);
         }
 
-        public void Create_Armor_Buttons(Armor armor)
+        public void Create_Armor_Button(Armor armor)
         {
             Button armorButton = new Button();
             armorButton.Height = 20;
             armorButton.Width = 250;
 
-            Thickness thickB = armorButton.Margin;
-            thickB.Bottom = 5;
-            armorButton.Margin = thickB;
+            Thickness BtnMargin = new Thickness();
+            BtnMargin.Top = 10;
+            BtnMargin.Bottom = 5;
 
-            Thickness thickU = armorButton.Margin;
-            thickU.Top = 10;
-            armorButton.Margin = thickU;
+            armorButton.Margin = BtnMargin;
 
             armorButton.FontWeight = FontWeights.Bold;
 
-            armorButton.Foreground = System.Windows.Media.Brushes.SlateGray;
+            armorButton.Foreground = Brushes.DarkSlateGray;
 
-            armorButton.Background = System.Windows.Media.Brushes.WhiteSmoke;
+            armorButton.Background = Brushes.WhiteSmoke;
 
             armorButton.Name = armor.Item_ID;
 
@@ -226,28 +190,26 @@ namespace DnD_CharSheet_5e
             armorButton.Click += new RoutedEventHandler(Armor_Button_LeftClick);
             armorButton.MouseRightButtonDown += new MouseButtonEventHandler(Armor_Button_RightClick);
 
-            ArmorButtons.Add(armorButton);
-
             ArmorPanel.Children.Add(armorButton);
         }       
 
         private void Item_Hover_Over(object sender, MouseEventArgs e)
         {
             Button itemButton = (Button)e.Source;
-            Item tempItem = characterInventory.Find_Item_byID(itemButton.Name);
+            Item tempItem = SheetManager.CS_Manager_Inst.character.cInventory.Find_Item_byID(itemButton.Name);
             ToolTip tt = new ToolTip();
             tt.Content = tempItem.ItemInfo;
             itemButton.ToolTip = tt;
         }
 
-        private void Item_Button_RightClick(object sender, MouseEventArgs e)
+        private void Item_Button_RightClick(object sender, MouseButtonEventArgs e)
         {
             const string message = "Are you sure you want to drop this item?";
             const string caption = "Drop Item";
 
             Button itemButton = (Button)e.Source;
 
-            Item tempItem = characterInventory.Find_Item_byID(itemButton.Name);
+            Item tempItem = SheetManager.CS_Manager_Inst.character.cInventory.Find_Item_byID(itemButton.Name);
 
             var result = MessageBox.Show(message, caption, MessageBoxButton.YesNo);
             
@@ -255,7 +217,7 @@ namespace DnD_CharSheet_5e
             {
                 if (tempItem != null)
                 {
-                    characterInventory.Remove_Item(tempItem);
+                    SheetManager.CS_Manager_Inst.character.cInventory.Remove_Item(tempItem);
                 }
 
                 ItemsPanel.Children.Remove(itemButton);
@@ -267,7 +229,7 @@ namespace DnD_CharSheet_5e
         {
             Button WeaponButton = (Button)e.Source;
 
-            Weapon TempWeapon = characterInventory.Find_Weapon_byID(WeaponButton.Name);
+            Weapon TempWeapon = SheetManager.CS_Manager_Inst.character.cInventory.Find_Weapon_byID(WeaponButton.Name);
 
             const string message = "Equip this Weapon?";
             const string caption = "Equip Weapon";
@@ -279,8 +241,7 @@ namespace DnD_CharSheet_5e
                 if(!TempWeapon.IsTwoHanded)
                 {                    
                     SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
-                    MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.CharacterName + " is wielding a " + TempWeapon.ItemName);
-                    RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
+                    RightHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(TempWeapon.ItemName);
 
                     if(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon != null)
                     {
@@ -295,9 +256,8 @@ namespace DnD_CharSheet_5e
                     {
                         SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
                         SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon = TempWeapon;
-                        MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.CharacterName + " is wielding a " + TempWeapon.ItemName);
-                        RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
-                        LeftHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
+                        RightHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(TempWeapon.ItemName);
+                        LeftHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(TempWeapon.ItemName);
                     }
 
                     else
@@ -313,9 +273,8 @@ namespace DnD_CharSheet_5e
                             SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon = TempWeapon;
                             SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = TempWeapon;
                             SheetManager.CS_Manager_Inst.character.Calculate_AC();
-                            MessageBox.Show($"" + SheetManager.CS_Manager_Inst.character.CharacterName + " is wielding a " + TempWeapon.ItemName);
-                            RightHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
-                            LeftHand_Img.Source = imageHandler.Get_SourceUri(TempWeapon.ItemName);
+                            RightHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(TempWeapon.ItemName);
+                            LeftHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(TempWeapon.ItemName);
                         }
                     }
                 }
@@ -327,20 +286,20 @@ namespace DnD_CharSheet_5e
         private void Weapon_Hover_Over(object sender, MouseEventArgs e)
         {
             Button weaponButton = (Button)e.Source;
-            Item tempWeapon = characterInventory.Find_Weapon_byID(weaponButton.Name);
+            Weapon tempWeapon = SheetManager.CS_Manager_Inst.character.cInventory.Find_Weapon_byID(weaponButton.Name);
             ToolTip tt = new ToolTip();
             tt.Content = tempWeapon.ItemInfo;
             weaponButton.ToolTip = tt;
         }
 
-        private void Weapon_Button_RightClick(object sender, MouseEventArgs e)
+        private void Weapon_Button_RightClick(object sender, MouseButtonEventArgs e)
         {
             const string message = "Are you sure you want to drop this item?";
             const string caption = "Drop Item";
 
             Button weaponButton = (Button)e.Source;
 
-            Weapon tempWeapon = characterInventory.Find_Weapon_byID(weaponButton.Name);
+            Weapon tempWeapon = SheetManager.CS_Manager_Inst.character.cInventory.Find_Weapon_byID(weaponButton.Name);
 
             var result = MessageBox.Show(message, caption, MessageBoxButton.YesNo);
 
@@ -348,7 +307,7 @@ namespace DnD_CharSheet_5e
             {
                 if (tempWeapon != null)
                 {
-                    characterInventory.Remove_Weapon(tempWeapon);
+                    SheetManager.CS_Manager_Inst.character.cInventory.Remove_Weapon(tempWeapon);
                 }
 
                 WeaponsPanel.Children.Remove(weaponButton);
@@ -360,7 +319,7 @@ namespace DnD_CharSheet_5e
         {
             Button armorButton = (Button)e.Source;
 
-            Armor tempArmor = characterInventory.Find_Armor_byID(armorButton.Name);
+            Armor tempArmor = SheetManager.CS_Manager_Inst.character.cInventory.Find_Armor_byID(armorButton.Name);
 
             const string caption = "Don Armor";
             const string message = "Equip this Armor?";
@@ -375,7 +334,7 @@ namespace DnD_CharSheet_5e
                     {
                         SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor = tempArmor;
                         SheetManager.CS_Manager_Inst.character.Calculate_AC();
-                        LeftHand_Img.Source = imageHandler.Get_SourceUri(tempArmor.ItemName);                        
+                        LeftHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(tempArmor.ItemName);                        
                     }
 
                     else
@@ -390,7 +349,7 @@ namespace DnD_CharSheet_5e
                             SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon = null;
                             SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor = tempArmor;
                             SheetManager.CS_Manager_Inst.character.Calculate_AC();
-                            LeftHand_Img.Source = imageHandler.Get_SourceUri(tempArmor.ItemName);
+                            LeftHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(tempArmor.ItemName);
                             RightHand_Img.Source = null;
                         }
                     }
@@ -403,7 +362,7 @@ namespace DnD_CharSheet_5e
                     {
                         SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor = tempArmor;
                         SheetManager.CS_Manager_Inst.character.Calculate_AC();
-                        Armor_Img.Source = imageHandler.Get_SourceUri(tempArmor.ItemName);
+                        Armor_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(tempArmor.ItemName);
                     }
 
                     else
@@ -417,20 +376,20 @@ namespace DnD_CharSheet_5e
         private void Armor_Hover_Over(object sender, MouseEventArgs e)
         {
             Button armorButton = (Button)e.Source;
-            Item tempArmor = characterInventory.Find_Armor_byID(armorButton.Name);
+            Armor tempArmor = SheetManager.CS_Manager_Inst.character.cInventory.Find_Armor_byID(armorButton.Name);
             ToolTip tt = new ToolTip();
             tt.Content = tempArmor.ItemInfo;
             armorButton.ToolTip = tt;
         }
 
-        private void Armor_Button_RightClick(object sender, MouseEventArgs e)
+        private void Armor_Button_RightClick(object sender, MouseButtonEventArgs e)
         {
             const string message = "Are you sure you want to drop this item?";
             const string caption = "Drop Item";
 
             Button armorButton = (Button)e.Source;
 
-            Armor tempArmor = characterInventory.Find_Armor_byID(armorButton.Name);
+            Armor tempArmor = SheetManager.CS_Manager_Inst.character.cInventory.Find_Armor_byID(armorButton.Name);
 
             var result = MessageBox.Show(message, caption, MessageBoxButton.YesNo);
 
@@ -438,7 +397,7 @@ namespace DnD_CharSheet_5e
             {
                 if (tempArmor != null)
                 {
-                    characterInventory.Remove_Armor(tempArmor);                    
+                    SheetManager.CS_Manager_Inst.character.cInventory.Remove_Armor(tempArmor);                    
                     
                     if(tempArmor.ItemName == "Shield")
                     {
@@ -501,5 +460,14 @@ namespace DnD_CharSheet_5e
             Copper_Box.IsEnabled = false;
         }
 
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void Button_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
