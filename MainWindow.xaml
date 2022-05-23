@@ -8,6 +8,30 @@
         Title="DnD 5e Character Sheet" Height="1000" Width="1200"
         WindowStartupLocation="CenterScreen">
 
+    <!-- Common abbreviations for the app:
+    
+        Controls:
+    
+        TextBlock -> 'Text' or 'Txt'
+        TextBox -> 'Box' or 'TB'
+        Button -> 'Btn'
+        CheckBox -> 'CB'
+        
+        Variables:
+    
+        Value -> 'Val'
+        Temporary -> 'Temp'
+        Current -> 'Curr'
+    
+        Terms of the Game:
+        
+        Initiative: 'Ini'
+        Hit Points: 'HP'
+        Hit Dice: 'HD'
+    
+        Attack: 'Atk'
+    -->
+
     <Window.Resources>
 
         <Style TargetType="TextBlock" x:Key="BasicsHeader" BasedOn="{StaticResource StandardText}">            
@@ -67,6 +91,26 @@
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="Width" Value="170"/>
+
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" To="180" Duration="0:0:0:0.0005" AccelerationRatio="0.75"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                    
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" To="170" Duration="0:0:0:0.0005" AccelerationRatio="0.75"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+
+                </EventTrigger>
+            </Style.Triggers>
             
         </Style>
         
@@ -88,22 +132,22 @@
 
             <Border Margin="10 90 10 100" Style="{StaticResource StandardBorder}" Grid.Column="0">
 
-                <StackPanel Background="AliceBlue">
+                <StackPanel x:Name="MenuBtnsPanel" Background="AliceBlue">
 
                     <Button x:Name="NewCharButton" Content="New Character" Click="NewCharButton_Click" Margin ="0 15 0 5" Style="{StaticResource MainMenuBtn}"/>
                     <Button x:Name="ApplyButton" Content="Apply Character" Click="ApplyCharButton_Click" IsEnabled="False" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
 
-                    <Button x:Name="BackgroundPage_bt" IsEnabled="False" Content="Background" Click="BackgroundPageButton_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
-                    <Button x:Name="SpellWindow_bt" Content="Spells" IsEnabled="False" Click="SpellWindow_bt_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="BackgroundWindow_Btn" IsEnabled="False" Content="Background" Click="BackgroundWindow_Btn_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="SpellWindow_Btn" Content="Spells" IsEnabled="False" Click="SpellWindow_Btn_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
 
-                    <Button x:Name="CombatWindow_bt" IsEnabled="False" Content="Combat" Click="CombatWindow_bt_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
-                    <Button x:Name="DiceMachineWindow_bt" IsEnabled="False" Content="Dice Machine" Click="DiceMachineWindow_bt_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="CombatWindow_Btn" IsEnabled="False" Content="Combat" Click="CombatWindow_Btn_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="DiceMachineWindow_Btn" IsEnabled="False" Content="Dice Machine" Click="DiceMachineWindow_Btn_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
 
-                    <Button x:Name="Inventory_bt" IsEnabled="False" Click="InventoryWindow_bt_Click" Content="Inventory" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
-                    <Button x:Name="Merchant_bt" IsEnabled="False" Click="MerchantWindow_bt_Click" Content="Merchant" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="InventoryWindow_Btn" IsEnabled="False" Click="InventoryWindow_Btn_Click" Content="Inventory" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="MerchantWindow_Btn" IsEnabled="False" Click="MerchantWindow_Btn_Click" Content="Merchant" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
 
-                    <Button x:Name="saveCharButton" Content="Save Character" IsEnabled="False" Click="SaveScreen_bt_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
-                    <Button x:Name="loadCharButton" Content="Load Character" Click="LoadPage_bt_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="SaveCharBtn" Content="Save Character" IsEnabled="False" Click="SaveWindow_Btn_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="LoadCharBtn" Content="Load Character" Click="LoadWindow_Btn_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
 
                 </StackPanel>
 
@@ -219,7 +263,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBox x:Name="LevelText" IsEnabled="False" Margin="10 0 0 0" HorizontalAlignment="Left" Style="{StaticResource SmallValueBox}" Grid.Column="0"/>
-                                    <Button x:Name="Level_Up_bt" IsEnabled="False" Content="+" Click="LevelUpButton_Click" Margin="0 10 20 10" Height="30" Width="30" HorizontalAlignment="Right" VerticalContentAlignment="Top" Style="{StaticResource StandardBtn}" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
+                                    <Button x:Name="LevelUp_Btn" IsEnabled="False" Content="+" Click="LevelUpButton_Click" Margin="0 10 20 10" Height="30" Width="30" HorizontalAlignment="Right" VerticalContentAlignment="Top" Style="{StaticResource StandardBtn}" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
 
                                 </Grid>
 
@@ -246,7 +290,7 @@
 
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="Armor Class (AC)" Style="{StaticResource BasicsHeader}" Margin="0 0 0 5" HorizontalAlignment="Center" FontSize="14"/>
-                                <TextBox x:Name="AC" IsEnabled="False" Style="{StaticResource ValueBox_LargeSquare}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                                <TextBox x:Name="AC_Box" IsEnabled="False" Style="{StaticResource ValueBox_LargeSquare}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                             </StackPanel>
 
                             <Grid Grid.Column="1">
@@ -258,12 +302,13 @@
 
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="Initiative" Style="{StaticResource BasicsHeader}" Margin="0 0 0 5" HorizontalAlignment="Right" FontSize="14"/>
-                                    <TextBox x:Name="iniBonus" IsEnabled ="False" Margin="5 0 10 0" Style="{StaticResource ValueBox_LargeSquare}" HorizontalAlignment="Right" FontSize="20"/>
+                                    <!-- Initiative will hereafter sometimes abbreviated be to 'Ini' as is also common for the game -->
+                                    <TextBox x:Name="InitiativeBonusBox" IsEnabled ="False" Margin="5 0 10 0" Style="{StaticResource ValueBox_LargeSquare}" HorizontalAlignment="Right" FontSize="20"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
-                                    <Button x:Name="iniButton" IsEnabled="False" Click ="IniButton_Click" Height="20" Width="50" Margin="10 20 0 0" HorizontalAlignment="Left" Style="{StaticResource StandardBtn}"/>
-                                    <TextBox x:Name="iniResult" IsEnabled ="False" Height="20" Width="50" Margin="10 10" HorizontalAlignment="Left" Style="{StaticResource SmallResultBox}"/>
+                                    <Button x:Name="InitiativeBtn" IsEnabled="False" Click ="IniButton_Click" Height="20" Width="50" Margin="10 20 0 0" HorizontalAlignment="Left" Style="{StaticResource StandardBtn}"/>
+                                    <TextBox x:Name="InitiativeResultBox" IsEnabled ="False" Height="20" Width="50" Margin="10 10" HorizontalAlignment="Left" Style="{StaticResource SmallResultBox}"/>
 
                                 </StackPanel>
 
@@ -271,18 +316,18 @@
 
                             <StackPanel Grid.Column="2">
                                 <TextBlock Text="Speed" Style="{StaticResource BasicsHeader}" Margin="0 0 0 5" HorizontalAlignment="Center" FontSize="14"/>
-                                <TextBox x:Name="baseSpeed" IsEnabled="False" Style="{StaticResource ValueBox_LargeSquare}" Margin="5 0 0 0" HorizontalAlignment="Center" FontSize="20"/>
+                                <TextBox x:Name="BaseSpeedBox" IsEnabled="False" Style="{StaticResource ValueBox_LargeSquare}" Margin="5 0 0 0" HorizontalAlignment="Center" FontSize="20"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="3">
                                 <TextBlock Text="Proficiency Bonus: " Margin="0 0 0 5" HorizontalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="14" Grid.Column="4"/>
-                                <TextBox x:Name="ProfBonus_Box" IsEnabled="False" Style="{StaticResource ValueBox_LargeSquare}" FontSize="20" Grid.Column="5"/>
+                                <TextBox x:Name="ProficiencyBonusBox" IsEnabled="False" Style="{StaticResource ValueBox_LargeSquare}" FontSize="20" Grid.Column="5"/>
 
                             </StackPanel>
 
                         </Grid>                        
 
-                        <Grid Margin="0 20">
+                        <Grid x:Name="HP_Grid" Margin="0 20">
 
                             <Grid.ColumnDefinitions>
 
@@ -296,15 +341,15 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Text="Hitpoints(Max.):" Margin="10 0" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="0"/>
-                            <TextBox x:Name="maxHPtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="1"/>
+                            <TextBox x:Name="MaxHPBox" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="1"/>
                             <TextBlock Text="Current HP:" Margin="10 0" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="2"/>
-                            <TextBox x:Name="currHPtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="3"/>
+                            <TextBox x:Name="CurrHPBox" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="3"/>
                             <TextBlock Text="Temporary HP:" Margin="10 0" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="4"/>
-                            <TextBox x:Name="tempHPtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="5"/>
+                            <TextBox x:Name="TempHPBox" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="5"/>
 
                         </Grid>
 
-                        <Grid Margin="0 20">
+                        <Grid x:Name="HD_Grid" Margin="0 20">
 
                             <Grid.ColumnDefinitions>
 
@@ -318,13 +363,11 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Text="Hit Dice (Total):" HorizontalAlignment="Right" Margin="10 0" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="0"/>
-                            <TextBox x:Name="HDtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="1"/>
+                            <TextBox x:Name="HDBox" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="1"/>
                             <TextBlock Text="Current Hit Dice:" HorizontalAlignment="Right" Margin="10 0" VerticalAlignment="Center" Style="{StaticResource BasicsHeader}" FontSize="16" Grid.Column="2"/>
-                            <TextBox x:Name="currHDtext" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="3"/>                            
+                            <TextBox x:Name="CurrHDBox" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SmallValueBox}" Grid.Column="3"/>                            
 
-                        </Grid>
-
-                        
+                        </Grid>                        
 
                         <Grid>
 
@@ -341,7 +384,7 @@
 
                                 <Border Style="{StaticResource StandardBorder}">
 
-                                    <StackPanel>
+                                    <StackPanel x:Name="AbilityScoresPanel">
 
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -371,10 +414,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Text="Strength (STR)" Margin="10 12 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
-                                            <TextBox x:Name="strScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
-                                            <TextBox x:Name="strModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
-                                            <Button x:Name="strRoll_bt" Content="Roll" Click="StrButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
-                                            <TextBox x:Name="strengthResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+                                            <TextBox x:Name="StrScoreBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="StrModifierBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="StrCheckBtn" Content="Roll" Click="StrButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="StrCheckResultBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
 
                                         </Grid>
 
@@ -391,10 +434,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Text="Dexterity (DEX)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
-                                            <TextBox x:Name="dexScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
-                                            <TextBox x:Name="dexModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
-                                            <Button x:Name="dexRoll_bt" Content="Roll" Click="DexButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
-                                            <TextBox x:Name="dexResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+                                            <TextBox x:Name="DexScoreBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="DexModifierBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="DexCheckBtn" Content="Roll" Click="DexButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="DexCheckResultBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
 
                                         </Grid>
 
@@ -411,10 +454,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Text="Constitution (CON)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
-                                            <TextBox x:Name="conScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
-                                            <TextBox x:Name="conModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
-                                            <Button x:Name="conRoll_bt" Content="Roll" Click="ConButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
-                                            <TextBox x:Name="conResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+                                            <TextBox x:Name="ConScoreBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="ConModifierBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="ConCheckBtn" Content="Roll" Click="ConButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="ConCheckResultBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
 
                                         </Grid>
 
@@ -431,10 +474,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Text="Intelligence (INT)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
-                                            <TextBox x:Name="intScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Width="60" IsEnabled="False" Grid.Column="1"/>
-                                            <TextBox x:Name="intModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
-                                            <Button x:Name="intRoll_bt" Content="Roll" Click="IntButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
-                                            <TextBox x:Name="intResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+                                            <TextBox x:Name="IntScoreBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Width="60" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="IntModifierBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="IntCheckBtn" Content="Roll" Click="IntButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="IntCheckResultBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
 
                                         </Grid>
 
@@ -451,10 +494,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Text="Wisdom (WIS)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
-                                            <TextBox x:Name="wisScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
-                                            <TextBox x:Name="wisModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
-                                            <Button x:Name="wisRoll_bt" Content="Roll" Click="WisButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
-                                            <TextBox x:Name="wisResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+                                            <TextBox x:Name="WisScoreBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="WisModifierBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="WisCheckBtn" Content="Roll" Click="WisButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="WisCheckResultBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
 
                                         </Grid>
 
@@ -471,10 +514,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Text="Charisma (CHA)" Margin="10 10 10 10" Style="{StaticResource BasicsHeader}" FontSize="18" Grid.Column="0"/>
-                                            <TextBox x:Name="chaScoreText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
-                                            <TextBox x:Name="chaModifierText" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
-                                            <Button x:Name="chaRoll_bt" Content="Roll" Click="ChaButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
-                                            <TextBox x:Name="chaResult" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
+                                            <TextBox x:Name="ChaScoreBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" IsEnabled="False" Grid.Column="1"/>
+                                            <TextBox x:Name="ChaModifierBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumValueBox}" Grid.Column="2" IsEnabled="false"/>
+                                            <Button x:Name="ChaCheckBtn" Content="Roll" Click="ChaButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumBtn}" IsEnabled="False" Grid.Column="3"/>
+                                            <TextBox x:Name="ChaCheckResultBox" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MediumResultBox}" Grid.Column="4" IsEnabled="false"/>
 
                                         </Grid>
 
@@ -490,7 +533,7 @@
 
                                 <Border BorderBrush="#bb8fbb" Style="{StaticResource StandardBorder}">
 
-                                    <StackPanel>
+                                    <StackPanel x:Name="SavesPanel">
 
                                         <Grid Margin="0 15 0 5">
 
@@ -521,11 +564,11 @@
 
                                             </Grid.ColumnDefinitions>
 
-                                            <CheckBox x:Name="saveProf_STR" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <CheckBox x:Name="StrSaveProficiency_CB" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
                                             <TextBlock Text="Strength" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" Style="{StaticResource StandardText}" FontSize="14" Grid.Column="1"/>
-                                            <TextBox x:Name="STRsave_Val" IsEnabled="False"  Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
-                                            <Button x:Name="STRsave_roll" Click="STR_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
-                                            <TextBox x:Name="STRsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+                                            <TextBox x:Name="StrSaveModifierBox" IsEnabled="False"  Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="StrSaveBtn" Click="STR_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="StrSaveResultBox" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
 
                                         </Grid>
 
@@ -541,11 +584,11 @@
 
                                             </Grid.ColumnDefinitions>
 
-                                            <CheckBox x:Name="saveProf_DEX" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <CheckBox x:Name="DexSaveProficiency_CB" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
                                             <TextBlock Text="Dexterity" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" Style="{StaticResource StandardText}" FontSize="14" Grid.Column="1"/>
-                                            <TextBox x:Name="DEXsave_Val" IsEnabled="False"  Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
-                                            <Button x:Name="DEXsave_roll" Click="DEX_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
-                                            <TextBox x:Name="DEXsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+                                            <TextBox x:Name="DexSaveModifierBox" IsEnabled="False"  Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="DexSaveBtn" Click="DEX_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="DexSaveResultBox" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
 
                                         </Grid>
 
@@ -561,11 +604,11 @@
 
                                             </Grid.ColumnDefinitions>
 
-                                            <CheckBox x:Name="saveProf_CON" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <CheckBox x:Name="ConSaveProficiency_CB" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
                                             <TextBlock Text="Constitution" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" Style="{StaticResource StandardText}" FontSize="14" Grid.Column="1"/>
-                                            <TextBox x:Name="CONsave_Val" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
-                                            <Button x:Name="CONsave_roll" Click="CON_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
-                                            <TextBox x:Name="CONsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+                                            <TextBox x:Name="ConSaveModifierBox" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="ConSaveBtn" Click="CON_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="ConSaveResultBox" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
 
                                         </Grid>
 
@@ -581,11 +624,11 @@
 
                                             </Grid.ColumnDefinitions>
 
-                                            <CheckBox x:Name="saveProf_INT" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <CheckBox x:Name="IntSaveProficiency_CB" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
                                             <TextBlock Text="Intelligence" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StandardText}" Margin="5 0 0 0" FontSize="14" Grid.Column="1"/>
-                                            <TextBox x:Name="INTsave_Val" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
-                                            <Button x:Name="INTsave_roll" Click="INT_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
-                                            <TextBox x:Name="INTsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+                                            <TextBox x:Name="IntSaveModifierBox" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="IntSaveBtn" Click="INT_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="IntSaveResultBox" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
 
                                         </Grid>
 
@@ -601,11 +644,11 @@
 
                                             </Grid.ColumnDefinitions>
 
-                                            <CheckBox x:Name="saveProf_WIS" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <CheckBox x:Name="WisSaveProficiency_CB" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
                                             <TextBlock Text="Wisdom" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" Style="{StaticResource StandardText}" FontSize="14" Grid.Column="1"/>
-                                            <TextBox x:Name="WISsave_Val" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
-                                            <Button x:Name="WISsave_roll" Click="WIS_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
-                                            <TextBox x:Name="WISsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+                                            <TextBox x:Name="WisSaveModifierBox" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="WisSaveBtn" Click="WIS_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="WisSaveResultBox" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
 
                                         </Grid>
 
@@ -621,11 +664,11 @@
 
                                             </Grid.ColumnDefinitions>
 
-                                            <CheckBox x:Name="saveProf_CHA" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
+                                            <CheckBox x:Name="ChaSaveProficiency_CB" IsEnabled="False" Margin="5 10 0 10" Grid.Column="0"/>
                                             <TextBlock Text="Charisma" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0" FontSize="14" Style="{StaticResource StandardText}" Grid.Column="1"/>
-                                            <TextBox x:Name="CHAsave_Val" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
-                                            <Button x:Name="CHAsave_roll" Click="CHA_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
-                                            <TextBox x:Name="CHAsave_Result" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
+                                            <TextBox x:Name="ChaSaveModifierBox" IsEnabled="False" Style="{StaticResource SmallValueBox}" Grid.Column="2"/>
+                                            <Button x:Name="ChaSaveBtn" Click="CHA_Save_bt_Click" IsEnabled="False" Content="Roll" Style="{StaticResource SmallBtn}" Grid.Column="3"/>
+                                            <TextBox x:Name="ChaSaveResultBox" IsEnabled="False" Style="{StaticResource SmallResultBox}" Grid.Column="4"/>
 
                                         </Grid>
 
@@ -667,7 +710,7 @@
 
                                 </Grid>
                                 
-                                <Grid Margin="0 10">
+                                <Grid x:Name="SkillsGrid" Margin="0 10">
 
                                 <Grid.ColumnDefinitions>
 
@@ -712,7 +755,7 @@
 
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="2">
+                                <StackPanel x:Name="SkillValueBoxes_AtoI_Panel" Grid.Column="2">
 
                                     <TextBox x:Name="AcrobaticsTxt" Style="{StaticResource SkillModBox}"/>
                                     <TextBox x:Name="AnimalHandlingTxt" Style="{StaticResource SkillModBox}"/>
@@ -726,7 +769,7 @@
 
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="3">
+                                <StackPanel x:Name="SkillCheckBtns_Panel_AtoI" Grid.Column="3">
 
                                     <Button x:Name="AcrobaticsCheck_bt" Click="AcrobaticsBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
                                     <Button x:Name="AnimalHandlingCheck_bt" Click="AnimalHandlingBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
@@ -740,7 +783,7 @@
 
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="4">
+                                <StackPanel x:Name="SkillResultBoxes_AtoI_Panel" Grid.Column="4">
 
                                     <TextBox x:Name="Acrobatics_Result" Style="{StaticResource SkillResBox}"/>
                                     <TextBox x:Name="AnimalHandling_Result" Style="{StaticResource SkillResBox}"/>
@@ -782,7 +825,7 @@
 
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="7">
+                                    <StackPanel x:Name="SkillValueBoxes_MtoS_Panel" Grid.Column="7">
 
                                     <TextBox x:Name="MedicineTxt" Style="{StaticResource SkillModBox}"/>
                                     <TextBox x:Name="NatureTxt" Style="{StaticResource SkillModBox}"/>
@@ -796,7 +839,7 @@
 
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="8">
+                                <StackPanel x:Name="SkillCheckBtns_Panel_MtoS" Grid.Column="8">
 
                                     <Button x:Name="MedicineCheck_bt" Click="MedicineBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
                                     <Button x:Name="NatureCheck_bt" Click="NatureBT_Click" Content="Roll" Style="{StaticResource SkillBtn}"/>
@@ -810,7 +853,7 @@
 
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="9">
+                                    <StackPanel x:Name="SkillResultBoxes_MtoS_Panel" Grid.Column="9">
 
                                     <TextBox x:Name="Medicine_Result" Style="{StaticResource SkillResBox}"/>
                                     <TextBox x:Name="Nature_Result" Style="{StaticResource SkillResBox}"/>
