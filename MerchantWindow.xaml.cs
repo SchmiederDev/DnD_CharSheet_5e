@@ -14,54 +14,43 @@ namespace DnD_CharSheet_5e
     /// </summary>
     public partial class MerchantWindow : Window
     {
-        public static MerchantWindow merchantWindow_Inst;
-
         Merchant merchant = new Merchant();
-
-        List<Button> IDB_Buttons = new List<Button>();
-        List<Button> WDB_Buttons = new List<Button>();
-        List<Button> ADB_Buttons = new List<Button>();
 
         public MerchantWindow()
         {            
             InitializeComponent();
-
-            if (merchantWindow_Inst == null)
-            {
-                merchantWindow_Inst = this;
-            }
-
-            Init_Databases();
+            
+            Load_Databases();
             Init_UI();
         }
 
-        public void Init_Databases()
+        public void Load_Databases()
         {
 
-            FileManager.FM_Inst.Set_IDBPath();
+            //FileManager.FM_Inst.Set_IDBPath();
             try
             {
-                merchant.Load_ItemDataBase(FileManager.FM_Inst.Read_ItemDataBase());
+                merchant.Load_ItemDataBase(FileManager.FM_Inst.Read_DataBase(FileManager.FM_Inst.IDB_Path));
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
 
-            FileManager.FM_Inst.Set_WDBPath();
+            //FileManager.FM_Inst.Set_WDBPath();
             try
             {
-                merchant.Load_WeaponDataBase(FileManager.FM_Inst.Read_WeaponDataBase());
+                merchant.Load_WeaponDataBase(FileManager.FM_Inst.Read_DataBase(FileManager.FM_Inst.WDB_Path));
             }
             catch(Exception ex01)
             {
                 MessageBox.Show(ex01.Message.ToString());
             }
 
-            FileManager.FM_Inst.Set_ADBPath();
+            //FileManager.FM_Inst.Set_ADBPath();
             try
             {
-                merchant.Load_ArmorDataBase(FileManager.FM_Inst.Read_ArmorDataBase());
+                merchant.Load_ArmorDataBase(FileManager.FM_Inst.Read_DataBase(FileManager.FM_Inst.ADB_Path));
             }
             catch(Exception ex02)
             {
@@ -76,17 +65,15 @@ namespace DnD_CharSheet_5e
             itemButton.Height = 20;
             itemButton.Width = 300;
 
-            Thickness thickB = itemButton.Margin;
-            thickB.Bottom = 5;
-            itemButton.Margin = thickB;
+            Thickness BtnMargin = new Thickness();
+            BtnMargin.Top = 10;
+            BtnMargin.Bottom = 5;
 
-            Thickness thickU = itemButton.Margin;
-            thickU.Top = 10;
-            itemButton.Margin = thickU;
+            itemButton.Margin = BtnMargin;
 
             itemButton.FontWeight = FontWeights.Bold;
 
-            itemButton.Foreground = Brushes.SlateGray;
+            itemButton.Foreground = Brushes.DarkSlateGray;
 
             itemButton.Background = Brushes.WhiteSmoke;
 
@@ -97,8 +84,6 @@ namespace DnD_CharSheet_5e
             itemButton.Click += new RoutedEventHandler(Item_Button_Click);
             itemButton.MouseEnter += new MouseEventHandler(Item_Hover_Over);
 
-            IDB_Buttons.Add(itemButton);
-
             ItemsPanel.Children.Add(itemButton);
         }
 
@@ -108,17 +93,15 @@ namespace DnD_CharSheet_5e
             weaponButton.Height = 20;
             weaponButton.Width = 300;
 
-            Thickness thickB = weaponButton.Margin;
-            thickB.Bottom = 5;
-            weaponButton.Margin = thickB;
+            Thickness BtnMargin = new Thickness();
+            BtnMargin.Top = 10;
+            BtnMargin.Bottom = 5;
 
-            Thickness thickU = weaponButton.Margin;
-            thickU.Top = 10;
-            weaponButton.Margin = thickU;
+            weaponButton.Margin = BtnMargin;
 
             weaponButton.FontWeight = FontWeights.Bold;
 
-            weaponButton.Foreground = Brushes.SlateGray;
+            weaponButton.Foreground = Brushes.DarkSlateGray;
 
             weaponButton.Background = Brushes.WhiteSmoke;
 
@@ -129,8 +112,6 @@ namespace DnD_CharSheet_5e
             weaponButton.Click += new RoutedEventHandler(Weapon_Button_Click);
             weaponButton.MouseEnter += new MouseEventHandler(Weapon_Hover_Over);
 
-            WDB_Buttons.Add(weaponButton);
-
             WeaponsPanel.Children.Add(weaponButton);
         }
 
@@ -140,17 +121,15 @@ namespace DnD_CharSheet_5e
             armorButton.Height = 20;
             armorButton.Width = 300;
 
-            Thickness thickB = armorButton.Margin;
-            thickB.Bottom = 5;
-            armorButton.Margin = thickB;
+            Thickness BtnMargin = new Thickness();
+            BtnMargin.Top = 10;
+            BtnMargin.Bottom = 5;
 
-            Thickness thickU = armorButton.Margin;
-            thickU.Top = 10;
-            armorButton.Margin = thickU;
+            armorButton.Margin = BtnMargin;
 
             armorButton.FontWeight = FontWeights.Bold;
 
-            armorButton.Foreground = Brushes.SlateGray;
+            armorButton.Foreground = Brushes.DarkSlateGray;
 
             armorButton.Background = Brushes.WhiteSmoke;
 
@@ -161,17 +140,12 @@ namespace DnD_CharSheet_5e
             armorButton.Click += new RoutedEventHandler(Armor_Button_Click);
             armorButton.MouseEnter += new MouseEventHandler(Armor_Hover_Over);
 
-            ADB_Buttons.Add(armorButton);
-
             ArmorPanel.Children.Add(armorButton);
         }
 
         public void Init_UI()
         {
-            pGold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Gold().ToString();
-            pSilver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Silver().ToString();
-            pCopper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Copper().ToString();
-            pPlatinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Platinum().ToString();
+            Update_PlayerFortune();
 
             foreach (Item item in merchant.merchItems)
             {
@@ -191,10 +165,10 @@ namespace DnD_CharSheet_5e
 
         private void Update_PlayerFortune()
         {
-            pGold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Gold().ToString();
-            pSilver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Silver().ToString();
-            pCopper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Copper().ToString();
-            pPlatinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Get_Platinum().ToString();
+            pPlatinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Platinum.ToString();
+            pGold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Gold.ToString();
+            pSilver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Silver.ToString();
+            pCopper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Copper.ToString();
         }
 
         private void Item_Button_Click(object sender, RoutedEventArgs e)
@@ -207,6 +181,7 @@ namespace DnD_CharSheet_5e
                 if(SheetManager.CS_Manager_Inst.character.cInventory.Pay_Item(tempItem.Coin) == true)
                 {
                     SheetManager.CS_Manager_Inst.character.cInventory.Add_Item(tempItem);
+                    InventoryWindow.inventoryWindow_Inst.Refresh_UI();
                 }
             }
 
@@ -256,7 +231,7 @@ namespace DnD_CharSheet_5e
             itemButton.ToolTip = tt;
         }
 
-        private void Weapon_Hover_Over(object sender, RoutedEventArgs e)
+        private void Weapon_Hover_Over(object sender, MouseEventArgs e)
         {
             Button weaponButton = (Button)e.Source;
             Weapon tempWeapon = merchant.Find_Weapon_byID(weaponButton.Name);
@@ -265,7 +240,7 @@ namespace DnD_CharSheet_5e
             weaponButton.ToolTip = tt;
         }
 
-        private void Armor_Hover_Over(object sender, RoutedEventArgs e)
+        private void Armor_Hover_Over(object sender, MouseEventArgs e)
         {
             Button armorButton = (Button)e.Source;
             Armor tempArmor = merchant.Find_Armor_byID(armorButton.Name);
