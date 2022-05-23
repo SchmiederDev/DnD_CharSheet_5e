@@ -653,5 +653,23 @@ namespace DnD_CharSheet_5e
             cInventory = charData.CD_Inventory;
             CharEquipment = charData.CD_Equipment;
         }
+
+        public void Reset_Character()
+        {
+            Age = 0;
+            Height = 0;
+            Weight = 0;
+
+            Eyes = null;
+            Skin = null;
+            Hair = null;
+
+            CharApperance = null;
+            BackgroundStory = null;
+            AlliesAndOrgas = null;
+
+            cInventory.Clear_Inventory();
+            CharEquipment.Clear_Equipment();
+        }
     }
 }
