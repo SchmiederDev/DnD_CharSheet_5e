@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,9 +10,16 @@ namespace DnD_CharSheet_5e
     /// </summary>
     public partial class BackgroundWindow : Window
     {
+        const string ErrorMessage = "You have entered one or several incorrect values - either for 'Age', 'Height' or 'Weight'.\nPlease enter an integer number for 'Age' and integer or decimals for 'Height' and 'Weight'.";
+
         int TempAge;
         float TempHeight;
         float TempWeight;
+
+        List<TextBox> BackgroundBoxes;
+
+        //$"You have entered one or several incorrect values - either for 'Age', 'Height' or 'Weight'." +
+                   //$"Please enter an integer number for 'Age' and integer or decimals for 'Height' and 'Weight'"
         
         public BackgroundWindow()
         {
@@ -24,8 +29,39 @@ namespace DnD_CharSheet_5e
 
         private void Init_UI()
         {
+            Init_BoxElements();
+
             CharacterName_Box.Text = SheetManager.CS_Manager_Inst.character.CharacterName;            
             Load_Background();
+        }
+
+        private void Init_BoxElements()
+        {
+            BackgroundBoxes = new List<TextBox>();
+
+            Init_DesciptionBoxes();
+            Init_BackgroundBoxes();
+        }
+
+        private void Init_DesciptionBoxes()
+        {
+            foreach(Grid DescriptionGrid in DescriptionPanel.Children)
+            {
+                foreach(UIElement element in DescriptionGrid.Children)
+                {
+                    if(element is TextBox)
+                    {
+                        BackgroundBoxes.Add(element as TextBox);
+                    }
+                }
+            }
+        }
+
+        private void Init_BackgroundBoxes()
+        {
+            BackgroundBoxes.Add(Appearance_Box);
+            BackgroundBoxes.Add(Backstory_Box);
+            BackgroundBoxes.Add(Allies_n_Orgas_Box);
         }
 
         private void Load_Background()
@@ -45,9 +81,19 @@ namespace DnD_CharSheet_5e
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)                         // happens before Closing
         {
-            SheetManager.CS_Manager_Inst.character.CharApperance = Appearance_Box.Text;                             // <- Insert functionality that checks for text Limit
-            SheetManager.CS_Manager_Inst.character.BackgroundStory = Backstory_Box.Text;
-            SheetManager.CS_Manager_Inst.character.AlliesAndOrgas = Allies_n_Orgas_Box.Text;           
+            if(Check_Description_Values())
+            {
+                Set_Description_Properties();
+                Set_Background();
+            }
+            
+            else
+            {
+                MessageBox.Show(ErrorMessage);
+
+                e.Cancel = true;
+            }
+                       
         }
 
         private void Edit_btn_Click(object sender, RoutedEventArgs e)
@@ -60,50 +106,36 @@ namespace DnD_CharSheet_5e
             if (Check_Description_Values())
             {
                 Set_Description_Properties();
+                Set_Background();
                 Deactivate_BackgroundElements();
             }
 
             else
             {
-                MessageBox.Show($"You have entered one or several incorrect values - either for 'Age', 'Height' or 'Weight'." +
-                    $"Please enter an integer number for 'Age' and integer or decimals for 'Height' and 'Weight'");
+                MessageBox.Show(ErrorMessage);
             }
         }
 
         private void Activate_BackgroundElements()
         {
-            Age_Box.IsEnabled = true;
-            Height_Box.IsEnabled = true;
-            Weight_Box.IsEnabled = true;
+            foreach(TextBox BackgroundBox in BackgroundBoxes)
+            {
+                BackgroundBox.IsEnabled = true;
+            }
 
-            Eyes_Box.IsEnabled = true;
-            Skin_Box.IsEnabled = true;
-            Hair_Box.IsEnabled = true;
-
-            Appearance_Box.IsEnabled = true;
-            Backstory_Box.IsEnabled = true;
-            Allies_n_Orgas_Box.IsEnabled = true;
-
-            OK_btn.Visibility = Visibility.Visible;
-            OK_btn.IsEnabled = true;
+            OK_Btn.Visibility = Visibility.Visible;
+            OK_Btn.IsEnabled = true;
         }
 
         private void Deactivate_BackgroundElements()
         {
-            Age_Box.IsEnabled = false;
-            Height_Box.IsEnabled = false;
-            Weight_Box.IsEnabled = false;
+            foreach (TextBox BackgroundBox in BackgroundBoxes)
+            {
+                BackgroundBox.IsEnabled = false;
+            }
 
-            Eyes_Box.IsEnabled = false;
-            Skin_Box.IsEnabled = false;
-            Hair_Box.IsEnabled = false;
-
-            Appearance_Box.IsEnabled = false;
-            Backstory_Box.IsEnabled = false;
-            Allies_n_Orgas_Box.IsEnabled = false;
-
-            OK_btn.Visibility = Visibility.Hidden;
-            OK_btn.IsEnabled = false;
+            OK_Btn.Visibility = Visibility.Hidden;
+            OK_Btn.IsEnabled = false;
         }        
 
         private bool Check_Description_Values()
@@ -149,6 +181,13 @@ namespace DnD_CharSheet_5e
             SheetManager.CS_Manager_Inst.character.Eyes = Eyes_Box.Text;
             SheetManager.CS_Manager_Inst.character.Skin = Skin_Box.Text;
             SheetManager.CS_Manager_Inst.character.Hair = Hair_Box.Text;
+        }
+
+        private void Set_Background()
+        {
+            SheetManager.CS_Manager_Inst.character.CharApperance = Appearance_Box.Text;
+            SheetManager.CS_Manager_Inst.character.AlliesAndOrgas = Allies_n_Orgas_Box.Text;
+            SheetManager.CS_Manager_Inst.character.BackgroundStory = Backstory_Box.Text;
         }
         
     }
