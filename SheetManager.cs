@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
-using Newtonsoft.Json;
 
 namespace DnD_CharSheet_5e
 {
@@ -31,41 +29,7 @@ namespace DnD_CharSheet_5e
         bool IsTempHPactive = false;
 
         public static uint DeathSaveDC { get; } = 10;
-
-        // consider to load ALL relevant databases here instead of partially mainwindow
-
-        public void Init_DataBases()
-        {
-            //FileManager.FM_Inst.Set_RDBPath();
-
-            //try
-            //{
-            //    Load_RaceDataBase(FileManager.FM_Inst.Read_RaceDataBase());
-            //    //MessageBox.Show("Loaded successfully");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message.ToString());
-            //}
-
-            FileManager.FM_Inst.Set_LanguageDBPath();
-
-            try
-            {
-                Load_LanguageDataBase(FileManager.FM_Inst.Read_LanguageDataBase());
-            }
-
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-            
-        }
-
-        public void Load_LanguageDataBase(string jsonLDB)
-        {
-            Languages = JsonConvert.DeserializeObject<List<DnDLanguage>>(jsonLDB);
-        }
+        
 
         public void Init_TempHPCallback()
         {
@@ -116,13 +80,13 @@ namespace DnD_CharSheet_5e
 
             if (character.CharEquipment.RightHand_Weapon != null && character.CharEquipment.RightHand_Weapon.IsRanged == false)
             {
-                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Strength.Modifier;
+                result = dSys.Roll_Custom(character.CharEquipment.RightHand_Weapon.DamageNumerator, character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Strength.Modifier;
                 return result;
             }
 
             else if (character.CharEquipment.RightHand_Weapon != null && character.CharEquipment.RightHand_Weapon.IsRanged == true)
             {
-                result = dSys.Roll_Custom((int)character.CharEquipment.RightHand_Weapon.DamageNominator, (int)character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Dexterity.Modifier;
+                result = dSys.Roll_Custom(character.CharEquipment.RightHand_Weapon.DamageNumerator, character.CharEquipment.RightHand_Weapon.DamageDenominator) + character.Dexterity.Modifier;
                 return result;
             }
 
@@ -220,7 +184,7 @@ namespace DnD_CharSheet_5e
 
         public bool DeathSave(int result)
         {
-            // The declaration of this boolean ('DS' = Death Save -> Death Save is Success/Failure) isn't necessary, but to make it more obvious what is happening here - I declare its nonetheless.
+            // The declaration of this boolean ('DS' = Death Save -> Death Save is Success/Failure) isn't necessary, but to make it more obvious what is happening here - I declare it nonetheless.
             bool DS_IsSuccess;
             int DSresult = result;
 
@@ -235,15 +199,6 @@ namespace DnD_CharSheet_5e
                 DS_IsSuccess = false;
                 return DS_IsSuccess;
             }
-        }
-
-        public void CharGen_SetLanguages()
-        {            
-
-           //for(int i = 0; i < CharGenCharacter.CharacterRace.RaceBackground.Languages.Length; i++)
-           //{
-           //     CharGenCharacter.CharLanguages.Add(CharGenCharacter.CharacterRace.RaceBackground.Languages[i]);
-           //}
         }
 
     }    
