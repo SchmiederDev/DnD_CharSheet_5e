@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Input;
+using System.Windows.Shapes;
 
 namespace DnD_CharSheet_5e
 {
@@ -11,7 +13,6 @@ namespace DnD_CharSheet_5e
     /// </summary>
     public partial class CombatWindow : Window
     {
-        List<Weapon> CharWeapons = new List<Weapon>();
         List<Combatant> combatants = new List<Combatant>();
 
         Weapon FirstWeapon = new Weapon();
@@ -33,6 +34,19 @@ namespace DnD_CharSheet_5e
 
         bool IsUnconscious = false;
 
+        // The respective Ellipses are called 'RadioButtons' here because they serve as such.
+        List<Ellipse> DeathSaveRadioButtons;
+
+        // 'ds' is short for 'Death Saving Throw' or 'Death Save'
+        
+        // Explanation of the mechanics:
+        // In the game whenever the hitpoints of a character drop to 0 or lower this character is considered to be in the process of dying - but not dead yet.
+        // By rolling the 20-sided die several times it is determined whether the character actually dies or stabilizes. 
+        // The number on the D20 has to be higher or equal to 10 to be a success. A lower result is considered a failure.
+        // A '20' on the die means two successes - a '1' means two failures.
+        // Has the character stabilzed he or she are is unconscious until healed properly. 
+        // Has the character actually died he or she is dead for good. But characters can still be resurrected in the game by means of magic/ spells.
+
         bool ds_01_success_checked = false;
         bool ds_02_success_checked = false;
         bool ds_03_success_checked = false;
@@ -44,23 +58,31 @@ namespace DnD_CharSheet_5e
         public CombatWindow()
         {
             InitializeComponent();
+
             this.DataContext = this;
+
+            Init_CombatUI();
+
             SheetManager.CS_Manager_Inst.character.hpChanged += Update_CharacterState;
             SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP_Txt;
             SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP_Txt;
             SheetManager.CS_Manager_Inst.character.acChanged += Update_AC_Txt;
         }               
 
-        public void Set_Weapons(List<Weapon> weaponList)
-        {
-            CharWeapons = weaponList;
-        }
-
-        public void Init_CombatUI()
+        private void Init_CombatUI()
         {
             Initialize_IniPanel();
             Initialize_WeaponDropDowns();
             Initialize_ACHP_Panel();
+
+            Initialize_DeathSave_RadioButtons();
+
+            Initialize_DiceSound_for_DieButtons();
+        }
+
+        private void Initialize_IniPanel()
+        {
+            IniBonus.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Modifier.ToString();
         }
 
         private void Initialize_WeaponDropDowns()
@@ -75,33 +97,82 @@ namespace DnD_CharSheet_5e
                 SecondWeapon_CB.Items.Add(weapon.ItemName);
                 ThirdWeapon_CB.Items.Add(weapon.ItemName);
             }
-        }
-
-        private void Initialize_IniPanel()
-        { 
-            IniBonus.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Modifier.ToString();
-        }
+        }       
 
         private void Initialize_ACHP_Panel()
         {
             AC_TB.Text = SheetManager.CS_Manager_Inst.character.AC.ToString();
-            
+
             HP_Max_TB.Text = SheetManager.CS_Manager_Inst.character.MaxHP.ToString();
             HP_Curr_TB.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
             TempHP_TB.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
         }
 
+        private void Initialize_DeathSave_RadioButtons()
+        {
+            DeathSaveRadioButtons = new List<Ellipse>();
+
+            foreach(Ellipse PseudoRadioButton in DeathSaveSuccesses_Grid.Children)
+            {
+                DeathSaveRadioButtons.Add(PseudoRadioButton);
+            }
+
+            foreach (Ellipse PseudoRadioButton in DeathSaveFailures_Grid.Children)
+            {
+                DeathSaveRadioButtons.Add(PseudoRadioButton);
+            }
+        }
+
+        private void Initialize_DiceSound_for_DieButtons()
+        {
+            foreach(UIElement element in AttackPanel.Children)
+            {
+                if(element is Button)
+                {
+                    // Since I want to fire the DiceSound first - and than see the effects - I use 'PreviewMouseLeftButtonDown' here instead of assigning to the click 
+                    Button tempBtn = (Button)element;
+                    tempBtn.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(DiceSoundClick);
+                }
+            }
+
+            // Since not all of the buttons amongst the UI_Elements should play the click sound I considered easier here to assign the Handler for playing the click sound directly
+            // instead of looping through the elements to find the respective elements.
+
+            IniButton.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(DiceSoundClick);
+            HealDice_Btn.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(DiceSoundClick);
+            Dice_Add_TempHP_Btn.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(DiceSoundClick);
+            DeathSave_Btn.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(DiceSoundClick);
+        }
+
+        private void DiceSoundClick(object sender, MouseButtonEventArgs e)
+        {
+            FileManager.FM_Inst.Play_DiceSound();
+        }        
+
         public void Melee_Attack_Click(object sender, RoutedEventArgs e)
         {
             Melee_Result.Text = SheetManager.CS_Manager_Inst.Melee_Attack().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
         }
 
         public void Ranged_Attack_Click(object sender, RoutedEventArgs e)
         {
             Ranged_Result.Text = SheetManager.CS_Manager_Inst.Ranged_Attack().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
-        }        
+        }
+
+        private Weapon Find_Weapon(string weaponName)
+        {
+            Weapon tempWeapon = new Weapon();
+
+            foreach (Weapon weapon in SheetManager.CS_Manager_Inst.character.cInventory.cWeapons)
+            {
+                if (weapon.ItemName == weaponName)
+                {
+                    tempWeapon = weapon;
+                }
+            }
+
+            return tempWeapon;
+        }
 
         private void FirstWeapon_CB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -159,7 +230,7 @@ namespace DnD_CharSheet_5e
             if(FirstWeapon != null)
             {
                 Damage_Result_TB_01.Text = Roll_for_Damage(FirstWeapon).ToString();
-                FileManager.FM_Inst.Play_DiceSound();
+                
             }
 
             else
@@ -173,7 +244,7 @@ namespace DnD_CharSheet_5e
             if (SecondWeapon != null)
             {
                 Damage_Result_TB_02.Text = Roll_for_Damage(SecondWeapon).ToString();
-                FileManager.FM_Inst.Play_DiceSound();
+                
             }
 
             else
@@ -187,7 +258,7 @@ namespace DnD_CharSheet_5e
             if (ThirdWeapon != null)
             {
                 Damage_Result_TB_03.Text = Roll_for_Damage(ThirdWeapon).ToString();
-                FileManager.FM_Inst.Play_DiceSound();
+                
             }
 
             else
@@ -205,51 +276,36 @@ namespace DnD_CharSheet_5e
             {
                 if(attackingWeapon.IsFinesse == false)
                 {
-                    result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Strength.Modifier;
+                    result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom(attackingWeapon.DamageNumerator, attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Strength.Modifier;
                 }
 
                 else
                 {
                     if(SheetManager.CS_Manager_Inst.character.Dexterity.Modifier >= SheetManager.CS_Manager_Inst.character.Strength.Modifier)
                     {
-                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Dexterity.Modifier;
+                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom(attackingWeapon.DamageNumerator, attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Dexterity.Modifier;
                     }
 
                     else
                     {
-                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Strength.Modifier;
+                        result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom(attackingWeapon.DamageNumerator, attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Strength.Modifier;
                     }
                 }
             }
 
             else
             {
-                result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom((int)attackingWeapon.DamageNominator, (int)attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Dexterity.Modifier;
+                result = SheetManager.CS_Manager_Inst.dSys.Roll_Custom(attackingWeapon.DamageNumerator, attackingWeapon.DamageDenominator) + SheetManager.CS_Manager_Inst.character.Dexterity.Modifier;
             }
 
             return result;
-        }
-
-        private Weapon Find_Weapon(string weaponName)
-        {
-            Weapon tempWeapon = new Weapon();
-
-            foreach(Weapon weapon in SheetManager.CS_Manager_Inst.character.cInventory.cWeapons)
-            {
-                if(weapon.ItemName == weaponName)
-                {
-                    tempWeapon = weapon;
-                }
-            }
-
-            return tempWeapon;
-        }
+        }        
 
         private void IniButton_Click(object sender, RoutedEventArgs e)
         {
             Check_for_FirstInitiativeRoll();
             IniResult.Text = SheetManager.CS_Manager_Inst.Roll_for_Initiative().ToString();
-            FileManager.FM_Inst.Play_DiceSound();
+            
         }        
 
         private void Check_for_FirstInitiativeRoll()
@@ -264,43 +320,47 @@ namespace DnD_CharSheet_5e
         {
             if (IsFirstInitiative == false)
             {
-                Initialize_CombatantsPanel();
+                if(IniOrderPanel.Visibility == Visibility.Collapsed)
+                {
+                    Enable_CombatantsPanel();
+                }
+
+                else
+                {
+                    Reset_IniOrder();
+                }
             }
         }
 
-        private void Initialize_CombatantsPanel()
+        private void Enable_CombatantsPanel()
         {
-            IniOrder_Txt.Visibility = Visibility.Visible;
-            CombatantName_Txt.Visibility = Visibility.Visible;
-            CombatantValue_Txt.Visibility = Visibility.Visible;
-            TB_CombatantName.Visibility = Visibility.Visible;
-            TB_IniValue.Visibility = Visibility.Visible;
-            NewCombatant_Btn.Visibility = Visibility.Visible;
-            AddCombatant_Btn.Visibility = Visibility.Visible;
-            InitiativeOrder_LV.Visibility = Visibility.Visible;
+            IniOrderPanel.Visibility = Visibility.Visible;
+        }
+
+        private void Reset_IniOrder()
+        {           
+            Combatants.Clear();
+            InitiativeOrder_LV.Items.Refresh();
         }
 
         private void NewCombatant_Btn_Click(object sender, RoutedEventArgs e)
         {
-            TB_CombatantName.IsEnabled = true;
-            TB_IniValue.IsEnabled = true;
+            CombatantName_Box.IsEnabled = true;
+            IniValue_Box.IsEnabled = true;
         }
 
         private void AddCombatant_Btn_Click(object sender, RoutedEventArgs e)
         {
-            string combatantName = TB_CombatantName.Text;
-            int combatantValue;
+            string combatantName = CombatantName_Box.Text;
 
-            bool isValidValue = int.TryParse(TB_IniValue.Text, out combatantValue);
-
-            if(isValidValue)
+            if(int.TryParse(IniValue_Box.Text, out int combatantValue))
             {
                 Combatant newCombatant = new Combatant(combatantName, combatantValue);
                 combatants.Add(newCombatant);
                 SortCombatants();
                 InitiativeOrder_LV.Items.Refresh();
 
-                Clear_CombatantPanel();                
+                Clear_Combatant_InputFields();                
             }
 
             else
@@ -352,21 +412,20 @@ namespace DnD_CharSheet_5e
             combatants.Sort();
         }
 
-        private void Clear_CombatantPanel()
+        private void Clear_Combatant_InputFields()
         {
-            TB_CombatantName.IsEnabled = false;
-            TB_IniValue.IsEnabled = false;
+            CombatantName_Box.IsEnabled = false;
+            IniValue_Box.IsEnabled = false;
 
-            TB_CombatantName.Text = null;
-            TB_IniValue.Text = null;
+            CombatantName_Box.Text = null;
+            IniValue_Box.Text = null;
         }
 
 
         private void AddTempHP_Btn_Click(object sender, RoutedEventArgs e)
         {
-            int tempHP = 0;
             
-            if(int.TryParse(AddTempHP_TB.Text, out tempHP))
+            if(int.TryParse(AddTempHP_TB.Text, out int tempHP))
             {
                 SheetManager.CS_Manager_Inst.character.Set_tempHP(tempHP);
                 AddTempHP_TB.Text = null;
@@ -380,10 +439,8 @@ namespace DnD_CharSheet_5e
 
         private void Dice_Add_TempHP_Btn_Click(object sender, RoutedEventArgs e)
         {
-            int tempHP_Dice_Numerator;
-            int tempHP_Dice_Denominator;
 
-            if(int.TryParse(Dice_Add_TempHP_01_TB.Text, out tempHP_Dice_Numerator) && int.TryParse(Dice_Add_TempHP_02_TP.Text, out tempHP_Dice_Denominator))
+            if(int.TryParse(Dice_Add_TempHP_01_TB.Text, out int tempHP_Dice_Numerator) && int.TryParse(Dice_Add_TempHP_02_TP.Text, out int tempHP_Dice_Denominator))
             {
                 SheetManager.CS_Manager_Inst.Add_TempHP_withDice(tempHP_Dice_Numerator, tempHP_Dice_Denominator);
             }
@@ -396,10 +453,9 @@ namespace DnD_CharSheet_5e
         }
 
         private void Hit_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            int damage = 0;
+        {            
 
-            if(int.TryParse(Hit_TB.Text, out damage))
+            if(int.TryParse(Hit_TB.Text, out int damage))
             {
                 Check_for_InstantDeath(SheetManager.CS_Manager_Inst.character.CurrentHP, damage);
                 SheetManager.CS_Manager_Inst.Get_Hit(damage);
@@ -417,26 +473,20 @@ namespace DnD_CharSheet_5e
         {
             DeathSave_Btn.IsEnabled = true;
 
-            DeathSave_Success_01.IsEnabled = true;
-            DeathSave_Success_02.IsEnabled = true;
-            DeathSave_Success_03.IsEnabled = true;
-            
-            DeathSave_Failure_01.IsEnabled = true;
-            DeathSave_Failure_02.IsEnabled = true;
-            DeathSave_Failure_03.IsEnabled = true;
+            foreach(Ellipse PseudoRadioButton in DeathSaveRadioButtons)
+            {
+                PseudoRadioButton.IsEnabled = true;
+            }
         }
 
         private void Disable_DeathSavingThrows()
         {
             DeathSave_Btn.IsEnabled = false;
 
-            DeathSave_Success_01.IsEnabled = false;
-            DeathSave_Success_02.IsEnabled = false;
-            DeathSave_Success_03.IsEnabled = false;
-
-            DeathSave_Failure_01.IsEnabled = false;
-            DeathSave_Failure_02.IsEnabled = false;
-            DeathSave_Failure_03.IsEnabled = false;
+            foreach (Ellipse PseudoRadioButton in DeathSaveRadioButtons)
+            {
+                PseudoRadioButton.IsEnabled = false;
+            }
         } 
         
         private void Enable_DS_Panel()
@@ -478,6 +528,7 @@ namespace DnD_CharSheet_5e
             if(SheetManager.CS_Manager_Inst.character.IsAlive == false)
             {
                 SheetManager.CS_Manager_Inst.character.IsAlive = true;
+                TempHP_Panel.IsEnabled = true;
                 HealingPanel.IsEnabled = true;
             }
         }
@@ -499,8 +550,12 @@ namespace DnD_CharSheet_5e
             MessageBox.Show(DeathMessage);
             Uncheck_DeathSaves();
             Disable_DeathSavingThrows();
-            Resurrect_Btn.IsEnabled = true;
+
+            TempHP_Panel.IsEnabled = false;
             HealingPanel.IsEnabled = false;
+            
+            Resurrect_Btn.IsEnabled = true;
+            
         }
 
         private void Become_Stable()
@@ -536,7 +591,7 @@ namespace DnD_CharSheet_5e
                 if (!ds_01_success_checked)
                 {
                     ds_01_success_checked = true;
-                    DeathSave_Success_01.Fill = Brushes.LightCoral;
+                    DeathSave_Success_RB_01.Fill = Brushes.LightCoral;
                 }
 
                 else
@@ -544,13 +599,13 @@ namespace DnD_CharSheet_5e
                     if (!ds_02_success_checked)
                     {
                         ds_02_success_checked = true;
-                        DeathSave_Success_02.Fill = Brushes.LemonChiffon;
+                        DeathSave_Success_RB_02.Fill = Brushes.LemonChiffon;
                     }
 
                     else
                     {
                         ds_03_success_checked = true;
-                        DeathSave_Success_03.Fill = Brushes.SpringGreen;
+                        DeathSave_Success_RB_03.Fill = Brushes.SpringGreen;
                         Become_Stable();
                     }
                 }
@@ -564,16 +619,16 @@ namespace DnD_CharSheet_5e
                 if (ds_result == 1)
                 {
                     ds_01_failure_checked = true;
-                    DeathSave_Failure_01.Fill = Brushes.LightCoral;
+                    DeathSave_Failure_RB_01.Fill = Brushes.LightCoral;
 
                     ds_02_failure_checked = true;
-                    DeathSave_Failure_02.Fill = Brushes.Crimson;
+                    DeathSave_Failure_RB_02.Fill = Brushes.Crimson;
                 }
 
                 else
                 {
                     ds_01_failure_checked = true;
-                    DeathSave_Failure_01.Fill = Brushes.LightCoral;
+                    DeathSave_Failure_RB_01.Fill = Brushes.LightCoral;
 
                 }
             }
@@ -585,55 +640,50 @@ namespace DnD_CharSheet_5e
                     if (ds_result == 1)
                     {
                         ds_02_failure_checked = true;
-                        DeathSave_Failure_02.Fill = Brushes.Crimson;
+                        DeathSave_Failure_RB_02.Fill = Brushes.Crimson;
 
                         ds_03_failure_checked = true;
-                        DeathSave_Failure_03.Fill = Brushes.DarkRed;
+                        DeathSave_Failure_RB_03.Fill = Brushes.DarkRed;
                         Character_Dies();
                     }
 
                     else
                     {
                         ds_02_failure_checked = true;
-                        DeathSave_Failure_02.Fill = Brushes.Crimson;
+                        DeathSave_Failure_RB_02.Fill = Brushes.Crimson;
                     }
                 }
 
                 else
                 {
                     ds_03_failure_checked = true;
-                    DeathSave_Failure_03.Fill = Brushes.DarkRed;
+                    DeathSave_Failure_RB_03.Fill = Brushes.DarkRed;
                     Character_Dies();
                 }
             }
         }
 
-        // maybe do async await to make it look more cool -> the 'radio buttons' will change color only after a few (mili)seconds
+        // maybe do async await to make it look cooler -> the 'radio buttons' will change color only after a few (mili)seconds
 
         private void Uncheck_DeathSaves()
         {
-            ds_01_success_checked = false;
-            DeathSave_Success_01.Fill = Brushes.White;
+            // Setting these bools one after another might not be the most elegant option, but I it seemed to me
+            // not initializing them to an array or another list would actually save me some code lines
 
+            ds_01_success_checked = false;           
             ds_02_success_checked = false;
-            DeathSave_Success_02.Fill = Brushes.White;
-
             ds_03_success_checked = false;
-            DeathSave_Success_03.Fill = Brushes.White;
-
-
-
             ds_01_failure_checked = false;
-            DeathSave_Failure_01.Fill = Brushes.White;
-
             ds_02_failure_checked = false;
-            DeathSave_Failure_02.Fill = Brushes.White;
-
             ds_03_failure_checked = false;
-            DeathSave_Failure_03.Fill = Brushes.White;
+
+            foreach(Ellipse PseudoRadioBtn in DeathSaveRadioButtons)
+            {
+                PseudoRadioBtn.Fill = Brushes.White;
+            }
         }
 
-        private void DeathSave_Success_01_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DeathSave_Success_01_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsUnconscious == true && ds_02_success_checked == false && ds_03_success_checked == false)
             {
@@ -641,17 +691,17 @@ namespace DnD_CharSheet_5e
 
                 if (ds_01_success_checked)
                 {
-                    DeathSave_Success_01.Fill = Brushes.LightCoral;
+                    DeathSave_Success_RB_01.Fill = Brushes.LightCoral;
                 }
 
                 else
                 {
-                    DeathSave_Success_01.Fill = Brushes.White;
+                    DeathSave_Success_RB_01.Fill = Brushes.White;
                 }
             }
         }
 
-        private void DeathSave_Success_02_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DeathSave_Success_02_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsUnconscious == true && ds_01_success_checked == true && ds_03_success_checked == false)
             {
@@ -659,17 +709,17 @@ namespace DnD_CharSheet_5e
 
                 if (ds_02_success_checked)
                 {
-                    DeathSave_Success_02.Fill = Brushes.LemonChiffon;
+                    DeathSave_Success_RB_02.Fill = Brushes.LemonChiffon;
                 }
 
                 else
                 {
-                    DeathSave_Success_02.Fill = Brushes.White;
+                    DeathSave_Success_RB_02.Fill = Brushes.White;
                 }
             }
         }
 
-        private void DeathSave_Success_03_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DeathSave_Success_03_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsUnconscious == true && ds_01_success_checked == true && ds_02_success_checked == true)
             {
@@ -677,18 +727,18 @@ namespace DnD_CharSheet_5e
 
                 if (ds_03_success_checked)
                 {
-                    DeathSave_Success_03.Fill = Brushes.SpringGreen;
+                    DeathSave_Success_RB_03.Fill = Brushes.SpringGreen;
                     Become_Stable();
                 }
 
                 else
                 {
-                    DeathSave_Success_03.Fill = Brushes.White;
+                    DeathSave_Success_RB_03.Fill = Brushes.White;
                 }
             }
         }
 
-        private void DeathSave_Failure_01_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DeathSave_Failure_01_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsUnconscious == true && ds_02_failure_checked == false && ds_03_failure_checked == false)
             {
@@ -696,17 +746,17 @@ namespace DnD_CharSheet_5e
 
                 if (ds_01_failure_checked)
                 {
-                    DeathSave_Failure_01.Fill = Brushes.LightCoral;
+                    DeathSave_Failure_RB_01.Fill = Brushes.LightCoral;
                 }
 
                 else
                 {
-                    DeathSave_Failure_01.Fill = Brushes.White;
+                    DeathSave_Failure_RB_01.Fill = Brushes.White;
                 }
             }
         }
 
-        private void DeathSave_Failure_02_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DeathSave_Failure_02_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsUnconscious == true && ds_01_failure_checked == true && ds_03_failure_checked == false)
             {
@@ -714,17 +764,17 @@ namespace DnD_CharSheet_5e
 
                 if (ds_02_failure_checked)
                 {
-                    DeathSave_Failure_02.Fill = Brushes.Crimson;
+                    DeathSave_Failure_RB_02.Fill = Brushes.Crimson;
                 }
 
                 else
                 {
-                    DeathSave_Failure_02.Fill = Brushes.White;
+                    DeathSave_Failure_RB_02.Fill = Brushes.White;
                 }
             }
         }
 
-        private void DeathSave_Failure_03_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DeathSave_Failure_03_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsUnconscious == true && ds_01_failure_checked == true && ds_02_failure_checked == true)
             {
@@ -732,13 +782,13 @@ namespace DnD_CharSheet_5e
 
                 if (ds_03_failure_checked)
                 {
-                    DeathSave_Failure_03.Fill = Brushes.DarkRed;
+                    DeathSave_Failure_RB_03.Fill = Brushes.DarkRed;
                     Character_Dies();
                 }
 
                 else
                 {
-                    DeathSave_Failure_03.Fill = Brushes.White;
+                    DeathSave_Failure_RB_03.Fill = Brushes.White;
                 }
             }
 
@@ -763,7 +813,7 @@ namespace DnD_CharSheet_5e
         }
 
         // Temporary solution: There are several spells that bring a character back to life. This solution so far only imitates the effect of the basic 'Revivify'.
-        // In the future use small window, page or further UI-elements instead.
+        // In the future I will use a small window, page or further UI-elements instead.
 
         private void ReturnToLife()
         {
@@ -778,10 +828,9 @@ namespace DnD_CharSheet_5e
         }
 
         private void HealTxt_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            int hpHealed;
+        {            
 
-            if (int.TryParse(Heal_TB.Text, out hpHealed))
+            if (int.TryParse(Heal_TB.Text, out int hpHealed))
             {
                 SheetManager.CS_Manager_Inst.Heal_Amount(hpHealed);
                 Check_ConsciousnessStatus();            
@@ -795,13 +844,11 @@ namespace DnD_CharSheet_5e
         }
 
         private void HealDice_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            int healDice_numerator;
-            int healDice_Denominator;
+        {           
 
-            if (int.TryParse(HP_Dice_01_TB.Text, out healDice_numerator) && int.TryParse(HP_Dice_02_TB.Text, out healDice_Denominator))
+            if (int.TryParse(HP_Dice_01_TB.Text, out int healDiceNumerator) && int.TryParse(HP_Dice_02_TB.Text, out int healDiceDenominator))
             {
-                int healDiceResult = SheetManager.CS_Manager_Inst.Heal_withDice(healDice_numerator, healDice_Denominator);
+                int healDiceResult = SheetManager.CS_Manager_Inst.Heal_withDice(healDiceNumerator, healDiceDenominator);
                 Check_ConsciousnessStatus();
                 Heal_Dice_Result_TB.Text = healDiceResult.ToString();
             }
@@ -830,6 +877,7 @@ namespace DnD_CharSheet_5e
             ComeBackWithOneHP();
             Resurrect_Btn.IsEnabled = false;
             Disable_DS_Panel();
+            TempHP_Panel.IsEnabled = true;
             HealingPanel.IsEnabled = true;
         }
 
