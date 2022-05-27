@@ -12,11 +12,22 @@ namespace DnD_CharSheet_5e
     /// </summary>
     /// 
 
+    /* Class to visually represent the Inventory of a Character (Player) on UI for the user.
+     * 
+     * Allows the user to edit the fortune of their character and manage their inventory:     * 
+     * to equip and unequip equipable items, to get information about items or to remove them from the inventory of a given character.
+     * 
+     * For Example, when the user (player) lets the character don another armor - by clicking on the respective button -
+     * it will visually appear on the armor slot of the UI and the 'Armor Class' of the character will be calculated anew by the then notified instance of the Character-class held by SheetManager 
+     * and the UI in every other part of the app where the value of 'Armor Class' appears will be updated.
+    */
+
     public partial class InventoryWindow : Window
     {
         
         public static InventoryWindow inventoryWindow_Inst;
 
+        #region CONSTRUCTOR AND UI INITIALIZATION/ REFRESH UI METHODS
         public InventoryWindow()
         {
             InitializeComponent();
@@ -30,7 +41,7 @@ namespace DnD_CharSheet_5e
             Load_IconsForEquipedItems();
         }       
        
-        public void Init_UI()
+        private void Init_UI()
         {
             CharName_Box.Text = SheetManager.CS_Manager_Inst.character.CharacterName;
             PlayerName_Box.Text = SheetManager.CS_Manager_Inst.character.PlayerName;
@@ -39,7 +50,7 @@ namespace DnD_CharSheet_5e
             Clear_InventoryPanels();
             Generate_ItemBtns();
         }
-        public void Load_IconsForEquipedItems()
+        private void Load_IconsForEquipedItems()
         {
             if (SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon != null)
             {
@@ -69,7 +80,7 @@ namespace DnD_CharSheet_5e
             Generate_ItemBtns();
         }
 
-        public void Update_Riches()
+        private void Update_Riches()
         {
             Platinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Platinum.ToString();
             Gold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Gold.ToString();
@@ -77,7 +88,7 @@ namespace DnD_CharSheet_5e
             Copper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Copper.ToString();
         }
 
-        public void Clear_InventoryPanels()
+        private void Clear_InventoryPanels()
         {
             ItemsPanel.Children.Clear();
             WeaponsPanel.Children.Clear();
@@ -85,8 +96,7 @@ namespace DnD_CharSheet_5e
             
         }
 
-
-        public void Generate_ItemBtns()
+        private void Generate_ItemBtns()
         {
             foreach (Item item in SheetManager.CS_Manager_Inst.character.cInventory.cItems)
             {                
@@ -104,7 +114,10 @@ namespace DnD_CharSheet_5e
             }
         }
 
-        public void Create_Item_Button(Item item)
+        #endregion
+
+        #region CREATE BUTTON(S) METHODS
+        private Button Create_Button(Item item)
         {
             Button itemButton = new Button();
             itemButton.Height = 20;
@@ -118,13 +131,20 @@ namespace DnD_CharSheet_5e
 
             itemButton.FontWeight = FontWeights.Bold;
 
-            itemButton.Foreground = Brushes.DarkSlateGray; 
+            itemButton.Foreground = Brushes.DarkSlateGray;
 
             itemButton.Background = Brushes.WhiteSmoke;
 
             itemButton.Name = item.Item_ID;
 
             itemButton.Content = item.ItemName + " | Price: " + item.Coin.Price + " " + item.Coin.CoinKey + " | Weight: " + item.ItemWeight;
+
+            return itemButton;
+        }
+
+        private void Create_Item_Button(Item item)
+        {
+            Button itemButton = Create_Button(item);
 
             // Later on a functionality will be implemented here for the consumption of 'consumable' items on 'Item-Button-Click'
             //itemButton.Click += new RoutedEventHandler(Item_Button_Click);
@@ -135,27 +155,9 @@ namespace DnD_CharSheet_5e
             ItemsPanel.Children.Add(itemButton);
         }
 
-        public void Create_Weapon_Button(Weapon weapon)
+        private void Create_Weapon_Button(Weapon weapon)
         {
-            Button weaponButton = new Button();
-            weaponButton.Height = 20;
-            weaponButton.Width = 250;
-
-            Thickness BtnMargin = new Thickness();
-            BtnMargin.Top = 10;
-            BtnMargin.Bottom = 5;
-
-            weaponButton.Margin = BtnMargin;
-
-            weaponButton.FontWeight = FontWeights.Bold;
-
-            weaponButton.Foreground = Brushes.DarkSlateGray;
-
-            weaponButton.Background = Brushes.WhiteSmoke;
-
-            weaponButton.Name = weapon.Item_ID;
-
-            weaponButton.Content = weapon.ItemName + " | Price: " + weapon.Coin.Price + " " + weapon.Coin.CoinKey + " | Weight: " + weapon.ItemWeight;
+            Button weaponButton = Create_Button(weapon);
 
             weaponButton.Click += new RoutedEventHandler(Weapon_Button_LeftClick);
             weaponButton.MouseEnter += new MouseEventHandler(Weapon_Hover_Over);
@@ -164,35 +166,66 @@ namespace DnD_CharSheet_5e
             WeaponsPanel.Children.Add(weaponButton);
         }
 
-        public void Create_Armor_Button(Armor armor)
+        private void Create_Armor_Button(Armor armor)
         {
-            Button armorButton = new Button();
-            armorButton.Height = 20;
-            armorButton.Width = 250;
-
-            Thickness BtnMargin = new Thickness();
-            BtnMargin.Top = 10;
-            BtnMargin.Bottom = 5;
-
-            armorButton.Margin = BtnMargin;
-
-            armorButton.FontWeight = FontWeights.Bold;
-
-            armorButton.Foreground = Brushes.DarkSlateGray;
-
-            armorButton.Background = Brushes.WhiteSmoke;
-
-            armorButton.Name = armor.Item_ID;
-
-            armorButton.Content = armor.ItemName + " | Price: " + armor.Coin.Price + " " + armor.Coin.CoinKey + " | Weight: " + armor.ItemWeight;
+            Button armorButton = Create_Button(armor);
 
             armorButton.MouseEnter += new MouseEventHandler(Armor_Hover_Over);
             armorButton.Click += new RoutedEventHandler(Armor_Button_LeftClick);
             armorButton.MouseRightButtonDown += new MouseButtonEventHandler(Armor_Button_RightClick);
 
             ArmorPanel.Children.Add(armorButton);
-        }       
+        }
 
+        #endregion
+
+        #region EDIT MONEY (= player/ character fortune) BUTTON EVENT HANDLER AND RELATED METHODS
+        private void Edit_Money_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Apply_Money_Btn.IsEnabled = true;
+            Apply_Money_Btn.Visibility = Visibility.Visible;
+
+            Edit_Money_Btn.IsEnabled = false;
+            Edit_Money_Btn.Visibility = Visibility.Hidden;
+
+            Platinum_Box.IsEnabled = true;
+            Gold_Box.IsEnabled = true;
+            Silver_Box.IsEnabled = true;
+            Copper_Box.IsEnabled = true;
+        }
+
+        private void Apply_Money_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            FileManager.FM_Inst.Play_ClickSound();
+            Set_Riches();
+            Reset_Edit();
+        }
+
+        private void Set_Riches()
+        {
+            SheetManager.CS_Manager_Inst.character.cInventory.Set_Platinum_byTxt(Platinum_Box.Text);
+            SheetManager.CS_Manager_Inst.character.cInventory.Set_Gold_byTxt(Gold_Box.Text);
+            SheetManager.CS_Manager_Inst.character.cInventory.Set_Silver_byTxt(Silver_Box.Text);
+            SheetManager.CS_Manager_Inst.character.cInventory.Set_Copper_byTxt(Copper_Box.Text);
+        }
+
+        private void Reset_Edit()
+        {
+            Apply_Money_Btn.IsEnabled = false;
+            Apply_Money_Btn.Visibility = Visibility.Hidden;
+
+            Edit_Money_Btn.IsEnabled = true;
+            Edit_Money_Btn.Visibility = Visibility.Visible;
+
+            Platinum_Box.IsEnabled = false;
+            Gold_Box.IsEnabled = false;
+            Silver_Box.IsEnabled = false;
+            Copper_Box.IsEnabled = false;
+        }
+
+        #endregion
+
+        #region ITEM BUTTON EVENT HANDLER -> CLICK: Equip/unequip Items, 'consume' and remove Items/ HOVER OVER: Get Information about Items
         private void Item_Hover_Over(object sender, MouseEventArgs e)
         {
             Button itemButton = (Button)e.Source;
@@ -417,57 +450,6 @@ namespace DnD_CharSheet_5e
 
         }
 
-        private void Edit_Money_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            Apply_Money_Btn.IsEnabled = true;
-            Apply_Money_Btn.Visibility = Visibility.Visible;
-
-            Edit_Money_Btn.IsEnabled = false;
-            Edit_Money_Btn.Visibility = Visibility.Hidden;
-
-            Platinum_Box.IsEnabled = true;
-            Gold_Box.IsEnabled = true;
-            Silver_Box.IsEnabled = true;
-            Copper_Box.IsEnabled = true;
-        }
-
-        private void Apply_Money_Bt_Click(object sender, RoutedEventArgs e)
-        {
-            FileManager.FM_Inst.Play_ClickSound();
-            Set_Riches();
-            Reset_Edit();
-        }
-
-        private void Set_Riches()
-        {
-            SheetManager.CS_Manager_Inst.character.cInventory.Set_Platinum_byTxt(Platinum_Box.Text);
-            SheetManager.CS_Manager_Inst.character.cInventory.Set_Gold_byTxt(Gold_Box.Text);
-            SheetManager.CS_Manager_Inst.character.cInventory.Set_Silver_byTxt(Silver_Box.Text);
-            SheetManager.CS_Manager_Inst.character.cInventory.Set_Copper_byTxt(Copper_Box.Text);
-        }
-
-        private void Reset_Edit()
-        {
-            Apply_Money_Btn.IsEnabled = false;
-            Apply_Money_Btn.Visibility = Visibility.Hidden;
-
-            Edit_Money_Btn.IsEnabled = true;
-            Edit_Money_Btn.Visibility = Visibility.Visible;
-
-            Platinum_Box.IsEnabled = false;
-            Gold_Box.IsEnabled = false;
-            Silver_Box.IsEnabled = false;
-            Copper_Box.IsEnabled = false;
-        }
-
-        private void Button_MouseEnter(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void Button_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
+        #endregion
     }
 }

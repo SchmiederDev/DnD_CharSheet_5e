@@ -4,9 +4,13 @@ using System.Windows;
 
 namespace DnD_CharSheet_5e
 {
+    // Serializable Data Container for Saving and Loading Characters
     [Serializable]
     public class CharacterData
     {
+        #region PROPERTIES
+
+        #region CHARACTER ESSENTIALS
         public string pName { set; get; }
         public string cName { set; get; }
         public string race { set; get; }
@@ -15,7 +19,9 @@ namespace DnD_CharSheet_5e
         public string charClass { set; get; }
         public string alignment { set; get; }
         public string background { set; get; }
+        #endregion
 
+        #region LEVEL, STATE, HP AND HD
         public int level { set; get; }
 
         public int maxHP { set; get; }
@@ -28,21 +34,27 @@ namespace DnD_CharSheet_5e
 
         public int HD { set; get; }
         public int currHD { set; get; }
+        #endregion
 
+        #region ABILITIES
         public int strength { set; get; }
         public int dexerity { set; get; }
         public int constitution { set; get; }
         public int intelligence { set; get; }
         public int wisdom { set; get; }
         public int charisma { set; get; }
+        #endregion
 
+        #region SAVING THROWS
         public bool str_ST { set; get; }
         public bool dex_ST { set; get; }
         public bool con_ST { set; get; }
         public bool int_ST { set; get; }
         public bool wis_ST { set; get; }
         public bool cha_ST { set; get; }
+        #endregion
 
+        #region SKILLS
         public bool acrobatics { set; get; }
         public bool animalHandling { set; get; }
         public bool arcana { set; get; }
@@ -69,6 +81,9 @@ namespace DnD_CharSheet_5e
 
         public bool survival { set; get; }
 
+        #endregion
+
+        #region BACKGROUND
         public string CD_charAppearance { get; set; } 
 
         public string CD_backgroundStory { get; set; }
@@ -84,11 +99,15 @@ namespace DnD_CharSheet_5e
         public string CD_Skin { get; set; }
         public string CD_Hair { get; set; }
 
+        #endregion
+
 
         public Inventory CD_Inventory { get; set; }
         public Equipment CD_Equipment { get; set; }
-        
 
+        #endregion
+
+        #region METHOD FOR TRANSFERING VALUES OF THE CHARACTER CLASS TO CHARACTERDATA-CONTAINER
         public void Transfer_CharData(Character character)
         {
             pName = character.PlayerName;
@@ -169,5 +188,6 @@ namespace DnD_CharSheet_5e
             CD_Inventory = character.cInventory;
             CD_Equipment = character.CharEquipment;
         }
+        #endregion
     }
 }

@@ -8,7 +8,20 @@ namespace DnD_CharSheet_5e
 {
     public class ImageHandler
     {
+        #region SINGLETON AND CONSTRUCTOR
+
         public static ImageHandler ImgHandlerInst;
+
+        public ImageHandler()
+        {
+            if (ImgHandlerInst != null)
+            {
+                ImgHandlerInst = this;
+            }
+        }
+        #endregion
+
+        #region PROPERTIES
 
         public string[] ImageFileNames { get; set; }
 
@@ -16,33 +29,28 @@ namespace DnD_CharSheet_5e
 
         public Image DieImage { get; private set; } = new Image();
 
-        public ImageHandler()
-        {
-            if(ImgHandlerInst != null)
-            {
-                ImgHandlerInst = this;
-            }
-        }
+        #endregion
+
+        #region METHODS
 
         public void Set_Uris()
-        {           
-
+        {         
             foreach(string fileName in ImageFileNames)
             {
-                Uri tempUri = new Uri(fileName);
-                UriList.Add(tempUri);
+                Uri ImageUri = new Uri(fileName);
+                UriList.Add(ImageUri);
             }
         }
 
         public BitmapImage Get_SourceUri(string itemName)
         {
-            string tempPath = FileManager.FM_Inst.ImagesFolder + "\\" + itemName + ".png";
+            string imagePath = FileManager.FM_Inst.ImagesFolder + "\\" + itemName + ".png";
             
-            Uri tempUri = new Uri(tempPath);
+            Uri ImageUri = new Uri(imagePath);
 
-            if(UriList.Contains(tempUri))
+            if(UriList.Contains(ImageUri))
             {
-                BitmapImage bitmapImage = new BitmapImage(tempUri);
+                BitmapImage bitmapImage = new BitmapImage(ImageUri);
                 return bitmapImage;
             }
 
@@ -58,5 +66,7 @@ namespace DnD_CharSheet_5e
         {
             DieImage.Source = Get_SourceUri("d20_raw_green_transparentBG");
         }
+
+        #endregion
     }
 }

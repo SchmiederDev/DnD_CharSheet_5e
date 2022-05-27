@@ -6,6 +6,10 @@ namespace DnD_CharSheet_5e
 {
     public class Character
     {
+        #region PROPERTIES
+
+        #region CHARACTER ESSENTIALS
+
         public string PlayerName { get; set; }
         public string CharacterName { get; set; }
 
@@ -17,15 +21,30 @@ namespace DnD_CharSheet_5e
 
         public string Background { get; set; }
 
+        #endregion
+
+        #region LEVEL AND PROFICIENCY BONUS
         public int Level { get; set; }
 
+        // Proficiency Bonus is a number added to dice rolls depending on the level of the character
         public int ProficiencyBonus { get; set; } = 2;
 
+        // These are the levels when the proficiency bonus increases
         int[] profBonusIncrease = { 5, 9, 13, 17 };
+
+        #endregion
+
+        #region HITPOINTS, HIT DICE, INITIATIVE BONUS AND ARMOR CLASS
 
         public int MaxHP { get; set; }
         public int CurrentHP { get; set; }
         public int TempHP { get; set; }
+
+        public delegate void OnHPChanged();
+        public OnHPChanged hpChanged;
+
+        public delegate void OnTempHPChanged();
+        public OnTempHPChanged tempHPChanged;
 
         public bool IsAlive { get; set; } = true;
         public bool IsConscious { get; set; } = true;
@@ -33,14 +52,24 @@ namespace DnD_CharSheet_5e
         public int HitDice { get; set; }
         public int CurrentHitDice { get; set; }
 
+        // A number added to dice rolls determining the turn order in combat
         public int InitiativeBonus { get; private set; }
 
-        public int AC { get; set; } = 10;
+
+        // 'AC' = Armor Class, common D&D-Abbreviation
+        public int AC { get; set; } = ACBase;
 
         public const int ACBase = 10;
 
         public int ArmorBonus { get; set; } = 0;
-        public int ShieldBonus { get; set; } = 0;
+        public int ShieldBonus { get; set; } = 0;        
+
+        public delegate void OnACChanged();
+        public OnACChanged acChanged;
+
+        #endregion
+
+        #region Abilities
 
         public Ability Strength { get; set; } = new Ability();
         public Ability Dexterity { get; set; } = new Ability();
@@ -50,7 +79,9 @@ namespace DnD_CharSheet_5e
         public Ability Charisma { get; set; } = new Ability();
 
         public List<Ability> Abilities = new List<Ability>();
+        #endregion
 
+        #region SAVING THROWS
 
         public SavingThrow STR_Save { get; set; } = new SavingThrow();
         public SavingThrow DEX_Save { get; set; } = new SavingThrow();
@@ -59,8 +90,11 @@ namespace DnD_CharSheet_5e
         public SavingThrow WIS_Save { get; set; } = new SavingThrow();
         public SavingThrow CHA_Save { get; set; } = new SavingThrow();
 
-        public List<SavingThrow> Saves { get; private set; } = new List<SavingThrow>();
 
+        public List<SavingThrow> Saves { get; private set; } = new List<SavingThrow>();
+        #endregion
+
+        #region Skills
 
         public Skill Acrobatics { get; set; } = new Skill();
         public Skill AnimalHandling { get; set; } = new Skill();
@@ -91,6 +125,10 @@ namespace DnD_CharSheet_5e
 
         public List<Skill> Skills { get; set; } = new List<Skill>();
 
+        #endregion
+
+        #region APPEARANCE AND BACKGROUND
+
         public int Age { get; set; }
         public float Height { get; set; }
         public float Weight { get; set; }        
@@ -103,23 +141,24 @@ namespace DnD_CharSheet_5e
         public string BackgroundStory { get; set; }
         public string AlliesAndOrgas { get; set; }
 
-        public List<string> CharLanguages = new List<string>();
+        #endregion
+
+        #region INVENTORY AND OTHER
 
         public Inventory cInventory { get; set; } = new Inventory();                                         //cInventory = 'character Inventory'
 
         public Equipment CharEquipment = new Equipment();
 
-        public delegate void OnHPChanged();
-        public OnHPChanged hpChanged;
+        public List<string> CharLanguages = new List<string>();
 
-        public delegate void OnTempHPChanged();
-        public OnTempHPChanged tempHPChanged;
+        #endregion
 
-        public delegate void OnACChanged();
-        public OnACChanged acChanged;
+        #endregion
 
-        // IniBonus Calculation, LevelMax Control, Init_Basics -> Saves, Skills
-        
+        #region METHODS
+
+        #region INITILIZATION OF ABILITIES, SAVING THROWS AND SKILLS
+
         public void Init_Basics()
         {
             Init_Abilities();
@@ -127,6 +166,9 @@ namespace DnD_CharSheet_5e
             Init_Skills();
         }
 
+
+        // These initial values of Abilities, Saving Throws and Skills could be drawn from a database but since the amount of data is neglibile
+        // I opted against this possibility for better performance at runtime.        
         private void Init_Abilities()
         {
             Strength.AbilityName = "Strength";
@@ -262,6 +304,9 @@ namespace DnD_CharSheet_5e
             Skills.Add(Survival);
         }
 
+        #endregion
+
+        #region SETTERS FOR PARSING FROM UI OR INVOKING DELEGATES ON CHANGED VALUES
         public void Set_MaxHP_byText(string boxText)
         {
             MaxHP = int.Parse(boxText);
@@ -306,22 +351,7 @@ namespace DnD_CharSheet_5e
         public void Set_hitDice_byText(string boxText)
         {
             HitDice = int.Parse(boxText);
-        }
-        public void Update_HitDice()
-        {
-            HitDice = Level;
-        }
-
-        public void Update_ProfBonus()
-        {
-            for(int i = 0; i < profBonusIncrease.Length; i++)
-            {
-                if(profBonusIncrease[i] == Level)
-                {
-                    ProficiencyBonus++;
-                }
-            }
-        }
+        }        
 
         public void Set_currHitDice(string boxText)
         {
@@ -331,97 +361,7 @@ namespace DnD_CharSheet_5e
         public void Set_IniBonus()
         {
             InitiativeBonus = Dexterity.Modifier;
-        }
-
-        public bool Check_STR_Requirement(Armor armor)
-        {
-            if(armor.StrMax <= Strength.Score)
-            {
-                return true;
-            }
-
-            else
-            {
-                return false;
-            }
-        }
-
-        public void Calculate_AC()
-        {                       
-            if(CharEquipment.CharacterArmor != null && CharEquipment.LeftHand_Armor != null)
-            {
-                ArmorBonus = CharEquipment.CharacterArmor.ArmorBonus;
-                ShieldBonus = CharEquipment.LeftHand_Armor.ArmorBonus;
-
-                if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == false)
-                {
-                    AC = ACBase + ArmorBonus + ShieldBonus + Dexterity.Modifier;
-                }
-
-                else if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == true)
-                {
-                    if (Dexterity.Modifier <= 2)
-                    {
-                        AC = ACBase + ArmorBonus + ShieldBonus + Dexterity.Modifier;
-                    }
-
-                    else
-                    {
-                        AC = 12 + ArmorBonus + ShieldBonus;
-                    }
-                }
-
-                else if (CharEquipment.CharacterArmor.DexAdd == false)
-                {
-                    AC = ACBase + ArmorBonus + ShieldBonus;
-                }
-            }
-
-            else if(CharEquipment.CharacterArmor == null && CharEquipment.LeftHand_Armor != null)
-            {
-                ShieldBonus = CharEquipment.LeftHand_Armor.ArmorBonus;
-                AC = ACBase + ShieldBonus + Dexterity.Modifier;
-            }
-
-            else if(CharEquipment.CharacterArmor != null && CharEquipment.LeftHand_Armor == null)
-            {
-                ArmorBonus = CharEquipment.CharacterArmor.ArmorBonus;
-
-                if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == false)
-                {
-                    AC = ACBase + ArmorBonus + Dexterity.Modifier;
-                }
-
-                else if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == true)
-                {
-                    if(Dexterity.Modifier <= 2)
-                    {
-                        AC = ACBase + ArmorBonus + Dexterity.Modifier;
-                    }
-
-                    else
-                    {
-                        AC = 12 + ArmorBonus;
-                    }
-                }
-
-                else if (CharEquipment.CharacterArmor.DexAdd == false)
-                {
-                    AC = ACBase + ArmorBonus;
-                }
-            }
-
-            else if(CharEquipment.CharacterArmor == null && CharEquipment.LeftHand_Armor == null)
-            {                
-                AC = ACBase + Dexterity.Modifier;
-            }
-
-            if(acChanged != null)
-            {
-                acChanged.Invoke();
-            }
-
-        }
+        }        
 
         public void Set_StrScore_byText(string boxText)
         {
@@ -467,79 +407,7 @@ namespace DnD_CharSheet_5e
             }
         }
 
-        public void CalculateAbilityModifiers()
-        {
-            foreach(Ability ability in Abilities)
-            {
-                ability.Calculate_Modifier();
-            }
-        }
-
-        public void CalculateSavingThrowModifiers()
-        {
-            foreach(SavingThrow savingThrow in Saves)
-            {
-                savingThrow.Calculate_SaveModifier(ProficiencyBonus);
-            }
-        }
-
-        public void CalculateSkillModifiers()
-        {
-            foreach(Skill skill in Skills)
-            {
-                skill.Calculate_SkillModifier(ProficiencyBonus);
-            }
-        }
-
-        public void Set_SaveBaseValues()
-        {
-            STR_Save.AbilityBonus = Strength.Modifier;
-            DEX_Save.AbilityBonus = Dexterity.Modifier;
-            CON_Save.AbilityBonus = Constitution.Modifier;
-            INT_Save.AbilityBonus = Intelligence.Modifier;
-            WIS_Save.AbilityBonus = Wisdom.Modifier;
-            CHA_Save.AbilityBonus = Charisma.Modifier;
-                        
-        }
-
-        public void Set_SaveProficiencies(bool strProf, bool dexProf, bool conProf, bool intProf, bool wisProf, bool chaProf)
-        {
-            STR_Save.IsProficient = strProf;
-            DEX_Save.IsProficient = dexProf;
-            CON_Save.IsProficient = conProf;
-            INT_Save.IsProficient = intProf;
-            WIS_Save.IsProficient = wisProf;
-            CHA_Save.IsProficient = chaProf;
-        }
-
-        public void Set_SkillBaseValues()
-        {
-            Acrobatics.AbilityBonus = Dexterity.Modifier;
-            AnimalHandling.AbilityBonus = Wisdom.Modifier;
-            Arcana.AbilityBonus = Intelligence.Modifier;
-            Athletics.AbilityBonus = Strength.Modifier;
-
-            Deception.AbilityBonus = Charisma.Modifier;
-
-            History.AbilityBonus = Intelligence.Modifier;
-            Insight.AbilityBonus = Wisdom.Modifier;
-            Intimidation.AbilityBonus = Charisma.Modifier;
-            Investigation.AbilityBonus = Intelligence.Modifier;
-
-            Medicine.AbilityBonus = Wisdom.Modifier;
-            Nature.AbilityBonus = Intelligence.Modifier;
-
-            Perception.AbilityBonus = Wisdom.Modifier;
-            Performance.AbilityBonus = Charisma.Modifier;
-            Persuasion.AbilityBonus = Charisma.Modifier;
-
-            Religion.AbilityBonus = Intelligence.Modifier;
-
-            SleightOfHand.AbilityBonus = Dexterity.Modifier;
-            Stealth.AbilityBonus = Dexterity.Modifier;
-
-            Survival.AbilityBonus = Dexterity.Modifier;
-        }
+        // These Setter-Methods are organized after the related Abilities (like in D&D) to break down the code into more manageable pieces.
 
         public void Set_Proficiencies_strSkills(bool athletics)
         {
@@ -549,7 +417,7 @@ namespace DnD_CharSheet_5e
         public void Set_Proficiencies_dexSkills(bool acrobatics, bool sleightOfHand, bool stealth)
         {
             Acrobatics.IsProficient = acrobatics;
-            SleightOfHand.IsProficient =sleightOfHand;
+            SleightOfHand.IsProficient = sleightOfHand;
             Stealth.IsProficient = stealth;
         }
 
@@ -579,12 +447,227 @@ namespace DnD_CharSheet_5e
             Persuasion.IsProficient = persuasion;
         }
 
+        #endregion
+
+        #region METHODS FOR CALCULATING MODIFIERS AND SETTING/ INITIALIZING RELATED VALUES AFTERWARDS
+
+        public void CalculateAbilityModifiers()
+        {
+            foreach(Ability ability in Abilities)
+            {
+                ability.Calculate_Modifier();
+            }
+        }
+
+        public void CalculateSavingThrowModifiers()
+        {
+            foreach(SavingThrow savingThrow in Saves)
+            {
+                savingThrow.Calculate_SaveModifier(ProficiencyBonus);
+            }
+        }
+
+        public void CalculateSkillModifiers()
+        {
+            foreach(Skill skill in Skills)
+            {
+                skill.Calculate_SkillModifier(ProficiencyBonus);
+            }
+        }
+
+        public void Set_SaveAbilityBonuses()
+        {
+            STR_Save.AbilityBonus = Strength.Modifier;
+            DEX_Save.AbilityBonus = Dexterity.Modifier;
+            CON_Save.AbilityBonus = Constitution.Modifier;
+            INT_Save.AbilityBonus = Intelligence.Modifier;
+            WIS_Save.AbilityBonus = Wisdom.Modifier;
+            CHA_Save.AbilityBonus = Charisma.Modifier;
+                        
+        }
+
+        public void Set_SaveProficiencies(bool strProf, bool dexProf, bool conProf, bool intProf, bool wisProf, bool chaProf)
+        {
+            STR_Save.IsProficient = strProf;
+            DEX_Save.IsProficient = dexProf;
+            CON_Save.IsProficient = conProf;
+            INT_Save.IsProficient = intProf;
+            WIS_Save.IsProficient = wisProf;
+            CHA_Save.IsProficient = chaProf;
+        }
+
+        // Linked according to D&D-Rules. It would be possible to get the relation of Skill and Ability from a database.
+        // But this method reduces the number of files involved and runtime operations.
+        public void Set_SkillBaseValues()
+        {
+            Acrobatics.AbilityBonus = Dexterity.Modifier;
+            AnimalHandling.AbilityBonus = Wisdom.Modifier;
+            Arcana.AbilityBonus = Intelligence.Modifier;
+            Athletics.AbilityBonus = Strength.Modifier;
+
+            Deception.AbilityBonus = Charisma.Modifier;
+
+            History.AbilityBonus = Intelligence.Modifier;
+            Insight.AbilityBonus = Wisdom.Modifier;
+            Intimidation.AbilityBonus = Charisma.Modifier;
+            Investigation.AbilityBonus = Intelligence.Modifier;
+
+            Medicine.AbilityBonus = Wisdom.Modifier;
+            Nature.AbilityBonus = Intelligence.Modifier;
+
+            Perception.AbilityBonus = Wisdom.Modifier;
+            Performance.AbilityBonus = Charisma.Modifier;
+            Persuasion.AbilityBonus = Charisma.Modifier;
+
+            Religion.AbilityBonus = Intelligence.Modifier;
+
+            SleightOfHand.AbilityBonus = Dexterity.Modifier;
+            Stealth.AbilityBonus = Dexterity.Modifier;
+
+            Survival.AbilityBonus = Dexterity.Modifier;
+        }
+        #endregion
+
+        #region LEVEL UP AND RELATED UPDATE METHODS
+
         public void Level_Up()
         {
             Level++;
             Update_HitDice();
             Update_ProfBonus();
         }
+
+        public void Update_HitDice()
+        {
+            HitDice = Level;
+        }
+
+        public void Update_ProfBonus()
+        {
+            for (int i = 0; i < profBonusIncrease.Length; i++)
+            {
+                if (profBonusIncrease[i] == Level)
+                {
+                    ProficiencyBonus++;
+                }
+            }
+        }
+
+        #endregion
+
+        #region ARMOR CLASS CALCULATION        
+
+        /* EXPLANATORY NOTE ON UNDERLYING GAME MECHANIC:
+         * The 'Armor-Class' (AC) describes the defensive potential of a D&D-character.
+         * It is dependend the 'Dexterity'-Ability and on whether the character is wearing armor or not and if, which kind of armor.
+        */
+
+        // This extensive If-Else-Statement doesn't seem elegant but is in fact the only method to represent D&D-Rules about armor accordingly.
+
+        public void Calculate_AC()
+        {
+            if (CharEquipment.CharacterArmor != null && CharEquipment.LeftHand_Armor != null)
+            {
+                ArmorBonus = CharEquipment.CharacterArmor.ArmorBonus;
+                ShieldBonus = CharEquipment.LeftHand_Armor.ArmorBonus;
+
+                if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == false)
+                {
+                    AC = ACBase + ArmorBonus + ShieldBonus + Dexterity.Modifier;
+                }
+
+                else if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == true)
+                {
+                    #region EXPLANATORY NOTE ON UNDERLYING GAME MECHANIC:
+
+                    /* Usually, the Dexterity-Modifier is added to the value representing the defensive potential of a character (= Armor Class).
+                     * But, some of the heavier types of armor have a maximum for the Dexterity-Modifier that may be added
+                     * (because the character can't move the same way as without the heavy armor).
+                     * This maximum equals '2'. Therefore it is checked here whether the the Dexterity-Modifier is lower than 2.
+                     * If it is higher than only the base value and the maximum of 2 are added -> 10 + 2 = 12.
+                    */
+
+                    #endregion
+
+                    if (Dexterity.Modifier <= 2)
+                    {
+                        AC = ACBase + ArmorBonus + ShieldBonus + Dexterity.Modifier;
+                    }
+
+                    else
+                    {
+                        AC = 12 + ArmorBonus + ShieldBonus;
+                    }
+                }
+
+                else if (CharEquipment.CharacterArmor.DexAdd == false)
+                {
+                    AC = ACBase + ArmorBonus + ShieldBonus;
+                }
+            }
+
+            else if (CharEquipment.CharacterArmor == null && CharEquipment.LeftHand_Armor != null)
+            {
+                ShieldBonus = CharEquipment.LeftHand_Armor.ArmorBonus;
+                AC = ACBase + ShieldBonus + Dexterity.Modifier;
+            }
+
+            else if (CharEquipment.CharacterArmor != null && CharEquipment.LeftHand_Armor == null)
+            {
+                ArmorBonus = CharEquipment.CharacterArmor.ArmorBonus;
+
+                if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == false)
+                {
+                    AC = ACBase + ArmorBonus + Dexterity.Modifier;
+                }
+
+                else if (CharEquipment.CharacterArmor.DexAdd == true && CharEquipment.CharacterArmor.HasMax == true)
+                {
+                    if (Dexterity.Modifier <= 2)
+                    {
+                        AC = ACBase + ArmorBonus + Dexterity.Modifier;
+                    }
+
+                    else
+                    {
+                        AC = 12 + ArmorBonus;
+                    }
+                }
+
+                else if (CharEquipment.CharacterArmor.DexAdd == false)
+                {
+                    AC = ACBase + ArmorBonus;
+                }
+            }
+
+            else if (CharEquipment.CharacterArmor == null && CharEquipment.LeftHand_Armor == null)
+            {
+                AC = ACBase + Dexterity.Modifier;
+            }
+
+            if (acChanged != null)
+            {
+                acChanged.Invoke();
+            }
+
+        }
+
+        public bool Check_STR_Requirement(Armor armor)
+        {
+            if (armor.StrMax <= Strength.Score)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region LOAD AND RESET CHARACTER METHODS
 
         public void Load_Character(CharacterData charData)
         {
@@ -623,7 +706,7 @@ namespace DnD_CharSheet_5e
 
             CalculateAbilityModifiers();
            
-            Set_SaveBaseValues();            
+            Set_SaveAbilityBonuses();            
 
             Set_SaveProficiencies(charData.str_ST, charData.dex_ST, charData.con_ST, charData.int_ST, charData.wis_ST, charData.cha_ST);
             
@@ -671,5 +754,8 @@ namespace DnD_CharSheet_5e
             cInventory.Clear_Inventory();
             CharEquipment.Clear_Equipment();
         }
+        #endregion
+
+        #endregion
     }
 }

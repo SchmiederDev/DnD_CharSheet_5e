@@ -32,22 +32,12 @@ namespace DnD_CharSheet_5e
 
         /*  The Sheet-Manager is the one central instance of this app which processes information from all parts of the app as well as providing it to the different classes, windows and pages.
          *  
-         *  It serves two purposes: First, it handles actions of the character and done to the character (handling input of the user/ player)
-         *  and second, it serves as the central base of background knowledge about the game and its mechanics. 
-         *  
-         *  To explain this first point: The character(-class) has e. g. several values describing how effectively this character can attack hostile creatures in combat in general.
-         *  The SheetManager handles the actual attack (when the user has clicked on one of the relevant buttons in the CombatWindow). 
-         *  It grabs all relevant values relevant for making an attack and calculates the outcome of the attempt of the character to make an attack and then provides feedback to the player visualized on UI.
-         *  Another example: The character(-class) has so called 'hitpoints' describing how much life force is within them. 
-         *  When the character suffers a blow and looses hitpoints this is handled by the SheetManager which also checks if the character is still alive and/ or unconscious.
-         *  It reports back the results of its state analysis of the character to the character themselves as well as to the UI and thereby the user.
-         *  
-         *  The second function of the Sheetmanager as a source of knowledge:
-         *  The SheetManager also processes relevant information from the databases relevant fpr the game.
-         *  To give you an example: Some character are able to use magic. But, usually characters know only a few spells whereas the SheetManager 'knows' them all.
-         *  It provides the 'SpellWindow' - and the user - with the information which spells a character can cast at a certain level.
-         *  When the chracter levels up, the Sheetmanager gets all the new spells a character can learn now and provides it to the user.
-         *  Based on the users decision - that is interacting with UI - it registers which of the spells available was learned by the character - that is storing this data about the character for the user. 
+         * FIRST, it serves as a MEDIATOR BETWEEN THE ACTIVE CHARACTER AND DIFFERENT PARTS OF THE APP. 
+         * SECOND, The SheetManager HANDLES ACTIONS OF THE CHARACTER and done to the character (= INPUT OF THE USER/ PLAYER).
+         * THIRD, it serves as the CENTRAL BASE OF background KNOWLEDGE ABOUT THE GAME and its mechanics = DATA AND DATABASES.
+         * 
+         * For further explanation on the purpose and the functions of SheetManager see explanatory note at the head of the SheetManager-Class
+         * 
          */
         #endregion
 
@@ -122,7 +112,7 @@ namespace DnD_CharSheet_5e
         {
             try
             {
-                SheetManager.CS_Manager_Inst.theWeave.Load_SpellDataBase(FileManager.FM_Inst.jsonSDB);
+                SheetManager.CS_Manager_Inst.theWeave.Load_SpellDataBase(FileManager.FM_Inst.SpellDataBase_JSON);
             }
 
             catch (Exception ex)
@@ -132,7 +122,7 @@ namespace DnD_CharSheet_5e
 
             try
             {
-                SheetManager.CS_Manager_Inst.theWeave.Load_BardSpellList(FileManager.FM_Inst.jsonBSL);
+                SheetManager.CS_Manager_Inst.theWeave.Load_BardSpellList(FileManager.FM_Inst.BardSpellList_JSON);
             }
 
             catch (Exception ex)
@@ -142,7 +132,7 @@ namespace DnD_CharSheet_5e
 
             try
             {
-                SheetManager.CS_Manager_Inst.theWeave.Load_WizardSpellList(FileManager.FM_Inst.jsonWSL);
+                SheetManager.CS_Manager_Inst.theWeave.Load_WizardSpellList(FileManager.FM_Inst.WizardSpellList_JSON);
             }
 
             catch (Exception ex)

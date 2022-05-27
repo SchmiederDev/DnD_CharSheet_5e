@@ -4,6 +4,8 @@ namespace DnD_CharSheet_5e
 {
     public class D20_System
     {
+        #region PROPERTIES
+
         Random dieSeed;
 
         const int dieBase = 1;
@@ -16,11 +18,20 @@ namespace DnD_CharSheet_5e
         public int d20 { get; } = 20;
         public int d100 { get; } = 100;
 
+        #endregion
+
         public void InitializeRandom()
         {
             dieSeed = new Random();
         }
 
+        /* The 'Next'- Method returns a maximum value which is lower than 'MaxValue' for the second parameter/ argument by 1. 
+         * So 'd4' e. g. could have been initiated with '5' instead of '4'.  
+         * But it seemed somehow illogical to me to represent a 4-sided die with a number greater than the actual sides of the die.
+         * This is why I kept the real number of sides for the dice and added '1' in the dice roll methods.
+        */
+
+        #region METHODS (DICE ROLLS METHODS)
         public int Roll_D4()
         {
             int result = dieSeed.Next(dieBase, d4 + 1);
@@ -68,5 +79,6 @@ namespace DnD_CharSheet_5e
             int result = numerator * dieSeed.Next(dieBase, denominator + 1);
             return result;
         }
+        #endregion
     }
 }

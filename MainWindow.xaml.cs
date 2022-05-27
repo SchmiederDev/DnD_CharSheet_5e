@@ -387,7 +387,8 @@ namespace DnD_CharSheet_5e
 
         #endregion
 
-        #region MAIN FUNCTIONS FOR HANDLING USER INPUT, ENABLING AND DISABLING UI-ELEMENTS
+
+        #region MAIN METHODS FOR HANDLING USER INPUT, ENABLING AND DISABLING UI-ELEMENTS
         private void CreateCharacter()
         {
             Reset_Form();
@@ -397,7 +398,7 @@ namespace DnD_CharSheet_5e
                 Deactivate_SideBarMenu_Buttons();
             }
 
-            FirstLevel();
+            Set_FirstLevel();
             EnableUIForUserInput();
         }
 
@@ -407,7 +408,7 @@ namespace DnD_CharSheet_5e
             Reset_HP_Panel();
 
             Deactivate_IniRolls();
-            Reset_IniPanel();
+            Reset_InitiativePanel();
 
             Clear_AllValues();
         }
@@ -421,9 +422,9 @@ namespace DnD_CharSheet_5e
                 ApplyButton.IsEnabled = false;
                 Activate_SideBarMenu_Buttons();
                 Deactivate_CharacterInputs();
-                SubmitCharacter_byUserInput();
+                Commit_Character_byUserInput();
                 Init_HPHD_Panel();
-                Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput();
+                Deactivate_ScoreInput_and_Calculate_AbilityModifiers_byUserInput();
                 Activate_IniRolls();
 
                 Activate_SavingThrows();
@@ -446,20 +447,20 @@ namespace DnD_CharSheet_5e
 
             Deactivate_CharacterInputs();
 
-            SubmitCharacter_OnLoad();
+            Commit_Character_OnLoad();
             
-            Set_Level_and_HP_Panel();
+            Set_Level_and_HP_Panel_OnLoad();
             
             Deactivate_Scores_and_Show_AbilityModifiers();
             Show_AbilityScores();
 
             Deactivate_SaveProf_CheckBoxes();
             Show_SaveModifiers();
-            Set_SaveProficiency_Buttons();
+            Set_SaveProficiency_CheckBoxes();
 
             Deactivate_SkillProficiency_CheckBoxes();
             Show_SkillModifiers();
-            Set_SkillProficiency_Buttons();
+            Set_SkillProficiency_CheckBoxes();
            
             Activate_IniRolls();
            
@@ -468,9 +469,10 @@ namespace DnD_CharSheet_5e
             Activate_Checks();
         }
 
-        
+
         #endregion
 
+        #region METHODS ENABLING AND DISABLING UI-ELEMENTS/ USER INPUT
         public void Activate_SideBarMenu_Buttons()
         {
             foreach(Button MenuBtn in MainMenuBtns)
@@ -492,17 +494,7 @@ namespace DnD_CharSheet_5e
             }
 
             IsMainMenu_Active = false;
-        }
-
-        private void FirstLevel()
-        {
-            SheetManager.CS_Manager_Inst.character.Level = 1;
-            LevelText.Text = SheetManager.CS_Manager_Inst.character.Level.ToString();
-            LevelUp_Btn.IsEnabled = true;            
-            SheetManager.CS_Manager_Inst.character.Update_HitDice();
-            HDBox.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
-            ProficiencyBonusBox.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
-        }
+        }        
 
         private void EnableUIForUserInput()
         {
@@ -513,44 +505,8 @@ namespace DnD_CharSheet_5e
             Activate_SkillProficiency_CheckBoxes();
         }
 
-        private void Init_HPHD_Panel()
-        {
-            SheetManager.CS_Manager_Inst.character.Set_MaxHP_byText(MaxHPBox.Text);
-            MaxHPBox.IsEnabled = false;            
-
-            SheetManager.CS_Manager_Inst.character.Init_HP_HD();
-
-            SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP;
-            SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
-            SheetManager.CS_Manager_Inst.Init_TempHPCallback();
-
-            CurrHPBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
-            CurrHDBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHitDice.ToString();
-        }
-
-        private void Set_Level_and_HP_Panel()
-        {
-            LevelText.Text = SheetManager.CS_Manager_Inst.character.Level.ToString();
-            LevelUp_Btn.IsEnabled = true;
-
-            SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP;
-            SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
-            SheetManager.CS_Manager_Inst.Init_TempHPCallback();
-
-            MaxHPBox.Text = SheetManager.CS_Manager_Inst.character.MaxHP.ToString();
-            CurrHPBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
-            TempHPBox.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
-
-            HDBox.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
-            CurrHDBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHitDice.ToString();
-
-            ProficiencyBonusBox.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
-        }
-
-        
-
-        // I could have grabbed these elements on initialization of the window - like e. g. the ability score textboxes - to set them all at once with a loop
-        // but, since that wouldn't make the code very much shorter - on the contrary - I opted against this method and just set these manually
+        // One could have grabbed these elements on initialization of the window - like e. g. the ability score textboxes - to set them all at once with a loop
+        // but, since that wouldn't make the code shorter - on the contrary - these are just set manually here.
         private void Activate_CharacterInputs()
         {
             CharNameText.IsEnabled = true;
@@ -573,12 +529,89 @@ namespace DnD_CharSheet_5e
             RaceBox.IsEnabled = false;
             SubRaceBox.IsEnabled = false;
             ClassBox.IsEnabled = false;
+        }       
+
+        private void Activate_HP_Panel()
+        {
+            MaxHPBox.IsEnabled = true;
+            CurrHPBox.IsEnabled = true;
+            TempHPBox.IsEnabled = true;
+            CurrHDBox.IsEnabled = true;
         }
 
+        private void Activate_ScoreInput()
+        {
+            foreach (TextBox ScoreBox in AbilityScoreBoxes)
+            {
+                ScoreBox.IsEnabled = true;
+            }
+        }        
 
+        private void Activate_IniRolls()
+        {
+            SheetManager.CS_Manager_Inst.character.Set_IniBonus();
+            InitiativeBonusBox.Text = SheetManager.CS_Manager_Inst.character.InitiativeBonus.ToString();
+            InitiativeBtn.IsEnabled = true;
+        }
+
+        private void Deactivate_IniRolls()
+        {
+            InitiativeBtn.IsEnabled = false;
+        }        
+
+        private void Activate_SaveProf_CheckBoxes()
+        {
+            foreach (CheckBox SaveCB in SavingThrowProficiencyCheckBoxes)
+            {
+                SaveCB.IsEnabled = true;
+            }
+        }
+
+        private void Deactivate_SaveProf_CheckBoxes()
+        {
+            foreach (CheckBox SaveCB in SavingThrowProficiencyCheckBoxes)
+            {
+                SaveCB.IsEnabled = false;
+            }
+        }
+
+        private void Activate_Checks()
+        {
+            foreach (Button CheckBtn in DiceRollBtns)
+            {
+                CheckBtn.IsEnabled = true;
+            }
+        }
+
+        private void Deactivate_Checks()
+        {
+            foreach (Button CheckBtn in DiceRollBtns)
+            {
+                CheckBtn.IsEnabled = false;
+            }
+        }
+
+        private void Activate_SkillProficiency_CheckBoxes()
+        {
+            foreach (CheckBox SkillProfBox in SkillProficiencyCheckBoxes)
+            {
+                SkillProfBox.IsEnabled = true;
+            }
+        }
+
+        private void Deactivate_SkillProficiency_CheckBoxes()
+        {
+            foreach (CheckBox SkillProfBox in SkillProficiencyCheckBoxes)
+            {
+                SkillProfBox.IsEnabled = false;
+            }
+        }
+        #endregion
+
+        #region METHODS FOR CLEARING/ RESETTING INPUT FIELDS 
         private void Reset_CharacterInputs()
         {
-            CharNameText.Clear();        
+            CharNameText.Clear();
             PlayerNameText.Clear();
 
             RaceBox.Clear();
@@ -589,58 +622,10 @@ namespace DnD_CharSheet_5e
             AlignmentBox.SelectedIndex = 0;
             BackgroundBox.Clear();
 
-            LevelText.Clear();           
-        }        
-
-        private void SubmitCharacter_byUserInput()
-        {
-            SheetManager.CS_Manager_Inst.character.PlayerName = PlayerNameText.Text;
-            SheetManager.CS_Manager_Inst.character.CharacterName = CharNameText.Text;
-            SheetManager.CS_Manager_Inst.character.RaceName = RaceBox.Text;
-            SheetManager.CS_Manager_Inst.character.SubraceName = SubRaceBox.Text;
-            SheetManager.CS_Manager_Inst.character.ClassName = ClassBox.Text;
-            SheetManager.CS_Manager_Inst.character.Alignment = AlignmentBox.Text;
-            SheetManager.CS_Manager_Inst.character.Background = BackgroundBox.Text;
-        }
-        
-        private void SubmitCharacter_OnLoad()
-        {
-            PlayerNameText.Text = SheetManager.CS_Manager_Inst.character.PlayerName;
-            CharNameText.Text = SheetManager.CS_Manager_Inst.character.CharacterName;
-            RaceBox.Text = SheetManager.CS_Manager_Inst.character.RaceName;
-            SubRaceBox.Text = SheetManager.CS_Manager_Inst.character.SubraceName;
-            ClassBox.Text = SheetManager.CS_Manager_Inst.character.ClassName;
-            AlignmentBox.Text = SheetManager.CS_Manager_Inst.character.Alignment;
-            BackgroundBox.Text = SheetManager.CS_Manager_Inst.character.Background;
+            LevelText.Clear();
         }
 
-        private void Activate_HP_Panel()
-        {
-            MaxHPBox.IsEnabled = true;
-            CurrHPBox.IsEnabled = true;
-            TempHPBox.IsEnabled = true;
-            CurrHDBox.IsEnabled = true;            
-        }
-
-        private void Activate_ScoreInput()
-        {            
-            foreach (TextBox ScoreBox in AbilityScoreBoxes)
-            {
-                ScoreBox.IsEnabled = true;
-            }
-        }        
-
-        private void Reset_HP_Panel()
-        {
-            MaxHPBox.Clear();
-            CurrHPBox.Clear();
-            TempHPBox.Clear();
-            HDBox.Clear();
-            CurrHDBox.Clear();            
-        }
-
-        // Initiative will hereafter sometimes be abbreviated to 'Ini' as is also common for the game
-        private void Reset_IniPanel()
+        private void Reset_InitiativePanel()
         {
             InitiativeBonusBox.Clear();
             InitiativeResultBox.Clear();
@@ -649,22 +634,47 @@ namespace DnD_CharSheet_5e
             ProficiencyBonusBox.Clear();
         }
 
-        private void Show_AbilityScores()
+        private void Reset_HP_Panel()
         {
-            StrScoreBox.Text = SheetManager.CS_Manager_Inst.character.Strength.Score.ToString();
-            DexScoreBox.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Score.ToString();
-            ConScoreBox.Text = SheetManager.CS_Manager_Inst.character.Constitution.Score.ToString();
-            IntScoreBox.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Score.ToString();
-            WisScoreBox.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Score.ToString();
-            ChaScoreBox.Text = SheetManager.CS_Manager_Inst.character.Charisma.Score.ToString();
+            MaxHPBox.Clear();
+            CurrHPBox.Clear();
+            TempHPBox.Clear();
+            HDBox.Clear();
+            CurrHDBox.Clear();
+        }        
+
+        private void Clear_AllValues()
+        {
+            Clear_AllNumberBoxes();
+            Clear_AllCheckBoxes();
         }
 
+        private void Clear_AllNumberBoxes()
+        {
+            foreach (TextBox NumberBox in MainSheetNumberBoxes)
+            {
+                NumberBox.Clear();
+            }
+        }
+
+        private void Clear_AllCheckBoxes()
+        {
+            foreach (CheckBox ProficiencyCheckBox in MainSheetCheckBoxes)
+            {
+                ProficiencyCheckBox.IsChecked = false;
+            }
+        }
+        #endregion
+
+
+        #region METHOD(S) FOR CHECKING USER INPUT OF NUMBERS (INT)
         private bool CheckValue(string textBoxTxt)
         {
 
             if (int.TryParse(textBoxTxt, out int number))
             {
-                if(number > 0 && number < 21)
+                // Ability Score Values in D&D can only be wthinin the range of 1 and 20.
+                if (number > 0 && number < 21)
                 {
                     return true;
                 }
@@ -682,12 +692,12 @@ namespace DnD_CharSheet_5e
         }
 
         private void Check_Values()
-        {            
-            if(CheckValue(MaxHPBox.Text))
-            {                
-                bool AreScoreValuesCorrect = AbilityScoreBoxes.TrueForAll(ScoreBox => CheckValue(ScoreBox.Text));
+        {
+            if (CheckValue(MaxHPBox.Text))
+            {
+                bool AreScoreValuesValid= AbilityScoreBoxes.TrueForAll(ScoreBox => CheckValue(ScoreBox.Text));
 
-                if(AreScoreValuesCorrect)
+                if (AreScoreValuesValid)
                 {
                     hasError = false;
                 }
@@ -703,8 +713,110 @@ namespace DnD_CharSheet_5e
                 hasError = true;
             }
         }
+        #endregion
 
-        private void Deactivate_Scores_and_Calculate_AbilityModifiers_byUserInput()
+
+        #region METHODS FOR PASSING VALUES BETWEEN UI AND THE CHARACTER CLASS
+
+        // For explanations of the calculations done here - the so called 'Modifiers' - see the 'Character'-Class, Ability, Saving Throw and Skill Classes
+        // The current character in play is held by the 'SheetManager'-Class which serves as a mediator between the current character and other parts of the app 
+
+        private void Commit_Character_byUserInput()
+        {
+            SheetManager.CS_Manager_Inst.character.PlayerName = PlayerNameText.Text;
+            SheetManager.CS_Manager_Inst.character.CharacterName = CharNameText.Text;
+            SheetManager.CS_Manager_Inst.character.RaceName = RaceBox.Text;
+            SheetManager.CS_Manager_Inst.character.SubraceName = SubRaceBox.Text;
+            SheetManager.CS_Manager_Inst.character.ClassName = ClassBox.Text;
+            SheetManager.CS_Manager_Inst.character.Alignment = AlignmentBox.Text;
+            SheetManager.CS_Manager_Inst.character.Background = BackgroundBox.Text;
+        }
+
+        private void Commit_Character_OnLoad()
+        {
+            PlayerNameText.Text = SheetManager.CS_Manager_Inst.character.PlayerName;
+            CharNameText.Text = SheetManager.CS_Manager_Inst.character.CharacterName;
+            RaceBox.Text = SheetManager.CS_Manager_Inst.character.RaceName;
+            SubRaceBox.Text = SheetManager.CS_Manager_Inst.character.SubraceName;
+            ClassBox.Text = SheetManager.CS_Manager_Inst.character.ClassName;
+            AlignmentBox.Text = SheetManager.CS_Manager_Inst.character.Alignment;
+            BackgroundBox.Text = SheetManager.CS_Manager_Inst.character.Background;
+        }
+
+        private void Set_FirstLevel()
+        {
+            SheetManager.CS_Manager_Inst.character.Level = 1;
+            LevelText.Text = SheetManager.CS_Manager_Inst.character.Level.ToString();
+            LevelUp_Btn.IsEnabled = true;
+            SheetManager.CS_Manager_Inst.character.Update_HitDice();
+            HDBox.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
+            ProficiencyBonusBox.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
+        }
+
+        private void Init_HPHD_Panel()
+        {
+            SheetManager.CS_Manager_Inst.character.Set_MaxHP_byText(MaxHPBox.Text);
+            MaxHPBox.IsEnabled = false;            
+
+            SheetManager.CS_Manager_Inst.character.Init_HP_HD();
+
+            SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP;
+            SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
+            SheetManager.CS_Manager_Inst.Init_TempHPCallback();
+
+            CurrHPBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
+            CurrHDBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHitDice.ToString();
+        }
+
+        private void Set_Level_and_HP_Panel_OnLoad()
+        {
+            LevelText.Text = SheetManager.CS_Manager_Inst.character.Level.ToString();
+            LevelUp_Btn.IsEnabled = true;
+
+            SheetManager.CS_Manager_Inst.character.hpChanged += Update_HP;
+            SheetManager.CS_Manager_Inst.character.tempHPChanged += Update_TempHP;
+            SheetManager.CS_Manager_Inst.Init_TempHPCallback();
+
+            MaxHPBox.Text = SheetManager.CS_Manager_Inst.character.MaxHP.ToString();
+            CurrHPBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
+            TempHPBox.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
+
+            HDBox.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
+            CurrHDBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHitDice.ToString();
+
+            ProficiencyBonusBox.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
+        }
+
+        private void Update_HP()
+        {
+            CurrHPBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
+        }
+
+        private void Update_TempHP()
+        {
+            if (SheetManager.CS_Manager_Inst.character.TempHP > 0)
+            {
+                TempHPBox.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
+            }
+
+            else
+            {
+                TempHPBox.Text = null;
+            }
+        }
+
+        private void Init_AC_Update()
+        {
+            SheetManager.CS_Manager_Inst.character.acChanged += Update_AC;
+            SheetManager.CS_Manager_Inst.character.Calculate_AC();
+        }
+
+        private void Update_AC()
+        {
+            AC_Box.Text = SheetManager.CS_Manager_Inst.character.AC.ToString();
+        }        
+
+        private void Deactivate_ScoreInput_and_Calculate_AbilityModifiers_byUserInput()
         {
 
             foreach(TextBox ScoreBox in AbilityScoreBoxes)
@@ -736,7 +848,17 @@ namespace DnD_CharSheet_5e
             SheetManager.CS_Manager_Inst.character.Charisma.Calculate_Modifier();
             ChaModifierBox.Text = SheetManager.CS_Manager_Inst.character.Charisma.Modifier.ToString();            
             
-        }               
+        }
+
+        private void Show_AbilityScores()
+        {
+            StrScoreBox.Text = SheetManager.CS_Manager_Inst.character.Strength.Score.ToString();
+            DexScoreBox.Text = SheetManager.CS_Manager_Inst.character.Dexterity.Score.ToString();
+            ConScoreBox.Text = SheetManager.CS_Manager_Inst.character.Constitution.Score.ToString();
+            IntScoreBox.Text = SheetManager.CS_Manager_Inst.character.Intelligence.Score.ToString();
+            WisScoreBox.Text = SheetManager.CS_Manager_Inst.character.Wisdom.Score.ToString();
+            ChaScoreBox.Text = SheetManager.CS_Manager_Inst.character.Charisma.Score.ToString();
+        }
 
         private void Deactivate_Scores_and_Show_AbilityModifiers()
         {
@@ -755,81 +877,25 @@ namespace DnD_CharSheet_5e
             ChaModifierBox.Text = SheetManager.CS_Manager_Inst.character.Charisma.Modifier.ToString();            
         }
 
-        private void Activate_IniRolls()
+        private void Activate_SavingThrows()
         {
-            SheetManager.CS_Manager_Inst.character.Set_IniBonus();
-            InitiativeBonusBox.Text = SheetManager.CS_Manager_Inst.character.InitiativeBonus.ToString();
-            InitiativeBtn.IsEnabled = true;
+            Deactivate_SaveProf_CheckBoxes();
+            Set_SavingThrows();
+            Calculate_SaveModifiers();
+            Show_SaveModifiers();
         }
 
-        private void Deactivate_IniRolls()
+        private void Activate_SkillChecks()
         {
-            InitiativeBtn.IsEnabled = false;
+            Deactivate_SkillProficiency_CheckBoxes();
+            Set_Skills();
+            Calculate_SkillModifiers();
+            Show_SkillModifiers();
         }
 
-        private void Init_AC_Update()
+        private void Set_SavingThrows()
         {
-            SheetManager.CS_Manager_Inst.character.acChanged += Update_AC;
-            SheetManager.CS_Manager_Inst.character.Calculate_AC();            
-        }    
-
-        private void Activate_SaveProf_CheckBoxes()
-        {
-            foreach(CheckBox SaveCB in SavingThrowProficiencyCheckBoxes)
-            {
-                SaveCB.IsEnabled = true;
-            }
-        }
-
-        private void Deactivate_SaveProf_CheckBoxes()
-        {
-            foreach (CheckBox SaveCB in SavingThrowProficiencyCheckBoxes)
-            {
-                SaveCB.IsEnabled = false;
-            }
-        }       
-
-        private void Activate_Checks()
-        {
-            foreach(Button CheckBtn in DiceRollBtns)
-            {
-                CheckBtn.IsEnabled = true;
-            }
-        }
-
-        private void Deactivate_Checks()
-        {
-            foreach (Button CheckBtn in DiceRollBtns)
-            {
-                CheckBtn.IsEnabled = false;
-            }
-        }
-
-        private void Clear_AllValues()
-        {
-            Clear_AllNumberBoxes();
-            Clear_AllCheckBoxes();
-        }
-
-        private void Clear_AllNumberBoxes()
-        {
-            foreach(TextBox NumberBox in MainSheetNumberBoxes)
-            {
-                NumberBox.Clear();
-            }
-        }       
-        
-        private void Clear_AllCheckBoxes()
-        {
-            foreach(CheckBox ProficiencyCheckBox in MainSheetCheckBoxes)
-            {
-                ProficiencyCheckBox.IsChecked = false;
-            }
-        }
-
-        private void Transfer_SavingThrows()
-        {
-            SheetManager.CS_Manager_Inst.character.Set_SaveBaseValues();
+            SheetManager.CS_Manager_Inst.character.Set_SaveAbilityBonuses();
             SheetManager.CS_Manager_Inst.character.Set_SaveProficiencies(StrSaveProficiency_CB.IsChecked.Value, DexSaveProficiency_CB.IsChecked.Value, ConSaveProficiency_CB.IsChecked.Value, IntSaveProficiency_CB.IsChecked.Value, WisSaveProficiency_CB.IsChecked.Value, ChaSaveProficiency_CB.IsChecked.Value);
         }
 
@@ -838,37 +904,14 @@ namespace DnD_CharSheet_5e
             SheetManager.CS_Manager_Inst.character.CalculateSavingThrowModifiers();
         }
 
-        private void Set_SaveProficiency_Buttons()
+        private void Set_SaveProficiency_CheckBoxes()
         {
-            if(SheetManager.CS_Manager_Inst.character.STR_Save.IsProficient)
-            {
-                StrSaveProficiency_CB.IsChecked = true;
-            }
-
-            if (SheetManager.CS_Manager_Inst.character.DEX_Save.IsProficient)
-            {
-                DexSaveProficiency_CB.IsChecked = true;
-            }
-
-            if (SheetManager.CS_Manager_Inst.character.CON_Save.IsProficient)
-            {
-                ConSaveProficiency_CB.IsChecked = true;
-            }
-
-            if (SheetManager.CS_Manager_Inst.character.INT_Save.IsProficient)
-            {
-                IntSaveProficiency_CB.IsChecked = true;
-            }
-
-            if (SheetManager.CS_Manager_Inst.character.WIS_Save.IsProficient)
-            {
-                WisSaveProficiency_CB.IsChecked = true;
-            }
-
-            if (SheetManager.CS_Manager_Inst.character.CHA_Save.IsProficient)
-            {
-                ChaSaveProficiency_CB.IsChecked = true;
-            }
+            StrSaveProficiency_CB.IsChecked = SheetManager.CS_Manager_Inst.character.STR_Save.IsProficient;
+            DexSaveProficiency_CB.IsChecked = SheetManager.CS_Manager_Inst.character.DEX_Save.IsProficient;
+            ConSaveProficiency_CB.IsChecked = SheetManager.CS_Manager_Inst.character.CON_Save.IsProficient;
+            IntSaveProficiency_CB.IsChecked = SheetManager.CS_Manager_Inst.character.INT_Save.IsProficient;
+            WisSaveProficiency_CB.IsChecked = SheetManager.CS_Manager_Inst.character.WIS_Save.IsProficient;
+            ChaSaveProficiency_CB.IsChecked = SheetManager.CS_Manager_Inst.character.CHA_Save.IsProficient;
         }
 
         private void Show_SaveModifiers()
@@ -879,25 +922,9 @@ namespace DnD_CharSheet_5e
             IntSaveModifierBox.Text = SheetManager.CS_Manager_Inst.character.INT_Save.SaveModifier.ToString();
             WisSaveModifierBox.Text = SheetManager.CS_Manager_Inst.character.WIS_Save.SaveModifier.ToString();
             ChaSaveModifierBox.Text = SheetManager.CS_Manager_Inst.character.CHA_Save.SaveModifier.ToString();
-        }
+        }        
 
-        private void Activate_SavingThrows()
-        {
-            Deactivate_SaveProf_CheckBoxes();
-            Transfer_SavingThrows();
-            Calculate_SaveModifiers();
-            Show_SaveModifiers();
-        }
-
-        private void Activate_SkillChecks()
-        {
-            Deactivate_SkillProficiency_CheckBoxes();
-            Transfer_Skill_Values();
-            Calculate_SkillModifiers();
-            Show_SkillModifiers();
-        }
-
-        private void Transfer_Skill_Values()
+        private void Set_Skills()
         {
             SheetManager.CS_Manager_Inst.character.Set_SkillBaseValues();
             Set_SkillProficiencies();
@@ -917,119 +944,47 @@ namespace DnD_CharSheet_5e
             SheetManager.CS_Manager_Inst.character.CalculateSkillModifiers();
         }
 
-        private void Set_SkillProficiency_Buttons()
+        private void Set_SkillProficiency_CheckBoxes()
         {
-            if(SheetManager.CS_Manager_Inst.character.Acrobatics.IsProficient) {
-                AcrobaticsProf.IsChecked = true;
-            }
+            AcrobaticsProf.IsChecked = SheetManager.CS_Manager_Inst.character.Acrobatics.IsProficient;            
+            ArcanaProf.IsChecked = SheetManager.CS_Manager_Inst.character.Arcana.IsProficient;
+            AnimalHandlingProf.IsChecked = SheetManager.CS_Manager_Inst.character.AnimalHandling.IsProficient;
+            AthleticsProf.IsChecked = SheetManager.CS_Manager_Inst.character.Arcana.IsProficient;
 
-            if(SheetManager.CS_Manager_Inst.character.AnimalHandling.IsProficient)
-            {
-                AnimalHandlingProf.IsChecked = true;
-            }
+            DeceptionProf.IsChecked = SheetManager.CS_Manager_Inst.character.Deception.IsProficient;
 
-            if(SheetManager.CS_Manager_Inst.character.Arcana.IsProficient)
-            {
-                ArcanaProf.IsChecked = true;
-            }
+            HistoryProf.IsChecked = SheetManager.CS_Manager_Inst.character.History.IsProficient;
 
-            if(SheetManager.CS_Manager_Inst.character.Athletics.IsProficient)
-            {
-                AthleticsProf.IsChecked = true;
-            }
+            InsightProf.IsChecked = SheetManager.CS_Manager_Inst.character.Insight.IsProficient;
+            IntimidationProf.IsChecked = SheetManager.CS_Manager_Inst.character.Intimidation.IsProficient;
+            InvestigationProf.IsChecked = SheetManager.CS_Manager_Inst.character.Investigation.IsProficient;
 
-            if(SheetManager.CS_Manager_Inst.character.Deception.IsProficient)
-            {
-                DeceptionProf.IsChecked = true;
-            }
+            MedicineProf.IsChecked = SheetManager.CS_Manager_Inst.character.Medicine.IsProficient;
 
-            if(SheetManager.CS_Manager_Inst.character.History.IsProficient)
-            {
-                HistoryProf.IsChecked = true;
-            }
+            NatureProf.IsChecked = SheetManager.CS_Manager_Inst.character.Nature.IsProficient;
 
-            if(SheetManager.CS_Manager_Inst.character.Insight.IsProficient)
-            {
-                InsightProf.IsChecked = true;
-            }
+            PerceptionProf.IsChecked = SheetManager.CS_Manager_Inst.character.Perception.IsProficient;
+            PerformanceProf.IsChecked = SheetManager.CS_Manager_Inst.character.Performance.IsProficient;
+            PersuasionProf.IsChecked = SheetManager.CS_Manager_Inst.character.Persuasion.IsProficient;
 
-            if(SheetManager.CS_Manager_Inst.character.Intimidation.IsProficient)
-            {
-                IntimidationProf.IsChecked = true;
-            }
+            ReligionProf.IsChecked = SheetManager.CS_Manager_Inst.character.Religion.IsProficient;
 
-            if(SheetManager.CS_Manager_Inst.character.Investigation.IsProficient)
-            {
-                InvestigationProf.IsChecked = true;
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.Medicine.IsProficient)
-            {
-                MedicineProf.IsChecked = true;
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.Nature.IsProficient)
-            {
-                NatureProf.IsChecked = true;
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.Perception.IsProficient)
-            {
-                PerceptionProf.IsChecked = true;
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.Performance.IsProficient)
-            {
-                PerformanceProf.IsChecked = true;
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.Religion.IsProficient)
-            {
-                ReligionProf.IsChecked = true;
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.SleightOfHand.IsProficient)
-            {
-                SleightOfHandProf.IsChecked = true;
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.Stealth.IsProficient)
-            {
-                StealthProf.IsChecked = true;
-            }
-
-            if(SheetManager.CS_Manager_Inst.character.Survival.IsProficient)
-            {
-                SurvivalProf.IsChecked = true;
-            }
-        }
-
-        private void Activate_SkillProficiency_CheckBoxes()
-        {
-            foreach(CheckBox SkillProfBox in SkillProficiencyCheckBoxes)
-            {
-                SkillProfBox.IsEnabled = true;
-            }
-        }
-
-        private void Deactivate_SkillProficiency_CheckBoxes()
-        {
-            foreach(CheckBox SkillProfBox in SkillProficiencyCheckBoxes)
-            {
-                SkillProfBox.IsEnabled = false;
-            }
-        }       
+            SleightOfHandProf.IsChecked = SheetManager.CS_Manager_Inst.character.SleightOfHand.IsProficient;
+            StealthProf.IsChecked = SheetManager.CS_Manager_Inst.character.Stealth.IsProficient;
+            SurvivalProf.IsChecked = SheetManager.CS_Manager_Inst.character.Survival.IsProficient;
+        }        
 
         private void Show_SkillModifiers()
         {
-            AcrobaticsTxt.Text = SheetManager.CS_Manager_Inst.character.Acrobatics.SkillModifier.ToString();
-            AnimalHandlingTxt.Text = SheetManager.CS_Manager_Inst.character.AnimalHandling.SkillModifier.ToString();
+            AcrobaticsTxt.Text = SheetManager.CS_Manager_Inst.character.Acrobatics.SkillModifier.ToString();            
             ArcanaTxt.Text = SheetManager.CS_Manager_Inst.character.Arcana.SkillModifier.ToString();
+            AnimalHandlingTxt.Text = SheetManager.CS_Manager_Inst.character.AnimalHandling.SkillModifier.ToString();
             AthleticsTxt.Text = SheetManager.CS_Manager_Inst.character.Athletics.SkillModifier.ToString();
 
             DeceptionTxt.Text = SheetManager.CS_Manager_Inst.character.Deception.SkillModifier.ToString();
 
             HistoryTxt.Text = SheetManager.CS_Manager_Inst.character.History.SkillModifier.ToString();
+
             InsightTxt.Text = SheetManager.CS_Manager_Inst.character.Insight.SkillModifier.ToString();
             IntimidationTxt.Text = SheetManager.CS_Manager_Inst.character.Intimidation.SkillModifier.ToString();
             InvestigationTxt.Text = SheetManager.CS_Manager_Inst.character.Investigation.SkillModifier.ToString();
@@ -1045,32 +1000,8 @@ namespace DnD_CharSheet_5e
 
             SleightOfHandTxt.Text = SheetManager.CS_Manager_Inst.character.SleightOfHand.SkillModifier.ToString();
             StealthTxt.Text = SheetManager.CS_Manager_Inst.character.Stealth.SkillModifier.ToString();
-
             SurvivalTxt.Text = SheetManager.CS_Manager_Inst.character.Survival.SkillModifier.ToString();
-        }  
-
-        private void Update_AC()
-        {
-            AC_Box.Text = SheetManager.CS_Manager_Inst.character.AC.ToString();
-        }
-
-        private void Update_HP()
-        {
-            CurrHPBox.Text = SheetManager.CS_Manager_Inst.character.CurrentHP.ToString();
-        }
-
-        private void Update_TempHP()
-        {
-            if(SheetManager.CS_Manager_Inst.character.TempHP > 0)
-            {
-                TempHPBox.Text = SheetManager.CS_Manager_Inst.character.TempHP.ToString();
-            }
-
-            else
-            {
-                TempHPBox.Text = null;
-            }
-        }
+        }        
 
         private void LevelUpButton_Click(object sender, RoutedEventArgs e)
         {            
@@ -1079,9 +1010,12 @@ namespace DnD_CharSheet_5e
             HDBox.Text = SheetManager.CS_Manager_Inst.character.HitDice.ToString();
             ProficiencyBonusBox.Text = SheetManager.CS_Manager_Inst.character.ProficiencyBonus.ToString();
             
-        }        
+        }
+        #endregion
 
-        private void IniButton_Click(object sender, RoutedEventArgs e)
+
+        #region DICE ROLL BUTTON EVENT HANDLER
+        private void InitiativeButton_Click(object sender, RoutedEventArgs e)
         {
             InitiativeResultBox.Text = SheetManager.CS_Manager_Inst.Roll_for_Initiative().ToString();
         }
@@ -1253,7 +1187,8 @@ namespace DnD_CharSheet_5e
         {
             Survival_Result.Text = SheetManager.CS_Manager_Inst.character.Survival.SkillCheck().ToString();
             
-        }        
-        
+        }
+        #endregion
+
     }
 }

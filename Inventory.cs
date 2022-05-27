@@ -4,29 +4,46 @@ using System.Windows;
 
 namespace DnD_CharSheet_5e
 {
+    // Class representing the Inventory of the Player's Character, consisting of the Items in the Characters Inventory and its 'purse' (= 'int's representing the different coin types in D&D).
+
     [Serializable]
     public class Inventory
     {
+        #region PROPERTIES
+
         public List<Item> cItems { get; } = new List<Item>();                                                 // c = 'character'
         public List<Weapon> cWeapons { get; } = new List<Weapon>();
         public List<Armor> cArmor { get; } = new List<Armor>();
 
+        /* EXPLANATORY NOTE ON CURRENCY IN D&D AND ITS REPRESENTATION IN THE CODE OF THE APP
+         * 
+         *  In D&D there are fore types of coin (as you can see below) determined by their material: Platinum, Gold, Silver and Copper.
+         *  The 'Key' of a 'Coin'-Object (see 'Coin'-Class) defines which type of coin a number (value/ price) represents.
+         *  
+         *  Because there a 4 types of coin (and not only 'Dollar' and 'Cent' e. g.) and for reasons of gameplay authenticity 
+         *  I decided against the option to represent currency/ a price as a decimal number in this app.
+         */
+
         public int Platinum { get; set; }
         public int Gold { get; set; }
         public int Silver { get; set; }
-
         public int Copper { get; set; }
 
+
         const string ValueErrorMessage = "Invalid input. Please enter an integer number.";
-        const string ItemNotFoundMsg = "Item not found";
+        const string ItemNotFoundMsg = "Item not found.";
 
+        #endregion
 
+        #region METHODS
+
+        #region METHODS FOR PARSING STRINGS FROM TEXTBOX CONTENTS TO INVENTORY NUMBER VALUES
 
         public void Set_Platinum_byTxt(string PlatinumTxt)
         {
-            if(int.TryParse(PlatinumTxt, out int platinumPrice))
+            if(int.TryParse(PlatinumTxt, out int platinumNumber))
             {
-                Platinum = platinumPrice;
+                Platinum = platinumNumber;
             }
 
             else
@@ -38,9 +55,9 @@ namespace DnD_CharSheet_5e
         
         public void Set_Gold_byTxt(string GoldTxt)
         {
-            if (int.TryParse(GoldTxt, out int goldPrice))
+            if (int.TryParse(GoldTxt, out int goldNumber))
             {
-                Gold = goldPrice;
+                Gold = goldNumber;
             }
 
             else
@@ -51,9 +68,9 @@ namespace DnD_CharSheet_5e
 
         public void Set_Silver_byTxt(string SilverTxt)
         {
-            if (int.TryParse(SilverTxt, out int silverPrice))
+            if (int.TryParse(SilverTxt, out int silverNumber))
             {
-                Silver = silverPrice;
+                Silver = silverNumber;
             }
            
             else
@@ -64,9 +81,9 @@ namespace DnD_CharSheet_5e
        
         public void Set_Copper_byTxt(string CopperTxt)
         {
-            if (int.TryParse(CopperTxt, out int copperPrice))
+            if (int.TryParse(CopperTxt, out int copperNumber))
             {
-                Copper = copperPrice;
+                Copper = copperNumber;
             }           
 
             else
@@ -74,6 +91,10 @@ namespace DnD_CharSheet_5e
                 MessageBox.Show(ValueErrorMessage);
             }
         }
+
+        #endregion
+
+        #region METHODS FOR FINDING, ADDING AND REMOVING ITEMS FROM INVENTORY
 
         public void Add_Item(Item newItem)
         {
@@ -168,6 +189,26 @@ namespace DnD_CharSheet_5e
         {
             cArmor.Remove(armor_toRemove);
         }
+
+        public void Clear_Inventory()
+        {
+            Platinum = 0;
+            Gold = 0;
+            Silver = 0;
+            Copper = 0;
+
+            cItems.Clear();
+            cWeapons.Clear();
+            cArmor.Clear();
+        }
+
+        #endregion
+
+        #region COIN TYPE CONVERSION METHOD FOR 'PAYING ITEMS'
+
+        // Checks if a character (player) has enough 'coin' of the respective type in their 'purse' to pay the price for an item.
+        // If they don't have enough 'coin' of the respective type it converts the (remainder of the) price to the next coin type of lower value
+        // and checks if they can pay the item with this type of coin.
 
         public bool Pay_Item(Coin coin)
         {            
@@ -450,17 +491,9 @@ namespace DnD_CharSheet_5e
             else { return false; }
         }
 
-        public void Clear_Inventory()
-        {
-            Platinum = 0;
-            Gold = 0;
-            Silver = 0;
-            Copper = 0;
+        #endregion
 
-            cItems.Clear();
-            cWeapons.Clear();
-            cArmor.Clear();
-        }
+        #endregion
 
     }
 }

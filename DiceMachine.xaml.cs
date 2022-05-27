@@ -11,11 +11,18 @@ namespace DnD_CharSheet_5e
     /// </summary>
     public partial class DiceMachine : Window
     {
+        #region PROPERTIES
+
         D20_System DMachine;
 
         List<Button> DiceButtons;
         
         int diceMachine_result = 0;
+
+        #endregion
+
+        #region CONSTRUCTOR AND INITIALIZATION METHODS
+
         public DiceMachine()
         {
             InitializeComponent();
@@ -59,6 +66,10 @@ namespace DnD_CharSheet_5e
             FileManager.FM_Inst.Play_DiceSound();
         }
 
+        #endregion
+
+        #region DICE ROLL METHODS
+
         private void DiceMachine_Roll(int rollResult)
         {
             if(AddResult_CB.IsChecked == true)
@@ -79,7 +90,6 @@ namespace DnD_CharSheet_5e
             diceMachine_result = 0;
             DM_ResultBox.Clear();
         }
-
 
         public void D4_Bt_Click(object sender, RoutedEventArgs e)
         {
@@ -115,5 +125,7 @@ namespace DnD_CharSheet_5e
         {
             DiceMachine_Roll(DMachine.Roll_D100());
         }
+
+        #endregion
     }
 }

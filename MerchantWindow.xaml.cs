@@ -26,8 +26,6 @@ namespace DnD_CharSheet_5e
 
         public void Load_Databases()
         {
-
-            //FileManager.FM_Inst.Set_IDBPath();
             try
             {
                 merchant.Load_ItemDataBase(FileManager.FM_Inst.Read_DataBase(FileManager.FM_Inst.IDB_Path));
@@ -37,7 +35,6 @@ namespace DnD_CharSheet_5e
                 MessageBox.Show(ex.Message.ToString());
             }
 
-            //FileManager.FM_Inst.Set_WDBPath();
             try
             {
                 merchant.Load_WeaponDataBase(FileManager.FM_Inst.Read_DataBase(FileManager.FM_Inst.WDB_Path));
@@ -47,7 +44,6 @@ namespace DnD_CharSheet_5e
                 MessageBox.Show(ex01.Message.ToString());
             }
 
-            //FileManager.FM_Inst.Set_ADBPath();
             try
             {
                 merchant.Load_ArmorDataBase(FileManager.FM_Inst.Read_DataBase(FileManager.FM_Inst.ADB_Path));
@@ -55,8 +51,7 @@ namespace DnD_CharSheet_5e
             catch(Exception ex02)
             {
                 MessageBox.Show(ex02.Message.ToString());
-            }
-            
+            }            
         }               
         
         public void Create_Item_Buttons(Item item)

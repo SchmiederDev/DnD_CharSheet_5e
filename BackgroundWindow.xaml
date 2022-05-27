@@ -133,8 +133,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="Edit_Btn" Content="Edit Background" Click="Edit_btn_Click" Margin="10 25 10 10" Width="150" Style="{StaticResource EditBtnDesign}" Grid.Column="0"/>
-            <Button x:Name="OK_Btn" Content="OK" Click="OK_btn_Click" Margin="10 25 10 10" Width="80" Style="{StaticResource EditBtnDesign}" Visibility="Hidden" IsEnabled="False" Grid.Column="1"/>
+            <Button x:Name="Edit_Btn" Content="Edit Background" Click="Edit_Btn_Click" Margin="10 25 10 10" Width="150" Style="{StaticResource EditBtnDesign}" Grid.Column="0"/>
+            <Button x:Name="OK_Btn" Content="OK" Click="OK_Btn_Click" Margin="10 25 10 10" Width="80" Style="{StaticResource EditBtnDesign}" Visibility="Hidden" IsEnabled="False" Grid.Column="1"/>
 
         </Grid>
 

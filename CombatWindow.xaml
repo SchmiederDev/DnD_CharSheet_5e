@@ -113,10 +113,6 @@
                         </ComboBox>
                         <Button x:Name="Damage_Btn_3rdWeapon" Content="ROLL FOR DAMAGE" Click="Damage_Btn_3rdWeapon_Click" Margin="10 10 10 50" Style="{StaticResource CombatWdw_BtnLarge}"/>
 
-                        <!-- Insert later in the extended version with characater-class handlers:
-                            Button Content="SPELL ATTACK ROLL" Margin="10 50 10 50" Style="{StaticResource CombatWdw_BtnLarge}"/>
-                        -->
-
                     </StackPanel>
 
                     <StackPanel Grid.Column="1">
@@ -129,10 +125,6 @@
                         <TextBox x:Name="Damage_Result_TB_01" IsEnabled="False" Margin="0 145 0 10" Style="{StaticResource ThickMediumResultBox}"/>
                         <TextBox x:Name="Damage_Result_TB_02" IsEnabled="False" Margin="0 85 0 10" Style="{StaticResource ThickMediumResultBox}"/>
                         <TextBox x:Name="Damage_Result_TB_03" IsEnabled="False" Margin="0 85 0 10" Style="{StaticResource ThickMediumResultBox}"/>
-
-                        <!-- Insert later in the extended version with character-class handlers
-                            <TextBox x:Name="Spell_Result" IsEnabled="False" Margin="10 70 10 10" Style="{StaticResource MediumResultBox}"/>
-                        -->
 
                     </StackPanel>
                     
@@ -169,9 +161,9 @@
                             <ColumnDefinition Width = "*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox x:Name="IniBonus" IsEnabled="False" Style="{StaticResource MediumValueBox}" Grid.Column="0"/>
-                        <Button x:Name="IniButton" Content="ROLL" Click="IniButton_Click" Style="{StaticResource MediumBtn}" Grid.Column="1"/>
-                        <TextBox x:Name="IniResult" IsEnabled="False" Style="{StaticResource MediumResultBox}" Grid.Column="2"/>
+                        <TextBox x:Name="InitiativeBonusBox" IsEnabled="False" Style="{StaticResource MediumValueBox}" Grid.Column="0"/>
+                        <Button x:Name="RollInitiativeButton" Content="ROLL" Click="InitiativeButton_Click" Style="{StaticResource MediumBtn}" Grid.Column="1"/>
+                        <TextBox x:Name="InitiativeResultBox" IsEnabled="False" Style="{StaticResource MediumResultBox}" Grid.Column="2"/>
 
                     </Grid>
 

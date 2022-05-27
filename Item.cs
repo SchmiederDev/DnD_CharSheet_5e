@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace DnD_CharSheet_5e
 {
+    // Base class to represent Items in the Characters (= player's/ user's) Inventory
     [Serializable]
     public class Item
     {
