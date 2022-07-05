@@ -10,6 +10,34 @@ namespace DnD_CharSheet_5e
     /// <summary>
     /// Interaktionslogik für SpellsWindow.xaml
     /// </summary>
+
+    /* THE SPELL-WINDOW-CLASS:
+     * 
+     * This Window serves the purpose of managing the 'Spells' of a player's character, as the the name suggests.
+     * It is equivalent to the 3rd page of the officiel D&D paper Character-Sheets.
+     * 
+     * This Window-class works with items from the 'SpellDataBase' and the 'SpellList'-data bases or instances of the 'Spell'- and 'SpellList_Item'-classes.
+     * 
+     * Certain 'Character-Classes' (in the game of D&D, not in C#) are able to 'cast' Spells. 
+     * But, a specific 'Character-Class' like 'Wizard' or 'Druid' may only choose from a limited number Spells 
+     * from all the hundreds of Spells that exist in the game - represented here by the 'SpellDataBase' and the 'Spell'-class data container.
+     * 
+     * Therefore each of these 'Character-Classes' has a list of Spells to choose from 
+     * - represented here by the 'SpellList'-data bases related to a specific type of 'Character-Class' (e. g. 'Wizard')
+     * and the 'SpellList_Item'-class data container.
+     * 
+     * In an instance of the SpellsWindow a user/ player may choose a number of 'Spells' for the 'Character' they are currently playing - depending on the 'Character-Class' of this 'Character -
+     * and add them to their own Spell List via interacting with UI. 
+     * 
+     * Information (= data) about those Spells is also visualized on UI therefore sparing the player the need of browsing the paper version of the Player's Handbook.
+     * 
+     * Finally, the player/user may 'cast' the available or chosen Spells which means technically, selecting 'Spells' among the UI-Elements and clicking on them.
+     * The triggering event will effectively reduce the number of 'Spell Slots' available to the 'Character' of the player/ user - until refilled (= reset to the initial value).
+     * 
+     * Dependend on the 'Level' of a given 'Character' the player/ user has a number of so called 'Spell Slots' for each 'Spell Level' available.
+     * These 'Slots' represent, most basically spoken, the number of times a 'Character' may 'cast' 'Spells' of a given 'Spell Level'.
+     */
+
     public partial class SpellsWindow : Window
     {
         public string[] Spellcaster_Classes { get; } = { "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard" };
@@ -38,38 +66,6 @@ namespace DnD_CharSheet_5e
                     Cantrips.Add(sl_item);
                 }
             }
-
-            //foreach(SpellList_Item sl_item in Cantrips)
-            //{
-            //    ComboBox cantripBox = new ComboBox();
-
-            //    cantripBox.Height = 20;
-            //    cantripBox.Width = 175;
-
-            //    Thickness thickM = cantripBox.Margin;
-            //    thickM.Bottom = 5;
-            //    cantripBox.Margin = thickM;               
-
-            //    Thickness thickP = cantripBox.Padding;
-            //    thickP.Top = 1;
-            //    thickP.Bottom = 1;
-            //    thickP.Left = 10;
-            //    cantripBox.Padding = thickP;
-
-            //    cantripBox.FontWeight = FontWeights.Bold;               
-
-            //    cantripBox.MouseEnter += new MouseEventHandler(MouseHoverOver_Spell);
-
-            //    CantripsPanel.Children.Add(cantripBox);
-            //}
-
-            //foreach(ComboBox cantripbox in CantripsPanel.Children)
-            //{
-            //    foreach(SpellList_Item sl_item in Cantrips)
-            //    {
-            //        cantripbox.Items.Add(sl_item.SpellName);
-            //    }
-            //}
         }
 
         private void MouseHoverOver_Spell(object sender, MouseEventArgs e)
@@ -96,11 +92,11 @@ namespace DnD_CharSheet_5e
             cantripBox.Height = spellFieldHeight;
             cantripBox.Width = 175;
 
-            Thickness thickM = cantripBox.Margin;
+            Thickness thickM = new Thickness();
             thickM.Bottom = 5;
             cantripBox.Margin = thickM;
 
-            Thickness thickP = cantripBox.Padding;
+            Thickness thickP = new Thickness();
             thickP.Top = 1;
             thickP.Bottom = 1;
             thickP.Left = 10;
