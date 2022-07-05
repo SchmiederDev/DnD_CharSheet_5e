@@ -12,8 +12,23 @@ namespace DnD_CharSheet_5e
     /// <summary>
     /// Interaktionslogik für MerchantWindow.xaml
     /// </summary>
+
+    /* PURPOSE OF MERCHANT WINDOW 
+     * 
+     * The Merchant Window serves the purpose of 'selling' items to the Character of the Player/ user:
+     * These will be added to the Inventory of the Character-class instance after a 'price' was 'paid' that is recorded in the Item Data Bases (JSON Files).
+     * 
+     * So, MerchantWindow is the Player's access point to all kinds of items which appear in the game of D&D.
+     * Whereas there will always be a limited amount of items in the Characters inventory (see 'Character' and 'Inventory'-Classes)
+     * 'MerchantWindow' and its helper class 'Merchant' give access to the full range of game items exstracted from the respective item data bases.
+     * 
+     * Prices and other information like Weight etc. about Items are drawn from the 'Player's Handbook' of the D&D Core Source Books. 
+    */
+
     public partial class MerchantWindow : Window
     {
+        // Helper class for MerchantWindow -> see 'Merchant'-class
+
         Merchant merchant = new Merchant();
 
         public MerchantWindow()
@@ -24,7 +39,16 @@ namespace DnD_CharSheet_5e
             Init_UI();
         }
 
-        public void Load_Databases()
+
+        #region UI INITILIZATION METHODS
+
+        private void Init_UI()
+        {
+            Update_PlayerFortune();
+            Create_Merchant_Inventory();
+        }
+
+        private void Load_Databases()
         {
             try
             {
@@ -52,9 +76,31 @@ namespace DnD_CharSheet_5e
             {
                 MessageBox.Show(ex02.Message.ToString());
             }            
-        }               
-        
-        public void Create_Item_Buttons(Item item)
+        }        
+
+        private void Create_Merchant_Inventory()
+        {
+            foreach (Item item in merchant.merchItems)
+            {
+                Create_Item_Buttons(item);
+            }
+
+            foreach (Weapon weapon in merchant.merchWeapons)
+            {
+                Create_Weapon_Buttons(weapon);
+            }
+
+            foreach (Armor armor in merchant.merchArmor)
+            {
+                Create_Armor_Buttons(armor);
+            }
+        }
+
+        #endregion
+
+        #region BUTTON GENERATION METHODS (+ Assignment of Event Handler)
+
+        private Button Create_Item_Button(Item item)
         {
             Button itemButton = new Button();
             itemButton.Height = 20;
@@ -73,8 +119,15 @@ namespace DnD_CharSheet_5e
             itemButton.Background = Brushes.WhiteSmoke;
 
             itemButton.Name = item.Item_ID;
-            
+
             itemButton.Content = item.ItemName + " | Price: " + item.Coin.Price + " " + item.Coin.CoinKey + " | Weight: " + item.ItemWeight;
+
+            return itemButton;
+        }
+
+        public void Create_Item_Buttons(Item item)
+        {
+            Button itemButton = Create_Item_Button(item);
 
             itemButton.Click += new RoutedEventHandler(Item_Button_Click);
             itemButton.MouseEnter += new MouseEventHandler(Item_Hover_Over);
@@ -84,25 +137,7 @@ namespace DnD_CharSheet_5e
 
         public void Create_Weapon_Buttons(Weapon weapon)
         {
-            Button weaponButton = new Button();
-            weaponButton.Height = 20;
-            weaponButton.Width = 300;
-
-            Thickness BtnMargin = new Thickness();
-            BtnMargin.Top = 10;
-            BtnMargin.Bottom = 5;
-
-            weaponButton.Margin = BtnMargin;
-
-            weaponButton.FontWeight = FontWeights.Bold;
-
-            weaponButton.Foreground = Brushes.DarkSlateGray;
-
-            weaponButton.Background = Brushes.WhiteSmoke;
-
-            weaponButton.Name = weapon.Item_ID;
-
-            weaponButton.Content = weapon.ItemName + " | Price: " + weapon.Coin.Price + " " + weapon.Coin.CoinKey + " | Weight: " + weapon.ItemWeight;
+            Button weaponButton = Create_Item_Button(weapon);
 
             weaponButton.Click += new RoutedEventHandler(Weapon_Button_Click);
             weaponButton.MouseEnter += new MouseEventHandler(Weapon_Hover_Over);
@@ -112,25 +147,7 @@ namespace DnD_CharSheet_5e
 
         public void Create_Armor_Buttons(Armor armor)
         {
-            Button armorButton = new Button();
-            armorButton.Height = 20;
-            armorButton.Width = 300;
-
-            Thickness BtnMargin = new Thickness();
-            BtnMargin.Top = 10;
-            BtnMargin.Bottom = 5;
-
-            armorButton.Margin = BtnMargin;
-
-            armorButton.FontWeight = FontWeights.Bold;
-
-            armorButton.Foreground = Brushes.DarkSlateGray;
-
-            armorButton.Background = Brushes.WhiteSmoke;
-
-            armorButton.Name = armor.Item_ID;
-
-            armorButton.Content = armor.ItemName + " | Price: " + armor.Coin.Price + " " + armor.Coin.CoinKey + " | Weight: " + armor.ItemWeight;
+            Button armorButton = Create_Item_Button(armor);
 
             armorButton.Click += new RoutedEventHandler(Armor_Button_Click);
             armorButton.MouseEnter += new MouseEventHandler(Armor_Hover_Over);
@@ -138,33 +155,11 @@ namespace DnD_CharSheet_5e
             ArmorPanel.Children.Add(armorButton);
         }
 
-        public void Init_UI()
-        {
-            Update_PlayerFortune();
+        #endregion
 
-            foreach (Item item in merchant.merchItems)
-            {
-                Create_Item_Buttons(item);
-            }
-            
-            foreach(Weapon weapon in merchant.merchWeapons)
-            {
-                Create_Weapon_Buttons(weapon);
-            }
+        #region BUTTON EVENT HANDLER
 
-            foreach(Armor armor in merchant.merchArmor)
-            {
-                Create_Armor_Buttons(armor);
-            }
-        }
-
-        private void Update_PlayerFortune()
-        {
-            pPlatinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Platinum.ToString();
-            pGold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Gold.ToString();
-            pSilver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Silver.ToString();
-            pCopper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Copper.ToString();
-        }
+        #region CLICK EVENTS
 
         private void Item_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -217,6 +212,10 @@ namespace DnD_CharSheet_5e
             Update_PlayerFortune();
         }
 
+        #endregion
+
+        #region HOVER OVER EVENTS
+
         private void Item_Hover_Over(object sender, MouseEventArgs e)
         {
             Button itemButton = (Button)e.Source;
@@ -243,6 +242,22 @@ namespace DnD_CharSheet_5e
             tt.Content = tempArmor.ItemInfo;
             armorButton.ToolTip = tt;
         }
-       
+
+        #endregion
+
+        #endregion
+
+        #region UPDATE PLAYER FORTUNE METHOD 
+
+        private void Update_PlayerFortune()
+        {
+            pPlatinum_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Platinum.ToString();
+            pGold_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Gold.ToString();
+            pSilver_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Silver.ToString();
+            pCopper_Box.Text = SheetManager.CS_Manager_Inst.character.cInventory.Copper.ToString();
+        }
+
+        #endregion
+
     }
 }
