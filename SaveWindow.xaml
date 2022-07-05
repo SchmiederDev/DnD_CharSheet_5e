@@ -20,11 +20,11 @@
 
     <StackPanel Background="AliceBlue">
 
-        <Button x:Name="saveGame_01_bt" Content="Empty Slot" Click="SaveGame01_BT_Click" Margin="0 50 0 20" Style="{StaticResource SaveSlotBtn}"/>
-        <Button x:Name="saveGame_02_bt" Content="Empty Slot" Click="SaveGame02_BT_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
-        <Button x:Name="saveGame_03_bt" Content="Empty Slot" Click="SaveGame03_BT_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
-        <Button x:Name="saveGame_04_bt" Content="Empty Slot" Click="SaveGame04_BT_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
-        <Button x:Name="saveGame_05_bt" Content="Empty Slot" Click="SaveGame05_BT_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_01_Btn" Content="Empty Slot" Click="SaveGame01_Btn_Click" Margin="0 50 0 20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_02_Btn" Content="Empty Slot" Click="SaveGame02_Btn_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_03_Btn" Content="Empty Slot" Click="SaveGame03_Btn_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_04_Btn" Content="Empty Slot" Click="SaveGame04_Btn_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
+        <Button x:Name="saveGame_05_Btn" Content="Empty Slot" Click="SaveGame05_Btn_Click" Margin="20" Style="{StaticResource SaveSlotBtn}"/>
         
 
     </StackPanel>
