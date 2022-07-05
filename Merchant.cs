@@ -33,7 +33,7 @@ namespace DnD_CharSheet_5e
 
         #endregion
 
-        #region METHODS FOR SEARCHING ITEMS IN ITEM DATA BASES (the respective List<>'s)
+        #region METHODS FOR SEARCHING AND RETRIEVING ITEM OBJECTS FROM ITEM DATA BASES (the respective List<>'s)
 
         public Item Find_Item_byID(string id)
         {
