@@ -1,14 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace DnD_CharSheet_5e
 {
+    /* PURPOSE OF 'Save Sytem':
+     * 
+     * As the name might suggest, this class serves the purpose of allowing users to save their Characters and load existing ones
+     * including all the relevant data: Character values, Items in the Inventory, learned Spells and Skills, Background Story etc.
+     * 
+     * In terms of code this of course means serialization and deserialization of objects to and from files.
+     * 
+     */
+
     public static class SaveSystem
     {
+        #region METHODS FOR SAVING CHARACTERS = SERIALIZATION
+
+        // Using a Binary Formatter might not be the safest option for storing data.
+        // But, since this app will only run on local devices and the data of a D&D-Character is also not sensitive information about the user 
+        // I think it serves its purpose here in terms of simplicity.
+
         public static void SaveCharacter(Character character, string path)
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -56,7 +69,11 @@ namespace DnD_CharSheet_5e
             }
 
         }
-        
+
+        #endregion
+
+        #region METHODS FOR LOADING CHARACTERS = DESERIALIZATION
+
         public static CharacterData LoadCharacter(string path)
         {
             if(File.Exists(path))
@@ -91,7 +108,9 @@ namespace DnD_CharSheet_5e
                 return null;
             }
 
-        }       
+        }
+
+        #endregion
 
     }
 }
