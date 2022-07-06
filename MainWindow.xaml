@@ -197,14 +197,58 @@
                                 <Border Style="{StaticResource BasicsBorder}">
                                     <TextBlock Text="Race: " Style="{StaticResource BasicsHeader}"/>
                                 </Border>
-                                <TextBox x:Name="RaceBox" IsEnabled="False" Style="{StaticResource BasicsInputField}"/>
+
+                                <!-- Race Menu-->
+                                <ComboBox x:Name="RaceMenu_CoBo" IsEnabled="False" SelectedIndex = "0" DropDownClosed="RaceMenu_CoBo_DropDownClosed" Width="200" Height="25" HorizontalAlignment="Center" Margin="2 5 10 5" FontWeight="Bold" FontFamily="Cambria">
+
+                                    <ComboBoxItem Padding="7.5"></ComboBoxItem>
+                                    <ComboBoxItem>Dragonborn</ComboBoxItem>
+                                    <ComboBoxItem>Dwarf</ComboBoxItem>
+                                    <ComboBoxItem>Elf</ComboBoxItem>
+                                    <ComboBoxItem>Gnome</ComboBoxItem>
+                                    <ComboBoxItem>Half-Elf</ComboBoxItem>
+                                    <ComboBoxItem>Halfling</ComboBoxItem>
+                                    <ComboBoxItem>Half-Orc</ComboBoxItem>                                    
+                                    <ComboBoxItem>Human</ComboBoxItem>
+                                    <ComboBoxItem>Tiefling</ComboBoxItem>
+                                    <ComboBoxItem>Custom Race</ComboBoxItem>
+
+                                </ComboBox>
+
+                                <StackPanel x:Name="CustomRacePanel" Visibility="Hidden">
+                                    <TextBlock Text="Custom:" Margin="10 0 0 0" Style="{StaticResource H4_Caption}" FontSize="12"/>
+                                    <TextBox x:Name="RaceBox" IsEnabled="False" Style="{StaticResource BasicsInputField}"/>
+                                </StackPanel>
+                                
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
                                 <Border Style="{StaticResource BasicsBorder}">
                                     <TextBlock Text="Subrace: " Style="{StaticResource BasicsHeader}"/>
                                 </Border>
-                                <TextBox x:Name="SubRaceBox" IsEnabled="False" Style="{StaticResource BasicsInputField}"/>
+
+                                <!-- Subrace Menu -->
+                                <ComboBox x:Name="SubRaceMenu_CoBo" IsEnabled="False" SelectedIndex = "0" DropDownClosed="SubRaceMenu_CoBo_DropDownClosed" Width="200" Height="25" HorizontalAlignment="Center" Margin="2 5 10 5" FontWeight="Bold" FontFamily="Cambria">
+
+                                    <ComboBoxItem Padding="7.5"></ComboBoxItem>
+                                    <ComboBoxItem>Drow</ComboBoxItem>
+                                    <ComboBoxItem>Hill Dwarf</ComboBoxItem>
+                                    <ComboBoxItem>Mountain Dwarf</ComboBoxItem>
+                                    <ComboBoxItem>High Elf</ComboBoxItem>
+                                    <ComboBoxItem>Wood Elf</ComboBoxItem>                                    
+                                    <ComboBoxItem>Forest Gnome</ComboBoxItem>
+                                    <ComboBoxItem>Rock Gnome</ComboBoxItem>
+                                    <ComboBoxItem>Lightfood Halfling</ComboBoxItem>
+                                    <ComboBoxItem>Stout Halfling</ComboBoxItem>
+                                    <ComboBoxItem>Custom Subrace</ComboBoxItem>
+
+                                </ComboBox>
+
+                                <StackPanel x:Name="CustomSubracePanel" Visibility="Hidden">
+                                    <TextBlock Text="Custom: " Margin="10 0 0 0" Style="{StaticResource H4_Caption}" FontSize="12"/>
+                                    <TextBox x:Name="SubRaceBox" IsEnabled="False" Style="{StaticResource BasicsInputField}"/>
+                                </StackPanel>
+                                
                             </StackPanel>
 
                             <StackPanel Grid.Column="3">
@@ -213,9 +257,9 @@
                                     <TextBlock Text="Alignment:"  Style="{StaticResource BasicsHeader}"/>
                                 </Border>
                                 
-                                <ComboBox x:Name="AlignmentBox" IsEnabled="False" SelectedIndex = "0" Width="200" Height="25" Margin="2 5 10 20" FontWeight="Bold" FontFamily="Cambria">
+                                <ComboBox x:Name="AlignmentBox" IsEnabled="False" SelectedIndex = "0" Width="200" Height="25" HorizontalAlignment="Center" Margin="2 5 10 20" FontWeight="Bold" FontFamily="Cambria">
 
-                                    <ComboBoxItem ></ComboBoxItem>
+                                    <ComboBoxItem Padding="7.5"></ComboBoxItem>
                                     <ComboBoxItem>Lawful Good</ComboBoxItem>
                                     <ComboBoxItem>Neutral Good</ComboBoxItem>
                                     <ComboBoxItem>Chaotic Good</ComboBoxItem>
@@ -247,7 +291,32 @@
                                 <Border Style="{StaticResource BasicsBorder}">
                                     <TextBlock Text="Class: "  Style="{StaticResource BasicsHeader}"/>
                                 </Border>
-                                <TextBox x:Name="ClassBox" IsEnabled ="False" Style="{StaticResource BasicsInputField}"/>
+                                
+                                <!-- Class Menu -->
+                                <ComboBox x:Name="ClassMenu_CoBo" SelectedIndex = "0" DropDownClosed="ClassMenu_CoBo_DropDownClosed" IsEnabled ="False" Width="200" Height="25" Margin="2 5 10 5" FontWeight="Bold" FontFamily="Cambria">
+
+                                    <ComboBoxItem Padding="7.5"></ComboBoxItem>
+                                    <ComboBoxItem>Barbarian</ComboBoxItem>
+                                    <ComboBoxItem>Bard</ComboBoxItem>
+                                    <ComboBoxItem>Cleric</ComboBoxItem>
+                                    <ComboBoxItem>Druid</ComboBoxItem>
+                                    <ComboBoxItem>Fighter</ComboBoxItem>
+                                    <ComboBoxItem>Monk</ComboBoxItem>
+                                    <ComboBoxItem>Paladin</ComboBoxItem>
+                                    <ComboBoxItem>Ranger</ComboBoxItem>
+                                    <ComboBoxItem>Rogue</ComboBoxItem>
+                                    <ComboBoxItem>Sorcerer</ComboBoxItem>
+                                    <ComboBoxItem>Warlock</ComboBoxItem>
+                                    <ComboBoxItem>Wizard</ComboBoxItem>
+                                    <ComboBoxItem>Custom Class</ComboBoxItem>
+
+                                </ComboBox>
+
+                                <StackPanel x:Name="CustomClassPanel" Visibility="Hidden">
+                                    <TextBlock Text="Custom:" Margin="10 0 0 0" Style="{StaticResource H4_Caption}" FontSize="12"/>
+                                    <TextBox x:Name="ClassBox" IsEnabled ="False" Style="{StaticResource BasicsInputField}"/>
+                                </StackPanel>
+                                
                             </StackPanel>
 
                             <StackPanel Grid.Column="1">
