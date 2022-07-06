@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -415,30 +416,56 @@ namespace DnD_CharSheet_5e
 
         private void ApplyCharacter()
         {
-            Check_Values();
-            
-            if(!hasError)
+            if (TryCharacterName())
             {
-                ApplyButton.IsEnabled = false;
-                Activate_SideBarMenu_Buttons();
-                Deactivate_CharacterInputs();
-                Commit_Character_byUserInput();
-                Init_HPHD_Panel();
-                Deactivate_ScoreInput_and_Calculate_AbilityModifiers_byUserInput();
-                Activate_IniRolls();
+                if(TryRaceInput())
+                {
+                    if(TrySubraceInput())
+                    {
+                        if(TryAlignmentInput())
+                        {
+                           if(TryClassInput())
+                            {
+                                Check_Values();
 
-                Activate_SavingThrows();
-                Activate_SkillChecks();
-                Init_AC_Update();
+                                if (!hasError)
+                                {
+                                    if(Try_Skill_and_SavingThrow_Checkboxes())
+                                    {
+                                        ApplyButton.IsEnabled = false;
+                                        Commit_Character_and_Enable_Sheet();
+                                    }
+                                }
 
-                Activate_Checks();
+                                else
+                                {
+                                    MessageBox.Show($"A Value you have entered in one of the number-fields is invalid.\nPlease make sure all values are integers (numbers without decimals)\nand within the range of 1 and 20.");
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             else
-            {
-                MessageBox.Show($"A Value you have entered in one of the number-fields is invalid.\nPlease make sure all values are integers (numbers without decimals)\nand within the range of 1 and 20.");
-            }
+                MessageBox.Show("You entered no name for your character. But they should have one! Please enter a name for your character.");
         }        
+
+        private void Commit_Character_and_Enable_Sheet()
+        {
+            Activate_SideBarMenu_Buttons();
+            Deactivate_CharacterInputs();
+            Commit_Character_byUserInput();
+            Init_HPHD_Panel();
+            Deactivate_ScoreInput_and_Calculate_AbilityModifiers_byUserInput();
+            Activate_IniRolls();
+
+            Activate_SavingThrows();
+            Activate_SkillChecks();
+            Init_AC_Update();
+
+            Activate_Checks();
+        }
 
         public void Load_Character()
         {            
@@ -511,11 +538,17 @@ namespace DnD_CharSheet_5e
         {
             CharNameText.IsEnabled = true;
             PlayerNameText.IsEnabled = true;
+
             AlignmentBox.IsEnabled = true;
             BackgroundBox.IsEnabled = true;
+
             RaceBox.IsEnabled = true;
+            RaceMenu_CoBo.IsEnabled = true;
             SubRaceBox.IsEnabled = true;
+            SubRaceMenu_CoBo.IsEnabled = true;
+
             ClassBox.IsEnabled = true;
+            ClassMenu_CoBo.IsEnabled = true;
         }
 
         private void Deactivate_CharacterInputs()
@@ -527,9 +560,62 @@ namespace DnD_CharSheet_5e
             BackgroundBox.IsEnabled = false;
 
             RaceBox.IsEnabled = false;
+            RaceMenu_CoBo.IsEnabled = false;
             SubRaceBox.IsEnabled = false;
+            SubRaceMenu_CoBo.IsEnabled = false;
+
             ClassBox.IsEnabled = false;
-        }       
+            ClassMenu_CoBo.IsEnabled = false;
+        }
+
+        private void RaceMenu_CoBo_DropDownClosed(object sender, EventArgs e)
+        {
+            if (RaceMenu_CoBo.Text == "Custom Race")
+            {
+                CustomRacePanel.Visibility = Visibility.Visible;
+                RaceBox.IsEnabled = true;
+            }
+
+            else
+            {
+                CustomRacePanel.Visibility = Visibility.Hidden;
+                RaceBox.IsEnabled = false;
+                RaceBox.Clear();
+            }
+        }
+
+        private void SubRaceMenu_CoBo_DropDownClosed(object sender, EventArgs e)
+        {
+            if (SubRaceMenu_CoBo.Text == "Custom Subrace")
+            {
+                CustomSubracePanel.Visibility = Visibility.Visible;
+                SubRaceBox.IsEnabled = true;
+            }
+
+            else
+            {
+                CustomSubracePanel.Visibility = Visibility.Hidden;
+                SubRaceBox.IsEnabled = false;
+                SubRaceBox.Clear();
+            }
+        }
+
+        private void ClassMenu_CoBo_DropDownClosed(object sender, EventArgs e)
+        {
+            if (ClassMenu_CoBo.Text == "Custom Class")
+            {
+                CustomClassPanel.Visibility = Visibility.Visible;
+                ClassBox.IsEnabled = true;
+            }
+
+            else
+            {
+                CustomClassPanel.Visibility = Visibility.Hidden;
+                ClassBox.IsEnabled = false;
+                ClassBox.Clear();
+            }
+        }
+
 
         private void Activate_HP_Panel()
         {
@@ -614,13 +700,17 @@ namespace DnD_CharSheet_5e
             CharNameText.Clear();
             PlayerNameText.Clear();
 
-            RaceBox.Clear();
-            SubRaceBox.Clear();
-
-            ClassBox.Clear();
-
             AlignmentBox.SelectedIndex = 0;
             BackgroundBox.Clear();
+
+            RaceBox.Clear();
+            RaceMenu_CoBo.SelectedIndex = 0;
+
+            SubRaceBox.Clear();
+            SubRaceMenu_CoBo.SelectedIndex = 0;
+
+            ClassBox.Clear();
+            ClassMenu_CoBo.SelectedIndex = 0;            
 
             LevelText.Clear();
         }
@@ -667,7 +757,155 @@ namespace DnD_CharSheet_5e
         #endregion
 
 
-        #region METHOD(S) FOR CHECKING USER INPUT OF NUMBERS (INT)
+        #region METHOD(S) FOR CHECKING USER INPUT
+
+        private bool TryCharacterName()
+        {
+            if(CharNameText.Text.Length > 0)
+            {
+                if (CharNameText.Text.Length <= 2)
+                {
+                    const string nameQuestion = "You entered 2 or less characters for the name of your character.\nMost names have more than two characters.\nWould you like to continue?";
+                    const string characterNameIssue = "Character Name";
+                    var result = MessageBox.Show(nameQuestion, characterNameIssue, MessageBoxButton.YesNo);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        return true;
+                    }
+
+                    else
+                        return false;
+                }
+
+                else
+                    return true;
+            }
+
+            else
+                return false;
+        }
+
+        private bool TryRaceInput()
+        {
+            if (RaceMenu_CoBo.SelectedIndex == 0)
+            {
+                MessageBox.Show("You neither selected one of the standard races nor entered a custom one. Please select or enter a race for your character.");
+                return false;
+            }
+            
+            else
+            {
+                if (RaceMenu_CoBo.Text == "Custom Race")
+                {
+                    if (RaceBox.Text.Length == 0)
+                    {
+                        MessageBox.Show("You did not name your custom race. Please enter a name for your custom race or select one of the standard races.");
+                        return false;
+                    }
+
+                    else if (RaceBox.Text.Length > 0 && RaceBox.Text.Length <= 2)
+                    {
+                        string characterQuestion = "You entered less than three characters for your custom Race. Do you wish to proceed?";
+                        string caption = "Custom Race";
+
+                        var result = MessageBox.Show(characterQuestion, caption, MessageBoxButton.YesNo);
+                        if (result == MessageBoxResult.Yes)
+                            return true;
+                        else
+                            return false;
+                    }
+
+                    else
+                        return true;
+                }
+
+                else
+                    return true;
+            }            
+        }
+
+        private bool TrySubraceInput()
+        {
+            if (SubRaceMenu_CoBo.Text == "Custom Subrace")
+            {
+                if (SubRaceBox.Text.Length == 0)
+                {
+                    MessageBox.Show("You entered no name for your custom Subrace. Please enter one and then click 'apply' again.");
+                    return false;
+                }
+
+                else if (SubRaceBox.Text.Length > 0 && SubRaceBox.Text.Length <= 2)
+                {
+                    string characterQuestion = "You entered less than three characters for your custom Subrace. Do you wish to proceed?";
+                    string caption = "Custom Subrace";
+
+                    var result = MessageBox.Show(characterQuestion, caption, MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                        return true;
+                    else
+                        return false;
+                }
+
+                else
+                    return true;
+            }
+
+            else
+                return true;
+        }
+
+        private bool TryAlignmentInput()
+        {
+            if (AlignmentBox.SelectedIndex > 0)
+                return true;
+
+            else
+            {
+                MessageBox.Show("You selected no alignment for your character. But rarely anyone is truly unaligned. If so, select 'neutral' and than click apply again.");
+                return false;
+            }
+        }
+
+        private bool TryClassInput()
+        {
+            if(ClassMenu_CoBo.SelectedIndex == 0)
+            {
+                MessageBox.Show("You neither selected one of the standard classes nor entered a custom one. Please select or enter a class for your character. ");
+                return false;
+            }
+
+            else
+            {
+                if (ClassMenu_CoBo.Text == "Custom Class")
+                {
+                    if (ClassBox.Text.Length == 0)
+                    {
+                        MessageBox.Show("You did not name your custom Class. Please enter a name for your custom Class or select one of the standard Class.");
+                        return false;
+                    }
+
+                    else if (ClassBox.Text.Length > 0 && ClassBox.Text.Length <= 2)
+                    {
+                        string characterQuestion = "You entered less than three characters for your custom Class. Do you wish to proceed?";
+                        string caption = "Custom Class";
+
+                        var result = MessageBox.Show(characterQuestion, caption, MessageBoxButton.YesNo);
+                        if (result == MessageBoxResult.Yes)
+                            return true;
+                        else
+                            return false;
+                    }
+
+                    else
+                        return true;
+                }
+
+                else
+                    return true;
+            }
+        }
+
         private bool CheckValue(string textBoxTxt)
         {
 
@@ -713,6 +951,65 @@ namespace DnD_CharSheet_5e
                 hasError = true;
             }
         }
+
+        private bool Try_Skill_and_SavingThrow_Checkboxes()
+        {
+            bool allCheckBoxesUnchecked = SavingThrowProficiencyCheckBoxes.TrueForAll(SavingThrowCheckBox => SavingThrowCheckBox.IsChecked == false);
+
+            if(!allCheckBoxesUnchecked)
+            {
+                int numberOfCheckedCheckboxes = 0;
+
+                foreach(CheckBox SaveCB in SavingThrowProficiencyCheckBoxes)
+                {
+                    if (SaveCB.IsChecked == true)
+                        numberOfCheckedCheckboxes++;
+                }
+
+                if (numberOfCheckedCheckboxes >= 2)
+                {
+                    allCheckBoxesUnchecked = SkillProficiencyCheckBoxes.TrueForAll(SkillProficiencyCheckbox => SkillProficiencyCheckbox.IsChecked == false);
+
+                    if(!allCheckBoxesUnchecked)
+                    {
+                        numberOfCheckedCheckboxes = 0;
+
+                        foreach (CheckBox SkillCB in SkillProficiencyCheckBoxes)
+                            if (SkillCB.IsChecked == true)
+                                numberOfCheckedCheckboxes++;
+
+                        if (numberOfCheckedCheckboxes >= 2)
+                            return true;
+
+                        else
+                        {
+                            MessageBox.Show("You have selected less than two Skill Proficiencies.\nEvery D&D-Character(-Class) is proficient in at least two Skills.\n(Usually, four or more: at least two for your Characters Class, potentially more for your Characters Race and7 or Background.)\nPlease select at least two Skill Proficiencies.");
+                            return false;
+                        }
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("You have selected no Skill Proficiencies at all (not checked any of the little checkboxes next to the Skill names).\nEvery D&D-Character(-Class) is proficient in at least two Skills.\n(Usually, four or more: at least two for your Characters Class, potentially more for your Characters Race and7 or Background.)\nPlease select at least two Skill Proficiencies.");
+                        return false;
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("You have selected less than two Saving Throw Proficiencies\nEvery D&D-Character(-Class) is proficient in at least two types of Saving Throws.\nPlease choose (at least) two Saving Throw proficiencies.");
+                    return false;
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("You haven't selected any Saving Throw Proficiencies (not checked any of the little checkboxes next to the Saving Throw types).\nEvery D&D-Character(-Class) is proficient in at least two types of Saving Throws.\nPlease choose (at least) two Saving Throw proficiencies.");
+                return false;
+            }
+        }
+
         #endregion
 
 
@@ -725,22 +1022,146 @@ namespace DnD_CharSheet_5e
         {
             SheetManager.CS_Manager_Inst.character.PlayerName = PlayerNameText.Text;
             SheetManager.CS_Manager_Inst.character.CharacterName = CharNameText.Text;
-            SheetManager.CS_Manager_Inst.character.RaceName = RaceBox.Text;
-            SheetManager.CS_Manager_Inst.character.SubraceName = SubRaceBox.Text;
-            SheetManager.CS_Manager_Inst.character.ClassName = ClassBox.Text;
+            SelectRaceInput();
+            SelectSubRaceInput();
+            SelectClassInput();
             SheetManager.CS_Manager_Inst.character.Alignment = AlignmentBox.Text;
             SheetManager.CS_Manager_Inst.character.Background = BackgroundBox.Text;
+        }
+
+        private void SelectRaceInput()
+        {
+            if(RaceMenu_CoBo.SelectedIndex > 0 && RaceMenu_CoBo.Text != "Custom Race")
+            {
+                SheetManager.CS_Manager_Inst.character.RaceName = RaceMenu_CoBo.Text;
+            }
+
+            else if(RaceMenu_CoBo.Text == "Custom Race")
+            {
+                SheetManager.CS_Manager_Inst.character.RaceName = RaceBox.Text;
+            }
+        }
+
+        private void SelectSubRaceInput()
+        {
+            if (SubRaceMenu_CoBo.SelectedIndex > 0 && SubRaceMenu_CoBo.Text != "Custom Subrace")
+            {
+                SheetManager.CS_Manager_Inst.character.SubraceName = SubRaceMenu_CoBo.Text;
+            }
+
+            else if (SubRaceMenu_CoBo.Text == "Custom Subrace")
+            {
+                SheetManager.CS_Manager_Inst.character.SubraceName = SubRaceBox.Text;
+            }            
+        }
+
+        private void SelectClassInput()
+        {
+            if (ClassMenu_CoBo.SelectedIndex > 0 && ClassMenu_CoBo.Text != "Custom Class")
+            {
+                SheetManager.CS_Manager_Inst.character.ClassName = ClassMenu_CoBo.Text;
+            }
+
+            else if (ClassMenu_CoBo.Text == "Custom Class")
+            {
+                SheetManager.CS_Manager_Inst.character.ClassName = ClassBox.Text;
+            }
         }
 
         private void Commit_Character_OnLoad()
         {
             PlayerNameText.Text = SheetManager.CS_Manager_Inst.character.PlayerName;
             CharNameText.Text = SheetManager.CS_Manager_Inst.character.CharacterName;
-            RaceBox.Text = SheetManager.CS_Manager_Inst.character.RaceName;
-            SubRaceBox.Text = SheetManager.CS_Manager_Inst.character.SubraceName;
-            ClassBox.Text = SheetManager.CS_Manager_Inst.character.ClassName;
+            Check_for_and_Select_StandardRace();
+            Check_for_and_Select_StandardSubrace();
+            Check_for_and_Select_StandardClass();
             AlignmentBox.Text = SheetManager.CS_Manager_Inst.character.Alignment;
             BackgroundBox.Text = SheetManager.CS_Manager_Inst.character.Background;
+        }
+
+        private void Check_for_and_Select_StandardRace()
+        {
+            int RaceIndex = 0;
+            bool IsStandardRace = false;
+
+            for(int i = 0; i < SheetManager.CS_Manager_Inst.StandardRaces.Length; i++)
+            {
+                if (SheetManager.CS_Manager_Inst.character.RaceName == SheetManager.CS_Manager_Inst.StandardRaces[i])
+                {
+                    RaceIndex = i + 1;
+                    IsStandardRace = true;
+                }                    
+            }
+
+            if (IsStandardRace)
+            {
+                RaceMenu_CoBo.SelectedIndex = RaceIndex;
+                CustomRacePanel.Visibility = Visibility.Hidden;
+            }                
+
+            else
+            {
+                CustomRacePanel.Visibility = Visibility.Visible;
+                RaceMenu_CoBo.SelectedIndex = 0;
+                RaceBox.Text = SheetManager.CS_Manager_Inst.character.RaceName;
+            }
+        }
+
+        private void Check_for_and_Select_StandardSubrace()
+        {
+            int SubraceIndex = 0;
+            bool IsStandardSubrace = false;
+
+            for (int i = 0; i < SheetManager.CS_Manager_Inst.StandardSubraces.Length; i++)
+            {
+                if (SheetManager.CS_Manager_Inst.character.SubraceName == SheetManager.CS_Manager_Inst.StandardSubraces[i])
+                {
+                    SubraceIndex = i + 1;
+                    IsStandardSubrace = true;
+                }
+            }
+
+            if (IsStandardSubrace)
+            {
+                SubRaceMenu_CoBo.SelectedIndex = SubraceIndex;
+                CustomSubracePanel.Visibility = Visibility.Hidden;
+            }
+                
+            else
+            {
+                CustomSubracePanel.Visibility = Visibility.Visible;
+                SubRaceMenu_CoBo.SelectedIndex = 0;
+                SubRaceBox.Text = SheetManager.CS_Manager_Inst.character.SubraceName;
+            }
+        }
+
+        private void Check_for_and_Select_StandardClass()
+        {
+
+            int classIndex = 0;
+            bool isStandardClass = false;
+
+            for (int i = 0; i < SheetManager.CS_Manager_Inst.StandardClasses.Length; i++)
+            {
+                if (SheetManager.CS_Manager_Inst.character.ClassName == SheetManager.CS_Manager_Inst.StandardClasses[i])
+                {
+                    classIndex = i + 1;
+                    isStandardClass = true;
+                }
+            }
+
+            if (isStandardClass)
+            {
+                ClassMenu_CoBo.SelectedIndex = classIndex;
+                CustomClassPanel.Visibility = Visibility.Hidden;
+            }
+                
+            else
+            {
+                CustomClassPanel.Visibility = Visibility.Visible;
+                ClassMenu_CoBo.SelectedIndex = 0;
+                ClassBox.Text = SheetManager.CS_Manager_Inst.character.ClassName;
+            }
         }
 
         private void Set_FirstLevel()
@@ -949,7 +1370,7 @@ namespace DnD_CharSheet_5e
             AcrobaticsProf.IsChecked = SheetManager.CS_Manager_Inst.character.Acrobatics.IsProficient;            
             ArcanaProf.IsChecked = SheetManager.CS_Manager_Inst.character.Arcana.IsProficient;
             AnimalHandlingProf.IsChecked = SheetManager.CS_Manager_Inst.character.AnimalHandling.IsProficient;
-            AthleticsProf.IsChecked = SheetManager.CS_Manager_Inst.character.Arcana.IsProficient;
+            AthleticsProf.IsChecked = SheetManager.CS_Manager_Inst.character.Athletics.IsProficient;
 
             DeceptionProf.IsChecked = SheetManager.CS_Manager_Inst.character.Deception.IsProficient;
 
@@ -1188,7 +1609,8 @@ namespace DnD_CharSheet_5e
             Survival_Result.Text = SheetManager.CS_Manager_Inst.character.Survival.SkillCheck().ToString();
             
         }
-        #endregion
 
+        #endregion        
+        
     }
 }
