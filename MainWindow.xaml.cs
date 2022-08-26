@@ -29,6 +29,8 @@ namespace DnD_CharSheet_5e
         // Singleton to access the Main Window from sub windows
         public static MainWindow mainWindow_Inst;
 
+        public InventoryWindow InventoryWdw;
+
         // Bool for handling invalid types of user input during character creation in all of the important number (int) input fields (when the user fills out the sheet)
         bool hasError = false;
 
@@ -82,10 +84,16 @@ namespace DnD_CharSheet_5e
                 mainWindow_Inst = this;
             }
 
+            Init_CharSheetWindows();
             Init_UIControls();
             
         }
         #endregion
+
+        private void Init_CharSheetWindows()
+        {
+            InventoryWdw = new InventoryWindow();
+        }
 
 
         #region INITIALIZATION OF UI-ELEMENTS - EXECUTED IN THE CONSTTRUCTOR
@@ -376,7 +384,7 @@ namespace DnD_CharSheet_5e
 
         private void InventoryWindow_Btn_Click(object sender, RoutedEventArgs e)
         {
-            InventoryWindow InventoryWdw = new InventoryWindow();
+            InventoryWdw.Refresh_UI();
             InventoryWdw.Show();
         }
 
@@ -494,6 +502,9 @@ namespace DnD_CharSheet_5e
             Init_AC_Update();
 
             Activate_Checks();
+
+            if(InventoryWdw.IsVisible)
+                InventoryWdw.Refresh_UI();
         }
 
 

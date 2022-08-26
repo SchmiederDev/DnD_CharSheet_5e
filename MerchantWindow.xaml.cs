@@ -31,10 +31,13 @@ namespace DnD_CharSheet_5e
 
         Merchant merchant = new Merchant();
 
+        BuyOrAddWindow buyOrAddWdw;
+
         public MerchantWindow()
         {            
             InitializeComponent();
-            
+            buyOrAddWdw = new BuyOrAddWindow();
+            buyOrAddWdw.onMoneyChanged += Update_PlayerFortune;
             Load_Databases();
             Init_UI();
         }
@@ -168,14 +171,11 @@ namespace DnD_CharSheet_5e
             
             if(tempItem != null)
             {
-                if(SheetManager.CS_Manager_Inst.character.cInventory.Pay_Item(tempItem.Coin) == true)
-                {
-                    SheetManager.CS_Manager_Inst.character.cInventory.Add_Item(tempItem);
-                    InventoryWindow.inventoryWindow_Inst.Refresh_UI();
-                }
+                buyOrAddWdw.SendItem(tempItem);
+                buyOrAddWdw.Show();
+                
             }
-
-            Update_PlayerFortune();
+            
         }
 
         private void Weapon_Button_Click(object sender, RoutedEventArgs e)
@@ -185,14 +185,9 @@ namespace DnD_CharSheet_5e
 
             if(tempWeapon != null)
             {
-               if(SheetManager.CS_Manager_Inst.character.cInventory.Pay_Item(tempWeapon.Coin))
-                {
-                    SheetManager.CS_Manager_Inst.character.cInventory.Add_Weapon(tempWeapon);
-                    InventoryWindow.inventoryWindow_Inst.Refresh_UI();
-                }
+                buyOrAddWdw.SendItem(tempWeapon);
+                buyOrAddWdw.Show();
             }
-
-            Update_PlayerFortune();
         }
 
         private void Armor_Button_Click(object sender, RoutedEventArgs e)
@@ -202,14 +197,9 @@ namespace DnD_CharSheet_5e
 
             if(tempArmor != null)
             {
-                if(SheetManager.CS_Manager_Inst.character.cInventory.Pay_Item(tempArmor.Coin))
-                {
-                    SheetManager.CS_Manager_Inst.character.cInventory.Add_Armor(tempArmor);
-                    InventoryWindow.inventoryWindow_Inst.Refresh_UI();
-                }
+                buyOrAddWdw.SendItem(tempArmor);
+                buyOrAddWdw.Show();
             }
-
-            Update_PlayerFortune();
         }
 
         #endregion

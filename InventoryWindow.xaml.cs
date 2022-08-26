@@ -24,31 +24,13 @@ namespace DnD_CharSheet_5e
 
     public partial class InventoryWindow : Window
     {
-        
-        public static InventoryWindow inventoryWindow_Inst;
-
         #region CONSTRUCTOR AND UI INITIALIZATION/ REFRESH UI METHODS
         public InventoryWindow()
         {
             InitializeComponent();
 
-            if(inventoryWindow_Inst == null)
-            {
-                inventoryWindow_Inst = this;
-            }
-
-            Init_UI();
-            Load_IconsForEquipedItems();
-        }       
-       
-        private void Init_UI()
-        {
-            CharName_Box.Text = SheetManager.CS_Manager_Inst.character.CharacterName;
-            PlayerName_Box.Text = SheetManager.CS_Manager_Inst.character.PlayerName;
-
-            Update_Riches();
-            Clear_InventoryPanels();
-            Generate_ItemBtns();
+            Refresh_UI();
+            
         }
         private void Load_IconsForEquipedItems()
         {
@@ -56,28 +38,39 @@ namespace DnD_CharSheet_5e
             {
                 RightHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.RightHand_Weapon.ItemName);
             }
+            else
+                RightHand_Img.Source = null;
 
             if (SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor != null)
             {
                 LeftHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Armor.ItemName);
             }
+            else
+                LeftHand_Img.Source = null;
 
             if (SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon != null)
             {
                 LeftHand_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.LeftHand_Weapon.ItemName);
             }
+            else
+                LeftHand_Img.Source = null; 
 
             if (SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor != null)
             {
                 Armor_Img.Source = ImageHandler.ImgHandlerInst.Get_SourceUri(SheetManager.CS_Manager_Inst.character.CharEquipment.CharacterArmor.ItemName);
             }
+            else
+                Armor_Img.Source = null;
         }
 
         public void Refresh_UI()
         {
+            CharName_Box.Text = SheetManager.CS_Manager_Inst.character.CharacterName;
+            PlayerName_Box.Text = SheetManager.CS_Manager_Inst.character.PlayerName;
             Update_Riches();
             Clear_InventoryPanels();
             Generate_ItemBtns();
+            Load_IconsForEquipedItems();
         }
 
         private void Update_Riches()
@@ -451,5 +444,11 @@ namespace DnD_CharSheet_5e
         }
 
         #endregion
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
+        }
     }
 }
