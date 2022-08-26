@@ -92,6 +92,9 @@
     <Compile Include="BackgroundWindow.xaml.cs">
       <DependentUpon>BackgroundWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BuyOrAddWindow.xaml.cs">
+      <DependentUpon>BuyOrAddWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CharacterData.cs" />
     <Compile Include="DiceMachine.xaml.cs">
       <DependentUpon>DiceMachine.xaml</DependentUpon>
@@ -134,6 +137,10 @@
     <Page Include="BackgroundWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BuyOrAddWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CombatWindow.xaml">
       <SubType>Designer</SubType>
