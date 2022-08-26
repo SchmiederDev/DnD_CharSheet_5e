@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
-        Title="InventoryWindow" Height="1000" Width="1200" WindowStartupLocation="Manual" Left="0" Top="0">
+        Title="InventoryWindow" Height="1000" Width="1200" WindowStartupLocation="Manual" Left="0" Top="0" Closing="Window_Closing">
 
     <Window.Resources>
 
