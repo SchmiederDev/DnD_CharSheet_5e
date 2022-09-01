@@ -1,0 +1,277 @@
+[
+  {
+    "SpellName": "Druid Craft",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Guidance",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Mending",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Poison Spray",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Produce Flame",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Resistance",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Shillelagh",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Thorn Whip",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Animal Friendship",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Charm Person",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Create or Destroy Water",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Cure Wounds",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Detect Magic",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Detect Poison and Disease",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Entangle",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Faerie Fire",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Fog Cloud",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Good Berry",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Healing Word",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Jump",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Longstrider",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Purify Food and Drink",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Speak with Animals",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Thunderwave",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Animal Messenger",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Barkskin",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Beast Sense",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Darkvision",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Enhance Ability",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Find Traps",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Flame Bladde",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Flaming Sphere",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Gust of Wind",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Heat Metal",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Hold Person",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Lesser Restoration",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Locate Animals or Plants",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Locate Object",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Moonbeam",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Pass without Trace",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Protection from Poison",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Spike Growth",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Call Lightning",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Conjure Animals",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Daylight",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Dispel Magic",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Feign Death",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Meld into Stone",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Plant Growth",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Protection from Energy",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Sleet Storm",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Speak with Plants",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Water Breathing",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Water Walk",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Wind Wall",
+    "SpellLevel": 3
+  }
+
+]
