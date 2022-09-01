@@ -204,9 +204,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Druid_SpellList.json" />
     <None Include="ItemDataBase.json" />
     <None Include="ArmorDataBase.json" />
     <None Include="Bard_SpellList.json" />
+    <None Include="Cleric_SpellList.json" />
     <None Include="Languages.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
