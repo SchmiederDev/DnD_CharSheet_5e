@@ -1,0 +1,221 @@
+[
+  {
+    "SpellName": "Bless",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Command",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Compelled Duel",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Cure Wounds",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Detect Evil and Good",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Detect Poison and Disease",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Divine Favor",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Heroism",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Protection from Evil and Good",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Purify Food and Drink",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Searing Smite",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Shield of Faith",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Thunderous Smite",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Wrathful Smite",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Aid",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Branding Smite",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Find Steed",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Lesser Restoration",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Locate Object",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Magic Weapon",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Protection from Poison",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Zone of Truth",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Aura of Vitality",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Blinding Smite",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Create Food and Water",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Crusader's Mantle'",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Daylight",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Dispel Magic",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Elemental Weapon",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Magic Circle",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Remove Curse",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Revivify",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Aura of Life",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Aura of Purity",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Banishment",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Death Ward",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Locate Creature",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Staggering Smite",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Banishing Smite",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Circle of Power",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Destructive Wave",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Dispel Evil and Good",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Geas",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Raise Dead",
+    "SpellLevel": 5
+  }
+]
