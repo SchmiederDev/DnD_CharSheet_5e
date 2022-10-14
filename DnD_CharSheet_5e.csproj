@@ -209,12 +209,16 @@
     <None Include="ArmorDataBase.json" />
     <None Include="Bard_SpellList.json" />
     <None Include="Cleric_SpellList.json" />
+    <None Include="Warlock_SpellList.json" />
     <None Include="Languages.json" />
     <None Include="packages.config" />
+    <None Include="Paladin_SpellList.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Ranger_SpellList.json" />
+    <None Include="Sorcerer_SpellList.json" />
     <None Include="SpellDataBase.json" />
     <None Include="WeaponDataBase.json" />
     <None Include="Wizard_SpellList.json" />
