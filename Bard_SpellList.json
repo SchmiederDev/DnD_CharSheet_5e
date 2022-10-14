@@ -500,6 +500,16 @@
   },
 
   {
+    "SpellName": "Mordekainen's Magnificent Mansion",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Mordekainen's Sword",
+    "SpellLevel": 7
+  },
+
+  {
     "SpellName": "Project Image",
     "SpellLevel": 7
   },
