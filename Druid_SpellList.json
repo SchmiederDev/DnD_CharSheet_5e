@@ -272,6 +272,281 @@
   {
     "SpellName": "Wind Wall",
     "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Blight",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Confusion",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Conjure Minor Elementals",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Conjure Woodland Beings",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Control Water",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Dominate Beast",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Freedom of Movement",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Giant Insect",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Grasping Vine",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Hallucinatory Terrain",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Ice Storm",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Locate Creature",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Polymorph",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Stone Shape",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Stoneskin",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Wall of Fire",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Antilife Shell",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Awaken",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Commune with Nature",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Conjure Elemental",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Contagion",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Geas",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Greater Restoration",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Insect Plague",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Mass Cure Wounds",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Planar Binding",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Reincarnate",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Scrying",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Tree Stride",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Wall of Stone",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Conjure Fey",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Find the Path",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Heal",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Heroes' Feast",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Move Earth",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Sunbeam",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Transport via Plants",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Wall of Thorns",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Wind Walk",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Fire Storm",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Mirage Arcane",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Plane Shift",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Regenerate",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Reverse Gravity",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Animal Shapes",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Antipathy/ Simpathy",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Control Weather",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Earthquake",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Feeblemind",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Sunburst",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Tsunami",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Foresight",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Shapechange",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Storm of Vengeance",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "True Resurrection",
+    "SpellLevel": 9
   }
 
 ]
