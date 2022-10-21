@@ -1,0 +1,383 @@
+[
+
+  {
+    "SpellName": "Blade Ward",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Chill Touch",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Eldritch Blast",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Friends",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Mage Hand",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Minor Illusion",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Poison Spray",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Prestidigitation",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "True Strike",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Armor of Agathys",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Arms of Hadar",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Charm Person",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Comprehend Languages",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Expeditious Retreat",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Hellish Rebuke",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Hex",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Illusory Script",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Protection from Evil and Good",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Unseen Servant",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Witch Bolt",
+    "SpellLevel": 1
+  },
+
+
+  {
+    "SpellName": "Cloud of Daggers",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Crown of Madness",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Darkness",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Enthrall",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Detect Thoughts",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Enhance Ability",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Hold Person",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Invisibility",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Mirror Image",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Misty Step",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Ray of Enfeeblement",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Shatter",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Spider Climb",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Suggestion",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Counterspell",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Dispel Magic",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Fear",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Fly",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Gaseous Form",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Hunger of Hadar",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Hypnotic Pattern",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Magic Circle",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Major Image",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Remove Curse",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Tongues",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Vampiric Touch",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Banishment",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Blight",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Dimension Door",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Hallucinatory Terrain",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Contact Other Plane",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Dream",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Hold Monster",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Scrying",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Arcane Gate",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Circle of Death",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Conjure Fey",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Create Undead",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Eyebite",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Flesh to Stone",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Mass Suggestion",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "True Seeing",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Etherealness",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Finger of Death",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Forcecage",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Plane Shift",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Demiplane",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Dominate Monster",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Feeblemind",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Glibness",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Power Word Stun",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Astral Projection",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Foresight",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Imprisonment",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Power Word Kill",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "True Polymorph",
+    "SpellLevel": 9
+  }
+]

@@ -1,0 +1,1456 @@
+[
+  {
+    "ItemName": "Abacus",
+    "Item_ID": "i_01",
+    "ItemWeight": 2,
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A machine to calculate with..."
+  },
+
+  {
+    "ItemName": "Acid",
+    "Item_ID": "i_02",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "As an action, you can splash the contents of this vial onto a creature within 5 feet of you\nor throw the vial up to 20 feet, shattering it on impact.\n In either case, make a ranged attack against a creature or object,\n treating the acid as an improvised weapon.\nOn a hit, the target takes 2d6 acid damage."
+  },
+
+  {
+    "ItemName": "Alchemist's Fire",
+    "Item_ID": "i_03",
+    "ItemWeight": 1,
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "This sticky, adhesive fluid ignites when exposed to air. As an action, you can throw this flask up to 20 feet, shattering it on impact. Make a ranged attack against a creature or object, treating the alchemist's fire as an improvised weapon. On a hit, the target takes 1d4 fire damage at the start of each of its turns. A creature can end this damage by using its action to make a DC 10 Dexterity check to extinguish the flames."
+  },
+
+  {
+    "ItemName": "Antitoxin (vial)",
+    "Item_ID": "i_04",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus_Slot",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A creature that drinks this vial of liquid gains advantage on saving throws against poison for 1 hour. It confers no benefit to undead or constructs."
+  },
+
+  {
+    "ItemName": "Arcane Focus, Crystal",
+    "Item_ID": "i_05",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "An arcane focus is a special item–an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item–designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+
+  {
+    "ItemName": "Arcane Focus, Orb",
+    "Item_ID": "i_06",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 20,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "An arcane focus is a special item–an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item–designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+
+  {
+    "ItemName": "Arcane Focus, Rod",
+    "Item_ID": "i_07",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "An arcane focus is a special item–an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item–designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+
+  {
+    "ItemName": "Arcane Focus, Staff",
+    "Item_ID": "i_08",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "An arcane focus is a special item–an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item–designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+
+  {
+    "ItemName": "Arcane Focus, Wand",
+    "Item_ID": "i_09",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "An arcane focus is a special item–an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item–designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+
+  {
+    "ItemName": "Backpack",
+    "Item_ID": "i_10",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Capacity: 1 cubic foot/30 pounds of gear. You can also strap items, such as a bedroll or a coil of rope, to the outside of a backpack."
+  },
+
+  {
+    "ItemName": "Ball Bearings",
+    "Item_ID": "i_11",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "As an action, you can spill these tiny metal balls from their pouch to cover a level, square area that is 10 feet on a side. A creature moving across the covered area must succeed on a DC 10 Dexterity saving throw or fall prone. A creature moving through the area at half speed doesn't need to make the save."
+  },
+
+  {
+    "ItemName": "Barrel",
+    "Item_ID": "i_12",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 70,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Capacity: 40 gallons liquid, 4 cubic feet solid."
+  },
+
+  {
+    "ItemName": "Basket",
+    "Item_ID": "i_13",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 4,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Capacity: 2 cubic feet/40 pounds of gear."
+  },
+
+  {
+    "ItemName": "Bedroll",
+    "Item_ID": "i_14",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 7,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A Bedroll to sleep in."
+  },
+
+  {
+    "ItemName": "Bell",
+    "Item_ID": "i_15",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A Bell to chime."
+  },
+
+  {
+    "ItemName": "Blanket",
+    "Item_ID": "i_16",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "A Blanket."
+  },
+
+  {
+    "ItemName": "Block and tackle",
+    "Item_ID": "i_17",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A set of pulleys with a cable threaded through them and a hook to attach to objects, a block and tackle allows you to hoist up to four times the weight you can normally lift."
+  },
+
+  {
+    "ItemName": "Book",
+    "Item_ID": "i_18",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A book might contain poetry, historical accounts, information pertaining to a particular field of lore, diagrams and notes on gnomish contraptions, or just about anything else that can be represented using text or pictures."
+  },
+
+  {
+    "ItemName": "Bottle, glass",
+    "Item_ID": "i_19",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Capacity: 1.5 pints liquid."
+  },
+
+  {
+    "ItemName": "Bucket",
+    "Item_ID": "i_20",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "Capacity: 3 gallons liquid, 1/2 cubic foot solid."
+  },
+
+  {
+    "ItemName": "Caltrops (bag of 20)",
+    "Item_ID": "i_21",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "As an action, you can spread a bag of caltrops to cover a square area that is 5 feet on a side. Any creature that enters the area must succeed on a DC 15 Dexterity saving throw or stop moving this turn and take 1 piercing damage. Taking this damage reduces the creature's walking speed by 10 feet until the creature regains at least 1 hit point. A creature moving through the area at half speed doesn't need to make the save."
+  },
+
+  {
+    "ItemName": "Candle",
+    "Item_ID": "i_22",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "Capacity: 3 gallons liquid, 1/2 cubic foot solid."
+  },
+
+  {
+    "ItemName": "Case, crossbow bolt",
+    "Item_ID": "i_23",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "This wooden case can hold up to twenty crossbow bolts."
+  },
+
+  {
+    "ItemName": "Case, map or scroll",
+    "Item_ID": "i_24",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "This cylindrical leather case can hold up to ten rolled-up sheets of paper or five rolled-up sheets of parchment."
+  },
+
+  {
+    "ItemName": "Chain (10 feet)",
+    "Item_ID": "i_25",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A chain has 10 hit points. It can be burst with a successful DC 20 Strength check."
+  },
+
+  {
+    "ItemName": "Chalk (1 piece)",
+    "Item_ID": "i_26",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "A piece of chalk to write or draw with."
+  },
+
+  {
+    "ItemName": "Chest",
+    "Item_ID": "i_27",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 25,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Capacity: 12 cubic feet/300 pounds of gear."
+  },
+
+  {
+    "ItemName": "Climber's kit",
+    "Item_ID": "i_28",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 12,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A climber's kit includes special pitons, boot tips, gloves, and a harness. You can use the climber's kit as an action to anchor yourself; when you do, you can't fall more than 25 feet from the point where you anchored yourself, and you can't climb more than 25 feet away from that point without undoing the anchor."
+  },
+
+  {
+    "ItemName": "Clothes, common",
+    "Item_ID": "i_29",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "A set of common clothes."
+  },
+
+  {
+    "ItemName": "Clothes, costume",
+    "Item_ID": "i_30",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A Costume."
+  },
+
+  {
+    "ItemName": "Clothes, fine",
+    "Item_ID": "i_31",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 15,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A set of fine clothes."
+  },
+
+  {
+    "ItemName": "Clothes, traveler's",
+    "Item_ID": "i_32",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A set of sturdy clothes for traveling."
+  },
+
+  {
+    "ItemName": "Component Pouch",
+    "Item_ID": "i_33",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A component pouch is a small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost (as indicated in a spell's description)."
+  },
+
+  {
+    "ItemName": "Crowbar",
+    "Item_ID": "i_34",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Using a crowbar grants advantage to Strength checks where the crowbar's leverage can be applied."
+  },
+
+  {
+    "ItemName": "Druidic focus: Sprig of mistletoe",
+    "Item_ID": "i_35",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus."
+  },
+
+  {
+    "ItemName": "Druidic focus: Totem",
+    "Item_ID": "i_36",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus."
+  },
+
+  {
+    "ItemName": "Druidic focus: Wooden staff",
+    "Item_ID": "i_37",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus."
+  },
+
+  {
+    "ItemName": "Druidic focus: Yew wand",
+    "Item_ID": "i_38",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus."
+  },
+
+  {
+    "ItemName": "Fishing tackle",
+    "Item_ID": "i_39",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "This kit includes a wooden rod, silken line, corkwood bobbers, steel hooks, lead sinkers, velvet lures, and narrow netting."
+  },
+
+  {
+    "ItemName": "Flask", // Don't forget about tankard
+    "Item_ID": "i_40",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "Capacity: 1 pint liquid."
+  },
+
+  {
+    "ItemName": "Grappling hook",
+    "Item_ID": "i_41",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A hook you can attach to ropes (mostly) and that helps you climbing rooftops, cliffs and the like."
+  },
+
+  {
+    "ItemName": "Hammer",
+    "Item_ID": "i_42",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A tool used for hammering (nails mostly.)"
+  },
+
+  {
+    "ItemName": "Hammer, sledge",
+    "Item_ID": "i_43",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A heavy hammer to exert brute force to walls and other objects that need to be broken down mostly."
+  },
+
+  {
+    "ItemName": "Healer's kit",
+    "Item_ID": "i_44",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "This kit is a leather pouch containing bandages, salves, and splints. The kit has ten uses. As an action, you can expend one use of the kit to stabilize a creature that has 0 hit points, without needing to make a Wisdom (Medicine) check."
+  },
+
+  {
+    "ItemName": "Holy symbol: Amulet",
+    "Item_ID": "i_45",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Neck",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+  },
+
+  {
+    "ItemName": "Holy symbol: Emblem",
+    "Item_ID": "i_46",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+  },
+
+  {
+    "ItemName": "Holy symbol: Reliquary",
+    "Item_ID": "i_47",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+  },
+
+  {
+    "ItemName": "Holy water (flask)",
+    "Item_ID": "i_48",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "As an action, you can splash the contents of this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. In either case, make a ranged attack against a target creature, treating the holy water as an improvised weapon. If the target is a fiend or undead, it takes 2d6 radiant damage. A cleric or paladin may create holy water by performing a special ritual. The ritual takes 1 hour to perform, uses 25 gp worth of powdered silver, and requires the caster to expend a 1st-level spell slot."
+  },
+
+  {
+    "ItemName": "Hourglass",
+    "Item_ID": "i_49",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "An instrument to measure time with."
+  },
+
+  {
+    "ItemName": "Hunting trap",
+    "Item_ID": "i_50",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 25,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "When you use your action to set it, this trap forms a saw-toothed steel ring that snaps shut when a creature steps on a pressure plate in the center. The trap is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground. A creature that steps on the plate must succeed on a DC 13 Dexterity saving throw or take 1d4 piercing damage and stop moving. Thereafter, until the creature breaks free of the trap, its movement is limited by the length of the chain (typically 3 feet long). A creature can use its action to make a DC 13 Strength check, freeing itself or another creature within its reach on a success. Each failed check deals 1 piercing damage to the trapped creature."
+  },
+
+  {
+    "ItemName": "Ink (one ounce bottle)",
+    "Item_ID": "i_51",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "One ounce of ink."
+  },
+
+  {
+    "ItemName": "Ink pen",
+    "Item_ID": "i_52",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "An ink pen to write with."
+  },
+
+  {
+    "ItemName": "Jug", // Don't forget Pitcher
+    "Item_ID": "i_53",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "A container for liquid. Capacity: 1 gallon liquid."
+  },
+
+  {
+    "ItemName": "Ladder (10-foot)",
+    "Item_ID": "i_54",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 25,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "A ladder to reach places above the ground."
+  },
+
+  {
+    "ItemName": "Lamp",
+    "Item_ID": "i_55",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "A lamp casts bright light in a 15-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil."
+  },
+
+  {
+    "ItemName": "Lantern, bullseye",
+    "Item_ID": "i_56",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A bullseye lantern casts bright light in a 60-foot cone and dim light for an additional 60 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil."
+  },
+
+  {
+    "ItemName": "Lantern, hooded",
+    "Item_ID": "i_57",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A hooded lantern casts bright light in a 30-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. As an action, you can lower the hood, reducing the light to dim light in a 5-foot radius."
+  },
+
+  {
+    "ItemName": "Lock",
+    "Item_ID": "i_58",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A key is provided with the lock. Without the key, a creature proficient with thieves' tools can pick this lock with a successful DC 15 Dexterity check. Your GM may decide that better locks are available for higher prices."
+  },
+
+  {
+    "ItemName": "Magnifying glass",
+    "Item_ID": "i_59",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 100,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "This lens allows a closer look at small objects. It is also useful as a substitute for flint and steel when starting fires. Lighting a fire with a magnifying glass requires light as bright as sunlight to focus, tinder to ignite, and about 5 minutes for the fire to ignite. A magnifying glass grants advantage on any ability check made to appraise or inspect an item that is small or highly detailed."
+  },
+
+  {
+    "ItemName": "Manacles",
+    "Item_ID": "i_60",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "These metal restraints can bind a Small or Medium creature. Escaping the manacles requires a successful DC 20 Dexterity check. Breaking them requires a successful DC 20 Strength check. Each set of manacles comes with one key. Without the key, a creature proficient with thieves' tools can pick the manacles' lock with a successful DC 15 Dexterity check. Manacles have 15 hit points."
+  },
+
+  {
+    "ItemName": "Mess kit",
+    "Item_ID": "i_61",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "This tin box contains a cup and simple cutlery. The box clamps together, and one side can be used as a cooking pan and the other as a plate or shallow bowl."
+  },
+
+  {
+    "ItemName": "Mirror, steel",
+    "Item_ID": "i_62",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0.5,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "This tin box contains a cup and simple cutlery. The box clamps together, and one side can be used as a cooking pan and the other as a plate or shallow bowl."
+  },
+
+  {
+    "ItemName": "Oil (flask)",
+    "Item_ID": "i_63",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Oil usually comes in a clay flask that holds 1 pint. As an action, you can splash the oil in this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. Make a ranged attack against a target creature or object, treating the oil as an improvised weapon. On a hit, the target is covered in oil. If the target takes any fire damage before the oil dries (after 1 minute), the target takes an additional 5 fire damage from the burning oil. You can also pour a flask of oil on the ground to cover a 5-foot-square area, provided that the surface is level. If lit, the oil burns for 2 rounds and deals 5 fire damage to any creature that enters the area or ends its turn in the area. A creature can take this damage only once per turn."
+  },
+
+  {
+    "ItemName": "Paper (one sheet)",
+    "Item_ID": "i_64",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "A sheet of paper to write on."
+  },
+
+  {
+    "ItemName": "Parchment (one sheet)",
+    "Item_ID": "i_65",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "A sheet of parchment to write on."
+  },
+
+  {
+    "ItemName": "Perfume (vial)",
+    "Item_ID": "i_66",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "You smell good after using this."
+  },
+
+  {
+    "ItemName": "Pick, Miner's)",
+    "Item_ID": "i_67",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A pick to mine with or otherwise apply brute force (to objects hopefully)."
+  },
+
+  {
+    "ItemName": "Pitcher", // Don't forget Pitcher
+    "Item_ID": "i_68",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "A container for liquid. Capacity: 1 gallon liquid."
+  },
+
+  {
+    "ItemName": "Piton",
+    "Item_ID": "i_69",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0.25,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "A piton - helps you climb things."
+  },
+
+  {
+    "ItemName": "Poison, Basic (vial)",
+    "Item_ID": "i_70",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 100,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "You can use the poison in this vial to coat one slashing or piercing weapon or up to three pieces of ammunition. Applying the poison takes an action. A creature hit by the poisoned weapon or ammunition must make a DC 10 Constitution saving throw or take 1d4 poison damage. Once applied, the poison retains potency for 1 minute before drying."
+  },
+
+  {
+    "ItemName": "Pole (10-foot)",
+    "Item_ID": "i_71",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 7,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "A pole to poke with."
+  },
+
+  {
+    "ItemName": "Pot, iron",
+    "Item_ID": "i_72",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "An iron pot to cook with; Capacity: 1 gallon liquid."
+  },
+
+  {
+    "ItemName": "Potion of Healing",
+    "Item_ID": "i_73",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Bonus Slot",
+    "ItemWeight": 0.5,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A character who drinks the magical red fluid in this vial regains 2d4 + 2 hit points. Drinking or administering a potion takes an action."
+  },
+
+  {
+    "ItemName": "Pouch",
+    "Item_ID": "i_74",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "A cloth or leather pouch can hold up to 20 sling bullets or 50 blowgun needles, among other things. A compartmentalized pouch for holding spell components is called a 'component pouch'."
+  },
+
+  {
+    "ItemName": "Quiver",
+    "Item_ID": "i_75",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A quiver can hold up to 20 arrows."
+  },
+
+  {
+    "ItemName": "Ram, portable",
+    "Item_ID": "i_76",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 35,
+    "Coin": {
+      "Price": 4,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "You can use a portable ram to break down doors. When doing so, you gain a +4 bonus on the Strength check. One other character can help you use the ram, giving you advantage on this check."
+  },
+
+  {
+    "ItemName": "Rations (1 day)",
+    "Item_ID": "i_77",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts."
+  },
+
+  {
+    "ItemName": "Robes",
+    "Item_ID": "i_78",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Cape",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Robes to wear. Make you look really important."
+  },
+
+  {
+    "ItemName": "Rope, hempen (50 feet)",
+    "Item_ID": "i_79",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check."
+  },
+
+  {
+    "ItemName": "Rope, silk (50 feet)",
+    "Item_ID": "i_80",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check."
+  },
+
+  {
+    "ItemName": "Sack",
+    "Item_ID": "i_81",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0.5,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "Capacity: 1 cubic foot/30 pounds of gear."
+  },
+
+  {
+    "ItemName": "Scale merchant's",
+    "Item_ID": "i_82",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A scale includes a small balance, pans, and a suitable assortment of weights up to 2 pounds. With it, you can measure the exact weight of small objects, such as raw precious metals or trade goods, to help determine their worth."
+  },
+
+  {
+    "ItemName": "Sealing wax",
+    "Item_ID": "i_83",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Wax for imprinting your sigil on letters, charters and other documents."
+  },
+
+  {
+    "ItemName": "Shovel",
+    "Item_ID": "i_84",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A shovel - Can you dig it?"
+  },
+
+  {
+    "ItemName": "Signal whistle",
+    "Item_ID": "i_85",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "It whistle to whistle with."
+  },
+
+  {
+    "ItemName": "Signet ring",
+    "Item_ID": "i_86",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Ring",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A ring with a sigil you combine with sealing wax to make imprints on letters, charters and other documents or to show for (or off)."
+  },
+
+  {
+    "ItemName": "Soap",
+    "Item_ID": "i_87",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "Soap you can use to wash things including yourself."
+  },
+
+  {
+    "ItemName": "Spellbook",
+    "Item_ID": "i_88",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells. "
+  },
+
+  {
+    "ItemName": "Spikes, iron (10)",
+    "Item_ID": "i_89",
+    "IsEquipable": false,
+    "IsConsumable": true,
+    "SlotReference": "none",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Spikey spikes made of iron for climbing and the like..."
+  },
+
+  {
+    "ItemName": "Spyglass",
+    "Item_ID": "i_90",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 1000,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Objects viewed through a spyglass are magnified to twice their size."
+  },
+
+  {
+    "ItemName": "Tankard",
+    "Item_ID": "i_91",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "Capacity: 1 pint liquid."
+  },
+
+  {
+    "ItemName": "Tent, two person",
+    "Item_ID": "i_92",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 20,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "A simple and portable canvas shelter, a tent sleeps two."
+  },
+
+  {
+    "ItemName": "Tinderbox",
+    "Item_ID": "i_93",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "This small container holds flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a torch–or anything else with abundant, exposed fuel–takes an action. Lighting any other fire takes 1 minute."
+  },
+
+  {
+    "ItemName": "Torch",
+    "Item_ID": "i_94",
+    "IsEquipable": true,
+    "IsConsumable": true,
+    "SlotReference": "Hand",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "A torch burns for 1 hour, providing bright light in a 20-foot radius and dim light for an additional 20 feet. If you make a melee attack with a burning torch and hit, it deals 1 fire damage."
+  },
+
+  {
+    "ItemName": "Vial",
+    "Item_ID": "i_95",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Capacity: 4 ounces liquid."
+  },
+
+  {
+    "ItemName": "Waterskin",
+    "Item_ID": "i_96",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Capacity: 4 pints liquid."
+  },
+
+  {
+    "ItemName": "Whetstone",
+    "Item_ID": "i_97",
+    "IsEquipable": false,
+    "IsConsumable": false,
+    "SlotReference": "none",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "A whetstone to sharpen things with (to sharpen your mind books are more helpful)."
+  }
+]

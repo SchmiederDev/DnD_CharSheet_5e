@@ -1,0 +1,1075 @@
+[
+  {
+    "ItemName": "Club",
+    "Item_ID": "w_01",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d4 bludgeoning, Properties: Light",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Dagger",
+    "Item_ID": "w_02",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d4 piercing, Properties: Finesse, light, thrown (range 20/60)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": true,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Greatclub",
+    "Item_ID": "w_03",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d8 bludgeoning, Properties: Two-handed",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Handaxe",
+    "Item_ID": "w_04",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 slashing, Properties: Light, thrown (range 20/60)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": false,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Javelin",
+    "Item_ID": "w_05",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Thrown (range 30/120)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 30,
+    "MaxRange": 120,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Light hammer",
+    "Item_ID": "w_06",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d4 bludgeoning, Properties: Light, thrown (range 20/60)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": false,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Mace",
+    "Item_ID": "w_07",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 bludgeoning, Properties: -",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Quarterstaff",
+    "Item_ID": "w_08",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d6 bludgeoning, Properties: Versatile (1d8)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Sickle",
+    "Item_ID": "w_09",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d4 slashing, Properties: Light",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Spear",
+    "Item_ID": "w_10",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Thrown (range 20/60), versatile (1d8)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Crossbow, light",
+    "Item_ID": "w_11",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 5,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: Ammunition (range 80/320), loading, two-handed",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": true,
+    "NormRange": 80,
+    "MaxRange": 320,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Dart",
+    "Item_ID": "w_12",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 0.25,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "CP"
+    },
+
+    "ItemInfo": "Damage: 1d4 piercing, Properties: Finesse, thrown (range 20/60)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": true,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": true,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Shortbow",
+    "Item_ID": "w_13",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Ammunition (range 80/320), two-handed",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": true,
+    "NormRange": 80,
+    "MaxRange": 320,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Sling",
+    "Item_ID": "w_14",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 0,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "SP"
+    },
+
+    "ItemInfo": "Damage: 1d4 bludgeoning, Properties: Ammunition (range 30/120)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": true,
+    "NormRange": 30,
+    "MaxRange": 120,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Battleaxe",
+    "Item_ID": "w_15",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 slashing, Properties: Versatile (1d10)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Flail",
+    "Item_ID": "w_16",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 bludgeoning, Properties: -",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Glaive",
+    "Item_ID": "w_17",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 20,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d10 slashing, Properties: Heavy, reach, two-handed",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 10,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Greataxe",
+    "Item_ID": "w_18",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 7,
+    "Coin": {
+      "Price": 30,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d12 slashing, Properties: Heavy, two-handed",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 12,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Greatsword",
+    "Item_ID": "w_19",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 2d6 slashing, Properties: Heavy, two-handed",
+
+    "DamageNumerator": 2,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Halberd",
+    "Item_ID": "w_20",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 20,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d10 slashing, Properties: Heavy, reach, two-handed",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 10,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Lance",
+    "Item_ID": "w_21",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 6,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d12 piercing, Properties: Reach, special",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 12,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Longsword",
+    "Item_ID": "w_22",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 15,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 slashing, Properties: Versatile (1d10)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Maul",
+    "Item_ID": "w_23",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 10,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 2d6 bludgeoning, Properties: Heavy, two-handed",
+
+    "DamageNumerator": 2,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Morningstar",
+    "Item_ID": "w_24",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 15,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: -",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Pike",
+    "Item_ID": "w_25",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 18,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d10 piercing, Properties: Heavy, reach, two-handed",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 10,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Rapier",
+    "Item_ID": "w_26",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: Finesse",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": true,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Scimitar",
+    "Item_ID": "w_27",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 slashing, Properties: Finesse, light",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": true,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Shortsword",
+    "Item_ID": "w_28",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Finesse, light",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": true,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Trident",
+    "Item_ID": "w_29",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 4,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Thrown (range 20/60), Versatile (1d8)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": false,
+    "NormRange": 20,
+    "MaxRange": 60,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "War pick",
+    "Item_ID": "w_30",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 5,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: -",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Warhammer",
+    "Item_ID": "w_31",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 25,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 bludgeoning, Properties: Versatile (1d10)",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": true
+  },
+
+  {
+    "ItemName": "Whip",
+    "Item_ID": "w_32",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 2,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d4 slashing, Properties: Finesse, reach",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 4,
+
+    "IsRanged": false,
+    "NormRange": 0,
+    "MaxRange": 0,
+
+    "IsFinesse": true,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Blowgun",
+    "Item_ID": "w_33",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 1,
+    "Coin": {
+      "Price": 10,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1 piercing, Properties: Ammunition (range 25/100), loading",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 1,
+
+    "IsRanged": true,
+    "NormRange": 25,
+    "MaxRange": 100,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Crossbow, hand",
+    "Item_ID": "w_34",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 75,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d6 piercing, Properties: Ammunition (range 30/120), light, loading",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 6,
+
+    "IsRanged": true,
+    "NormRange": 30,
+    "MaxRange": 120,
+
+    "IsFinesse": false,
+    "IsLight": true,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Crossbow, heavy",
+    "Item_ID": "w_35",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 18,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d10 piercing, Properties: Ammunition (range 100/140), heavy, loading, two-handed",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 10,
+
+    "IsRanged": true,
+    "NormRange": 100,
+    "MaxRange": 140,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Longbow",
+    "Item_ID": "w_36",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 2,
+    "Coin": {
+      "Price": 50,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: 1d8 piercing, Properties: Ammunition (range 150/600), heavy, two-handed",
+
+    "DamageNumerator": 1,
+    "DamageDenominator": 8,
+
+    "IsRanged": true,
+    "NormRange": 150,
+    "MaxRange": 600,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": true,
+
+    "IsTwoHanded": true,
+    "IsVersatile": false
+  },
+
+  {
+    "ItemName": "Net",
+    "Item_ID": "w_37",
+    "IsEquipable": true,
+    "IsConsumable": false,
+    "SlotReference": "Hand",
+    "ItemWeight": 3,
+    "Coin": {
+      "Price": 1,
+      "CoinKey": "GP"
+    },
+
+    "ItemInfo": "Damage: -, Properties: Special, thrown (range 5/15)",
+
+    "DamageNumerator": 0,
+    "DamageDenominator": 0,
+
+    "IsRanged": true,
+    "NormRange": 5,
+    "MaxRange": 15,
+
+    "IsFinesse": false,
+    "IsLight": false,
+    "IsHeavy": false,
+
+    "IsTwoHanded": false,
+    "IsVersatile": false
+  }
+
+]

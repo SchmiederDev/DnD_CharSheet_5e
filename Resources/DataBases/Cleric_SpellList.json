@@ -1,0 +1,517 @@
+[
+  {
+    "SpellName": "Guidance",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Light",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Mending",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Resistance",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Sacred Flame",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Spare the Dying",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Thaumaturgy",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Bane",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Bless",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Command",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Create or Destroy Water",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Cure Wounds",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Detect Evil and Good",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Detect Magic",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Detect Poison and Disease",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Guiding Bolt",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Healing Word",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Inflict Wounds",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Protection from Evil and Good",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Purify Food and Drink",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Sanctuary",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Shield of Faith",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Aid",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Augury",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Blinding/ Deafness",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Calm Emotions",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Continual Flame",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Enhance Ability",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Find Traps",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Gentle Repose",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Hold Person",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Locate Object",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Prayer of Healing",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Protection from Poison",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Silence",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Spiritual Weapon",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Warding Bond",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Zone of Truth",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Animate Dead",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Beacon of Hope",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Bestow Curse",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Clairvoyance",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Create Food and Water",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Dispel Magic",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Glyph of Warding",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Magic Circle",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Mass Healing Word",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Meld into Stone",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Protection from Energy",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Remove Curse",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Revivify",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Sending",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Speak with Dead",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Spirit Guardians",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Tongues",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Water Walk",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Banishment",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Control Water",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Death Ward",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Divination",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Freedom of Movement",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Guardian of Faith",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Locate Creature",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Stone Shape",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Commune",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Contagion",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Dispel Evil and Good",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Flame Strike",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Geas",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Greater Restoration",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Hallow",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Insect Plague",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Legend Lore",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Mass Cure Wounds",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Planar Binding",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Raise Dead",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Scrying",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Blad Barrier",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Create Undead",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Find the Path",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Forbiddance",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Harm",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Heal",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Heroe's Feast'",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Planar Ally",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "True Seeing",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Word of Recall",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Conjure Celestial",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Divine Word",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Etherealness",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Fire Storm",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Plane Shift",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Regenerate",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Resurrection",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Symbol",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Antimagic Field",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Control Weather",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Earthquake",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Holy Aura",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Astral Projection",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Gate",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Mass Heal",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "True Resurrection",
+    "SpellLevel": 9
+  }
+
+]

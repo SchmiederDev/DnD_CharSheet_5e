@@ -1,0 +1,1067 @@
+[
+  {
+    "SpellName": "Acid Splash",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Chill Touch",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Blade Ward",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Dancing Lights",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Fire Bolt",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Friends",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Light",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Mage Hand",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Mending",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Message",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Minor Illusion",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Poison Spray",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Prestidigitation",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Ray of Frost",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Shocking Grasp",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "True Strike",
+    "SpellLevel": 0
+  },
+
+  {
+    "SpellName": "Alarm",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Burning Hands",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Charm Person",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Chromatic Orb",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Color Spray",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Comprehend Languages",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Detect Magic",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Disguise Self",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Expeditious Retreat",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "False Life",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Feather Fall",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Find Familiar",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Fog Cloud",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Grease",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Identify",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Illusory Script",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Jump",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Longstrider",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Mage Armor",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Magic Missile",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Protection from Evil and Good",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Ray of Sickness",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Shield",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Silent Image",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Sleep",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Tasha's Hideous Laughter'",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Tenser's Floating Disk'",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Thunderwave",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Witch Bolt",
+    "SpellLevel": 1
+  },
+
+  {
+    "SpellName": "Alter Self",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Arcane Lock",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Blindness/ Deafness",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Blur",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Cloud of Daggers",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Continual Flame",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Crown of Madness",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Darkness",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Darkvision",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Detect Thoughts",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Enlarge/ Reduce",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Flaming Sphere",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Gentle Repose",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Gust of Wind",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Hold Person",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Invisibility",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Knock",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Levitate",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Locate Object",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Magic Mouth",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Magic Weapon",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Melf's Acid Arrow'",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Mirror Image",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Misty Step",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Nystul's Magic Aura'",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Phantasmal Force",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Ray of Enfeeblement",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Rope Trick",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Scorching Ray",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "See Invisibility",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Shatter",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Spider Climb",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Suggestion",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Web",
+    "SpellLevel": 2
+  },
+
+  {
+    "SpellName": "Animate Dead",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Bestow Curse",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Blink",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Clairvoyance",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Counterspell",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Dispel Magic",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Fear",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Feign Death",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Fireball",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Fly",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Gaseous Form",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Glyph of Warding",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Haste",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Hypnotic Pattern",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Lightning Bolt",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Magic Circle",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Major Image",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Nondetection",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Phantom Steed",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Protection from Energy",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Remove Curse",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Sending",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Sleet Storm",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Slow",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Stinking Cloud",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Tongues",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Vampiric Touch",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Water Breathing",
+    "SpellLevel": 3
+  },
+
+  {
+    "SpellName": "Arcane Eye",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Banishment",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Blight",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Confusion",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Conjure Minor Elementals",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Conrtrol Water",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Dimension Door",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Edvard's Black Tentacles'",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Fabricate",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Fire Shield",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Greater Invisibility",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Hallucinatory Terrain",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Ice Storm",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Leomund's Secret Chest'",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Locate Creature",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Mordekainen's Faithful Hound",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Mordekainen's Private Sanctum",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Otiluke's Resilient Sphere",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Phantasmal Killer",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Polymorph",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Stone Shape",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Stoneskin",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Wall of Fire",
+    "SpellLevel": 4
+  },
+
+  {
+    "SpellName": "Animate Objects",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Bigby's Hand",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Cloudkill",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Cone of Cold",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Conjure Elemental",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Contact Other Plane",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Creation",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Dominate Person",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Dream",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Geas",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Hold Monster",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Legend Lore",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Mislead",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Modify Memory",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Passwall",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Planar Binding",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Rary's Telepathic Bond",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Scrying",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Seeming",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Telekinesis",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Teleportation Circle",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Wall of Force",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Wall of Stone",
+    "SpellLevel": 5
+  },
+
+  {
+    "SpellName": "Arcane Gate",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Chain Lightning",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Circle of Death",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Contingency",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Create Undead",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Disintegrate",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Drawmij's Instant Summons'",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Eyebite",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Flesh to Stone",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Globe of Invulnerability",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Guards and Wards",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Magic Jar",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Mass Suggestion",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Move Earth",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Otiluke's Freezing Sphere'",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Otto's Irresistable Dance",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Programmed Illusion",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Sunbeam",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "True Seeing",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Wall of Ice",
+    "SpellLevel": 6
+  },
+
+  {
+    "SpellName": "Delayed Blast Fireball",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Etherealness",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Finger of Death",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Fire Storm",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Forcecage",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Mirage Arcane",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Mordekainen's Magnificent Mansion",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Mordekainen's Sword",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Plane Shift",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Prismatic Spray",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Project Image",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Reverse Gravity",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Sequester",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Simulacrum",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Symbol",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Teleport",
+    "SpellLevel": 7
+  },
+
+  {
+    "SpellName": "Antimagic Field",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Antipathy/ Simpathy",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Clone",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Demiplane",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Dominate Monster",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Feeblemind",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Incendiary Cloud",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Maze",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Mind Blank",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Power Word Stun",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Sunburst",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Telepathy",
+    "SpellLevel": 8
+  },
+
+  {
+    "SpellName": "Astral Projection",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Foresight",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Gate",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Imprisonment",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Meteor Swarm",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Power Word Kill",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Prismatic Wall",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Shapechange",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Time Stop",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "True Polymorph",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Weird",
+    "SpellLevel": 9
+  },
+
+  {
+    "SpellName": "Wish",
+    "SpellLevel": 9
+  }
+
+]
