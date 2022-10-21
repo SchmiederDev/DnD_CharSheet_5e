@@ -28,11 +28,14 @@ namespace DnD_CharSheet_5e
 
         string rootPath;
 
-        string folderPath = @"DnD_CharSheet_5e";
+        string ResourceFolderName = @"\Resources";
+        string ResourceFolderPath;
         
         string saveGameFolderPath = @"\SaveGames";
-        string SoundEffects_FolderPath = @"\SoundEffects";
-        string Images_FolderPath = @"\Images";
+        string SoundEffectsFolderPath = @"\SoundEffects";
+        string ImagesFolderPath = @"\Images";
+        string DataBasesFolderName = @"\DataBases";
+        string DataBasesPath;
 
 
         public string saveGameFolder { get; private set; }
@@ -125,7 +128,7 @@ namespace DnD_CharSheet_5e
         #region FILE SYSTEM INITIALIZATION METHODS
         public void Init_FileSystem()
         {
-            Find_RootPath();
+            Find_ResourceFolder_and_SetFolderPath();
             Set_FilePaths();
             Read_Spells_and_SpellLists();
             Init_SaveGames();
@@ -134,9 +137,11 @@ namespace DnD_CharSheet_5e
         }
 
         #region FILE OPERATION METHODS
-        private void Find_RootPath()
+        private void Find_ResourceFolder_and_SetFolderPath()
         {
-            rootPath = Path.GetFullPath(folderPath);
+            rootPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);                        
+            ResourceFolderPath = rootPath + ResourceFolderName;            
+            DataBasesPath = ResourceFolderPath + DataBasesFolderName;
         }
 
         private string Check_for_Folder(string folderPath)
@@ -170,15 +175,15 @@ namespace DnD_CharSheet_5e
         private void Set_FilePaths()
         {
             Set_ItemDataBasesPaths();
-            LDB_Path = rootPath + LDB_FileName;
+            LDB_Path = DataBasesPath + LDB_FileName;
             Set_Path_Spells_and_SpellLists();
         }
 
         private void Set_Path_Spells_and_SpellLists()
         {
-            SDB_Path = rootPath + SDB_FileName;
-            Bard_SpellList_Path = rootPath + Bard_SpellList_FileName;
-            Wizard_SpellList_Path = rootPath + Wizard_SpellList_FileName;
+            SDB_Path = DataBasesPath + SDB_FileName;
+            Bard_SpellList_Path = DataBasesPath + Bard_SpellList_FileName;
+            Wizard_SpellList_Path = DataBasesPath + Wizard_SpellList_FileName;
         }        
 
         private void Init_SaveGames()
@@ -189,13 +194,13 @@ namespace DnD_CharSheet_5e
 
         private void Init_SoundEffects()
         {
-            SoundEffectsFolder = Check_for_Folder(SoundEffects_FolderPath);
+            SoundEffectsFolder = ResourceFolderPath + SoundEffectsFolderPath;
             Set_SoundEffects();
         }
 
         private void Init_Images()
         {
-            ImagesFolder = Check_for_Folder(Images_FolderPath);
+            ImagesFolder = ResourceFolderPath + ImagesFolderPath;
             Load_Images();
         }      
 
@@ -213,9 +218,9 @@ namespace DnD_CharSheet_5e
 
         private void Set_ItemDataBasesPaths()
         {
-            IDB_Path = rootPath + IDB_FileName;
-            WDB_Path = rootPath + WDB_FileName;
-            ADB_Path = rootPath + ADB_FileName;
+            IDB_Path = DataBasesPath + IDB_FileName;
+            WDB_Path = DataBasesPath + WDB_FileName;
+            ADB_Path = DataBasesPath + ADB_FileName;
         }        
 
         private void Set_SoundPaths()
