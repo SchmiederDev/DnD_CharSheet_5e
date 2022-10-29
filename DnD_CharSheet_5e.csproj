@@ -276,11 +276,6 @@
     <Resource Include="sword.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Images\Shield.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Images\Battleaxe.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -542,6 +537,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Plate Armor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Shield.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
