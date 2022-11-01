@@ -1,0 +1,41 @@
+[
+  {
+    "SCC_Name": "Bard",
+    "SC_ABility": "Charisma"
+  },
+
+  {
+    "SCC_Name": "Cleric",
+    "SC_ABility": "Wisdom"
+  },
+
+  {
+    "SCC_Name": "Druid",
+    "SC_ABility": "Wisdom"
+  },
+
+  {
+    "SCC_Name": "Paladin",
+    "SC_ABility": "Charisma"
+  },
+
+  {
+    "SCC_Name": "Ranger",
+    "SC_ABility": "Wisdom"
+  },
+
+  {
+    "SCC_Name": "Sorcerer",
+    "SC_ABility": "Charisma"
+  },
+
+  {
+    "SCC_Name": "Warlock",
+    "SC_ABility": "Charisma"
+  },
+
+  {
+    "SCC_Name": "Wizard",
+    "SC_ABility": "Intelligence"
+  }
+]
