@@ -40,7 +40,8 @@ namespace DnD_CharSheet_5e
 
     public partial class SpellsWindow : Window
     {
-        public string[] Spellcaster_Classes { get; } = { "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard" };
+
+        private SpellCasterClass CharacterCasterClass;
         public List<SpellList_Item> Cantrips;
 
         int spellFieldHeight = 20;
@@ -48,7 +49,38 @@ namespace DnD_CharSheet_5e
         public SpellsWindow()
         {
             InitializeComponent();
+            FindCasterClass();
+            SheetManager.CS_Manager_Inst.character.levelChanged += Calculate_CasterClass_Values;
+            SheetManager.CS_Manager_Inst.character.levelChanged += Show_BaseValues;
             InitSpells();
+        }
+
+        private void FindCasterClass()
+        {
+            CharacterCasterClass = SheetManager.CS_Manager_Inst.theWeave.SpellCasterClasses.Find(casterClass => casterClass.SCC_Name == SheetManager.CS_Manager_Inst.character.ClassName);
+
+            if (CharacterCasterClass != null)
+            {
+                Calculate_CasterClass_Values();
+                Show_BaseValues();
+            }
+
+            else
+                CasterClassTxt.Text = "Character is not a spell caster";
+        }
+
+        private void Calculate_CasterClass_Values()
+        {
+            CharacterCasterClass.Calculate_SpellSaveDC();
+            CharacterCasterClass.Calculate_SpellAttackBonus();
+        }
+
+        private void Show_BaseValues()
+        {
+            CasterClassTxt.Text = CharacterCasterClass.SCC_Name;
+            SpAbilityTxt.Text = CharacterCasterClass.SpellCastingAbility_Key;
+            SaveDCTxt.Text = CharacterCasterClass.SpellSaveDC.ToString();
+            SpAtkBonus.Text = CharacterCasterClass.SpellAttackBonus.ToString();
         }
 
         private void InitSpells()
