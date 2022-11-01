@@ -102,15 +102,44 @@ namespace DnD_CharSheet_5e
         public string SDB_Path { get; private set; }
         public string SpellDataBase_JSON { get; set; }
 
+        string SCCDB_FileName = @"\SpellCasterClassesDataBase.json";
+
+        public string SCCDB_Path { get; private set; }
+        public string SCCDB_JSON { get; set; }
+
        
         string Bard_SpellList_FileName = @"\Bard_SpellList.json";
         public string Bard_SpellList_Path { get; private set; }
 
-        
+        string Cleric_SpellList_FileName = @"\Cleric_SpellList.json";
+        public string Cleric_SpellList_Path { get; private set; }
+
+        string Druid_SpellList_FileName = @"\Druid_SpellList.json";
+        public string Druid_SpellList_Path { get; private set; }
+
+        string Paladin_SpellList_FileName = @"\Paladin_SpellList.json";
+        public string Paladin_SpellList_Path { get; private set; }
+
+        string Ranger_SpellList_FileName = @"\Ranger_SpellList.json";
+        public string Ranger_SpellList_Path { get; private set; }
+
+        string Sorcerer_SpellList_FileName = @"\Sorcerer_SpellList.json";
+        public string Sorcerer_SpellList_Path { get; private set; }
+
+        string Warlock_SpellList_FileName = @"\Warlock_SpellList.json";
+        public string Warlock_SpellList_Path { get; private set; }
+
         string Wizard_SpellList_FileName = @"\Wizard_SpellList.json";
         public string Wizard_SpellList_Path { get; private set; }
         
-        public string BardSpellList_JSON{ get; set; } 
+
+        public string BardSpellList_JSON{ get; set; }
+        public string ClericSpellList_JSON { get; set; }
+        public string DruidSpellList_JSON { get; set; }
+        public string PaladinSpellList_JSON { get; set; }
+        public string RangerSpellList_JSON { get; set; }
+        public string SorcererSpellList_JSON { get; set; }
+        public string WarlockSpellList_JSON { get; set; }
         public string WizardSpellList_JSON { get; set; }
 
 
@@ -165,7 +194,16 @@ namespace DnD_CharSheet_5e
         private void Read_Spells_and_SpellLists()
         {
             SpellDataBase_JSON = File.ReadAllText(SDB_Path);
+
+            SCCDB_JSON = File.ReadAllText(SCCDB_Path);
+
             BardSpellList_JSON = File.ReadAllText(Bard_SpellList_Path);
+            ClericSpellList_JSON = File.ReadAllText(Druid_SpellList_Path);
+            DruidSpellList_JSON = File.ReadAllText(Druid_SpellList_Path);
+            PaladinSpellList_JSON = File.ReadAllText(Paladin_SpellList_Path);
+            RangerSpellList_JSON = File.ReadAllText(Ranger_SpellList_Path);
+            SorcererSpellList_JSON = File.ReadAllText(Sorcerer_SpellList_Path);
+            WarlockSpellList_JSON = File.ReadAllText(Warlock_SpellList_Path);
             WizardSpellList_JSON = File.ReadAllText(Wizard_SpellList_Path);
         }
 
@@ -182,7 +220,16 @@ namespace DnD_CharSheet_5e
         private void Set_Path_Spells_and_SpellLists()
         {
             SDB_Path = DataBasesPath + SDB_FileName;
+
+            SCCDB_Path = DataBasesPath + SCCDB_FileName;
+
             Bard_SpellList_Path = DataBasesPath + Bard_SpellList_FileName;
+            Cleric_SpellList_Path = DataBasesPath + Cleric_SpellList_FileName;
+            Druid_SpellList_Path = DataBasesPath + Druid_SpellList_FileName;
+            Paladin_SpellList_Path = DataBasesPath + Paladin_SpellList_FileName;
+            Ranger_SpellList_Path = DataBasesPath + Ranger_SpellList_FileName;
+            Sorcerer_SpellList_Path = DataBasesPath + Sorcerer_SpellList_FileName;
+            Warlock_SpellList_Path = DataBasesPath + Warlock_SpellList_FileName;
             Wizard_SpellList_Path = DataBasesPath + Wizard_SpellList_FileName;
         }        
 
