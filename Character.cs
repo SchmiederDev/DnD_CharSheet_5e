@@ -32,6 +32,9 @@ namespace DnD_CharSheet_5e
         // These are the levels when the proficiency bonus increases
         int[] profBonusIncrease = { 5, 9, 13, 17 };
 
+        public delegate void OnLevelChanged();
+        public OnLevelChanged levelChanged;
+
         #endregion
 
         #region HITPOINTS, HIT DICE, INITIATIVE BONUS AND ARMOR CLASS
@@ -535,6 +538,7 @@ namespace DnD_CharSheet_5e
             Level++;
             Update_HitDice();
             Update_ProfBonus();
+            levelChanged.Invoke();
         }
 
         public void Update_HitDice()
