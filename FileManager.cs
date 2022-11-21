@@ -107,6 +107,12 @@ namespace DnD_CharSheet_5e
         public string SCCDB_Path { get; private set; }
         public string SCCDB_JSON { get; set; }
 
+
+        string SpellListsDB_FileName = @"\SpellListsDataBase.json";
+
+        public string SpellListsDB_Path { set; get; }
+        public string SpellListsDB_JSON { set; get; }
+
        
         string Bard_SpellList_FileName = @"\Bard_SpellList.json";
         public string Bard_SpellList_Path { get; private set; }
@@ -194,8 +200,8 @@ namespace DnD_CharSheet_5e
         private void Read_Spells_and_SpellLists()
         {
             SpellDataBase_JSON = File.ReadAllText(SDB_Path);
-
             SCCDB_JSON = File.ReadAllText(SCCDB_Path);
+            SpellListsDB_JSON = File.ReadAllText(SpellListsDB_Path);
 
             BardSpellList_JSON = File.ReadAllText(Bard_SpellList_Path);
             ClericSpellList_JSON = File.ReadAllText(Druid_SpellList_Path);
@@ -220,8 +226,8 @@ namespace DnD_CharSheet_5e
         private void Set_Path_Spells_and_SpellLists()
         {
             SDB_Path = DataBasesPath + SDB_FileName;
-
             SCCDB_Path = DataBasesPath + SCCDB_FileName;
+            SpellListsDB_Path = DataBasesPath + SpellListsDB_FileName;
 
             Bard_SpellList_Path = DataBasesPath + Bard_SpellList_FileName;
             Cleric_SpellList_Path = DataBasesPath + Cleric_SpellList_FileName;
