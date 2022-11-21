@@ -9,6 +9,7 @@
         public int SpellAttackBonus { set; get; }
         public int BaseModifierSaveDC { get;} = 8;
         public int BaseModifierAtkBonus { get; } = 10;
+        public SpellList CharacterSpellList { set; get; }
 
         public void Calculate_SpellSaveDC()
         {
