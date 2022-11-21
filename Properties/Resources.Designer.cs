@@ -650,6 +650,16 @@ namespace DnD_CharSheet_5e.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
+        /// </summary>
+        internal static byte[] SpellListsDataBase {
+            get {
+                object obj = ResourceManager.GetObject("SpellListsDataBase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Splint_Armor {
