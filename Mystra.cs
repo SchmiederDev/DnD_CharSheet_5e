@@ -26,6 +26,8 @@ namespace DnD_CharSheet_5e
         public List<SpellCasterData> SpellCasterClasses_Data {get; set;}
         public List<SpellCasterClass> SpellCasterClasses { get; set; }
 
+        public List<SpellList> SpellLists { get; set; }
+
         public List<SpellList_Item> BardSpellList { get; set; }
         public List<SpellList_Item> ClericSpellList { get; set; }
         public List<SpellList_Item> DruidSpellList { get; set; }
@@ -41,8 +43,8 @@ namespace DnD_CharSheet_5e
             SpellDataBase = new List<Spell>();
 
             SpellCasterClasses_Data = new List<SpellCasterData>();
-
             SpellCasterClasses = new List<SpellCasterClass>();
+            SpellLists = new List<SpellList>();
 
             BardSpellList = new List<SpellList_Item>();
             ClericSpellList = new List<SpellList_Item>();
@@ -76,6 +78,18 @@ namespace DnD_CharSheet_5e
                 SpellCasterClasses_Data = JsonConvert.DeserializeObject<List<SpellCasterData>>(jsonSCCDB);
             }
             catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public void Load_SpellListsDataBase(string jsonSLDB)
+        {
+            try
+            {
+                SpellLists = JsonConvert.DeserializeObject<List<SpellList>>(jsonSLDB);
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
