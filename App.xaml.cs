@@ -113,6 +113,7 @@ namespace DnD_CharSheet_5e
         {
             SheetManager.CS_Manager_Inst.theWeave.Load_SpellDataBase(FileManager.FM_Inst.SpellDataBase_JSON);
             SheetManager.CS_Manager_Inst.theWeave.Load_SpellCasterClassesData(FileManager.FM_Inst.SCCDB_JSON);
+            SheetManager.CS_Manager_Inst.theWeave.Load_SpellListsDataBase(FileManager.FM_Inst.SpellListsDB_JSON);
             SheetManager.CS_Manager_Inst.theWeave.Load_SpellLists();
         }
 
