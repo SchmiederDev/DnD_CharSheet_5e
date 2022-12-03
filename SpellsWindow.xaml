@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
         Title="SpellsWindow" Height="1050" Width="1200" 
-        WindowStartupLocation="Manual" SizeToContent="WidthAndHeight" Left="0" Top="0">
+        WindowStartupLocation="Manual" SizeToContent="WidthAndHeight" Left="0" Top="0"
+        Closing="Window_Closing">
+        
 
     <Window.Resources>
 
@@ -124,7 +126,7 @@
 
                     <ComboBox x:Name="CantripsSelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
-                    <Grid Margin="10 10">
+                    <Grid Margin="10 10" x:Name="CantripBtnsGrid">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -147,7 +149,7 @@
 
                                 <StackPanel Grid.Column="0" />
                                 <StackPanel x:Name="CantripSlotPanel" Grid.Column="1"/>
-                                <StackPanel x:Name="CantripCancelsBtnsPanel" Grid.Column="2"/>
+                                <StackPanel x:Name="CantripCancelBtnsPanel" Grid.Column="2"/>
 
                             </Grid>
                         </ScrollViewer>
@@ -440,7 +442,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel x:Name="FifthLvl_PreparedBoxesPanel" Grid.Column="0" />
-                                <StackPanel x:Name="FifthtLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="FifthLvl_SlotPanel" Grid.Column="1"/>
                                 <StackPanel x:Name="FifthLvl_CancelBtnsPanel" Grid.Column="2"/>
 
                             </Grid>
