@@ -43,6 +43,8 @@ namespace DnD_CharSheet_5e
 
         private SpellCasterClass CharacterCasterClass;
 
+        private List<SlotPanelData> SpellSheetData = new List<SlotPanelData>();
+
         public List<SpellList_Item> Cantrips { set; get; }
         public List<SpellList_Item> First_LvlSpells { set; get; }
         public List<SpellList_Item> Second_LvlSpells { set; get; }
@@ -56,7 +58,13 @@ namespace DnD_CharSheet_5e
 
         List<TextBox> SpellSlotsTotalBoxes;
         List<TextBlock> SpellsExpenedTxts;
+        
         List<Button> CastButtons;
+        
+        List<StackPanel> LevelPanels;
+        List<StackPanel> SlotPanels;
+        List<StackPanel> CancelBtnPanels;
+        List<StackPanel> PreparedBoxesPanels;
 
         const string SpellSlotErrorMessage = "One of the values you entered for your spells slots is invalid.\nIt has to be an integer number above zero and below 50.\n" +
                     "Even if your character has special abilities, spellbooks, etc. which allow them to cast more than usual spells\n" +
@@ -265,6 +273,8 @@ namespace DnD_CharSheet_5e
             Init_SpellSlotsTotal();
             Init_SpellsExpendend();
             Init_CastButtons();
+            Init_LevelPanels();
+            LoadSpellSheetData();
         }
 
         private void Init_SpellSlotsTotal()
@@ -307,6 +317,80 @@ namespace DnD_CharSheet_5e
             CastButtons.Add(Cast_7thLvl_Btn);
             CastButtons.Add(Cast_8thLvl_Btn);
             CastButtons.Add(Cast_9thLvl_Btn);
+        }
+
+        private void Init_LevelPanels()
+        {
+            LevelPanels = new List<StackPanel>();
+            Init_SlotPanels();
+            Init_CancelBtnPanels();
+            Init_PreparedBoxesPanels();
+        }
+
+        private void Init_SlotPanels()
+        {
+            SlotPanels = new List<StackPanel>();
+            
+            SlotPanels.Add(CantripSlotPanel);            
+            SlotPanels.Add(FirstLvl_SlotPanel);
+            SlotPanels.Add(SecondLvl_SlotPanel);
+            SlotPanels.Add(ThirdLvl_SlotPanel);
+            SlotPanels.Add(FourthLvl_SlotPanel);
+            SlotPanels.Add(FifthLvl_SlotPanel);
+            SlotPanels.Add(SixthLvl_SlotPanel);
+            SlotPanels.Add(SeventhLvl_SlotPanel);
+            SlotPanels.Add(EighthLvl_SlotPanel);
+            SlotPanels.Add(NinthLvl_SlotPanel);
+
+            foreach(StackPanel SlotPanel in SlotPanels)
+            {
+                SlotPanel.Tag = "SlotPanel";
+                LevelPanels.Add(SlotPanel);
+            }
+            
+        }
+
+        private void Init_CancelBtnPanels()
+        {
+            CancelBtnPanels = new List<StackPanel>();
+
+            CancelBtnPanels.Add(CantripCancelBtnsPanel);
+            CancelBtnPanels.Add(FirstLvl_CancelBtnsPanel);
+            CancelBtnPanels.Add(SecondLvl_CancelBtnsPanel);
+            CancelBtnPanels.Add(ThirdLvl_CancelBtnsPanel);
+            CancelBtnPanels.Add(FourthLvl_CancelBtnsPanel);
+            CancelBtnPanels.Add(FifthLvl_CancelBtnsPanel);
+            CancelBtnPanels.Add(SixthLvl_CancelBtnsPanel);
+            CancelBtnPanels.Add(SeventhLvl_CancelBtnsPanel);
+            CancelBtnPanels.Add(EighthLvl_CancelBtnsPanel);
+            CancelBtnPanels.Add(NinthLvl_CancelBtnsPanel);
+
+            foreach(StackPanel CancelBtnPanel in CancelBtnPanels)
+            {
+                CancelBtnPanel.Tag = "CancelBtnPanel";
+                LevelPanels.Add(CancelBtnPanel);
+            }
+        }
+
+        private void Init_PreparedBoxesPanels()
+        {
+            PreparedBoxesPanels = new List<StackPanel>();
+
+            PreparedBoxesPanels.Add(FirstLvl_PreparedBoxesPanel);
+            PreparedBoxesPanels.Add(SecondLvl_PreparedBoxesPanel);
+            PreparedBoxesPanels.Add(ThirdLvl_PreparedBoxesPanel);
+            PreparedBoxesPanels.Add(FourthLvl_PreparedBoxesPanel);
+            PreparedBoxesPanels.Add(FifthLvl_PreparedBoxesPanel);
+            PreparedBoxesPanels.Add(SixthLvl_PreparedBoxesPanel);
+            PreparedBoxesPanels.Add(SeventhLvl_PreparedBoxesPanel);
+            PreparedBoxesPanels.Add(EighthLvl_PreparedBoxesPanel);
+            PreparedBoxesPanels.Add(NinthLvl_PreparedBoxesPanel);
+
+            foreach(StackPanel PreparedBoxesPanel in PreparedBoxesPanels)
+            {
+                PreparedBoxesPanel.Tag = "PreparedBoxesPanel";
+                LevelPanels.Add(PreparedBoxesPanel);
+            }
         }
 
         private void Init_SpellComboBoxes()
@@ -423,9 +507,77 @@ namespace DnD_CharSheet_5e
             }
         }
 
+        private void LoadSpellSheetData()
+        {            
+
+            if(SheetManager.CS_Manager_Inst.character.SpellSheetData != null)
+            {
+                SpellSheetData = SheetManager.CS_Manager_Inst.character.SpellSheetData;
+
+                //MessageBox.Show("Spell Sheet data count: " + SpellSheetData.Count);
+
+                if(SpellSheetData.Count > 0)
+                {
+                    foreach (SlotPanelData slotPanelData in SpellSheetData)
+                    {
+                        int currentIndex = SpellSheetData.IndexOf(slotPanelData);
+
+                        LoadSlotItems(slotPanelData.SlotPanelItems, currentIndex);
+                        Generate_CancelButtons(CancelBtnPanels[currentIndex], SlotPanels[currentIndex]);
 
 
-        private Button Create_CancelBtn()
+                        if(currentIndex > 0)
+                        {
+                            int slotBoxIndex = currentIndex - 1;
+                            
+                            LoadSpellSlotsTotal(slotBoxIndex, slotPanelData.SlotsTotal);
+                            LoadSpellSlotsExpended(slotBoxIndex, slotPanelData.SlotsExpended);
+                            
+                            Generate_PreparedCheckBoxes(PreparedBoxesPanels[slotBoxIndex]);
+
+                            if(slotPanelData.ItemsPrepared != null && slotPanelData.ItemsPrepared.Count > 0)
+                            {
+                                SetPreparedStates(slotBoxIndex, slotPanelData.ItemsPrepared);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void LoadSpellSlotsTotal(int slotIndex, int boxValue)
+        {
+            if(boxValue > 0)
+                SpellSlotsTotalBoxes[slotIndex].Text = boxValue.ToString();
+        }
+
+        private void LoadSpellSlotsExpended(int slotIndex, int boxValue)
+        {
+            if(boxValue > 0)
+                SpellsExpenedTxts[slotIndex].Text = boxValue.ToString();
+        }
+
+        private void LoadSlotItems(List<string> slotPanelItemNames, int slotPanelIndex)
+        {            
+
+            foreach(string slotPanelItem in slotPanelItemNames)
+            {
+                Border slotItem = Create_BorderedSpellSlotTextblock(slotPanelItem);
+                SlotPanels[slotPanelIndex].Children.Add(slotItem);
+            }
+            
+        }
+
+        private void SetPreparedStates(int index, List<bool> preparedStates)
+        {
+            foreach(CheckBox PreparedCB in PreparedBoxesPanels[index].Children)
+            {
+                int preparedIndex = PreparedBoxesPanels[index].Children.IndexOf(PreparedCB);
+                PreparedCB.IsChecked = preparedStates[preparedIndex];
+            }
+        }
+
+        private Button Create_CancelBtn(string slotPanelTag)
         {
             Button CancelButton = new Button();
 
@@ -446,401 +598,94 @@ namespace DnD_CharSheet_5e
             CancelButton.FontWeight = FontWeights.Bold;
 
             CancelButton.Content = "X";
+            CancelButton.Tag = slotPanelTag;
 
             return CancelButton;
 
         }
 
-        private void Generate_CantripCancelButtons()
+        private void Generate_CancelButtons(StackPanel targetPanel, StackPanel linkedPanel)
         {
-            CantripCancelsBtnsPanel.Children.Clear();
+            targetPanel.Children.Clear();
 
-            foreach(Border SpellTB in CantripSlotPanel.Children)
+            foreach (Border SpellTB in linkedPanel.Children)
             {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(Cantrips_CancelButtonClick);
-                CantripCancelsBtnsPanel.Children.Add(CancelButton);
+                Button CancelButton = Create_CancelBtn(targetPanel.Name);
+                CancelButton.Click += new RoutedEventHandler(Cancelbutton_Click);
+                targetPanel.Children.Add(CancelButton);
             }
-
-        }
-
-        private void Generate_1stLvlCancelButtons()
-        {
-            FirstLvl_CancelBtnsPanel.Children.Clear();
-
-            foreach (Border SpellTB in FirstLvl_SlotPanel.Children)
-            {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(FirstLevel_CancelButtonClick);
-                FirstLvl_CancelBtnsPanel.Children.Add(CancelButton);
-            }
-
         }
 
 
-        private void Generate_2ndLvlCancelButtons()
+        private void Cancelbutton_Click(object sender, RoutedEventArgs e)
         {
-            SecondLvl_CancelBtnsPanel.Children.Clear();
-
-            foreach (Border SpellTB in SecondLvl_SlotPanel.Children)
-            {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(SecondLevel_CancelButtonClick);
-                SecondLvl_CancelBtnsPanel.Children.Add(CancelButton);
-            }
-
-        }
-
-        private void Generate_3rdLvlCancelButtons()
-        {
-            ThirdLvl_CancelBtnsPanel.Children.Clear();
-
-            foreach (Border SpellTB in ThirdLvl_SlotPanel.Children)
-            {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(ThirdLevel_CancelButtonClick);
-                ThirdLvl_CancelBtnsPanel.Children.Add(CancelButton);
-            }
-
-        }
-
-        private void Generate_4thLvlCancelButtons()
-        {
-            FourthLvl_CancelBtnsPanel.Children.Clear();
-
-            foreach (Border SpellTB in FourthLvl_SlotPanel.Children)
-            {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(FourthLevel_CancelButtonClick);
-                FourthLvl_CancelBtnsPanel.Children.Add(CancelButton);
-            }
-
-        }
-
-        private void Generate_5thLvlCancelButtons()
-        {
-            FifthLvl_CancelBtnsPanel.Children.Clear();
-
-            foreach (Border SpellTB in FifthtLvl_SlotPanel.Children)
-            {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(FifthLevel_CancelButtonClick);
-                FifthLvl_CancelBtnsPanel.Children.Add(CancelButton);
-            }
-
-        }
-
-        private void Generate_6thLvlCancelButtons()
-        {
-            SixthLvl_CancelBtnsPanel.Children.Clear();
-
-            foreach (Border SpellTB in SixthLvl_SlotPanel.Children)
-            {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(SixthLevel_CancelButtonClick);
-                SixthLvl_CancelBtnsPanel.Children.Add(CancelButton);
-            }
-
-        }
-
-        private void Generate_7thLvlCancelButtons()
-        {
-            SeventhLvl_CancelBtnsPanel.Children.Clear();
-
-            foreach (Border SpellTB in SeventhLvl_SlotPanel.Children)
-            {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(SeventhLevel_CancelButtonClick);
-                SeventhLvl_CancelBtnsPanel.Children.Add(CancelButton);
-            }
-
-        }
-
-        private void Generate_8thLvlCancelButtons()
-        {
-            EighthLvl_CancelBtnsPanel.Children.Clear();
-
-            foreach (Border SpellTB in EighthLvl_SlotPanel.Children)
-            {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(EighthLevel_CancelButtonClick);
-                EighthLvl_CancelBtnsPanel.Children.Add(CancelButton);
-            }
-
-        }
-
-
-        private void Generate_9thLvlCancelButtons()
-        {
-            NinthLvl_CancelBtnsPanel.Children.Clear();
-
-            foreach (Border SpellTB in NinthLvl_SlotPanel.Children)
-            {
-                Button CancelButton = Create_CancelBtn();
-                CancelButton.Click += new RoutedEventHandler(NinthLevel_CancelButtonClick);
-                NinthLvl_CancelBtnsPanel.Children.Add(CancelButton);
-            }
-
-        }
-
-        private void Cantrips_CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            List<Button> CancelButtons = new List<Button>();
             Button SendingButton = (Button)sender;
+            List<Button> CancelButtons = new List<Button>();
 
-            foreach(UIElement CancelButtonElement in CantripCancelsBtnsPanel.Children)
-            {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);                
-            }
+            StackPanel targetPanel = Find_StackPanel(SendingButton.Tag.ToString());
 
-            foreach(Button CancelButton in CancelButtons)
+            int indexOfTargetBtn = -1;
+
+            if (targetPanel != null)
             {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
+                foreach (UIElement CancelButtonElement in targetPanel.Children)
                 {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < CantripSlotPanel.Children.Count && CantripSlotPanel.Children[i] != null)
-                        CantripSlotPanel.Children.RemoveAt(i);
-
-                    CantripCancelsBtnsPanel.Children.Remove(SendingButton);
+                    Button CancelButton = (Button)CancelButtonElement;                    
+                    CancelButtons.Add(CancelButton);
                 }
+
+                foreach (Button CancelButton in CancelButtons)
+                {
                     
+                    if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
+                    {
+                        indexOfTargetBtn = CancelButtons.IndexOf(CancelButton);
+                        targetPanel.Children.Remove(SendingButton);
+                    }
+                }
+
+                int indexOfTargetPanel = CancelBtnPanels.IndexOf(targetPanel);
+
+                FindAndRemoveAt_LinkedSlotPanel(indexOfTargetBtn, indexOfTargetPanel);
+
+                if(indexOfTargetPanel > 0)
+                    FindAndRemoveAt_LinkedPreparedBoxes(indexOfTargetBtn, indexOfTargetPanel);
+
+            }
+
+            
+
+            else
+                MessageBox.Show("Couldn't find target panel");
+        }
+
+        private void FindAndRemoveAt_LinkedSlotPanel(int indexOfTargetBtn, int indexOfTargetPanel)
+        {
+            StackPanel linkedSlotPanel = new StackPanel();
+
+            if (indexOfTargetPanel >= 0 && indexOfTargetPanel < SlotPanels.Count)
+                linkedSlotPanel = SlotPanels[indexOfTargetPanel];
+
+            if (linkedSlotPanel != null)
+            {
+                if (indexOfTargetBtn >= 0 && indexOfTargetBtn < linkedSlotPanel.Children.Count)
+                    linkedSlotPanel.Children.RemoveAt(indexOfTargetBtn);
             }
         }
 
-        private void FirstLevel_CancelButtonClick(object sender, RoutedEventArgs e)
+        private void FindAndRemoveAt_LinkedPreparedBoxes(int indexOfTargetBtn, int indexOfCancelBtnPanel)
         {
-            List<Button> CancelButtons = new List<Button>();
-            Button SendingButton = (Button)sender;
+            StackPanel linkedPrepBoxPanel = new StackPanel();
 
-            foreach(UIElement CancelButtonElement in FirstLvl_CancelBtnsPanel.Children)
+            int indexOfTargetPanel = indexOfCancelBtnPanel - 1;
+
+            if (indexOfTargetPanel >= 0 && indexOfTargetPanel < PreparedBoxesPanels.Count)
+                linkedPrepBoxPanel = PreparedBoxesPanels[indexOfTargetPanel];
+
+            if (linkedPrepBoxPanel != null)
             {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);                
-            }
-
-            foreach(Button CancelButton in CancelButtons)
-            {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
-                {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < FirstLvl_SlotPanel.Children.Count && FirstLvl_SlotPanel.Children[i] != null)
-                        FirstLvl_SlotPanel.Children.RemoveAt(i);
-
-                    FirstLvl_CancelBtnsPanel.Children.Remove(SendingButton);
-                }
-                    
-            }
-        }
-
-        private void SecondLevel_CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            List<Button> CancelButtons = new List<Button>();
-            Button SendingButton = (Button)sender;
-
-            foreach (UIElement CancelButtonElement in SecondLvl_CancelBtnsPanel.Children)
-            {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);
-            }
-
-            foreach (Button CancelButton in CancelButtons)
-            {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
-                {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < SecondLvl_SlotPanel.Children.Count && SecondLvl_SlotPanel.Children[i] != null)
-                        SecondLvl_SlotPanel.Children.RemoveAt(i);
-
-                    SecondLvl_CancelBtnsPanel.Children.Remove(SendingButton);
-                }
-
-            }
-        }
-
-        private void ThirdLevel_CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            List<Button> CancelButtons = new List<Button>();
-            Button SendingButton = (Button)sender;
-
-            foreach (UIElement CancelButtonElement in ThirdLvl_CancelBtnsPanel.Children)
-            {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);
-            }
-
-            foreach (Button CancelButton in CancelButtons)
-            {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
-                {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < ThirdLvl_SlotPanel.Children.Count && ThirdLvl_SlotPanel.Children[i] != null)
-                        ThirdLvl_SlotPanel.Children.RemoveAt(i);
-
-                    ThirdLvl_CancelBtnsPanel.Children.Remove(SendingButton);
-                }
-
-            }
-        }
-
-        private void FourthLevel_CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            List<Button> CancelButtons = new List<Button>();
-            Button SendingButton = (Button)sender;
-
-            foreach (UIElement CancelButtonElement in FourthLvl_CancelBtnsPanel.Children)
-            {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);
-            }
-
-            foreach (Button CancelButton in CancelButtons)
-            {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
-                {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < FourthLvl_SlotPanel.Children.Count && FourthLvl_SlotPanel.Children[i] != null)
-                        FourthLvl_SlotPanel.Children.RemoveAt(i);
-
-                    FourthLvl_CancelBtnsPanel.Children.Remove(SendingButton);
-                }
-
-            }
-        }
-
-        private void FifthLevel_CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            List<Button> CancelButtons = new List<Button>();
-            Button SendingButton = (Button)sender;
-
-            foreach (UIElement CancelButtonElement in FifthLvl_CancelBtnsPanel.Children)
-            {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);
-            }
-
-            foreach (Button CancelButton in CancelButtons)
-            {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
-                {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < FifthtLvl_SlotPanel.Children.Count && FifthtLvl_SlotPanel.Children[i] != null)
-                        FifthtLvl_SlotPanel.Children.RemoveAt(i);
-
-                    FifthLvl_CancelBtnsPanel.Children.Remove(SendingButton);
-                }
-
-            }
-        }
-
-
-        private void SixthLevel_CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            List<Button> CancelButtons = new List<Button>();
-            Button SendingButton = (Button)sender;
-
-            foreach (UIElement CancelButtonElement in SixthLvl_CancelBtnsPanel.Children)
-            {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);
-            }
-
-            foreach (Button CancelButton in CancelButtons)
-            {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
-                {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < SixthLvl_SlotPanel.Children.Count && SixthLvl_SlotPanel.Children[i] != null)
-                        SixthLvl_SlotPanel.Children.RemoveAt(i);
-
-                    SixthLvl_CancelBtnsPanel.Children.Remove(SendingButton);
-                }
-
-            }
-        }
-
-        private void SeventhLevel_CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            List<Button> CancelButtons = new List<Button>();
-            Button SendingButton = (Button)sender;
-
-            foreach (UIElement CancelButtonElement in SeventhLvl_CancelBtnsPanel.Children)
-            {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);
-            }
-
-            foreach (Button CancelButton in CancelButtons)
-            {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
-                {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < SeventhLvl_SlotPanel.Children.Count && SeventhLvl_SlotPanel.Children[i] != null)
-                        SeventhLvl_SlotPanel.Children.RemoveAt(i);
-
-                    SeventhLvl_CancelBtnsPanel.Children.Remove(SendingButton);
-                }
-
-            }
-        }
-
-        private void EighthLevel_CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            List<Button> CancelButtons = new List<Button>();
-            Button SendingButton = (Button)sender;
-
-            foreach (UIElement CancelButtonElement in EighthLvl_CancelBtnsPanel.Children)
-            {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);
-            }
-
-            foreach (Button CancelButton in CancelButtons)
-            {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
-                {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < EighthLvl_SlotPanel.Children.Count && EighthLvl_SlotPanel.Children[i] != null)
-                        EighthLvl_SlotPanel.Children.RemoveAt(i);
-
-                    EighthLvl_CancelBtnsPanel.Children.Remove(SendingButton);
-                }
-
-            }
-        }
-
-        private void NinthLevel_CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            List<Button> CancelButtons = new List<Button>();
-            Button SendingButton = (Button)sender;
-
-            foreach (UIElement CancelButtonElement in NinthLvl_CancelBtnsPanel.Children)
-            {
-                Button CancelButton = (Button)CancelButtonElement;
-                CancelButtons.Add(CancelButton);
-            }
-
-            foreach (Button CancelButton in CancelButtons)
-            {
-                if (CancelButton.GetHashCode() == SendingButton.GetHashCode())
-                {
-                    int i = CancelButtons.IndexOf(CancelButton);
-
-                    if (i < NinthLvl_SlotPanel.Children.Count && NinthLvl_SlotPanel.Children[i] != null)
-                        NinthLvl_SlotPanel.Children.RemoveAt(i);
-
-                    NinthLvl_CancelBtnsPanel.Children.Remove(SendingButton);
-                }
-
+                if (indexOfTargetBtn >= 0 && indexOfTargetBtn < linkedPrepBoxPanel.Children.Count)
+                    linkedPrepBoxPanel.Children.RemoveAt(indexOfTargetBtn);
             }
         }
 
@@ -861,102 +706,19 @@ namespace DnD_CharSheet_5e
             return PreparedBox;
         }
 
-        private void Generate_PreparedCheckboxes_1stLevel()
+        private void Generate_PreparedCheckBoxes(StackPanel targetPanel)
         {
-            FirstLvl_PreparedBoxesPanel.Children.Clear();
+            targetPanel.Children.Clear();
+            int indexOfTargetPanel = PreparedBoxesPanels.IndexOf(targetPanel);
+            int indexOfCorrespondingSlotPanel = indexOfTargetPanel + 1;
 
-            foreach(Border SpellTB in FirstLvl_SlotPanel.Children)
+            if(indexOfCorrespondingSlotPanel < SlotPanels.Count)
             {
-                CheckBox PreparedBox = Create_CheckBox();                
-                FirstLvl_PreparedBoxesPanel.Children.Add(PreparedBox);                
-            }
-        }
-
-        private void Generate_PreparedCheckboxes_2ndLevel()
-        {
-            SecondLvl_PreparedBoxesPanel.Children.Clear();
-
-            foreach (Border SpellTB in SecondLvl_SlotPanel.Children)
-            {
-                CheckBox PreparedBox = Create_CheckBox();
-                SecondLvl_PreparedBoxesPanel.Children.Add(PreparedBox);
-            }
-        }
-
-        private void Generate_PreparedCheckboxes_3rdLevel()
-        {
-            ThirdLvl_PreparedBoxesPanel.Children.Clear();
-
-            foreach (Border SpellTB in ThirdLvl_SlotPanel.Children)
-            {
-                CheckBox PreparedBox = Create_CheckBox();
-                ThirdLvl_PreparedBoxesPanel.Children.Add(PreparedBox);
-            }
-        }
-
-        private void Generate_PreparedCheckboxes_4thLevel()
-        {
-            FourthLvl_PreparedBoxesPanel.Children.Clear();
-
-            foreach (Border SpellTB in FourthLvl_SlotPanel.Children)
-            {
-                CheckBox PreparedBox = Create_CheckBox();
-                FourthLvl_PreparedBoxesPanel.Children.Add(PreparedBox);
-            }
-        }
-
-        private void Generate_PreparedCheckboxes_5thLevel()
-        {
-            FifthLvl_PreparedBoxesPanel.Children.Clear();
-
-            foreach (Border SpellTB in FifthtLvl_SlotPanel.Children)
-            {
-                CheckBox PreparedBox = Create_CheckBox();
-                FifthLvl_PreparedBoxesPanel.Children.Add(PreparedBox);
-            }
-        }
-
-        private void Generate_PreparedCheckboxes_6thLevel()
-        {
-            SixthLvl_PreparedBoxesPanel.Children.Clear();
-
-            foreach (Border SpellTB in SixthLvl_SlotPanel.Children)
-            {
-                CheckBox PreparedBox = Create_CheckBox();
-                SixthLvl_PreparedBoxesPanel.Children.Add(PreparedBox);
-            }
-        }
-
-        private void Generate_PreparedCheckboxes_7thLevel()
-        {
-            SeventhLvl_PreparedBoxesPanel.Children.Clear();
-
-            foreach (Border SpellTB in SeventhLvl_SlotPanel.Children)
-            {
-                CheckBox PreparedBox = Create_CheckBox();
-                SeventhLvl_PreparedBoxesPanel.Children.Add(PreparedBox);
-            }
-        }
-
-        private void Generate_PreparedCheckboxes_8thLevel()
-        {
-            EighthLvl_PreparedBoxesPanel.Children.Clear();
-
-            foreach (Border SpellTB in EighthLvl_SlotPanel.Children)
-            {
-                CheckBox PreparedBox = Create_CheckBox();
-                EighthLvl_PreparedBoxesPanel.Children.Add(PreparedBox);
-            }
-        }
-
-        private void Generate_PreparedCheckboxes_9thLevel()
-        {
-            NinthLvl_PreparedBoxesPanel.Children.Clear();
-
-            foreach (Border SpellTB in NinthLvl_SlotPanel.Children)
-            {
-                CheckBox PreparedBox = Create_CheckBox();
-                NinthLvl_PreparedBoxesPanel.Children.Add(PreparedBox);
+                foreach(Border SpellTB in SlotPanels[indexOfCorrespondingSlotPanel].Children)
+                {
+                    CheckBox PreparedBox = Create_CheckBox();
+                    PreparedBoxesPanels[indexOfTargetPanel].Children.Add(PreparedBox);
+                }
             }
         }
 
@@ -1030,7 +792,7 @@ namespace DnD_CharSheet_5e
             SlotListItem.VerticalAlignment = VerticalAlignment.Center;
 
             SlotListItem.MouseEnter += MouseHoverOverSpellSlot;
-
+            
             SlotItemBorder.Child = SlotListItem;
 
             return SlotItemBorder;
@@ -1038,11 +800,12 @@ namespace DnD_CharSheet_5e
 
         private void Add_Cantrip_Btn_Click(object sender, RoutedEventArgs e)
         {
+            
             if (CantripsSelectionCB.SelectedIndex > 0 && !CheckIfAlreadyInSpellList(CantripsSelectionCB.SelectedItem.ToString(), CantripSlotPanel))
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(CantripsSelectionCB.SelectedItem.ToString());
                 CantripSlotPanel.Children.Add(slotItem);
-                Generate_CantripCancelButtons();
+                Generate_CancelButtons(CantripCancelBtnsPanel, CantripSlotPanel);
             }
         }
 
@@ -1052,8 +815,9 @@ namespace DnD_CharSheet_5e
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(FirstLvl_SelectionCB.SelectedItem.ToString());
                 FirstLvl_SlotPanel.Children.Add(slotItem);
-                Generate_1stLvlCancelButtons();
-                Generate_PreparedCheckboxes_1stLevel();
+                Generate_CancelButtons(FirstLvl_CancelBtnsPanel, FirstLvl_SlotPanel);
+                Generate_PreparedCheckBoxes(FirstLvl_PreparedBoxesPanel);
+                Check_SpellListsItems();
             }
         }
 
@@ -1063,8 +827,9 @@ namespace DnD_CharSheet_5e
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(SecondLvl_SelectionCB.SelectedItem.ToString());
                 SecondLvl_SlotPanel.Children.Add(slotItem);
-                Generate_2ndLvlCancelButtons();
-                Generate_PreparedCheckboxes_2ndLevel();
+                Generate_CancelButtons(SecondLvl_CancelBtnsPanel, SecondLvl_SlotPanel);
+                Generate_PreparedCheckBoxes(SecondLvl_PreparedBoxesPanel);
+                Check_SpellListsItems();
             }
         }
 
@@ -1074,8 +839,9 @@ namespace DnD_CharSheet_5e
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(ThirdLvl_SelectionCB.SelectedItem.ToString());
                 ThirdLvl_SlotPanel.Children.Add(slotItem);
-                Generate_3rdLvlCancelButtons();
-                Generate_PreparedCheckboxes_3rdLevel();
+                Generate_CancelButtons(ThirdLvl_CancelBtnsPanel, ThirdLvl_SlotPanel);
+                Generate_PreparedCheckBoxes(ThirdLvl_PreparedBoxesPanel);
+                Check_SpellListsItems();
             }
         }
 
@@ -1085,19 +851,21 @@ namespace DnD_CharSheet_5e
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(FourthLvl_SelectionCB.SelectedItem.ToString());
                 FourthLvl_SlotPanel.Children.Add(slotItem);
-                Generate_4thLvlCancelButtons();
-                Generate_PreparedCheckboxes_4thLevel();
+                Generate_CancelButtons(FourthLvl_CancelBtnsPanel, FourthLvl_SlotPanel);
+                Generate_PreparedCheckBoxes(FourthLvl_PreparedBoxesPanel);
+                Check_SpellListsItems();
             }
         }
 
         private void Add_5thLvlSpl_Btn_Click(object sender, RoutedEventArgs e)
         {
-            if (FifthLvl_SelectionCB.SelectedIndex > 0 && !CheckIfAlreadyInSpellList(FifthLvl_SelectionCB.SelectedItem.ToString(), FifthtLvl_SlotPanel))
+            if (FifthLvl_SelectionCB.SelectedIndex > 0 && !CheckIfAlreadyInSpellList(FifthLvl_SelectionCB.SelectedItem.ToString(), FifthLvl_SlotPanel))
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(FifthLvl_SelectionCB.SelectedItem.ToString());
-                FifthtLvl_SlotPanel.Children.Add(slotItem);
-                Generate_5thLvlCancelButtons();
-                Generate_PreparedCheckboxes_5thLevel();
+                FifthLvl_SlotPanel.Children.Add(slotItem);
+                Generate_CancelButtons(FifthLvl_CancelBtnsPanel, FifthLvl_SlotPanel);
+                Generate_PreparedCheckBoxes(FifthLvl_PreparedBoxesPanel);
+                Check_SpellListsItems();
             }
         }
 
@@ -1107,8 +875,9 @@ namespace DnD_CharSheet_5e
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(SixthLvl_SelectionCB.SelectedItem.ToString());
                 SixthLvl_SlotPanel.Children.Add(slotItem);
-                Generate_6thLvlCancelButtons();
-                Generate_PreparedCheckboxes_6thLevel();
+                Generate_CancelButtons(SixthLvl_CancelBtnsPanel, SixthLvl_SlotPanel);
+                Generate_PreparedCheckBoxes(SixthLvl_PreparedBoxesPanel);
+                Check_SpellListsItems();
             }
         }
         private void Add_7thLvlSpl_Btn_Click(object sender, RoutedEventArgs e)
@@ -1117,8 +886,9 @@ namespace DnD_CharSheet_5e
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(SeventhLvl_SelectionCB.SelectedItem.ToString());
                 SeventhLvl_SlotPanel.Children.Add(slotItem);
-                Generate_7thLvlCancelButtons();
-                Generate_PreparedCheckboxes_7thLevel();
+                Generate_CancelButtons(SeventhLvl_CancelBtnsPanel, SeventhLvl_SlotPanel);
+                Generate_PreparedCheckBoxes(SeventhLvl_PreparedBoxesPanel);
+                Check_SpellListsItems();
             }
         }
 
@@ -1128,8 +898,9 @@ namespace DnD_CharSheet_5e
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(EighthLvl_SelectionCB.SelectedItem.ToString());
                 EighthLvl_SlotPanel.Children.Add(slotItem);
-                Generate_8thLvlCancelButtons();
-                Generate_PreparedCheckboxes_8thLevel();
+                Generate_CancelButtons(EighthLvl_CancelBtnsPanel, EighthLvl_SlotPanel);
+                Generate_PreparedCheckBoxes(EighthLvl_PreparedBoxesPanel);
+                Check_SpellListsItems();
             }
         }
 
@@ -1139,8 +910,9 @@ namespace DnD_CharSheet_5e
             {
                 Border slotItem = Create_BorderedSpellSlotTextblock(NinthLvl_SelectionCB.SelectedItem.ToString());
                 NinthLvl_SlotPanel.Children.Add(slotItem);
-                Generate_9thLvlCancelButtons();
-                Generate_PreparedCheckboxes_9thLevel();
+                Generate_CancelButtons(NinthLvl_CancelBtnsPanel, NinthLvl_SlotPanel);
+                Generate_PreparedCheckBoxes(NinthLvl_PreparedBoxesPanel);
+                Check_SpellListsItems();
             }
         }
 
@@ -1202,10 +974,12 @@ namespace DnD_CharSheet_5e
 
         private bool Check_SpellSlotsTotal_Value(string BoxText)
         {
-            if(BoxText.Length > 0)
+            if (BoxText.Length > 0)
             {
+
                 if (int.TryParse(BoxText, out int value))
                 {
+
                     if (value > 0 && value < 50)
                         return true;
 
@@ -1218,9 +992,7 @@ namespace DnD_CharSheet_5e
             }
 
             else
-            {
                 return true;
-            }
         }
 
         private void Set_SpellSlotsExpended_OriginalValue()
@@ -1236,11 +1008,17 @@ namespace DnD_CharSheet_5e
 
         private void EnableCastButtons()
         {
-            foreach(Button CastButton in CastButtons)
+            Check_SpellSlotsTotal();
+            Check_SpellListsItems();
+        }
+
+        private void Check_SpellSlotsTotal()
+        {
+            foreach (Button CastButton in CastButtons)
             {
                 int indexOfCastButton = CastButtons.IndexOf(CastButton);
 
-                foreach(TextBox SlotBox in SpellSlotsTotalBoxes)
+                foreach (TextBox SlotBox in SpellSlotsTotalBoxes)
                 {
                     int indexOfSlotBox = SpellSlotsTotalBoxes.IndexOf(SlotBox);
 
@@ -1255,6 +1033,25 @@ namespace DnD_CharSheet_5e
             }
         }
 
+        private void Check_SpellListsItems()
+        {
+            // This for-Loop starts at 1 because the Cantrips-Panel - the first element in the LevelPanels-List - should be ignored in this case:
+            // because it has no 'SpellSlots' on it (Slots Total and Slots Expended elements).
+
+            for(int i = 0; i < SpellSlotsTotalBoxes.Count; i++)
+            {                
+                Check_SpellListItem(i, SlotPanels[i+1], SpellSlotsTotalBoxes[i]);
+            }
+        }
+
+        private void Check_SpellListItem(int index, StackPanel SpellLevelPanel, TextBox SpellSlotsTotalTB)
+        {
+            if (SpellLevelPanel.Children.Count > 0 && SpellSlotsTotalTB.Text.Length > 0)
+                CastButtons[index].IsEnabled = true;
+            else
+                CastButtons[index].IsEnabled = false;
+        }        
+
         private void Cast_1stLvl_Btn_Click(object sender, RoutedEventArgs e)
         {
             if (SlotsTotal_1stLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_1stLvl_TB.Text, out int number))
@@ -1262,9 +1059,10 @@ namespace DnD_CharSheet_5e
                 int spellsSlotsExpended = int.Parse(SlotsExp_1stLvlTxt.Text);
                 spellsSlotsExpended++;
 
-                if (spellsSlotsExpended > int.Parse(SlotsTotal_1stLvl_TB.Text))
+                if (spellsSlotsExpended == int.Parse(SlotsTotal_1stLvl_TB.Text))
                 {
                     SlotsExp_1stLvlTxt.Text = SlotsTotal_1stLvl_TB.Text;
+                    Cast_1stLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
@@ -1283,9 +1081,10 @@ namespace DnD_CharSheet_5e
                 int spellsSlotsExpended = int.Parse(SlotsExp_2ndLvlTxt.Text);
                 spellsSlotsExpended++;
 
-                if (spellsSlotsExpended > int.Parse(SlotsTotal_2ndLvl_TB.Text))
+                if (spellsSlotsExpended == int.Parse(SlotsTotal_2ndLvl_TB.Text))
                 {
                     SlotsExp_2ndLvlTxt.Text = SlotsTotal_2ndLvl_TB.Text;
+                    Cast_2ndLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
@@ -1304,9 +1103,10 @@ namespace DnD_CharSheet_5e
                 int spellsSlotsExpended = int.Parse(SlotsExp_3rdLvlTxt.Text);
                 spellsSlotsExpended++;
 
-                if (spellsSlotsExpended > int.Parse(SlotsTotal_3rdLvl_TB.Text))
+                if (spellsSlotsExpended == int.Parse(SlotsTotal_3rdLvl_TB.Text))
                 {
                     SlotsExp_3rdLvlTxt.Text = SlotsTotal_3rdLvl_TB.Text;
+                    Cast_3rdLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
@@ -1325,9 +1125,10 @@ namespace DnD_CharSheet_5e
                 int spellsSlotsExpended = int.Parse(SlotsExp_4thLvlTxt.Text);
                 spellsSlotsExpended++;
 
-                if (spellsSlotsExpended > int.Parse(SlotsTotal_4thLvl_TB.Text))
+                if (spellsSlotsExpended == int.Parse(SlotsTotal_4thLvl_TB.Text))
                 {
                     SlotsExp_4thLvlTxt.Text = SlotsTotal_4thLvl_TB.Text;
+                    Cast_4thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
@@ -1346,9 +1147,10 @@ namespace DnD_CharSheet_5e
                 int spellsSlotsExpended = int.Parse(SlotsExp_5thLvlTxt.Text);
                 spellsSlotsExpended++;
 
-                if (spellsSlotsExpended > int.Parse(SlotsTotal_5thLvl_TB.Text))
+                if (spellsSlotsExpended == int.Parse(SlotsTotal_5thLvl_TB.Text))
                 {
                     SlotsExp_5thLvlTxt.Text = SlotsTotal_5thLvl_TB.Text;
+                    Cast_5thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
@@ -1367,9 +1169,10 @@ namespace DnD_CharSheet_5e
                 int spellsSlotsExpended = int.Parse(SlotsExp_6thLvlTxt.Text);
                 spellsSlotsExpended++;
 
-                if (spellsSlotsExpended > int.Parse(SlotsTotal_6thLvl_TB.Text))
+                if (spellsSlotsExpended == int.Parse(SlotsTotal_6thLvl_TB.Text))
                 {
                     SlotsExp_6thLvlTxt.Text = SlotsTotal_6thLvl_TB.Text;
+                    Cast_6thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
@@ -1388,9 +1191,10 @@ namespace DnD_CharSheet_5e
                 int spellsSlotsExpended = int.Parse(SlotsExp_7thLvlTxt.Text);
                 spellsSlotsExpended++;
 
-                if (spellsSlotsExpended > int.Parse(SlotsTotal_7thLvl_TB.Text))
+                if (spellsSlotsExpended == int.Parse(SlotsTotal_7thLvl_TB.Text))
                 {
                     SlotsExp_7thLvlTxt.Text = SlotsTotal_7thLvl_TB.Text;
+                    Cast_7thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
@@ -1404,7 +1208,7 @@ namespace DnD_CharSheet_5e
 
         private void Cast_8thLvl_Btn_Click(object sender, RoutedEventArgs e)
         {
-            if (SlotsTotal_8thLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_8thLvl_TB.Text, out int number))
+            if (SlotsTotal_8thLvl_TB.Text.Length == 0 && int.TryParse(SlotsTotal_8thLvl_TB.Text, out int number))
             {
                 int spellsSlotsExpended = int.Parse(SlotsExp_8thLvlTxt.Text);
                 spellsSlotsExpended++;
@@ -1412,6 +1216,7 @@ namespace DnD_CharSheet_5e
                 if (spellsSlotsExpended > int.Parse(SlotsTotal_8thLvl_TB.Text))
                 {
                     SlotsExp_8thLvlTxt.Text = SlotsTotal_8thLvl_TB.Text;
+                    Cast_8thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
@@ -1430,9 +1235,10 @@ namespace DnD_CharSheet_5e
                 int spellsSlotsExpended = int.Parse(SlotsExp_9thLvlTxt.Text);
                 spellsSlotsExpended++;
 
-                if (spellsSlotsExpended > int.Parse(SlotsTotal_9thLvl_TB.Text))
+                if (spellsSlotsExpended == int.Parse(SlotsTotal_9thLvl_TB.Text))
                 {
                     SlotsExp_9thLvlTxt.Text = SlotsTotal_9thLvl_TB.Text;
+                    Cast_9thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
@@ -1443,5 +1249,82 @@ namespace DnD_CharSheet_5e
             else
                 MessageBox.Show(NoSpellSlotsForThisLevelMessage);
         }
+
+        private void SaveSpellSheet()
+        {
+            SpellSheetData.Clear();
+
+            foreach (StackPanel SlotPanel in SlotPanels)
+            {                
+                List<string> panelItems = ConvertPanelChildrenToString(SlotPanel);
+                List<bool> preparedList = new List<bool>();
+
+                int currentIndex = SlotPanels.IndexOf(SlotPanel);
+
+                int slotsTotal = 0;
+                int slotsExpended = 0;
+
+                if(currentIndex > 0)
+                {
+                    int slotBoxIndex = currentIndex - 1;
+
+                    slotsTotal = TrySlotText(SpellSlotsTotalBoxes[slotBoxIndex].Text);
+                    slotsExpended = TrySlotText(SpellsExpenedTxts[slotBoxIndex].Text);
+
+                    if(PreparedBoxesPanels[slotBoxIndex].Children.Count > 0)
+                    {
+                        foreach (CheckBox preparedBox in PreparedBoxesPanels[slotBoxIndex].Children)
+                        {
+                            preparedList.Add((bool)preparedBox.IsChecked);
+                        }
+                    }
+                }
+
+
+                SlotPanelData slotPanelData = new SlotPanelData(slotsTotal, slotsExpended, panelItems, preparedList);
+                SpellSheetData.Add(slotPanelData);
+            }
+
+            SheetManager.CS_Manager_Inst.character.SpellSheetData = SpellSheetData;
+        }
+
+        private int TrySlotText(string text)
+        {
+            int slotValue = 0;
+            if (text.Length > 0)
+            {
+                slotValue = int.Parse(text);
+                return slotValue;
+            }
+            else
+                return slotValue;
+        }
+
+        private List<string> ConvertPanelChildrenToString(StackPanel SpellPanel)
+        {
+            List<string> slotItems = new List<string>();
+
+            foreach(UIElement SpellElement in SpellPanel.Children)
+            {
+                Border tempBorder = (Border)SpellElement;
+                TextBlock tempBox = (TextBlock)tempBorder.Child;
+                string spellName = tempBox.Text;
+                slotItems.Add(spellName);
+            }
+
+            return slotItems;
+        }
+
+        private StackPanel Find_StackPanel(string stackPanelName)
+        {
+            StackPanel StackPanelToFind = LevelPanels.Find(PanelElement => PanelElement.Name == stackPanelName);
+            return StackPanelToFind;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveSpellSheet();
+        }
     }
+    
 }
