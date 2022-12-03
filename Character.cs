@@ -152,6 +152,8 @@ namespace DnD_CharSheet_5e
 
         public Equipment CharEquipment = new Equipment();
 
+        public List<SlotPanelData> SpellSheetData = new List<SlotPanelData>();
+
         public List<string> CharLanguages = new List<string>();
 
         #endregion
@@ -739,6 +741,7 @@ namespace DnD_CharSheet_5e
 
             cInventory = charData.CD_Inventory;
             CharEquipment = charData.CD_Equipment;
+            SpellSheetData = charData.CD_SpellSheetData;
         }
 
         public void Reset_Character()
@@ -757,6 +760,7 @@ namespace DnD_CharSheet_5e
 
             cInventory.Clear_Inventory();
             CharEquipment.Clear_Equipment();
+            SpellSheetData.Clear();
         }
         #endregion
 
