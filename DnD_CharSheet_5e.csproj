@@ -128,6 +128,7 @@
     <Compile Include="SaveSystem.cs" />
     <Compile Include="SavingThrow.cs" />
     <Compile Include="Skill.cs" />
+    <Compile Include="SlotPanelData.cs" />
     <Compile Include="Spell.cs" />
     <Compile Include="SpellCasterClass.cs" />
     <Compile Include="SpellCasterData.cs" />
