@@ -12,10 +12,22 @@
 
     <Window.Resources>
 
+        <Style TargetType="TextBlock" x:Key="SpellCasterInfoText" BasedOn="{StaticResource StandardText}">
+
+            <Setter Property="Foreground" Value="#343434"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="3 2 0 0"/>
+
+        </Style>
+
         <Style TargetType="ComboBox" x:Key="SpellSelectionBox">
             <Setter Property="BorderBrush" Value="DarkSlateGray"/>
             <Setter Property="Foreground" Value="#343434"/>
             <Setter Property="Background" Value="#f4f4f6"/>
+
+            <Setter Property="Width" Value="255"/>
 
             <Setter Property="FontFamily" Value="Cambria"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -43,14 +55,32 @@
 
         </Style>
 
-        <Style TargetType="Button" x:Key="AddSpellBtn" BasedOn="{StaticResource StandardBtn}">
-            
-            <Setter Property="Content" Value="Add"/>
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Width" Value="125"/>
-            
+        <Style TargetType="TextBox" x:Key="SpellSlotsExpended" BasedOn="{StaticResource SpellSlotsTotal}">
+
+            <Setter Property="BorderBrush" Value="#4c7f7f"/>
+            <Setter Property="Background" Value="Azure"/>
+            <Setter Property="IsEnabled" Value="False"/>
+
         </Style>
 
+        <Style TargetType="Button" x:Key="AddSpellBtn" BasedOn="{StaticResource StandardBtn}">
+
+            <Setter Property="Content" Value="Add"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="0 0 30 0"/>
+
+        </Style>
+
+        <Style TargetType="Button" x:Key="CastBtn" BasedOn="{StaticResource StandardBtn}">
+
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="125"/>
+
+            <Setter Property="FontSize" Value="12"/>
+
+        </Style>
+        
     </Window.Resources>
     
     <StackPanel>
@@ -80,10 +110,21 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="CasterClassTxt" Margin="15 5 25 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="0"/>
-            <TextBlock x:Name="SpAbilityTxt" Margin="5 5 5 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="1"/>
-            <TextBlock x:Name="SaveDCTxt" Margin="30 5 25 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-            <TextBlock x:Name="SpAtkBonus" Margin="5 5 15 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="3"/>
+            <Border Margin="15 5 25 10" Width="300" HorizontalAlignment="Left" Style="{StaticResource StandardBorder}" Grid.Column="0">
+                <TextBlock x:Name="CasterClassTxt"  Style="{StaticResource SpellCasterInfoText}"/>
+            </Border>
+            
+            <Border Margin="5 5 5 10" Style="{StaticResource StandardBorder}" Grid.Column="1">
+                <TextBlock x:Name="SpAbilityTxt" Style="{StaticResource SpellCasterInfoText}" />
+            </Border>
+
+            <Border Margin="25 5 25 10" Style="{StaticResource StandardBorder}" Grid.Column="2">
+                <TextBlock x:Name="SaveDCTxt" Style="{StaticResource SpellCasterInfoText}"/>
+            </Border>
+
+            <Border Margin="5 5 15 10" Style="{StaticResource StandardBorder}" Grid.Column="3">
+                <TextBlock x:Name="SpAtkBonus" Style="{StaticResource SpellCasterInfoText}" />
+            </Border>
 
         </Grid>
 
@@ -124,7 +165,7 @@
 
                     </Grid>
 
-                    <ComboBox x:Name="CantripsSelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="CantripsSelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
                     <Grid Margin="10 10" x:Name="CantripBtnsGrid">
 
@@ -178,13 +219,10 @@
                         <TextBlock Text="1" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
                         <TextBox x:Name="SlotsTotal_1stLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
 
-                        <Border Style="{StaticResource StandardBorder}" Margin="10 5 35 10" Height="25" Width="100" Grid.Column="2">
-                            <TextBlock x:Name="SlotsExp_1stLvlTxt" FontSize="16" FontWeight="Bold" Background="Azure"/>
-
-                        </Border>
+                        <TextBox x:Name="SlotsExp_1stLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
                     </Grid>
 
-                    <ComboBox x:Name="FirstLvl_SelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="FirstLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
                     <Grid Margin="10 10">
 
@@ -194,7 +232,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="Add_1stLvlSpl_Btn" Click="Add_1stLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
-                        <Button x:Name="Cast_1stLvl_Btn" Content="Cast 1st Level Spell" Click="Cast_1stLvl_Btn_Click" IsEnabled="False" Height="20" Width="125" Style="{StaticResource StandardBtn}" FontSize="12" Grid.Column="1"/>
+                        <Button x:Name="Cast_1stLvl_Btn" Content="Cast 1st Level Spell" Click="Cast_1stLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
 
                     </Grid>
 
@@ -237,11 +275,11 @@
 
                         <TextBlock Text="2" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
                         <TextBox x:Name="SlotsTotal_2ndLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
-                        <TextBlock x:Name="SlotsExp_2ndLvlTxt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+                        <TextBox x:Name="SlotsExp_2ndLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
 
                     </Grid>
 
-                    <ComboBox x:Name="SecondLvl_SelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="SecondLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
                     <Grid Margin="10 10">
 
@@ -251,7 +289,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="Add_2ndLvlSpl_Btn" Click="Add_2ndLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
-                        <Button x:Name="Cast_2ndLvl_Btn" Content="Cast 2nd Level Spell" Click="Cast_2ndLvl_Btn_Click" IsEnabled="False" Height="20" Width="125" Style="{StaticResource StandardBtn}" Grid.Column="1"/>
+                        <Button x:Name="Cast_2ndLvl_Btn" Content="Cast 2nd Level Spell" Click="Cast_2ndLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
 
                     </Grid>
 
@@ -298,11 +336,11 @@
 
                         <TextBlock Text="3" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
                         <TextBox x:Name="SlotsTotal_3rdLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
-                        <TextBlock x:Name="SlotsExp_3rdLvlTxt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+                        <TextBox x:Name="SlotsExp_3rdLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
 
                     </Grid>
 
-                    <ComboBox x:Name="ThirdLvl_SelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="ThirdLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
                     <Grid Margin="10 10">
 
@@ -312,7 +350,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="Add_3rdLvlSpl_Btn" Content="Add" Click="Add_3rdLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
-                        <Button x:Name="Cast_3rdLvl_Btn" Content="Cast 3rd Level Spell" Click="Cast_3rdLvl_Btn_Click" IsEnabled="False" Height="20" Width="125" Style="{StaticResource StandardBtn}" Grid.Column="1"/>
+                        <Button x:Name="Cast_3rdLvl_Btn" Content="Cast 3rd Level Spell" Click="Cast_3rdLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
 
                     </Grid>
 
@@ -355,11 +393,11 @@
 
                         <TextBlock Text="4" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
                         <TextBox x:Name="SlotsTotal_4thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False" Grid.Column="1"/>
-                        <TextBlock x:Name="SlotsExp_4thLvlTxt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+                        <TextBox x:Name="SlotsExp_4thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
 
                     </Grid>
 
-                    <ComboBox x:Name="FourthLvl_SelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="FourthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
 
                     <Grid Margin="10 10">
@@ -370,7 +408,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="Add_4thLvlSpl_Btn" Click="Add_4thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
-                        <Button x:Name="Cast_4thLvl_Btn" Content="Cast 4th Level Spell" Click="Cast_4thLvl_Btn_Click" IsEnabled="False" Height="20" Width="125" Style="{StaticResource StandardBtn}" Grid.Column="1"/>
+                        <Button x:Name="Cast_4thLvl_Btn" Content="Cast 4th Level Spell" Click="Cast_4thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
 
                     </Grid>
 
@@ -413,11 +451,11 @@
 
                         <TextBlock Text="5" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
                         <TextBox x:Name="SlotsTotal_5thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False" Grid.Column="1"/>
-                        <TextBlock x:Name="SlotsExp_5thLvlTxt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+                        <TextBox x:Name="SlotsExp_5thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
 
                     </Grid>
 
-                    <ComboBox x:Name="FifthLvl_SelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="FifthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
 
                     <Grid Margin="10 10">
@@ -428,7 +466,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="Add_5thLvlSpl_Btn" Click="Add_5thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
-                        <Button x:Name="Cast_5thLvl_Btn" Content="Cast 5th Level Spell" Click="Cast_5thLvl_Btn_Click" IsEnabled="False" Height="20" Width="125" Style="{StaticResource StandardBtn}" Grid.Column="1"/>
+                        <Button x:Name="Cast_5thLvl_Btn" Content="Cast 5th Level Spell" Click="Cast_5thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
 
                     </Grid>
 
@@ -475,11 +513,11 @@
 
                         <TextBlock Text="6" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
                         <TextBox x:Name="SlotsTotal_6thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
-                        <TextBlock x:Name="SlotsExp_6thLvlTxt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+                        <TextBox x:Name="SlotsExp_6thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
 
                     </Grid>
 
-                    <ComboBox x:Name="SixthLvl_SelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="SixthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
 
                     <Grid Margin="10 10">
@@ -490,7 +528,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="Add_6thLvlSpl_Btn" Click="Add_6thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
-                        <Button x:Name="Cast_6thLvl_Btn" Content="Cast 6th Level Spell" Click="Cast_6thLvl_Btn_Click" IsEnabled="False" Height="20" Width="125" Style="{StaticResource StandardBtn}" Grid.Column="1"/>
+                        <Button x:Name="Cast_6thLvl_Btn" Content="Cast 6th Level Spell" Click="Cast_6thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
 
                     </Grid>
 
@@ -533,11 +571,11 @@
 
                         <TextBlock Text="7" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
                         <TextBox x:Name="SlotsTotal_7thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
-                        <TextBlock x:Name="SlotsExp_7thLvlTxt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+                        <TextBox x:Name="SlotsExp_7thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
 
                     </Grid>
 
-                    <ComboBox x:Name="SeventhLvl_SelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="SeventhLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
 
                     <Grid Margin="10 10">
@@ -548,7 +586,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="Add_7thLvlSpl_Btn" Click="Add_7thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
-                        <Button x:Name="Cast_7thLvl_Btn" Content="Cast 7th Level Spell" Click="Cast_7thLvl_Btn_Click" IsEnabled="False" Height="20" Width="125" Style="{StaticResource StandardBtn}" Grid.Column="1"/>
+                        <Button x:Name="Cast_7thLvl_Btn" Content="Cast 7th Level Spell" Click="Cast_7thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
 
                     </Grid>
 
@@ -590,11 +628,11 @@
 
                         <TextBlock Text="8" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
                         <TextBox x:Name="SlotsTotal_8thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
-                        <TextBlock x:Name="SlotsExp_8thLvlTxt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+                        <TextBox x:Name="SlotsExp_8thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
 
                     </Grid>
 
-                    <ComboBox x:Name="EighthLvl_SelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="EighthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
                     <Grid Margin="10 10">
 
@@ -604,7 +642,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="Add_8thLvlSpl_Btn" Click="Add_8thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
-                        <Button x:Name="Cast_8thLvl_Btn" Content="Cast 8th Level Spell" Click="Cast_8thLvl_Btn_Click" IsEnabled="False" Height="20" Width="125" Style="{StaticResource StandardBtn}" Grid.Column="1"/>
+                        <Button x:Name="Cast_8thLvl_Btn" Content="Cast 8th Level Spell" Click="Cast_8thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
 
                     </Grid>
 
@@ -651,11 +689,11 @@
 
                         <TextBlock Text="9" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
                         <TextBox x:Name="SlotsTotal_9thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
-                        <TextBlock x:Name="SlotsExp_9thLvlTxt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
+                        <TextBox x:Name="SlotsExp_9thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
 
                     </Grid>
 
-                    <ComboBox x:Name="NinthLvl_SelectionCB" Width="260" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+                    <ComboBox x:Name="NinthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
 
                     <Grid Margin="10 10">
 
@@ -665,7 +703,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="Add_9thLvlSpl_Btn" Click="Add_9thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
-                        <Button x:Name="Cast_9thLvl_Btn" Content="Cast 9th Level Spell" Click="Cast_9thLvl_Btn_Click" IsEnabled="False" Height="20" Width="125" Style="{StaticResource StandardBtn}" Grid.Column="1"/>
+                        <Button x:Name="Cast_9thLvl_Btn" Content="Cast 9th Level Spell" Click="Cast_9thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
 
                     </Grid>
 
@@ -686,9 +724,9 @@
                         </ScrollViewer>
                     </Border>
 
-                    <TextBlock Text="Spell Viewer" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Text="Spell Viewer" Margin="0 20 0 10" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource H2_Header}" Foreground="#343434"/>
 
-                    <TextBox x:Name="SpellViewer" Margin="20 20 20 20" Height="300" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" IsReadOnly="True"/>
+                    <TextBox x:Name="SpellViewer" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" IsReadOnly="True" Height="300" Width="260" Padding="3 5 0 0" Background="Thistle" FontWeight="Bold" BorderThickness="1"/>
 
                 </StackPanel>
 
