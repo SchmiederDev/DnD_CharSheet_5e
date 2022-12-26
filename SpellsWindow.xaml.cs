@@ -57,7 +57,7 @@ namespace DnD_CharSheet_5e
         public List<SpellList_Item> Ninth_LvlSpells { set; get; }
 
         List<TextBox> SpellSlotsTotalBoxes;
-        List<TextBlock> SpellsExpenedTxts;
+        List<TextBox> SpellsExpendedBoxes;
         
         List<Button> CastButtons;
         
@@ -275,6 +275,7 @@ namespace DnD_CharSheet_5e
             Init_CastButtons();
             Init_LevelPanels();
             LoadSpellSheetData();
+            EnableCastButtons();
         }
 
         private void Init_SpellSlotsTotal()
@@ -293,16 +294,16 @@ namespace DnD_CharSheet_5e
 
         private void Init_SpellsExpendend()
         {
-            SpellsExpenedTxts = new List<TextBlock>();
-            SpellsExpenedTxts.Add(SlotsExp_1stLvlTxt);
-            SpellsExpenedTxts.Add(SlotsExp_2ndLvlTxt);
-            SpellsExpenedTxts.Add(SlotsExp_3rdLvlTxt);
-            SpellsExpenedTxts.Add(SlotsExp_4thLvlTxt);
-            SpellsExpenedTxts.Add(SlotsExp_5thLvlTxt);
-            SpellsExpenedTxts.Add(SlotsExp_6thLvlTxt);
-            SpellsExpenedTxts.Add(SlotsExp_7thLvlTxt);
-            SpellsExpenedTxts.Add(SlotsExp_8thLvlTxt);
-            SpellsExpenedTxts.Add(SlotsExp_9thLvlTxt);
+            SpellsExpendedBoxes = new List<TextBox>();
+            SpellsExpendedBoxes.Add(SlotsExp_1stLvl_TB);
+            SpellsExpendedBoxes.Add(SlotsExp_2ndLvl_TB);
+            SpellsExpendedBoxes.Add(SlotsExp_3rdLvl_TB);
+            SpellsExpendedBoxes.Add(SlotsExp_4thLvl_TB);
+            SpellsExpendedBoxes.Add(SlotsExp_5thLvl_TB);
+            SpellsExpendedBoxes.Add(SlotsExp_6thLvl_TB);
+            SpellsExpendedBoxes.Add(SlotsExp_7thLvl_TB);
+            SpellsExpendedBoxes.Add(SlotsExp_8thLvl_TB);
+            SpellsExpendedBoxes.Add(SlotsExp_9thLvl_TB);
         }
 
         private void Init_CastButtons()
@@ -554,7 +555,7 @@ namespace DnD_CharSheet_5e
         private void LoadSpellSlotsExpended(int slotIndex, int boxValue)
         {
             if(boxValue > 0)
-                SpellsExpenedTxts[slotIndex].Text = boxValue.ToString();
+                SpellsExpendedBoxes[slotIndex].Text = boxValue.ToString();
         }
 
         private void LoadSlotItems(List<string> slotPanelItemNames, int slotPanelIndex)
@@ -1002,7 +1003,7 @@ namespace DnD_CharSheet_5e
                 int spellLevelIndex = SpellSlotsTotalBoxes.IndexOf(SpellSlotsTotalBox);
                 
                 if(SpellSlotsTotalBox.Text.Length > 0)
-                    SpellsExpenedTxts[spellLevelIndex].Text = "0";
+                    SpellsExpendedBoxes[spellLevelIndex].Text = "0";
             }
         }
 
@@ -1056,18 +1057,18 @@ namespace DnD_CharSheet_5e
         {
             if (SlotsTotal_1stLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_1stLvl_TB.Text, out int number))
             {
-                int spellsSlotsExpended = int.Parse(SlotsExp_1stLvlTxt.Text);
+                int spellsSlotsExpended = int.Parse(SlotsExp_1stLvl_TB.Text);
                 spellsSlotsExpended++;
 
                 if (spellsSlotsExpended == int.Parse(SlotsTotal_1stLvl_TB.Text))
                 {
-                    SlotsExp_1stLvlTxt.Text = SlotsTotal_1stLvl_TB.Text;
+                    SlotsExp_1stLvl_TB.Text = SlotsTotal_1stLvl_TB.Text;
                     Cast_1stLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
                 else
-                    SlotsExp_1stLvlTxt.Text = spellsSlotsExpended.ToString();
+                    SlotsExp_1stLvl_TB.Text = spellsSlotsExpended.ToString();
             }
 
             else
@@ -1078,18 +1079,18 @@ namespace DnD_CharSheet_5e
         {
             if (SlotsTotal_2ndLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_2ndLvl_TB.Text, out int number))
             {
-                int spellsSlotsExpended = int.Parse(SlotsExp_2ndLvlTxt.Text);
+                int spellsSlotsExpended = int.Parse(SlotsExp_2ndLvl_TB.Text);
                 spellsSlotsExpended++;
 
                 if (spellsSlotsExpended == int.Parse(SlotsTotal_2ndLvl_TB.Text))
                 {
-                    SlotsExp_2ndLvlTxt.Text = SlotsTotal_2ndLvl_TB.Text;
+                    SlotsExp_2ndLvl_TB.Text = SlotsTotal_2ndLvl_TB.Text;
                     Cast_2ndLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
                 else
-                    SlotsExp_2ndLvlTxt.Text = spellsSlotsExpended.ToString();
+                    SlotsExp_2ndLvl_TB.Text = spellsSlotsExpended.ToString();
             }
 
             else
@@ -1100,18 +1101,18 @@ namespace DnD_CharSheet_5e
         {
             if (SlotsTotal_3rdLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_3rdLvl_TB.Text, out int number))
             {
-                int spellsSlotsExpended = int.Parse(SlotsExp_3rdLvlTxt.Text);
+                int spellsSlotsExpended = int.Parse(SlotsExp_3rdLvl_TB.Text);
                 spellsSlotsExpended++;
 
                 if (spellsSlotsExpended == int.Parse(SlotsTotal_3rdLvl_TB.Text))
                 {
-                    SlotsExp_3rdLvlTxt.Text = SlotsTotal_3rdLvl_TB.Text;
+                    SlotsExp_3rdLvl_TB.Text = SlotsTotal_3rdLvl_TB.Text;
                     Cast_3rdLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
                 else
-                    SlotsExp_3rdLvlTxt.Text = spellsSlotsExpended.ToString();
+                    SlotsExp_3rdLvl_TB.Text = spellsSlotsExpended.ToString();
             }
 
             else
@@ -1122,18 +1123,18 @@ namespace DnD_CharSheet_5e
         {
             if (SlotsTotal_4thLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_4thLvl_TB.Text, out int number))
             {
-                int spellsSlotsExpended = int.Parse(SlotsExp_4thLvlTxt.Text);
+                int spellsSlotsExpended = int.Parse(SlotsExp_4thLvl_TB.Text);
                 spellsSlotsExpended++;
 
                 if (spellsSlotsExpended == int.Parse(SlotsTotal_4thLvl_TB.Text))
                 {
-                    SlotsExp_4thLvlTxt.Text = SlotsTotal_4thLvl_TB.Text;
+                    SlotsExp_4thLvl_TB.Text = SlotsTotal_4thLvl_TB.Text;
                     Cast_4thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
                 else
-                    SlotsExp_4thLvlTxt.Text = spellsSlotsExpended.ToString();
+                    SlotsExp_4thLvl_TB.Text = spellsSlotsExpended.ToString();
             }
 
             else
@@ -1144,18 +1145,18 @@ namespace DnD_CharSheet_5e
         {
             if (SlotsTotal_5thLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_5thLvl_TB.Text, out int number))
             {
-                int spellsSlotsExpended = int.Parse(SlotsExp_5thLvlTxt.Text);
+                int spellsSlotsExpended = int.Parse(SlotsExp_5thLvl_TB.Text);
                 spellsSlotsExpended++;
 
                 if (spellsSlotsExpended == int.Parse(SlotsTotal_5thLvl_TB.Text))
                 {
-                    SlotsExp_5thLvlTxt.Text = SlotsTotal_5thLvl_TB.Text;
+                    SlotsExp_5thLvl_TB.Text = SlotsTotal_5thLvl_TB.Text;
                     Cast_5thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
                 else
-                    SlotsExp_5thLvlTxt.Text = spellsSlotsExpended.ToString();
+                    SlotsExp_5thLvl_TB.Text = spellsSlotsExpended.ToString();
             }
 
             else
@@ -1166,18 +1167,18 @@ namespace DnD_CharSheet_5e
         {
             if (SlotsTotal_6thLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_6thLvl_TB.Text, out int number))
             {
-                int spellsSlotsExpended = int.Parse(SlotsExp_6thLvlTxt.Text);
+                int spellsSlotsExpended = int.Parse(SlotsExp_6thLvl_TB.Text);
                 spellsSlotsExpended++;
 
                 if (spellsSlotsExpended == int.Parse(SlotsTotal_6thLvl_TB.Text))
                 {
-                    SlotsExp_6thLvlTxt.Text = SlotsTotal_6thLvl_TB.Text;
+                    SlotsExp_6thLvl_TB.Text = SlotsTotal_6thLvl_TB.Text;
                     Cast_6thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
                 else
-                    SlotsExp_6thLvlTxt.Text = spellsSlotsExpended.ToString();
+                    SlotsExp_6thLvl_TB.Text = spellsSlotsExpended.ToString();
             }
 
             else
@@ -1188,18 +1189,18 @@ namespace DnD_CharSheet_5e
         {
             if (SlotsTotal_7thLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_7thLvl_TB.Text, out int number))
             {
-                int spellsSlotsExpended = int.Parse(SlotsExp_7thLvlTxt.Text);
+                int spellsSlotsExpended = int.Parse(SlotsExp_7thLvl_TB.Text);
                 spellsSlotsExpended++;
 
                 if (spellsSlotsExpended == int.Parse(SlotsTotal_7thLvl_TB.Text))
                 {
-                    SlotsExp_7thLvlTxt.Text = SlotsTotal_7thLvl_TB.Text;
+                    SlotsExp_7thLvl_TB.Text = SlotsTotal_7thLvl_TB.Text;
                     Cast_7thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
                 else
-                    SlotsExp_7thLvlTxt.Text = spellsSlotsExpended.ToString();
+                    SlotsExp_7thLvl_TB.Text = spellsSlotsExpended.ToString();
             }
 
             else
@@ -1210,18 +1211,18 @@ namespace DnD_CharSheet_5e
         {
             if (SlotsTotal_8thLvl_TB.Text.Length == 0 && int.TryParse(SlotsTotal_8thLvl_TB.Text, out int number))
             {
-                int spellsSlotsExpended = int.Parse(SlotsExp_8thLvlTxt.Text);
+                int spellsSlotsExpended = int.Parse(SlotsExp_8thLvl_TB.Text);
                 spellsSlotsExpended++;
 
                 if (spellsSlotsExpended > int.Parse(SlotsTotal_8thLvl_TB.Text))
                 {
-                    SlotsExp_8thLvlTxt.Text = SlotsTotal_8thLvl_TB.Text;
+                    SlotsExp_8thLvl_TB.Text = SlotsTotal_8thLvl_TB.Text;
                     Cast_8thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
                 else
-                    SlotsExp_8thLvlTxt.Text = spellsSlotsExpended.ToString();
+                    SlotsExp_8thLvl_TB.Text = spellsSlotsExpended.ToString();
             }
 
             else
@@ -1232,18 +1233,18 @@ namespace DnD_CharSheet_5e
         {
             if (SlotsTotal_9thLvl_TB.Text.Length > 0 && int.TryParse(SlotsTotal_9thLvl_TB.Text, out int number))
             {
-                int spellsSlotsExpended = int.Parse(SlotsExp_9thLvlTxt.Text);
+                int spellsSlotsExpended = int.Parse(SlotsExp_9thLvl_TB.Text);
                 spellsSlotsExpended++;
 
                 if (spellsSlotsExpended == int.Parse(SlotsTotal_9thLvl_TB.Text))
                 {
-                    SlotsExp_9thLvlTxt.Text = SlotsTotal_9thLvl_TB.Text;
+                    SlotsExp_9thLvl_TB.Text = SlotsTotal_9thLvl_TB.Text;
                     Cast_9thLvl_Btn.IsEnabled = false;
                     MessageBox.Show(AllSpellSlotsExpendedMessage);
                 }
 
                 else
-                    SlotsExp_9thLvlTxt.Text = spellsSlotsExpended.ToString();
+                    SlotsExp_9thLvl_TB.Text = spellsSlotsExpended.ToString();
             }
 
             else
@@ -1269,7 +1270,7 @@ namespace DnD_CharSheet_5e
                     int slotBoxIndex = currentIndex - 1;
 
                     slotsTotal = TrySlotText(SpellSlotsTotalBoxes[slotBoxIndex].Text);
-                    slotsExpended = TrySlotText(SpellsExpenedTxts[slotBoxIndex].Text);
+                    slotsExpended = TrySlotText(SpellsExpendedBoxes[slotBoxIndex].Text);
 
                     if(PreparedBoxesPanels[slotBoxIndex].Children.Count > 0)
                     {
