@@ -277,13 +277,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Resource Include="sword.png" />
-=======
     <None Include="Resources\Images\Shield.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
->>>>>>> 7ad5608aad7738c5ecf15cb2d2624d277c39cc04
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Battleaxe.png">
