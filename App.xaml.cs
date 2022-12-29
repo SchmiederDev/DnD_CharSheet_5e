@@ -56,6 +56,7 @@ namespace DnD_CharSheet_5e
             Init_Character();
             Init_FileSystem();
             Load_DataBases();
+            Init_ClassData();
             Init_ImageHandler();                        
         }
 
@@ -110,35 +111,15 @@ namespace DnD_CharSheet_5e
 
         private void Load_SpellDataBases()
         {
-            try
-            {
-                SheetManager.CS_Manager_Inst.theWeave.Load_SpellDataBase(FileManager.FM_Inst.SpellDataBase_JSON);
-            }
+            SheetManager.CS_Manager_Inst.theWeave.Load_SpellDataBase(FileManager.FM_Inst.SpellDataBase_JSON);
+            SheetManager.CS_Manager_Inst.theWeave.Load_SpellCasterClassesData(FileManager.FM_Inst.SCCDB_JSON);
+            SheetManager.CS_Manager_Inst.theWeave.Load_SpellListsDataBase(FileManager.FM_Inst.SpellListsDB_JSON);
+            SheetManager.CS_Manager_Inst.theWeave.Load_SpellLists();
+        }
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-            try
-            {
-                SheetManager.CS_Manager_Inst.theWeave.Load_BardSpellList(FileManager.FM_Inst.BardSpellList_JSON);
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-            try
-            {
-                SheetManager.CS_Manager_Inst.theWeave.Load_WizardSpellList(FileManager.FM_Inst.WizardSpellList_JSON);
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+        private void Init_ClassData()
+        {
+            SheetManager.CS_Manager_Inst.theWeave.Initialize_SpellCasterClasses();
         }
 
         private void Init_ImageHandler()
