@@ -105,6 +105,8 @@ namespace DnD_CharSheet_5e
         public Inventory CD_Inventory { get; set; }
         public Equipment CD_Equipment { get; set; }
 
+        public List<SlotPanelData> CD_SpellSheetData { get; set; }
+
         #endregion
 
         #region METHOD FOR TRANSFERING VALUES OF THE CHARACTER CLASS TO CHARACTERDATA-CONTAINER
@@ -187,6 +189,8 @@ namespace DnD_CharSheet_5e
 
             CD_Inventory = character.cInventory;
             CD_Equipment = character.CharEquipment;
+
+            CD_SpellSheetData = character.SpellSheetData;
         }
         #endregion
     }
