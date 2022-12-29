@@ -128,7 +128,11 @@
     <Compile Include="SaveSystem.cs" />
     <Compile Include="SavingThrow.cs" />
     <Compile Include="Skill.cs" />
+    <Compile Include="SlotPanelData.cs" />
     <Compile Include="Spell.cs" />
+    <Compile Include="SpellCasterClass.cs" />
+    <Compile Include="SpellCasterData.cs" />
+    <Compile Include="SpellList.cs" />
     <Compile Include="SpellList_Item.cs" />
     <Compile Include="SpellsWindow.xaml.cs">
       <DependentUpon>SpellsWindow.xaml</DependentUpon>
@@ -239,6 +243,9 @@
     <None Include="Resources\DataBases\SpellDataBase.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\DataBases\SpellListsDataBase.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\DataBases\Warlock_SpellList.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -248,6 +255,10 @@
     <None Include="Resources\DataBases\Wizard_SpellList.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\DataBases\SpellCasterClassesDatabase.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SpellListsDataBase.json" />
     <None Include="Warlock_SpellList.json" />
     <None Include="Languages.json" />
     <None Include="packages.config" />
@@ -266,7 +277,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Resource Include="sword.png" />
+=======
+    <None Include="Resources\Images\Shield.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+>>>>>>> 7ad5608aad7738c5ecf15cb2d2624d277c39cc04
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Battleaxe.png">
