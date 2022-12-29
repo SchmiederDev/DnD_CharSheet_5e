@@ -69,9 +69,14 @@ namespace DnD_CharSheet_5e
 
         List<CheckBox> MainSheetCheckBoxes;
 
-
         List<Button> DiceRollBtns;
 
+        const string UIElementStandardBorderBrushColor = "#FFABADB3";
+        Brush LocalStandardBackgroundColor = Brushes.WhiteSmoke;
+
+        Brush MarkBorderColor = Brushes.PaleVioletRed;
+        Brush MarkBackgroundColor = Brushes.MintCream;
+        
         #endregion
 
         #region CONSTRUCTOR
@@ -463,6 +468,7 @@ namespace DnD_CharSheet_5e
         {
             Activate_SideBarMenu_Buttons();
             Deactivate_CharacterInputs();
+            UnmarkUIElementsBlockUserInput();
             Commit_Character_byUserInput();
             Init_HPHD_Panel();
             Deactivate_ScoreInput_and_Calculate_AbilityModifiers_byUserInput();
@@ -537,6 +543,8 @@ namespace DnD_CharSheet_5e
         private void EnableUIForUserInput()
         {
             Activate_CharacterInputs();
+            MarkUIElementsForUserInput();
+            MarkSavingThrowCheckBoxes();
             Activate_HP_Panel();
             Activate_ScoreInput();
             Activate_SaveProf_CheckBoxes();
@@ -548,6 +556,7 @@ namespace DnD_CharSheet_5e
         private void Activate_CharacterInputs()
         {
             CharNameText.IsEnabled = true;
+
             PlayerNameText.IsEnabled = true;
 
             AlignmentBox.IsEnabled = true;
@@ -577,6 +586,109 @@ namespace DnD_CharSheet_5e
 
             ClassBox.IsEnabled = false;
             ClassMenu_CoBo.IsEnabled = false;
+        }
+
+        private void MarkUIElementsForUserInput()
+        {
+            MarkCharacterInputs();
+            MarkAbilityInputs();
+            MarkSavingThrowCheckBoxes();
+            MarkSkillCheckBoxes();
+        }
+
+        private void UnmarkUIElementsBlockUserInput()
+        {
+            UnmarkCharacterInputs();
+            UnmarkAbilityInputs();
+            UnmarkSavingThrowCheckboxes();
+            UnmarkSkillCheckboxes();
+        }
+
+        private void MarkCharacterInputs()
+        {
+            CharNameText.BorderBrush = MarkBorderColor;
+            CharNameText.Background = MarkBackgroundColor;
+
+            PlayerNameText.BorderBrush = MarkBorderColor;
+            PlayerNameText.Background = MarkBackgroundColor;
+
+            RaceCoboBorder.BorderBrush = MarkBorderColor;
+            ClassCoBoBorder.BorderBrush = MarkBorderColor;
+            AlignmentCoBoBorder.BorderBrush = MarkBorderColor;
+
+            MaxHPBox.BorderBrush = MarkBorderColor;
+            MaxHPBox.Background = MarkBackgroundColor;
+        }
+
+        private void UnmarkCharacterInputs()
+        {
+            BrushConverter bc = new BrushConverter();
+
+            CharNameText.BorderBrush = bc.ConvertFromString(UIElementStandardBorderBrushColor) as Brush;
+            CharNameText.Background = LocalStandardBackgroundColor;
+
+            PlayerNameText.BorderBrush = bc.ConvertFromString(UIElementStandardBorderBrushColor) as Brush;
+            PlayerNameText.Background = LocalStandardBackgroundColor;
+
+            RaceCoboBorder.BorderBrush = Brushes.White;
+            ClassCoBoBorder.BorderBrush = Brushes.White;
+            AlignmentCoBoBorder.BorderBrush = Brushes.White;
+
+            MaxHPBox.BorderBrush = bc.ConvertFromString(UIElementStandardBorderBrushColor) as Brush;
+            MaxHPBox.Background = LocalStandardBackgroundColor;
+        }
+
+        private void MarkAbilityInputs()
+        {
+            foreach(TextBox AbilityBox in AbilityScoreBoxes)
+            {
+                AbilityBox.BorderBrush = MarkBorderColor;
+                AbilityBox.Background = MarkBackgroundColor;
+            }
+        }
+
+        private void UnmarkAbilityInputs()
+        {
+            BrushConverter bc = new BrushConverter();
+            foreach (TextBox AbilityBox in AbilityScoreBoxes)
+            {
+                AbilityBox.BorderBrush = bc.ConvertFromString(UIElementStandardBorderBrushColor) as Brush;
+                AbilityBox.Background = LocalStandardBackgroundColor;
+            }
+        }
+
+        private void MarkSavingThrowCheckBoxes()
+        {
+            foreach(CheckBox SaveCB in SavingThrowProficiencyCheckBoxes)
+            {
+                SaveCB.BorderBrush = MarkBorderColor;
+            }
+        }
+
+        private void UnmarkSavingThrowCheckboxes()
+        {
+            BrushConverter bc = new BrushConverter();
+            foreach (CheckBox SaveCB in SavingThrowProficiencyCheckBoxes)
+            {
+                SaveCB.BorderBrush = bc.ConvertFromString(UIElementStandardBorderBrushColor) as Brush;
+            }
+        }
+
+        private void MarkSkillCheckBoxes()
+        {
+            foreach (CheckBox SaveCB in SkillProficiencyCheckBoxes)
+            {
+                SaveCB.BorderBrush = MarkBorderColor;
+            }
+        }
+
+        private void UnmarkSkillCheckboxes()
+        {
+            BrushConverter bc = new BrushConverter();
+            foreach (CheckBox SaveCB in SkillProficiencyCheckBoxes)
+            {
+                SaveCB.BorderBrush = bc.ConvertFromString(UIElementStandardBorderBrushColor) as Brush;
+            }
         }
 
         private void RaceMenu_CoBo_DropDownClosed(object sender, EventArgs e)
@@ -1621,7 +1733,6 @@ namespace DnD_CharSheet_5e
             
         }
 
-        #endregion        
-        
+        #endregion
     }
 }

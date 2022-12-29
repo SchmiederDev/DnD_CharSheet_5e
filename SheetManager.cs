@@ -143,6 +143,8 @@ namespace DnD_CharSheet_5e
         public string[] StandardSubraces { get; } = { "Drow", "Hill Dwarf", "Mountain Dwarf", "High Elf", "Wood Elf", "Forest Gnome", "Rock Gnome", "Lightfood Halfling", "Stout Halfling" };
         public string[] StandardClasses { get; } = { "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard" };
 
+        public string[] Spellcaster_Classes { get; } = { "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard" };
+
         public List<DnDLanguage> Languages { get; set; } = new List<DnDLanguage>();
 
         #endregion

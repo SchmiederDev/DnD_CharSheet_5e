@@ -68,6 +68,20 @@
             <Setter Property="Margin" Value="10 5 0 20"/>
         </Style>
 
+        <Style TargetType="Border" x:Key="MarkableBorder">
+            
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="25"/>
+            
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            
+            <Setter Property="Margin" Value="2 5 10 5"/>
+
+        </Style>
+
         <Style TargetType="CheckBox" x:Key="SkillCB">
             <Setter Property="IsEnabled" Value="False"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -165,7 +179,7 @@
                         <TextBlock Text="Character:" Foreground="#343434" Style="{StaticResource H2_Header}" VerticalAlignment="Center"/>
                     </Border>
 
-                    <TextBox x:Name="CharNameText" IsEnabled="False" Padding="10 0 0 0" Margin="5 10 12 10" Width="250" Height="40" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="20" FontFamily="Georgia" FontWeight="Bold" Grid.Column="1"/>
+                    <TextBox x:Name="CharNameText" IsEnabled="False" Padding="10 0 0 0" Margin="5 10 12 10" Width="250" Height="40" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="20" Style="{StaticResource StandardTextBox}" Grid.Column="1"/>
 
                 </Grid>
 
@@ -198,22 +212,24 @@
                                     <TextBlock Text="Race: " Style="{StaticResource BasicsHeader}"/>
                                 </Border>
 
-                                <!-- Race Menu-->
-                                <ComboBox x:Name="RaceMenu_CoBo" IsEnabled="False" SelectedIndex = "0" DropDownClosed="RaceMenu_CoBo_DropDownClosed" Width="200" Height="25" HorizontalAlignment="Center" Margin="2 5 10 5" FontWeight="Bold" FontFamily="Cambria">
+                                <Border x:Name="RaceCoboBorder" Style="{StaticResource MarkableBorder}">
+                                    <!-- Race Menu-->
+                                    <ComboBox x:Name="RaceMenu_CoBo" IsEnabled="False" SelectedIndex = "0" DropDownClosed="RaceMenu_CoBo_DropDownClosed"  FontWeight="Bold" FontFamily="Cambria">
 
-                                    <ComboBoxItem Padding="7.5"></ComboBoxItem>
-                                    <ComboBoxItem>Dragonborn</ComboBoxItem>
-                                    <ComboBoxItem>Dwarf</ComboBoxItem>
-                                    <ComboBoxItem>Elf</ComboBoxItem>
-                                    <ComboBoxItem>Gnome</ComboBoxItem>
-                                    <ComboBoxItem>Half-Elf</ComboBoxItem>
-                                    <ComboBoxItem>Halfling</ComboBoxItem>
-                                    <ComboBoxItem>Half-Orc</ComboBoxItem>                                    
-                                    <ComboBoxItem>Human</ComboBoxItem>
-                                    <ComboBoxItem>Tiefling</ComboBoxItem>
-                                    <ComboBoxItem>Custom Race</ComboBoxItem>
+                                        <ComboBoxItem Padding="7.5"></ComboBoxItem>
+                                        <ComboBoxItem>Dragonborn</ComboBoxItem>
+                                        <ComboBoxItem>Dwarf</ComboBoxItem>
+                                        <ComboBoxItem>Elf</ComboBoxItem>
+                                        <ComboBoxItem>Gnome</ComboBoxItem>
+                                        <ComboBoxItem>Half-Elf</ComboBoxItem>
+                                        <ComboBoxItem>Halfling</ComboBoxItem>
+                                        <ComboBoxItem>Half-Orc</ComboBoxItem>
+                                        <ComboBoxItem>Human</ComboBoxItem>
+                                        <ComboBoxItem>Tiefling</ComboBoxItem>
+                                        <ComboBoxItem>Custom Race</ComboBoxItem>
 
-                                </ComboBox>
+                                    </ComboBox>
+                                </Border>
 
                                 <StackPanel x:Name="CustomRacePanel" Visibility="Hidden">
                                     <TextBlock Text="Custom:" Margin="10 0 0 0" Style="{StaticResource H4_Caption}" FontSize="12"/>
@@ -228,21 +244,23 @@
                                 </Border>
 
                                 <!-- Subrace Menu -->
-                                <ComboBox x:Name="SubRaceMenu_CoBo" IsEnabled="False" SelectedIndex = "0" DropDownClosed="SubRaceMenu_CoBo_DropDownClosed" Width="200" Height="25" HorizontalAlignment="Center" Margin="2 5 10 5" FontWeight="Bold" FontFamily="Cambria">
+                                <Border x:Name="SubraceCoBoBorder" Style="{StaticResource MarkableBorder}">
+                                    <ComboBox x:Name="SubRaceMenu_CoBo" IsEnabled="False" SelectedIndex = "0" DropDownClosed="SubRaceMenu_CoBo_DropDownClosed" FontWeight="Bold" FontFamily="Cambria">
 
-                                    <ComboBoxItem Padding="7.5"></ComboBoxItem>
-                                    <ComboBoxItem>Drow</ComboBoxItem>
-                                    <ComboBoxItem>Hill Dwarf</ComboBoxItem>
-                                    <ComboBoxItem>Mountain Dwarf</ComboBoxItem>
-                                    <ComboBoxItem>High Elf</ComboBoxItem>
-                                    <ComboBoxItem>Wood Elf</ComboBoxItem>                                    
-                                    <ComboBoxItem>Forest Gnome</ComboBoxItem>
-                                    <ComboBoxItem>Rock Gnome</ComboBoxItem>
-                                    <ComboBoxItem>Lightfood Halfling</ComboBoxItem>
-                                    <ComboBoxItem>Stout Halfling</ComboBoxItem>
-                                    <ComboBoxItem>Custom Subrace</ComboBoxItem>
+                                        <ComboBoxItem Padding="7.5"></ComboBoxItem>
+                                        <ComboBoxItem>Drow</ComboBoxItem>
+                                        <ComboBoxItem>Hill Dwarf</ComboBoxItem>
+                                        <ComboBoxItem>Mountain Dwarf</ComboBoxItem>
+                                        <ComboBoxItem>High Elf</ComboBoxItem>
+                                        <ComboBoxItem>Wood Elf</ComboBoxItem>
+                                        <ComboBoxItem>Forest Gnome</ComboBoxItem>
+                                        <ComboBoxItem>Rock Gnome</ComboBoxItem>
+                                        <ComboBoxItem>Lightfood Halfling</ComboBoxItem>
+                                        <ComboBoxItem>Stout Halfling</ComboBoxItem>
+                                        <ComboBoxItem>Custom Subrace</ComboBoxItem>
 
-                                </ComboBox>
+                                    </ComboBox>
+                                </Border>
 
                                 <StackPanel x:Name="CustomSubracePanel" Visibility="Hidden">
                                     <TextBlock Text="Custom: " Margin="10 0 0 0" Style="{StaticResource H4_Caption}" FontSize="12"/>
@@ -256,21 +274,23 @@
                                 <Border Style="{StaticResource BasicsBorder}">
                                     <TextBlock Text="Alignment:"  Style="{StaticResource BasicsHeader}"/>
                                 </Border>
-                                
-                                <ComboBox x:Name="AlignmentBox" IsEnabled="False" SelectedIndex = "0" Width="200" Height="25" HorizontalAlignment="Center" Margin="2 5 10 20" FontWeight="Bold" FontFamily="Cambria">
 
-                                    <ComboBoxItem Padding="7.5"></ComboBoxItem>
-                                    <ComboBoxItem>Lawful Good</ComboBoxItem>
-                                    <ComboBoxItem>Neutral Good</ComboBoxItem>
-                                    <ComboBoxItem>Chaotic Good</ComboBoxItem>
-                                    <ComboBoxItem>Lawful Neutral</ComboBoxItem>
-                                    <ComboBoxItem>Neutral</ComboBoxItem>
-                                    <ComboBoxItem>Chaotic Neutral</ComboBoxItem>
-                                    <ComboBoxItem>Lawful Evil</ComboBoxItem>
-                                    <ComboBoxItem>Neutral Evil</ComboBoxItem>
-                                    <ComboBoxItem>Chaotic Evil</ComboBoxItem>
+                                <Border x:Name="AlignmentCoBoBorder" Style="{StaticResource MarkableBorder}">
+                                    <ComboBox x:Name="AlignmentBox" IsEnabled="False" SelectedIndex = "0" FontWeight="Bold" FontFamily="Cambria">
 
-                                </ComboBox>
+                                        <ComboBoxItem Padding="7.5"></ComboBoxItem>
+                                        <ComboBoxItem>Lawful Good</ComboBoxItem>
+                                        <ComboBoxItem>Neutral Good</ComboBoxItem>
+                                        <ComboBoxItem>Chaotic Good</ComboBoxItem>
+                                        <ComboBoxItem>Lawful Neutral</ComboBoxItem>
+                                        <ComboBoxItem>Neutral</ComboBoxItem>
+                                        <ComboBoxItem>Chaotic Neutral</ComboBoxItem>
+                                        <ComboBoxItem>Lawful Evil</ComboBoxItem>
+                                        <ComboBoxItem>Neutral Evil</ComboBoxItem>
+                                        <ComboBoxItem>Chaotic Evil</ComboBoxItem>
+
+                                    </ComboBox>
+                                </Border>
 
                             </StackPanel>
 
@@ -293,24 +313,26 @@
                                 </Border>
                                 
                                 <!-- Class Menu -->
-                                <ComboBox x:Name="ClassMenu_CoBo" SelectedIndex = "0" DropDownClosed="ClassMenu_CoBo_DropDownClosed" IsEnabled ="False" Width="200" Height="25" Margin="2 5 10 5" FontWeight="Bold" FontFamily="Cambria">
+                                <Border x:Name="ClassCoBoBorder" Style="{StaticResource MarkableBorder}">
+                                    <ComboBox x:Name="ClassMenu_CoBo" SelectedIndex = "0" DropDownClosed="ClassMenu_CoBo_DropDownClosed" IsEnabled ="False" FontWeight="Bold" FontFamily="Cambria">
 
-                                    <ComboBoxItem Padding="7.5"></ComboBoxItem>
-                                    <ComboBoxItem>Barbarian</ComboBoxItem>
-                                    <ComboBoxItem>Bard</ComboBoxItem>
-                                    <ComboBoxItem>Cleric</ComboBoxItem>
-                                    <ComboBoxItem>Druid</ComboBoxItem>
-                                    <ComboBoxItem>Fighter</ComboBoxItem>
-                                    <ComboBoxItem>Monk</ComboBoxItem>
-                                    <ComboBoxItem>Paladin</ComboBoxItem>
-                                    <ComboBoxItem>Ranger</ComboBoxItem>
-                                    <ComboBoxItem>Rogue</ComboBoxItem>
-                                    <ComboBoxItem>Sorcerer</ComboBoxItem>
-                                    <ComboBoxItem>Warlock</ComboBoxItem>
-                                    <ComboBoxItem>Wizard</ComboBoxItem>
-                                    <ComboBoxItem>Custom Class</ComboBoxItem>
+                                        <ComboBoxItem Padding="7.5"></ComboBoxItem>
+                                        <ComboBoxItem>Barbarian</ComboBoxItem>
+                                        <ComboBoxItem>Bard</ComboBoxItem>
+                                        <ComboBoxItem>Cleric</ComboBoxItem>
+                                        <ComboBoxItem>Druid</ComboBoxItem>
+                                        <ComboBoxItem>Fighter</ComboBoxItem>
+                                        <ComboBoxItem>Monk</ComboBoxItem>
+                                        <ComboBoxItem>Paladin</ComboBoxItem>
+                                        <ComboBoxItem>Ranger</ComboBoxItem>
+                                        <ComboBoxItem>Rogue</ComboBoxItem>
+                                        <ComboBoxItem>Sorcerer</ComboBoxItem>
+                                        <ComboBoxItem>Warlock</ComboBoxItem>
+                                        <ComboBoxItem>Wizard</ComboBoxItem>
+                                        <ComboBoxItem>Custom Class</ComboBoxItem>
 
-                                </ComboBox>
+                                    </ComboBox>
+                                </Border>
 
                                 <StackPanel x:Name="CustomClassPanel" Visibility="Hidden">
                                     <TextBlock Text="Custom:" Margin="10 0 0 0" Style="{StaticResource H4_Caption}" FontSize="12"/>

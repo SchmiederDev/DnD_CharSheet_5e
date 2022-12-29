@@ -32,6 +32,9 @@ namespace DnD_CharSheet_5e
         // These are the levels when the proficiency bonus increases
         int[] profBonusIncrease = { 5, 9, 13, 17 };
 
+        public delegate void OnLevelChanged();
+        public OnLevelChanged levelChanged;
+
         #endregion
 
         #region HITPOINTS, HIT DICE, INITIATIVE BONUS AND ARMOR CLASS
@@ -148,6 +151,8 @@ namespace DnD_CharSheet_5e
         public Inventory cInventory { get; set; } = new Inventory();                                         //cInventory = 'character Inventory'
 
         public Equipment CharEquipment = new Equipment();
+
+        public List<SlotPanelData> SpellSheetData = new List<SlotPanelData>();
 
         public List<string> CharLanguages = new List<string>();
 
@@ -535,6 +540,7 @@ namespace DnD_CharSheet_5e
             Level++;
             Update_HitDice();
             Update_ProfBonus();
+            levelChanged.Invoke();
         }
 
         public void Update_HitDice()
@@ -735,6 +741,7 @@ namespace DnD_CharSheet_5e
 
             cInventory = charData.CD_Inventory;
             CharEquipment = charData.CD_Equipment;
+            SpellSheetData = charData.CD_SpellSheetData;
         }
 
         public void Reset_Character()
@@ -753,6 +760,7 @@ namespace DnD_CharSheet_5e
 
             cInventory.Clear_Inventory();
             CharEquipment.Clear_Equipment();
+            SpellSheetData.Clear();
         }
         #endregion
 

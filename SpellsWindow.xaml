@@ -6,8 +6,83 @@
         xmlns:local="clr-namespace:DnD_CharSheet_5e"
         mc:Ignorable="d"
         Title="SpellsWindow" Height="1050" Width="1200" 
-        WindowStartupLocation="Manual" Left="0" Top="0">
+        WindowStartupLocation="Manual" SizeToContent="WidthAndHeight" Left="0" Top="0"
+        Closing="Window_Closing">
+        
 
+    <Window.Resources>
+
+        <Style TargetType="TextBlock" x:Key="SpellCasterInfoText" BasedOn="{StaticResource StandardText}">
+
+            <Setter Property="Foreground" Value="#343434"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="3 2 0 0"/>
+
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="SpellSelectionBox">
+            <Setter Property="BorderBrush" Value="DarkSlateGray"/>
+            <Setter Property="Foreground" Value="#343434"/>
+            <Setter Property="Background" Value="#f4f4f6"/>
+
+            <Setter Property="Width" Value="255"/>
+
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="SpellSlotsTotal">
+
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="Foreground" Value="#343434"/>
+
+            <Setter Property="BorderBrush" Value="Thistle"/>
+            <Setter Property="BorderThickness" Value="2"/>
+
+            <Setter Property="Margin" Value="10 5 15 10"/>
+            <Setter Property="Padding" Value="3 0 0 0"/>
+
+            <Setter Property="VerticalAlignment" Value="Center"/>
+
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            
+
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="SpellSlotsExpended" BasedOn="{StaticResource SpellSlotsTotal}">
+
+            <Setter Property="BorderBrush" Value="#4c7f7f"/>
+            <Setter Property="Background" Value="Azure"/>
+            <Setter Property="IsEnabled" Value="False"/>
+
+        </Style>
+
+        <Style TargetType="Button" x:Key="AddSpellBtn" BasedOn="{StaticResource StandardBtn}">
+
+            <Setter Property="Content" Value="Add"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="0 0 30 0"/>
+
+        </Style>
+
+        <Style TargetType="Button" x:Key="CastBtn" BasedOn="{StaticResource StandardBtn}">
+
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="125"/>
+
+            <Setter Property="FontSize" Value="12"/>
+
+        </Style>
+        
+    </Window.Resources>
+    
     <StackPanel>
 
         <Grid>
@@ -19,10 +94,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Spellcasting Class" Margin="15 15 10 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-            <TextBlock Text="Spellcasting Ability" Margin="5 15 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="1"/>
-            <TextBlock Text="Spell Save DC" Margin="30 15 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-            <TextBlock Text="Spell Attack Bonus" Margin="5 15 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="3"/>
+            <TextBlock Text="Spellcasting Class" Margin="15 15 10 5" Style="{StaticResource H2_Caption}" Foreground="#343434"  Grid.Column="0"/>
+            <TextBlock Text="Spellcasting Ability" Margin="5 15 5 5" Style="{StaticResource H3_Caption}" Foreground="#343434" Grid.Column="1"/>
+            <TextBlock Text="Spell Save DC" Margin="30 15 5 5" Style="{StaticResource H3_Caption}" Foreground="#343434" Grid.Column="2"/>
+            <TextBlock Text="Spell Attack Bonus" Margin="5 15 5 5" Style="{StaticResource H3_Caption}" Foreground="#343434" Grid.Column="3"/>
 
         </Grid>
 
@@ -35,551 +110,631 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="CasterClassTxt" Margin="15 5 25 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="0"/>
-            <TextBlock x:Name="SpAbilityTxt" Margin="5 5 5 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="1"/>
-            <TextBlock x:Name="SaveDCTxt" Margin="30 5 25 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-            <TextBlock x:Name="SpAtkBonus" Margin="5 5 15 10" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="3"/>
+            <Border Margin="15 5 25 10" Width="300" HorizontalAlignment="Left" Style="{StaticResource StandardBorder}" Grid.Column="0">
+                <TextBlock x:Name="CasterClassTxt"  Style="{StaticResource SpellCasterInfoText}"/>
+            </Border>
+            
+            <Border Margin="5 5 5 10" Style="{StaticResource StandardBorder}" Grid.Column="1">
+                <TextBlock x:Name="SpAbilityTxt" Style="{StaticResource SpellCasterInfoText}" />
+            </Border>
+
+            <Border Margin="25 5 25 10" Style="{StaticResource StandardBorder}" Grid.Column="2">
+                <TextBlock x:Name="SaveDCTxt" Style="{StaticResource SpellCasterInfoText}"/>
+            </Border>
+
+            <Border Margin="5 5 15 10" Style="{StaticResource StandardBorder}" Grid.Column="3">
+                <TextBlock x:Name="SpAtkBonus" Style="{StaticResource SpellCasterInfoText}" />
+            </Border>
 
         </Grid>
 
-        <Grid>
-            
+        <Grid Width="500" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Margin="0 20 0 0">                
+            <Button x:Name="Edit_SpellSlots" Content="Edit Spell Slots" Click="Edit_SpellSlots_Click" Margin="15 25 0 0" HorizontalAlignment="Left" Style="{StaticResource EditBtn}" Grid.Column="0"/>
+            <Button x:Name="Apply_SpellSlots" Content="Apply" Click="Apply_SpellSlots_Click" Margin="15 25 0 0" HorizontalAlignment="Left" Style="{StaticResource EditBtn}" FontSize="18" Visibility="Hidden" Grid.Column="1"/>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="2*"/>                        
-                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="0" Margin="12 5 10 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock Text="Cantrips" Margin="50 5 35 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>                    
-                    
-                </Grid>
-
-                <ScrollViewer x:Name="CantripScroller" VerticalScrollBarVisibility="Hidden" Grid.Column="1">
-                    <StackPanel x:Name="CantripsPanel" MaxHeight="150" />
-                </ScrollViewer>
-
-                <Grid>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button x:Name="Add_Cantrip_Btn" Content="Add" Click="Add_Cantrip_Btn_Click" Margin="10 15" Width="100" FontWeight="Bold" Grid.Column="0"/>
-                    <Button x:Name="Cantrip_OK_Btn" Content="OK" Click="Cantrip_OK_Btn_Click" IsEnabled="False" Visibility="Hidden" Margin="10 15" Height="20" Width="100" FontWeight="Bold" Grid.Column="1"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
-                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="1" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock x:Name="SlotsTotal01Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
-                    <TextBlock x:Name="SlotsExp01Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Checkboxes 1st Level Spells -->
-                    <StackPanel x:Name="Checkboxes_1stLvl_Panel" Grid.Column="0">
-
-                    </StackPanel>
-
-                    <!-- Comboboxes 1st Level -->
-                    
-                    <StackPanel x:Name="Comboboxes_1stLevel_Panel" Grid.Column="1">                        
-
-                    </StackPanel>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
-                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="2" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock x:Name="SlotsTotal02Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
-                    <TextBlock x:Name="SlotsExp02Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- CheckBoxes 2nd Level Spells -->
-                    <StackPanel x:Name="CheckBoxes_2ndLvl_Panel" Grid.Column="0">                        
-
-                    </StackPanel>
-
-                    <!-- ComboBoxes 2nd Level Spells -->
-                    <StackPanel Grid.Column="1">                        
-
-                    </StackPanel>
-
-                </Grid>
-
-            </StackPanel>
-
-            <StackPanel Grid.Column="1" Margin="0 20 0 0">                
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
-                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="3" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock x:Name="SlotsTotal03Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
-                    <TextBlock x:Name="SlotsExp03Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1">
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-
-                    </StackPanel>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
-                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="4" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock x:Name="SlotsTotal04Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
-                    <TextBlock x:Name="SlotsExp04Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1">
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-
-                    </StackPanel>
-
-                </Grid>
-
-            </StackPanel>
-
-            <StackPanel Grid.Column="2" Margin="0 20 0 0">                
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
-                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="5" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock x:Name="SlotsTotal05Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
-                    <TextBlock x:Name="SlotsExp05Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>                        
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1">
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>                        
-
-                    </StackPanel>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
-                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="6" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock x:Name="SlotsTotal06Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
-                    <TextBlock x:Name="SlotsExp06Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1">
-
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-
-                    </StackPanel>
-
-                </Grid>
-
-            </StackPanel>
-
-            <StackPanel Grid.Column="3">
-                
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
-                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="7" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock x:Name="SlotsTotal07Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
-                    <TextBlock x:Name="SlotsExp07Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1">
-
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-
-                    </StackPanel>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
-                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="8" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock x:Name="SlotsTotal08Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
-                    <TextBlock x:Name="SlotsExp08Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1">
-
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-                        <ComboBox Margin="5" Height="20"/>
-
-                    </StackPanel>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
-                    <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="9" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
-                    <TextBlock x:Name="SlotsTotal09Txt" Margin="10 5 15 10" Height="20" Width="100" FontSize="16" FontWeight="Bold" Background="Azure"  Grid.Column="1"/>
-                    <TextBlock x:Name="SlotsExp09Txt" Margin="10 5 35 10" Height="20" Width="150" FontSize="16" FontWeight="Bold" Background="Azure" Grid.Column="2"/>
-
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="False" Margin="10 8 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-                        <CheckBox IsChecked="False" Margin="10 10 0 5"/>
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1">                                               
-
-                    </StackPanel>
-
-                </Grid>                
-
-            </StackPanel>
 
         </Grid>
+        
+        <ScrollViewer MaxHeight="600" VerticalScrollBarVisibility="Auto">
 
-        <TextBox x:Name="SpellViewer" Margin="20 20 20 20" Height="150" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" IsReadOnly="True"/>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0 20 0 0">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="0" Margin="12 5 10 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBlock Text="Cantrips" Margin="50 5 35 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+
+                    </Grid>
+
+                    <ComboBox x:Name="CantripsSelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+                    <Grid Margin="10 10" x:Name="CantripBtnsGrid">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_Cantrip_Btn" Click="Add_Cantrip_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button Visibility="Hidden" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="CantripScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" />
+                                <StackPanel x:Name="CantripSlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="CantripCancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                        <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="1" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBox x:Name="SlotsTotal_1stLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
+
+                        <TextBox x:Name="SlotsExp_1stLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
+                    </Grid>
+
+                    <ComboBox x:Name="FirstLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+                    <Grid Margin="10 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_1stLvlSpl_Btn" Click="Add_1stLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button x:Name="Cast_1stLvl_Btn" Content="Cast 1st Level Spell" Click="Cast_1stLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="FirstLevelScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="FirstLvl_PreparedBoxesPanel" Grid.Column="0" />
+                                <StackPanel x:Name="FirstLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="FirstLvl_CancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                        <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="2" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBox x:Name="SlotsTotal_2ndLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
+                        <TextBox x:Name="SlotsExp_2ndLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <ComboBox x:Name="SecondLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+                    <Grid Margin="10 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_2ndLvlSpl_Btn" Click="Add_2ndLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button x:Name="Cast_2ndLvl_Btn" Content="Cast 2nd Level Spell" Click="Cast_2ndLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="SecondLevelScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="SecondLvl_PreparedBoxesPanel" Grid.Column="0" />
+                                <StackPanel x:Name="SecondLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="SecondLvl_CancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="0 20 0 0">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                        <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="3" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBox x:Name="SlotsTotal_3rdLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
+                        <TextBox x:Name="SlotsExp_3rdLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <ComboBox x:Name="ThirdLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+                    <Grid Margin="10 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_3rdLvlSpl_Btn" Content="Add" Click="Add_3rdLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button x:Name="Cast_3rdLvl_Btn" Content="Cast 3rd Level Spell" Click="Cast_3rdLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="ThirdLevelScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="ThirdLvl_PreparedBoxesPanel" Grid.Column="0" />
+                                <StackPanel x:Name="ThirdLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="ThirdLvl_CancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                        <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="4" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBox x:Name="SlotsTotal_4thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False" Grid.Column="1"/>
+                        <TextBox x:Name="SlotsExp_4thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <ComboBox x:Name="FourthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+
+                    <Grid Margin="10 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_4thLvlSpl_Btn" Click="Add_4thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button x:Name="Cast_4thLvl_Btn" Content="Cast 4th Level Spell" Click="Cast_4thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="FourthLevelScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="FourthLvl_PreparedBoxesPanel" Grid.Column="0" />
+                                <StackPanel x:Name="FourthLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="FourthLvl_CancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                        <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="5" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBox x:Name="SlotsTotal_5thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False" Grid.Column="1"/>
+                        <TextBox x:Name="SlotsExp_5thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <ComboBox x:Name="FifthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+
+                    <Grid Margin="10 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_5thLvlSpl_Btn" Click="Add_5thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button x:Name="Cast_5thLvl_Btn" Content="Cast 5th Level Spell" Click="Cast_5thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="FifthLevelScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="FifthLvl_PreparedBoxesPanel" Grid.Column="0" />
+                                <StackPanel x:Name="FifthLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="FifthLvl_CancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Margin="0 20 0 0">
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                        <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="6" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBox x:Name="SlotsTotal_6thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
+                        <TextBox x:Name="SlotsExp_6thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <ComboBox x:Name="SixthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+
+                    <Grid Margin="10 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_6thLvlSpl_Btn" Click="Add_6thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button x:Name="Cast_6thLvl_Btn" Content="Cast 6th Level Spell" Click="Cast_6thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="SixthLevelScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="SixthLvl_PreparedBoxesPanel" Grid.Column="0" />
+                                <StackPanel x:Name="SixthLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="SixthLvl_CancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                        <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="7" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBox x:Name="SlotsTotal_7thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
+                        <TextBox x:Name="SlotsExp_7thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <ComboBox x:Name="SeventhLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+
+                    <Grid Margin="10 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_7thLvlSpl_Btn" Click="Add_7thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button x:Name="Cast_7thLvl_Btn" Content="Cast 7th Level Spell" Click="Cast_7thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="SeventhLevelScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="SeventhLvl_PreparedBoxesPanel" Grid.Column="0" />
+                                <StackPanel x:Name="SeventhLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="SeventhLvl_CancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.25*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                        <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.25*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="8" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBox x:Name="SlotsTotal_8thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
+                        <TextBox x:Name="SlotsExp_8thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <ComboBox x:Name="EighthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+                    <Grid Margin="10 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_8thLvlSpl_Btn" Click="Add_8thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button x:Name="Cast_8thLvl_Btn" Content="Cast 8th Level Spell" Click="Cast_8thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="EighthLevelScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="EighthLvl_PreparedBoxesPanel" Grid.Column="0" />
+                                <StackPanel x:Name="EighthLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="EighthLvl_CancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Slots Total" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="1"/>
+                        <TextBlock Text="Slots Expended" Margin="10 15 10 5" FontSize="16" FontWeight="Bold" Foreground="SlateGray" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="9" Margin="12 5 5 10" FontSize="16" FontWeight="Bold" Foreground="SlateGray"  Grid.Column="0"/>
+                        <TextBox x:Name="SlotsTotal_9thLvl_TB" Style="{StaticResource SpellSlotsTotal}" IsEnabled="False"  Grid.Column="1"/>
+                        <TextBox x:Name="SlotsExp_9thLvl_TB" Style="{StaticResource SpellSlotsExpended}" Grid.Column="2"/>
+
+                    </Grid>
+
+                    <ComboBox x:Name="NinthLvl_SelectionCB" MouseEnter="ComboBoxHoverOverSpell" Style="{StaticResource SpellSelectionBox}"/>
+
+                    <Grid Margin="10 10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="Add_9thLvlSpl_Btn" Click="Add_9thLvlSpl_Btn_Click" Style="{StaticResource AddSpellBtn}" Grid.Column="0"/>
+                        <Button x:Name="Cast_9thLvl_Btn" Content="Cast 9th Level Spell" Click="Cast_9thLvl_Btn_Click" IsEnabled="False" Style="{StaticResource CastBtn}" Grid.Column="1"/>
+
+                    </Grid>
+
+                    <Border Margin="10" MinHeight="150" MaxHeight="150" Background="AliceBlue"  Style="{StaticResource StandardBorder}">
+                        <ScrollViewer x:Name="NinthLevelScroller" VerticalScrollBarVisibility="Auto" MaxHeight="150" Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="NinthLvl_PreparedBoxesPanel" Grid.Column="0" />
+                                <StackPanel x:Name="NinthLvl_SlotPanel" Grid.Column="1"/>
+                                <StackPanel x:Name="NinthLvl_CancelBtnsPanel" Grid.Column="2"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+
+                    <TextBlock Text="Spell Viewer" Margin="0 20 0 10" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource H2_Header}" Foreground="#343434"/>
+
+                    <TextBox x:Name="SpellViewer" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" IsReadOnly="True" Height="300" Width="260" Padding="3 5 0 0" Background="Thistle" FontWeight="Bold" BorderThickness="1"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </ScrollViewer>
+
+        
 
     </StackPanel>
     
