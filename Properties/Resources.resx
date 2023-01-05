@@ -139,6 +139,9 @@
   <data name="Chain_Shirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Chain Shirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CharacterGenerationGuide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\CharacterGenerationGuide.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="Cleric_SpellList" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DataBases\Cleric_SpellList.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -252,6 +255,9 @@
   </data>
   <data name="Quarterstaff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Quarterstaff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RaceDataBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DataBases\RaceDataBase.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Ranger_SpellList" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DataBases\Ranger_SpellList.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
