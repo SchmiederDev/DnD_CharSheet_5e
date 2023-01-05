@@ -143,6 +143,7 @@ namespace DnD_CharSheet_5e
         public string CharApperance { get; set; }
         public string BackgroundStory { get; set; }
         public string AlliesAndOrgas { get; set; }
+        public string FeatsAndTraits { get; set; }
 
         #endregion
 
@@ -738,6 +739,7 @@ namespace DnD_CharSheet_5e
             CharApperance = charData.CD_charAppearance;
             BackgroundStory = charData.CD_backgroundStory;
             AlliesAndOrgas = charData.CD_AlliesAndOrgas;
+            FeatsAndTraits = charData.CD_FeatsAndTraits;
 
             cInventory = charData.CD_Inventory;
             CharEquipment = charData.CD_Equipment;
@@ -757,6 +759,7 @@ namespace DnD_CharSheet_5e
             CharApperance = null;
             BackgroundStory = null;
             AlliesAndOrgas = null;
+            FeatsAndTraits = null;
 
             cInventory.Clear_Inventory();
             CharEquipment.Clear_Equipment();
