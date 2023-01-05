@@ -29,6 +29,7 @@ namespace DnD_CharSheet_5e
         // Singleton to access the Main Window from sub windows
         public static MainWindow mainWindow_Inst;
 
+        AbilityScoreWizard AbilityScoreWizard_Wdw;
         public InventoryWindow InventoryWdw;
 
         // Bool for handling invalid types of user input during character creation in all of the important number (int) input fields (when the user fills out the sheet)
@@ -56,11 +57,7 @@ namespace DnD_CharSheet_5e
         // The List serves mainly to enable and disable them because the user isn't supposed to be able to change most of these values after character creation is completed.  
         
         List<TextBox> MainSheetNumberBoxes;
-
-
         List<TextBox> AbilityScoreBoxes;
-
-        
         List<CheckBox> SavingThrowProficiencyCheckBoxes;
         List<CheckBox> SkillProficiencyCheckBoxes;
 
@@ -70,6 +67,12 @@ namespace DnD_CharSheet_5e
         List<CheckBox> MainSheetCheckBoxes;
 
         List<Button> DiceRollBtns;
+
+        bool newToWasShown = false;
+        const string NewToDandDCaption = "New to D&D?";
+        const string NewToDandDMessage = "If you are new to D&D or this app and don't know how to proceed, it is recommended to click on 'the Generation Guide'-Button.\n" +
+            "A window will open in which the steps of generating a character are explained. This is the first step of using this app and playing the game.";
+
 
         const string UIElementStandardBorderBrushColor = "#FFABADB3";
         Brush LocalStandardBackgroundColor = Brushes.WhiteSmoke;
@@ -98,6 +101,7 @@ namespace DnD_CharSheet_5e
         private void Init_CharSheetWindows()
         {
             InventoryWdw = new InventoryWindow();
+            AbilityScoreWizard_Wdw = new AbilityScoreWizard();
         }
 
 
@@ -338,10 +342,13 @@ namespace DnD_CharSheet_5e
             SheetManager.CS_Manager_Inst.character.Reset_Character();
 
             CreateCharacter();
+
             if (ApplyButton.IsEnabled == false)
             {
                 ApplyButton.IsEnabled = true;
             }
+
+            AbilityScoreWizard_Wdw.Show();
             
         }
 
@@ -446,6 +453,7 @@ namespace DnD_CharSheet_5e
                                     if(Try_Skill_and_SavingThrow_Checkboxes())
                                     {
                                         ApplyButton.IsEnabled = false;
+                                        CheckAndClose_AbiliyScoreWizard();
                                         Commit_Character_and_Enable_Sheet();
                                     }
                                 }
@@ -481,6 +489,12 @@ namespace DnD_CharSheet_5e
             Activate_Checks();
         }
 
+        private void CheckAndClose_AbiliyScoreWizard()
+        {
+            if(AbilityScoreWizard_Wdw.Visibility == Visibility.Visible || AbilityScoreWizard_Wdw.Visibility == Visibility.Collapsed)
+                AbilityScoreWizard_Wdw.Visibility = Visibility.Hidden;
+        }
+
         public void Load_Character()
         {            
             Reset_Form();
@@ -493,6 +507,7 @@ namespace DnD_CharSheet_5e
             Set_Level_and_HP_Panel_OnLoad();
             
             Deactivate_Scores_and_Show_AbilityModifiers();
+            UnmarkUIElementsBlockUserInput();
             Show_AbilityScores();
 
             Deactivate_SaveProf_CheckBoxes();
@@ -531,7 +546,7 @@ namespace DnD_CharSheet_5e
         {
             foreach (Button MenuBtn in MainMenuBtns)
             {
-                if(MenuBtn.Name != "LoadCharBtn")
+                if(MenuBtn.Name != "LoadCharBtn" && MenuBtn.Name != "DiceMachineWindow_Btn")
                 {
                     MenuBtn.IsEnabled = false;
                 }
@@ -1394,6 +1409,16 @@ namespace DnD_CharSheet_5e
             
         }
 
+        public void Set_AllAbilityScores(int[] abilityScoreValues)
+        {
+            for(int i = 0; i < abilityScoreValues.Length; i++)
+            {
+                AbilityScoreBoxes[i].Text = abilityScoreValues[i].ToString();
+            }
+
+            Check_Values();
+        }
+
         private void Show_AbilityScores()
         {
             StrScoreBox.Text = SheetManager.CS_Manager_Inst.character.Strength.Score.ToString();
@@ -1734,5 +1759,20 @@ namespace DnD_CharSheet_5e
         }
 
         #endregion
+
+        private void CharGenGuideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GuideWdw guideWdw = new GuideWdw();
+            guideWdw.Show();
+        }
+
+        private void MainPanel_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if(!newToWasShown)
+            {
+                MessageBox.Show(NewToDandDMessage, NewToDandDCaption);
+                newToWasShown = true;
+            }
+        }
     }
 }
