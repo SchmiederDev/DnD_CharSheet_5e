@@ -71,6 +71,7 @@ namespace DnD_CharSheet_5e
         private void Init_BackgroundBoxes()
         {
             BackgroundBoxes.Add(Appearance_Box);
+            BackgroundBoxes.Add(Feats_n_Traits_Box);
             BackgroundBoxes.Add(Backstory_Box);
             BackgroundBoxes.Add(Allies_n_Orgas_Box);
         }
@@ -90,7 +91,8 @@ namespace DnD_CharSheet_5e
 
             Appearance_Box.Text = SheetManager.CS_Manager_Inst.character.CharApperance;
             Backstory_Box.Text = SheetManager.CS_Manager_Inst.character.BackgroundStory;
-            Allies_n_Orgas_Box.Text = SheetManager.CS_Manager_Inst.character.AlliesAndOrgas;           
+            Allies_n_Orgas_Box.Text = SheetManager.CS_Manager_Inst.character.AlliesAndOrgas;   
+            Feats_n_Traits_Box.Text = SheetManager.CS_Manager_Inst.character.FeatsAndTraits;
         }
         #endregion
 
@@ -171,6 +173,7 @@ namespace DnD_CharSheet_5e
             SheetManager.CS_Manager_Inst.character.CharApperance = Appearance_Box.Text;
             SheetManager.CS_Manager_Inst.character.AlliesAndOrgas = Allies_n_Orgas_Box.Text;
             SheetManager.CS_Manager_Inst.character.BackgroundStory = Backstory_Box.Text;
+            SheetManager.CS_Manager_Inst.character.FeatsAndTraits = Feats_n_Traits_Box.Text;
         }
         #endregion
 
