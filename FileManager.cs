@@ -37,12 +37,17 @@ namespace DnD_CharSheet_5e
         string DataBasesFolderName = @"\DataBases";
         string DataBasesPath;
 
+        string textFilesFolderName = @"\TextFiles";
+        public string TextFilesFolder { get; private set; }
 
         public string saveGameFolder { get; private set; }
         public string SoundEffectsFolder { get; private set; }
         
         public string ImagesFolder { get; private set; }        
         public string[] ImageFileNames { get; private set; }
+
+        
+
         #endregion
 
         #region SAVE GAME PATHS
@@ -79,6 +84,14 @@ namespace DnD_CharSheet_5e
         #endregion
 
         #region DATA BASES FILES AND PATHS
+
+        #region CHARACTER DATA BASES
+
+        string RDB_FileName = @"\RaceDataBase.json";
+        public string RDB_Path { get; private set; }
+        public string RaceDataBase_JSON { set; get; }
+
+        #endregion
 
         #region ITEM DATA BASES
 
@@ -156,6 +169,14 @@ namespace DnD_CharSheet_5e
 
         #endregion
 
+        #region TEXT FILES AND PATHS
+
+        string CharGenFileName = @"\CharacterGenerationGuide.txt";
+        public string CharGenPath { get; private set; }
+        public string CharGenTxt { get; set; }
+
+        #endregion
+
         #endregion
 
         #region METHODS
@@ -164,9 +185,11 @@ namespace DnD_CharSheet_5e
         public void Init_FileSystem()
         {
             Find_ResourceFolder_and_SetFolderPath();
-            Set_FilePaths();
-            Read_Spells_and_SpellLists();
+            Set_DataBasesFilePaths();
+            Read_DataBases();
             Init_SaveGames();
+            Init_TextFiles();
+            Read_TextFiles();
             Init_SoundEffects();
             Init_Images();
         }
@@ -176,7 +199,7 @@ namespace DnD_CharSheet_5e
         {
             rootPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);                        
             ResourceFolderPath = rootPath + ResourceFolderName;            
-            DataBasesPath = ResourceFolderPath + DataBasesFolderName;
+            DataBasesPath = ResourceFolderPath + DataBasesFolderName;            
         }
 
         private string Check_for_Folder(string folderPath)
@@ -191,10 +214,21 @@ namespace DnD_CharSheet_5e
             return folder;
         }
 
+        private void Read_DataBases()
+        {
+            Read_CharacterDataBases();
+            Read_Spells_and_SpellLists();
+        }
+
         public string Read_DataBase(string path)
         {
             string jsonDB = File.ReadAllText(path);
             return jsonDB;
+        }
+
+        private void Read_CharacterDataBases()
+        {
+            RaceDataBase_JSON = File.ReadAllText(RDB_Path);
         }
 
         private void Read_Spells_and_SpellLists()
@@ -216,11 +250,26 @@ namespace DnD_CharSheet_5e
         #endregion
 
         #region PATH SETTERS
-        private void Set_FilePaths()
+        private void Set_DataBasesFilePaths()
         {
             Set_ItemDataBasesPaths();
+            Set_CharacterDataBases();
             LDB_Path = DataBasesPath + LDB_FileName;
             Set_Path_Spells_and_SpellLists();
+        }
+
+
+
+        private void Set_ItemDataBasesPaths()
+        {
+            IDB_Path = DataBasesPath + IDB_FileName;
+            WDB_Path = DataBasesPath + WDB_FileName;
+            ADB_Path = DataBasesPath + ADB_FileName;
+        }
+
+        private void Set_CharacterDataBases()
+        {
+            RDB_Path = DataBasesPath + RDB_FileName;
         }
 
         private void Set_Path_Spells_and_SpellLists()
@@ -255,7 +304,23 @@ namespace DnD_CharSheet_5e
         {
             ImagesFolder = ResourceFolderPath + ImagesFolderPath;
             Load_Images();
-        }      
+        }     
+        
+        private void Init_TextFiles()
+        {            
+            TextFilesFolder = ResourceFolderPath + textFilesFolderName;
+            Set_TextFilePaths();
+        }
+
+        private void Set_TextFilePaths()
+        {
+            CharGenPath = TextFilesFolder + CharGenFileName;
+        }
+
+        private void Read_TextFiles()
+        {
+            CharGenTxt = File.ReadAllText(CharGenPath);
+        }
 
         private void Set_SaveGames()
         {
@@ -267,14 +332,7 @@ namespace DnD_CharSheet_5e
 
             namesDataBase = saveGameFolder + nameSaveSlot;
 
-        }
-
-        private void Set_ItemDataBasesPaths()
-        {
-            IDB_Path = DataBasesPath + IDB_FileName;
-            WDB_Path = DataBasesPath + WDB_FileName;
-            ADB_Path = DataBasesPath + ADB_FileName;
-        }        
+        }   
 
         private void Set_SoundPaths()
         {
