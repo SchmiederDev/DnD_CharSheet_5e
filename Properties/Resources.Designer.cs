@@ -19,7 +19,7 @@ namespace DnD_CharSheet_5e.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -127,6 +127,22 @@ namespace DnD_CharSheet_5e.Properties {
             get {
                 object obj = ResourceManager.GetObject("Chain_Shirt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die QUICK GUIDE
+        ///
+        ///1. NAME YOUR CHARACTER by entering a name into the highlightened box next to &apos;Character&apos;. (Optional: Enter your own name or a user name in the &apos;Player&apos; field.)
+        ///
+        ///2. CHOOSE a RACE, CLASS, and the ALIGNMENT of your Character by SELECTING ONE OF THE OPTIONS in the DROP-DOWN-MENUS under the respective headings.
+        ///
+        ///-&gt; You can also choose a custom Race, Subrace or Class for your character, since here only the standard options from the Player&apos;s Handbook are listed.
+        ///-&gt; Select the &apos;Custom ...&apos;-optio [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string CharacterGenerationGuide {
+            get {
+                return ResourceManager.GetString("CharacterGenerationGuide", resourceCulture);
             }
         }
         
@@ -506,6 +522,16 @@ namespace DnD_CharSheet_5e.Properties {
             get {
                 object obj = ResourceManager.GetObject("Quarterstaff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
+        /// </summary>
+        internal static byte[] RaceDataBase {
+            get {
+                object obj = ResourceManager.GetObject("RaceDataBase", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
