@@ -84,11 +84,10 @@ namespace DnD_CharSheet_5e
         #endregion
 
         #region BACKGROUND
-        public string CD_charAppearance { get; set; } 
-
+        public string CD_charAppearance { get; set; }
         public string CD_backgroundStory { get; set; }
-
         public string CD_AlliesAndOrgas { get; set; }
+        public string CD_FeatsAndTraits { get; set; }
 
 
         public int CD_Age { get; set; }
@@ -185,7 +184,8 @@ namespace DnD_CharSheet_5e
 
             CD_charAppearance = character.CharApperance;
             CD_backgroundStory = character.BackgroundStory;
-            CD_AlliesAndOrgas = character.AlliesAndOrgas;            
+            CD_AlliesAndOrgas = character.AlliesAndOrgas;
+            CD_FeatsAndTraits = character.FeatsAndTraits;
 
             CD_Inventory = character.cInventory;
             CD_Equipment = character.CharEquipment;
