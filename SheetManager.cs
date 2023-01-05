@@ -139,6 +139,8 @@ namespace DnD_CharSheet_5e
 
         public Mystra theWeave = new Mystra();
 
+        public List<Race> CharacterRaces = new List<Race>();
+
         public string[] StandardRaces { get; } = { "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling" };
         public string[] StandardSubraces { get; } = { "Drow", "Hill Dwarf", "Mountain Dwarf", "High Elf", "Wood Elf", "Forest Gnome", "Rock Gnome", "Lightfood Halfling", "Stout Halfling" };
         public string[] StandardClasses { get; } = { "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard" };
