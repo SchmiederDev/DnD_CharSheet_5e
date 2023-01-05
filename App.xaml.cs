@@ -87,8 +87,32 @@ namespace DnD_CharSheet_5e
         #region LOAD DATABASES
         private void Load_DataBases()
         {
+            Load_CharacterDataBases();
             Load_Languages();
             Load_SpellDataBases();
+        }
+
+        private void Load_CharacterDataBases()
+        {
+            Load_RaceDatBase();
+        }
+
+        private void Deserialize_RaceDataBase(string jsonRDB)
+        {
+            SheetManager.CS_Manager_Inst.CharacterRaces = JsonConvert.DeserializeObject<List<Race>>(jsonRDB);
+        }
+
+        private void Load_RaceDatBase()
+        {
+            try
+            {
+                Deserialize_RaceDataBase(FileManager.FM_Inst.RaceDataBase_JSON);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         private void Load_LanguageDataBase(string jsonLDB)
