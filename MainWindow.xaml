@@ -146,16 +146,17 @@
 
             <Border Margin="10 90 10 100" Style="{StaticResource StandardBorder}" Grid.Column="0">
 
-                <StackPanel x:Name="MenuBtnsPanel" Background="AliceBlue">
+                <StackPanel x:Name="MenuBtnsPanel" MouseEnter="MainPanel_MouseEnter" Background="AliceBlue">
 
-                    <Button x:Name="NewCharButton" Content="New Character" Click="NewCharButton_Click" Margin ="0 15 0 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="NewCharButton" Content="New Character" Click="NewCharButton_Click" Margin ="15 15 10 5" Style="{StaticResource MainMenuBtn}"/>
                     <Button x:Name="ApplyButton" Content="Apply Character" Click="ApplyCharButton_Click" IsEnabled="False" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="CharGenGuideBtn" Content="Generation Guide" Click="CharGenGuideBtn_Click" Margin="15 15 10 5" Style="{StaticResource MainMenuBtn}"/>
 
                     <Button x:Name="BackgroundWindow_Btn" IsEnabled="False" Content="Background" Click="BackgroundWindow_Btn_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
                     <Button x:Name="SpellWindow_Btn" Content="Spells" IsEnabled="False" Click="SpellWindow_Btn_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
 
                     <Button x:Name="CombatWindow_Btn" IsEnabled="False" Content="Combat" Click="CombatWindow_Btn_Click" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
-                    <Button x:Name="DiceMachineWindow_Btn" IsEnabled="False" Content="Dice Machine" Click="DiceMachineWindow_Btn_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
+                    <Button x:Name="DiceMachineWindow_Btn" Content="Dice Machine" Click="DiceMachineWindow_Btn_Click" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
 
                     <Button x:Name="InventoryWindow_Btn" IsEnabled="False" Click="InventoryWindow_Btn_Click" Content="Inventory" Margin ="15 40 10 5" Style="{StaticResource MainMenuBtn}"/>
                     <Button x:Name="MerchantWindow_Btn" IsEnabled="False" Click="MerchantWindow_Btn_Click" Content="Merchant" Margin ="15 10 10 5" Style="{StaticResource MainMenuBtn}"/>
