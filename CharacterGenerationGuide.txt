@@ -1,0 +1,230 @@
+CHARACTER GENERATION QUICK GUIDE
+
+1. NAME YOUR CHARACTER by entering a name into the highlightened box next to 'Character'. (Optional: Enter your own name or a user name in the 'Player' field.)
+
+2. CHOOSE a RACE, CLASS, and the ALIGNMENT of your Character by SELECTING ONE OF THE OPTIONS in the DROP-DOWN-MENUS under the respective headings.
+
+-> You can also choose a custom Race, Subrace or Class for your character, since here only the standard options from the Player's Handbook are listed.
+-> Select the 'Custom ...'-option in the Drop-Down Menu, a box will appear where you can enter a custom name for your character's Race, Subrace or Class.
+
+(Please note, that currently some features of the app only work with the standard options for these character specifications. Future tools will allow the integration of custom content - like your own Class Feats List.
+All basic mechanisms of the Game will also work with custom Race, Subrace and Class.) 
+
+3. OPTIONAL: Also SELECT a SUBRACE and enter a BACKGROUND for your Character.* 
+*(a one word discription for the past of your character. There are detailed backgrounds with additional features listed in the Player's Handbook and other source books.)
+
+4. ENTER the ABILITY SCORES for your character by entering numbers in the highlighted boxes on the left side of the ABILITY SCORE TABLE. 
+-> These should be values between 1 and 20. (The modifier will calculated automatically.)
+-> You can use the ABILITY SCORE WIZARD that will show up when you click 'New Character', or the DICE MACHINE or physical dice and note the values on a sheet of paper).
+
+5. ENTER the MAXIMUM HITPOINTS of your character in the hightlightened box above the Ability Score Table ('Hitpoints(Max.)').
+
+6. CHOOSE 2 SAVING THROW PROFICIENCIES by CLICKING THE CHECKBOXES on the LEFT SIDE of the SAVING THROW TABLE.
+
+7. CHOOSE AT LEAST 2 SKILLS by CLICKING THE CHECKBOXES on the LEFT SIDE of the SKILLS TABLE.
+(Usually, a character is proficient in 4 - 6 Skills already on Level 1 depending on Class and Background; see the section below for detailed information about Skills.) 
+
+----------------------------
+
+ABOUT D&D:
+
+D&D is (originally) a pen & paper fantasy roleplaying game, where player's assume the role of heroes and heroines with special abilities (the Characters) traveling through a world of magic, where dangerous monsters roam and splendig treasure is to be found.
+
+A so called 'Dungeon Master' (short: 'DM') is responsible for what the computer or code behind would do in a video/ computer game - so to speak.
+The DM knows and applies the rules and mechanics of the game, guides the player's through the world, tells them what see and hear, assumes the roll of Non-Player-Characters, Villains and Monsters. 
+
+Pen & Paper means that the story, what happened and things that would appear on screen and be saved as values in a computer game - the 'health' of the player e. g. - are usually noted on sheets of paper.
+This app transfers the mechanics of the game and the player's character sheet to a virtual space and automatizes a lot of the processes player's would have to recall, note and calculate manually.
+
+D&D, DICE AND THE FEATURES OF THIS APP
+
+D&D is based on the results of dice rolls determining the success or failure of attempted actions by the characters the player's play.
+At least this is the basis of the technical side of the game.
+There are many rules which die to use in which situation, for which kind of action and the calculations that have to be done to determine success or failure.
+
+The core purpose of this app is to automatize the actions occuring in the game which spares you the need of knowing all the rules and calculations behind.
+
+MOST OF THE DICE ROLLS OCCURING IN D&D ARE COVERED AND AUTOMATIZED BY THIS APP USING VIRTUAL DICE. Usually, RESULTS ARE SHOWN WITH ALL BONI (or minus points) INCLUDED AUTOMATICALLY.		.
+
+The most important die is the 'd20' (a twenty-sided die) which used for the most fundamental actions such as Ability and Skill Checks, Saving Throws or Attacks (what those mean will be explained later in this section).
+
+If your character attempts something not (yet) covered by this app, you can always use the 'DICE MACHINE'.
+Just click on the 'Dice-Machine'-Button in the menu on the left side of the Main Window (Sheet).
+
+This tool comes with a set of all the dice occuring in D&D and lets you roll virtually via clicking on the buttons for each type of die.
+If you need consectutive rolls, click the little Check Box labeled 'Add'.
+You can always clear the output in the result box by clicking the 'Reset'-Button.
+
+
+----------------------------
+
+ABILITY SCORES
+
+When you generate a Character for D&D you should start with the six ability scores: Strength, Dexterity, Constitution, Intelligence, Wisdom and Charisma.
+These scores describe the basic physical, mental and social capababilities of your character. All further technical features of your character depend on those, be it Skills, Saving Throws or Attacks (see below). 
+
+The highter the score (value) the better your character is doing a certain type of action related to a specific ability.
+(For example: When your character tries to lift a heavy bolder, the die roll you will have to make is related to Strength, 
+when your character tries to decipher an ancient scroll this would be related to Intelligence, trying to convince somebody of something would be related to Charisma and so on.)
+
+An ability score has always a value between 1 and 20.
+(Note that your character is a hero or heroine: Therefore most of the values for your Ability Scores should be above 10, only one or two scores below 10 and usually no score should be lower than 7.
+Otherwise your character will have difficulties succeeding in the game).
+
+Based on the value of the Ability Score are 'modifier' is calculated which is added or substracted from the results of related dice rolls. 
+This app will automatically calculate the modifier, so you don't have worry about the formula of the calculation. 
+
+The most common way of determining the values for your ability scores is to roll the d20 four times for each score.
+The lowest result will be ignored or crossed out and the remaining numbers added.
+
+For this step of character generation you can do this fully automatically with the Ability Score Wizard which will open when you click the 'New Character'-Button.
+
+If you prefer to do this manually you can use the 'Dice Machine' to roll virtual dice for this step.
+
+Finally, you can of course use physical dice (if you have them at hand) and note the numbers on a sheet of paper.
+Just fill in the numbers in the respective input fields on the Main Sheet. They will be highlighted and enabled after clicking the 'New Character'-Button.
+
+It is up to you which value to use for which Ability. - If you use the Ability-Score-Wizard you can easily Drag'n'Drop the numbers from one ability score to another.
+
+
+
+----------------------------
+
+SAVING THROWS
+
+Saving Throws are another type of action required when your character tries to avoid a harmful effect. 
+This includes, for example, jumping out of the way of a lightning bolt (Dexterity Saving Throw), surviving poison (Constitution Saving Throw) or resisting thought control by an evil wizard (Intelligence or Wisdom Saving Throw).
+As you can see, Saving Throws are related to your core Ability Scores and their modifiers.
+
+If your are proficient in a type of Saving Throw and your DM is calling for this type of Saving Throw your 'Proficiency Bonus' will be added to the result of your die roll.
+The 'Proficiency Bonus' depends on the Level of your character. 
+The app will automatically update your Profiency Bonus when the Level of your character increases and it will automatically added to the result of your Saving Throws in which you are proficient.
+
+
+Depending on the class of your character (Fighter, Rogue, Wizard etc.) your character is 'proficient' in two types of Saving Throws.
+When you create a new Character CHOOSE 2 SAVING THROW PROFICIENCIES by CLICKING THE CHECKBOXES on the LEFT SIDE of the SAVING THROW TABlE.
+
+----------------------------
+
+SKILLS
+
+Being proficient in a Skill means your Character is especially good in performing certain types of actions.
+For example, being proficient in 'Stealth' means your character is especially good in hiding, sneaking past or up to somebody without being seen or heard. 
+
+The Player's Handbook describes Skills as an 'aspect of an ability score' (p. 174). Accordingly, each of the 18 Skills listed in the Skills Table on the Main Sheet is linked to one of the six of Abilities (Strength, Dexterity etc.).  
+In the case of 'Stealth' e. g.: Since hiding or sneaking requires a character not to step on things that would make noise, avoid the rustling of clothing or the rattling of armor and beeing quick and agile in general 'Stealth' is a Skill based on 'Dexterity'. 
+
+On the technical side, beeing proficient in a Skill means your 'PROFIENCY BONUS' will be ADDED to your die rolls when your DM calls for this type of Skill-Check.
+To stay with the example: When your DM calls for a 'Stealth'-Check you may always add your DEXTERITY-MODIFIER, but only when you are proficient in 'Stealth' your PROFIENCIENCY-BONUS will be added to the roll with the 20-sided die.
+
+(Foremost) The Class of your character determines in which Skills your character can be proficient in. 
+Every character will be proficient in at least 2 Skills on Level 1, some Character-Classes like the Bard or the Rogue are proficient in even more Skills.
+This is why the app requires you to CHOOSE AT LEAST 2 SKILLS by CLICKING THE CHECKBOXES on the LEFT SIDE of the SKILLS TABLE.
+
+You will find the respective information in Chapter 3 'Classes' of the Player's Handbook or on:
+https://www.dandwiki.com/wiki/5e_SRD:Classes							
+
+Special Feats of the Character-Races, Subraces, Classes or Backgrounds may grant your character even more Skills.
+As a rule of thumb, you can choose not only 2 but 4 to 6* Skills on Level 1 because most of the Backgrounds in the Player's Handbook (Chapter 4)* or other source books grant your character 2 Skills in addition to the one's received for the Class of your character.
+
+The rule for customizing a Background (Player's Handbook, p. 125) also states that a Character with a custom Background may choose 'any two' Skill Proficiencies (in addition to the one's gained for the Class of a Character).  
+
+*The Background options listed in the Player's Handbook are not included in this app because they don't fall under the Open License Agreement.
+
+----------------------------
+The BACKGROUND-WINDOW (Sheet)
+
+The Background-Window of this app allows you to note and save further details on your character, like the standard physical description of Age, Height, Weight, the color of Eyes, Skin or Hair.
+More details of your Character's Appearance can be noted in the respective box. 
+You can also take notes on the 'Backstory' and 'Allies and Organizations' (your Character is a member of).
+Last but not least, you can note and store details about the 'FEATS AND TRAITS' granted by your Character's Class, Background and so on.
+
+
+If you want to take notes, just CLICK the 'EDIT BACKGROUND'-Button and WHEN YOU'RE DONE CLICK 'Ok'.
+
+Any notes will be saved automatically when the window is closed if you forgot to click 'Ok' - but you will still have to SAVE YOUR CHARACTER BEFOR YOU CLOSE THE APP, so that your notes are saved permanently.
+
+----------------------------
+ITEMS AND INVENTORY: INVENTORY AND MERCHANT-WINDOW
+
+The app allows you to KEEP TRACK OF YOUR RICHES AND ITEMS IN YOUR INVENTORY using the INVENTORY-WINDOW which you can always OPEN BY CLICKING the INVENTORY-BUTTON in the MAIN-MENU ON THE MAIN-WINDOW/ SHEET. 
+
+If the amount of coin your Characters have in their purse changes just CLICK THE 'EDIT RICHES'-BUTTON. WHEN YOU ARE DONE CLICK 'APPLY'.
+
+The app also allows you to ADD ALL THE STANDARD WEAPONS, ARMOR AND ITEMS listed in the Player's Handbook TO THE INVENTORY for your Character. 
+Information about the item will appear as a 'Tooltip' when you HOVER OVER the item with the MOUSE CURSOR.
+
+IF YOU WANT TO ADD NEW ITEMS TO YOUR INVENTORY -> OPEN THE 'MERCHANT'-WINDOW. 
+You can either buy items or just add items from the 'Merchant'-Window to your Inventory (as if your Character has just found them in a Dungeon or while traveling).
+
+When you CLICK ON AN ITEM you will be asked if you want to buy the item or just add it to your Inventory.
+(A little Message Box/ Window will show up. Just click on the respective button.)
+
+If you BUY AN ITEM the PRICE OF THE ITEM will be automatically SUBSTRACTED from the COIN IN YOUR INVENTORY.
+
+If your character hasn't enough coin in the inventory you will be notified. You can still just add the item from the Merchant-Window or add fresh coin in the Inventory-Window.
+Although it is recommended to discuss such 'transactions' with your DM.
+
+You can also EQUIP WEAPONS AND ARMOR by CLICKING ON THEM IN THE INVENTORY. 
+This mainly serves the purpose of helping you keep track which weapon or armor you Character is using at the moment.
+
+Your ARMOR CLASS (AC) WILL CHANGE when you don another armor: THE NEW AC-VALUE WILL UPDATE ON THE MAIN-SHEET and in the COMBAT-WINDOW. 
+
+Finally, if you want to REMOVE AN ITEM FROM YOUR INVENTORY -> RIGHT-CLICK ON THE ITEM. You will be asked if you really want to drop the Item.
+
+
+----------------------------
+
+THE COMBAT-WINDOW
+
+The Combat-Window should include everything you need for Combat in D&D.
+
+INITIATIVE:
+
+It lets you ROLL FOR INITIATIVE: Determining turn order of Characters and enemies involved in a Combat. -> THE PANEL IN THE MIDDLE OF THE WINDOW.
+You can also NOTE THE INITIATIVE ORDER (turn order): Just CLICK ON THE 'CREATE INITIATIVE LIST'-BUTTON.
+
+THEN CLICK THE 'ADD COMBATANT'-Button for each Character (Player) or creature involved in the Combat and ENTER THE RESULT OF THE INITIATIVE-ROLL.
+
+Every participant of the combat you added will be automatically sorted in order of their Initiative(-Result), starting of course with the highest value, meaning its their turn before participants with lower values.
+Of course you can also just note your own result for Iniative in this way.
+
+-----------------------
+
+ATTACKING:
+
+THE PANEL ON THE LEFT SIDE lets you MAKE ATTACK ROLLS and ROLL FOR DAMAGE.
+ALL BONI WILL BE ADDED AUTOMATICALLY TO DICE ROLLS (or minus points substracted).
+
+Although currently, the app assumes that you proficient with the weapons you are using in combat.
+For the rare case that you use a weapon you are not proficient with keep in mind to substract your proficiency bonus from the die roll result shown in the result box.
+A later version of this app will check for weapon proficiencies automatically.
+
+You DON'T HAVE TO REMEMBER HOW MUCH DAMAGE IS DEALT by a certain type of weapon. The app does that for you.
+
+JUST SELECT A WEAPON IN THE DROP-DOWN MENUS where it says '1st, 2nd and 3rd WEAPON'.
+ 
+The order of your weapon selections does not matter.
+It only gives you the opportunity to select several weapons you would use during the same combat: e. g. a Longsword for Melee Attacks and a Longbow for Ranged Attacks.
+
+-----------------------
+
+DAMAGE, DEATH SAVES AND HEALING
+
+If YOU SUFFER DAMAGE during combat you can handle this with the PANEL ON THE RIGHT SIDE.
+
+You can just ENTER THE NUMBER OF DAMAGE YOUR CHARACTER SUFFERED in the little box NEXT TO THE 'GET HIT'-BUTTON AND CLICK ON THE BUTTON.
+The number will be SUBSTRACTED FROM YOUR CURRENT HITPOINTS. The app automatically checks whether you fell unconscious when your current hitpoints dropped below 0.
+
+If so, the DEATH SAVING THROW PANEL UNFOLDS AUTOMATICALLY.
+You can either keep track of your Death Saves by just clicking the circles under 'Successes' and 'Failures' or make actual die rolls with the app.
+
+If you want to HEAL YOURSELF or get HEALED BY ANOTHER CHARACTER you can use the 'HEALING'-PANEL. You can either just heal an amount of hit points or enter a denominator and numerator for dice.
+For example, when you enter a 2 on the left side of the 'd' and a '4' on the right side, the app lets you roll 2d4 (two 4-sided dice) like with the common healing potion.
+
+If your character was unconscious in the moment of healing the automatically checks whether you gained consciousness again or not.
+
+Finally, you can also ADD TEMPORARY HIT POINTS for your character using the same features of the app as with healing.
+
+THE DIFFERENCE BETWEEN ACTUAL AND TEMPORARY HIT POINTS WILL BE HANDLED BY THE APP AUTOMATICALLY.
+
