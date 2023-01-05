@@ -88,6 +88,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Ability.cs" />
+    <Compile Include="AbilityScoreWizard.xaml.cs">
+      <DependentUpon>AbilityScoreWizard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Armor.cs" />
     <Compile Include="BackgroundWindow.xaml.cs">
       <DependentUpon>BackgroundWindow.xaml</DependentUpon>
@@ -101,6 +104,9 @@
     </Compile>
     <Compile Include="Equipment.cs" />
     <Compile Include="Feat.cs" />
+    <Compile Include="GuideWdw.xaml.cs">
+      <DependentUpon>GuideWdw.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImageHandler.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Coin.cs" />
@@ -122,6 +128,7 @@
     </Compile>
     <Compile Include="Mystra.cs" />
     <Compile Include="Proficiency.cs" />
+    <Compile Include="Race.cs" />
     <Compile Include="SaveWindow.xaml.cs">
       <DependentUpon>SaveWindow.xaml</DependentUpon>
     </Compile>
@@ -138,6 +145,10 @@
       <DependentUpon>SpellsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Weapon.cs" />
+    <Page Include="AbilityScoreWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BackgroundWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DiceMachine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GuideWdw.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +228,7 @@
     <None Include="ArmorDataBase.json" />
     <None Include="Bard_SpellList.json" />
     <None Include="Cleric_SpellList.json" />
+    <None Include="RaceDataBase.json" />
     <None Include="Resources\DataBases\ArmorDataBase.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -232,6 +248,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\DataBases\Paladin_SpellList.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\DataBases\RaceDataBase.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\DataBases\Ranger_SpellList.json">
@@ -549,6 +568,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Shield.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CharacterGenerationGuide.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\TextFiles\CharacterGenerationGuide.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
