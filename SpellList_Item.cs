@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DnD_CharSheet_5e
+﻿namespace DnD_CharSheet_5e
 {
     /* The 'SpellList_Item-Class:
      * Very simple data container for deserialization from the 'SpellList'-Databases.
