@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Media;
 using System.Windows;
@@ -27,6 +26,9 @@ namespace DnD_CharSheet_5e
         #region BASIC FOLDER PATHS
 
         string rootPath;
+        string userProfilePath;
+
+        string appDataFolderPath = @"\DnD_CharacterSheet_5e";
 
         string ResourceFolderName = @"\Resources";
         string ResourceFolderPath;
@@ -197,14 +199,15 @@ namespace DnD_CharSheet_5e
         #region FILE OPERATION METHODS
         private void Find_ResourceFolder_and_SetFolderPath()
         {
-            rootPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);                        
+            rootPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            userProfilePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.DoNotVerify);
             ResourceFolderPath = rootPath + ResourceFolderName;            
             DataBasesPath = ResourceFolderPath + DataBasesFolderName;            
         }
 
         private string Check_for_Folder(string folderPath)
         {
-            string folder = rootPath + folderPath;
+            string folder = userProfilePath + appDataFolderPath + saveGameFolderPath;
 
             if (!Directory.Exists(folder))
             {
