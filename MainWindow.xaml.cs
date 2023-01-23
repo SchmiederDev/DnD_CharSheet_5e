@@ -435,7 +435,8 @@ namespace DnD_CharSheet_5e
         }
 
         private void ApplyCharacter()
-        {
+        {            
+
             if (TryCharacterName())
             {
                 if(TryRaceInput())
