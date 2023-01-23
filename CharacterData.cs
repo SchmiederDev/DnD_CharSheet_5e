@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
 
 namespace DnD_CharSheet_5e
 {
