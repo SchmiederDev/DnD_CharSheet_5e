@@ -61,6 +61,16 @@ namespace DnD_CharSheet_5e.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+        /// </summary>
+        internal static System.Drawing.Icon AppIconComplete {
+            get {
+                object obj = ResourceManager.GetObject("AppIconComplete", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
         /// </summary>
         internal static byte[] ArmorDataBase {
@@ -131,14 +141,14 @@ namespace DnD_CharSheet_5e.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die QUICK GUIDE
+        ///   Sucht eine lokalisierte Zeichenfolge, die CHARACTER GENERATION QUICK GUIDE
         ///
         ///1. NAME YOUR CHARACTER by entering a name into the highlightened box next to &apos;Character&apos;. (Optional: Enter your own name or a user name in the &apos;Player&apos; field.)
         ///
         ///2. CHOOSE a RACE, CLASS, and the ALIGNMENT of your Character by SELECTING ONE OF THE OPTIONS in the DROP-DOWN-MENUS under the respective headings.
         ///
         ///-&gt; You can also choose a custom Race, Subrace or Class for your character, since here only the standard options from the Player&apos;s Handbook are listed.
-        ///-&gt; Select the &apos;Custom ...&apos;-optio [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///-&gt; Select t [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string CharacterGenerationGuide {
             get {
